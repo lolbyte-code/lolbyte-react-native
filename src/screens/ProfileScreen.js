@@ -5,6 +5,9 @@ import Rank from '../components/profile/Rank';
 import LeagueDetails from '../components/profile/LeagueDetails';
 import PlayerStatsHeader from '../components/profile/PlayerStatsHeader';
 import PlayerStats from '../components/profile/PlayerStats';
+import ChampStatsHeader from '../components/profile/ChampStatsHeader';
+import MostPlayedChamps from '../components/profile/MostPlayedChamps';
+import TopChamps from '../components/profile/TopChamps';
 import ApiUrl from '../api/Constants';
 
 const initialSummonerData = {
@@ -23,10 +26,12 @@ const initialSummonerData = {
   ],
 };
 const initialRankedData = [{}];
+const initialChampData = [{}, {}];
 
 const ProfileScreen = ({route}) => {
   const [summonerData, setSummonerData] = React.useState(initialSummonerData);
   const [rankedData, setRankedData] = React.useState(initialRankedData);
+  const [champData, setChampData] = React.useState(initialChampData);
 
   React.useEffect(() => {
     let isCancelled = false;
@@ -74,6 +79,29 @@ const ProfileScreen = ({route}) => {
     };
   }, [route.params, summonerData]);
 
+  React.useEffect(() => {
+    let isCancelled = false;
+
+    fetch(
+      `${ApiUrl}/summoners/${route.params.region}/summoner-id/${summonerData.summonerId}/champions`,
+      {
+        method: 'GET',
+      },
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if (!isCancelled) {
+          setChampData(json);
+        }
+      })
+      .catch((error) => console.error(error));
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [route.params, summonerData]);
+
   return (
     <ScrollView style={styles.profile}>
       <View style={styles.profileContainer}>
@@ -97,6 +125,15 @@ const ProfileScreen = ({route}) => {
           kdaShort={summonerData.playerStats[0].kdaLong}
           kdaLong={summonerData.playerStats[0].kdaShort}
           wards={summonerData.playerStats[0].averageWardsPlaced}
+        />
+        <ChampStatsHeader />
+        <MostPlayedChamps
+          title={champData[0].championStatType}
+          data={champData[0].mostPlayedChampions}
+        />
+        <TopChamps
+          title={champData[1].championStatType}
+          data={champData[1].topChampions}
         />
       </View>
     </ScrollView>

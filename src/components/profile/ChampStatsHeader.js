@@ -2,38 +2,32 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 
-const PlayerStatsHeader = (props) => {
+const ChampStatsHeader = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
-      <Text style={styles.subtitle}>{props.subtitle}</Text>
     </View>
   );
 };
 
-PlayerStatsHeader.defaultProps = {
-  title: 'Player Statistics',
-  subtitle: 'Last 20 Matches',
+ChampStatsHeader.defaultProps = {
+  title: 'Champion Statistics',
 };
 
-PlayerStatsHeader.propTypes = {
+ChampStatsHeader.propTypes = {
   title: PropTypes.string,
-  subtitle: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
-    margin: 15,
+    marginLeft: 15,
+    marginTop: 20,
   },
   title: {
     color: 'white',
     fontSize: 25,
   },
-  subtitle: {
-    color: 'grey',
-    fontSize: 15,
-  },
 });
 
-export default PlayerStatsHeader;
+export default ChampStatsHeader;
