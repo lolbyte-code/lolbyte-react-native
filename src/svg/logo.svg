@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.75 370.76">
+  <defs>
+    <style>.cls-1{font-size:61px;font-family:Arial, Arial;font-weight:800;}.cls-1,.cls-4{fill:#f2f2f2;}.cls-2,.cls-3{font-family:Arial, Arial;font-weight:300;}.cls-2{letter-spacing:-0.01em;}.cls-5{fill:#04070e;}.cls-6{fill:#22a8ce;}</style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_3" data-name="Layer 3">
+      <text class="cls-1" transform="translate(112.12 354.23)">
+        lol
+        <tspan class="cls-2" x="67.7" y="0">b</tspan>
+        <tspan class="cls-3" x="101.33" y="0">yte</tspan>
+      </text>
+      <path class="cls-4" d="M247,71.48s58-44.87,54.86-41.76c-34.14,33.53-6.78,27.81,4.13,28.91s53.57-25.94,60-44.41c14.08-40.26,27.71,11.7,34.41,71.9,7,62.58.92,132.6-56.81,152.43-33.53,11.52-73.92-23.23-73.92-23.23s65.23,58.35,47.67,58.35-84.3-51.2-84.3-51.2Z"/>
+      <path class="cls-4" d="M271.11,53S304,18.19,320.77,19.6s-17.93,51.69-17.93,51.69Z"/>
+      <path class="cls-4" d="M155.75,71.48s-58-44.87-54.87-41.76c34.14,33.53,6.78,27.81-4.13,28.91s-53.56-25.94-60-44.41C22.64-26,9,25.92,2.31,86.12c-7,62.58-.92,132.6,56.82,152.43C92.65,250.07,133,215.32,133,215.32s-65.22,58.35-47.66,58.35,84.3-51.2,84.3-51.2Z"/>
+      <path class="cls-4" d="M131.65,53S98.76,18.19,82,19.6,99.92,71.29,99.92,71.29Z"/>
+      <circle class="cls-5" cx="201.38" cy="133.48" r="119.27"/>
+      <circle class="cls-4" cx="201.38" cy="133.48" r="103.76"/>
+      <circle class="cls-6" cx="201.38" cy="133.48" r="63.5"/>
+      <circle class="cls-4" cx="161.35" cy="120.82" r="12.3"/>
+    </g>
+  </g>
+</svg>

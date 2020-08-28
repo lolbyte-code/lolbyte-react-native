@@ -31,3 +31,5 @@ target 'LolByte-tvOS' do
     # Pods for testing
   end
 end
+
+#pod 'RNSVG', :path => '../node_modules/react-native-svg'
