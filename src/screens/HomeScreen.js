@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import SummonerSearch from '../components/home/SummonerSearch';
 import Logo from '../components/home/Logo';
 import RegionSelector from '../components/home/RegionSelector';
@@ -17,7 +17,7 @@ const HomeScreen = ({navigation}) => {
     setRegion(value);
   };
   return (
-    <View style={styles.home}>
+    <ScrollView style={styles.home}>
       <View style={styles.logo}>
         <Logo />
       </View>
@@ -28,7 +28,7 @@ const HomeScreen = ({navigation}) => {
         />
         <RegionSelector onChangeItemHandler={regionHandler} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

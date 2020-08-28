@@ -1,13 +1,32 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import SummonerDetails from '../components/profile/SummonerDetails';
 import Rank from '../components/profile/Rank';
 import LeagueDetails from '../components/profile/LeagueDetails';
+import PlayerStatsHeader from '../components/profile/PlayerStatsHeader';
+import PlayerStats from '../components/profile/PlayerStats';
 import ApiUrl from '../api/Constants';
 
+const initialSummonerData = {
+  region: 'na',
+  summonerId: '1',
+  summonerName: 'unknown',
+  summonerLevel: 0,
+  playerStats: [
+    {
+      playerStatType: 'Last 20 Matches',
+      winPercentage: 0,
+      kdaLong: '1/2/3',
+      kdaShort: '1 KDA',
+      averageWardsPlaced: '1 Ward Placed',
+    },
+  ],
+};
+const initialRankedData = [{}];
+
 const ProfileScreen = ({route}) => {
-  const [summonerData, setSummonerData] = React.useState({});
-  const [rankedData, setRankedData] = React.useState([{}]);
+  const [summonerData, setSummonerData] = React.useState(initialSummonerData);
+  const [rankedData, setRankedData] = React.useState(initialRankedData);
 
   React.useEffect(() => {
     let isCancelled = false;
@@ -56,7 +75,7 @@ const ProfileScreen = ({route}) => {
   }, [route.params, summonerData]);
 
   return (
-    <View style={styles.profile}>
+    <ScrollView style={styles.profile}>
       <View style={styles.profileContainer}>
         <SummonerDetails
           name={summonerData.summonerName}
@@ -70,8 +89,17 @@ const ProfileScreen = ({route}) => {
           score={rankedData[0].mmr}
           wins={rankedData[0].rankedWL}
         />
+        <PlayerStatsHeader
+          subtitle={summonerData.playerStats[0].playerStatType}
+        />
+        <PlayerStats
+          percent={summonerData.playerStats[0].winPercentage}
+          kdaShort={summonerData.playerStats[0].kdaLong}
+          kdaLong={summonerData.playerStats[0].kdaShort}
+          wards={summonerData.playerStats[0].averageWardsPlaced}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
