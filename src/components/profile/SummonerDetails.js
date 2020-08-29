@@ -1,44 +1,22 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  addToStorage,
+  hasInStorage,
+  removeFromStorage,
+} from '../../utils/Storage';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
 import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const setFavoriteSummoners = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem('@favoriteSummoners', jsonValue);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const getFavoriteSummoners = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('@favoriteSummoners');
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 const SummonerDetails = (props) => {
   const [selected, setSelected] = React.useState(false);
   React.useEffect(() => {
-    getFavoriteSummoners().then((favoriteSummoners) => {
-      if (favoriteSummoners === null) {
-        return;
-      }
-      if (
-        favoriteSummoners.some(
-          (summoner) => summoner.summonerName === props.name,
-        )
-      ) {
-        setSelected(true);
-      }
-    });
+    hasInStorage(
+      '@favoriteSummoners',
+      (value) => value.summonerName === props.name,
+    );
   }, [props.name]);
   return (
     <View style={styles.container}>
@@ -47,38 +25,20 @@ const SummonerDetails = (props) => {
         <TouchableWithoutFeedback
           onPress={() => {
             if (selected) {
-              getFavoriteSummoners().then((favoriteSummoners) => {
-                if (favoriteSummoners == null) {
-                  return;
-                }
-                favoriteSummoners = favoriteSummoners.filter(
-                  (summoner) => summoner.summonerName !== props.name,
-                );
-                setFavoriteSummoners(favoriteSummoners);
-              });
+              removeFromStorage(
+                '@favoriteSummoners',
+                (value) => value.summonerName === props.name,
+              );
               setSelected(false);
-              return;
-            }
-            getFavoriteSummoners().then((favoriteSummoners) => {
-              if (favoriteSummoners == null) {
-                favoriteSummoners = [];
-              }
-              favoriteSummoners = favoriteSummoners.slice(0, 8);
-              if (
-                favoriteSummoners.some(
-                  (summoner) => summoner.summonerName === props.name,
-                )
-              ) {
-                return;
-              }
-              favoriteSummoners.unshift({
+            } else {
+              var summoner = {
                 summonerName: props.name,
                 summonerIcon: props.summonerIcon,
                 summonerRegion: props.summonerRegion,
-              });
-              setFavoriteSummoners(favoriteSummoners);
+              };
+              addToStorage('@favoriteSummoners', summoner);
               setSelected(true);
-            });
+            }
           }}>
           {selected ? (
             <FavoriteSelectedSvg
@@ -117,7 +77,6 @@ SummonerDetails.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    height: '10%',
   },
   name: {
     flexDirection: 'row',
