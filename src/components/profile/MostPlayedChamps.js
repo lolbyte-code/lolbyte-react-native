@@ -1,7 +1,8 @@
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import PropTypes from 'prop-types';
+
 import MostPlayedChampsEntry from './MostPlayedChampsEntry';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const MostPlayedChamps = (props) => {
   if (!props.data.length) {

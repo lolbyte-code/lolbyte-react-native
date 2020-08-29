@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import LogoSvg from '../../svg/logo.svg';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Logo = (props) => {
   return <LogoSvg height={props.height} width={props.width} />;

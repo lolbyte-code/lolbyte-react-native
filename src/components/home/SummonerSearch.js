@@ -1,6 +1,7 @@
-import React from 'react';
 import {StyleSheet, TextInput} from 'react-native';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const SummonerSearch = (props) => {
   return (

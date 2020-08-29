@@ -1,12 +1,13 @@
-import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
-import SummonerSearch from '../components/home/SummonerSearch';
-import Logo from '../components/home/Logo';
-import RegionSelector from '../components/home/RegionSelector';
-import FavoritesHeader from '../components/home/FavoritesHeader';
-import RecentSearchesHeader from '../components/home/RecentSearchesHeader';
-import Summoners from '../components/home/Summoners';
+import {ScrollView, StyleSheet, View} from 'react-native';
+
 import AsyncStorage from '@react-native-community/async-storage';
+import FavoritesHeader from '../components/home/FavoritesHeader';
+import Logo from '../components/home/Logo';
+import React from 'react';
+import RecentSearchesHeader from '../components/home/RecentSearchesHeader';
+import RegionSelector from '../components/home/RegionSelector';
+import SummonerSearch from '../components/home/SummonerSearch';
+import Summoners from '../components/home/Summoners';
 
 const getSavedSummoners = async () => {
   try {

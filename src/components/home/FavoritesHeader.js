@@ -1,7 +1,8 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
-import PropTypes from 'prop-types';
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+
 import FavoriteSvg from '../../svg/favoriteSelected.svg';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const FavoritesHeader = (props) => {
   return (

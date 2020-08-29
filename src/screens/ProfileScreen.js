@@ -1,15 +1,16 @@
-import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
-import SummonerDetails from '../components/profile/SummonerDetails';
-import Rank from '../components/profile/Rank';
-import LeagueDetails from '../components/profile/LeagueDetails';
-import PlayerStatsHeader from '../components/profile/PlayerStatsHeader';
-import PlayerStats from '../components/profile/PlayerStats';
-import ChampStatsHeader from '../components/profile/ChampStatsHeader';
-import MostPlayedChamps from '../components/profile/MostPlayedChamps';
-import TopChamps from '../components/profile/TopChamps';
+import {ScrollView, StyleSheet, View} from 'react-native';
+
 import ApiUrl from '../api/Constants';
 import AsyncStorage from '@react-native-community/async-storage';
+import ChampStatsHeader from '../components/profile/ChampStatsHeader';
+import LeagueDetails from '../components/profile/LeagueDetails';
+import MostPlayedChamps from '../components/profile/MostPlayedChamps';
+import PlayerStats from '../components/profile/PlayerStats';
+import PlayerStatsHeader from '../components/profile/PlayerStatsHeader';
+import Rank from '../components/profile/Rank';
+import React from 'react';
+import SummonerDetails from '../components/profile/SummonerDetails';
+import TopChamps from '../components/profile/TopChamps';
 
 const setSavedSummoners = async (value) => {
   try {

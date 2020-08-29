@@ -1,9 +1,10 @@
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 import Svg0 from '../../svg/0.svg';
-import Svg5 from '../../svg/5.svg';
 import Svg10 from '../../svg/10.svg';
+import Svg100 from '../../svg/100.svg';
 import Svg15 from '../../svg/15.svg';
 import Svg20 from '../../svg/20.svg';
 import Svg25 from '../../svg/25.svg';
@@ -11,6 +12,7 @@ import Svg30 from '../../svg/30.svg';
 import Svg35 from '../../svg/35.svg';
 import Svg40 from '../../svg/40.svg';
 import Svg45 from '../../svg/45.svg';
+import Svg5 from '../../svg/5.svg';
 import Svg50 from '../../svg/50.svg';
 import Svg55 from '../../svg/55.svg';
 import Svg60 from '../../svg/60.svg';
@@ -21,7 +23,6 @@ import Svg80 from '../../svg/80.svg';
 import Svg85 from '../../svg/85.svg';
 import Svg90 from '../../svg/90.svg';
 import Svg95 from '../../svg/95.svg';
-import Svg100 from '../../svg/100.svg';
 
 const PlayerStats = (props) => {
   let PercentSvg = props.defaultPercent;

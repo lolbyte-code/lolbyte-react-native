@@ -1,14 +1,15 @@
-import React from 'react';
 import {
-  StyleSheet,
-  View,
   Image,
+  StyleSheet,
   Text,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
-import PropTypes from 'prop-types';
-import {useNavigation} from '@react-navigation/native';
+
 import EllipsisText from '../lib/EllipsisText';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const SummonerEntry = (props) => {
   const navigation = useNavigation();

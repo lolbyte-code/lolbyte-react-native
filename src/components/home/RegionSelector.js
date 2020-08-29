@@ -1,7 +1,7 @@
+import DropDownPicker from 'react-native-dropdown-picker';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import PropTypes from 'prop-types';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 const RegionSelector = (props) => {
   const [region, setRegion] = React.useState(props.defaultCountry);

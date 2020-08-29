@@ -1,6 +1,7 @@
-import React from 'react';
 import {StyleSheet, View} from 'react-native';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 import SummonerEntry from './SummonerEntry';
 
 const Summoners = (props) => {

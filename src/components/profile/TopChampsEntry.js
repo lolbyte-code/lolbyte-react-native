@@ -1,6 +1,7 @@
-import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const TopChampsEntry = (props) => {
   return (

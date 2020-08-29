@@ -1,9 +1,10 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
-import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
-import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
-import PropTypes from 'prop-types';
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+
 import AsyncStorage from '@react-native-community/async-storage';
+import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
+import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const setFavoriteSummoners = async (value) => {
   try {
