@@ -9,12 +9,34 @@ import ChampStatsHeader from '../components/profile/ChampStatsHeader';
 import MostPlayedChamps from '../components/profile/MostPlayedChamps';
 import TopChamps from '../components/profile/TopChamps';
 import ApiUrl from '../api/Constants';
+import AsyncStorage from '@react-native-community/async-storage';
+
+const setSavedSummoners = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem('@savedSummoners', jsonValue);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const getSavedSummoners = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@savedSummoners');
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const initialSummonerData = {
   region: 'na',
   summonerId: '1',
   summonerName: 'unknown',
   summonerLevel: 0,
+  summonerObject: {
+    summonerIcon: '1',
+  },
   playerStats: [
     {
       playerStatType: 'Last 20 Matches',
@@ -47,6 +69,25 @@ const ProfileScreen = ({route}) => {
         console.log(json);
         if (!isCancelled) {
           setSummonerData(json);
+          getSavedSummoners().then((savedSummoners) => {
+            if (savedSummoners == null) {
+              savedSummoners = [];
+            }
+            savedSummoners = savedSummoners.slice(0, 8);
+            if (
+              savedSummoners.some(
+                (summoner) => summoner.summonerName === json.summonerName,
+              )
+            ) {
+              return;
+            }
+            savedSummoners.unshift({
+              summonerName: json.summonerName,
+              summonerIcon: json.summonerObject.summonerIcon,
+              summonerRegion: json.region,
+            });
+            setSavedSummoners(savedSummoners);
+          });
         }
       })
       .catch((error) => console.error(error));
@@ -108,6 +149,8 @@ const ProfileScreen = ({route}) => {
         <SummonerDetails
           name={summonerData.summonerName}
           level={summonerData.summonerLevel}
+          summonerIcon={summonerData.summonerObject.summonerIcon}
+          summonerRegion={summonerData.region}
         />
         <Rank tier={rankedData[0].tier} />
         <LeagueDetails

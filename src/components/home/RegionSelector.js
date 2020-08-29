@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   dropdown: {
-    width: 75,
+    width: 73,
   },
 });
 
