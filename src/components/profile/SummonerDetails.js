@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
-import UnselectedFavoriteSvg from '../../svg/favorite.svg';
-import SelectedFavoriteSvg from '../../svg/favoriteSelected.svg';
+import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
+import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
 import PropTypes from 'prop-types';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -80,13 +80,13 @@ const SummonerDetails = (props) => {
             });
           }}>
           {selected ? (
-            <SelectedFavoriteSvg
+            <FavoriteSelectedSvg
               height={props.favoriteSvgHeight}
               width={props.favoriteSvgWidth}
               style={styles.favoriteSvg}
             />
           ) : (
-            <UnselectedFavoriteSvg
+            <FavoriteUnselectedSvg
               height={props.favoriteSvgHeight}
               width={props.favoriteSvgWidth}
               style={styles.favoriteSvg}
