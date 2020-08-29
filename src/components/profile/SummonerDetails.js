@@ -1,9 +1,6 @@
+import {ADD_FAV, REMOVE_FAV} from '../../reducers/SummonersReducer';
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {
-  addToStorage,
-  hasInStorage,
-  removeFromStorage,
-} from '../../utils/Storage';
+import {useDispatch, useSelector} from 'react-redux';
 
 import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
 import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
@@ -12,12 +9,17 @@ import React from 'react';
 
 const SummonerDetails = (props) => {
   const [selected, setSelected] = React.useState(false);
+  const favoriteSummoners = useSelector((state) => state.favoriteSummoners);
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
-    hasInStorage(
-      '@favoriteSummoners',
-      (value) => value.summonerName === props.name,
-    );
-  }, [props.name]);
+    const favorited =
+      typeof favoriteSummoners !== 'undefined' &&
+      favoriteSummoners.some(
+        (summoner) => summoner.summonerName === props.name,
+      );
+    setSelected(favorited);
+  }, [props.name, favoriteSummoners]);
   return (
     <View style={styles.container}>
       <View style={styles.name}>
@@ -25,10 +27,7 @@ const SummonerDetails = (props) => {
         <TouchableWithoutFeedback
           onPress={() => {
             if (selected) {
-              removeFromStorage(
-                '@favoriteSummoners',
-                (value) => value.summonerName === props.name,
-              );
+              dispatch({type: REMOVE_FAV, summonerName: props.name});
               setSelected(false);
             } else {
               var summoner = {
@@ -36,7 +35,7 @@ const SummonerDetails = (props) => {
                 summonerIcon: props.summonerIcon,
                 summonerRegion: props.summonerRegion,
               };
-              addToStorage('@favoriteSummoners', summoner);
+              dispatch({type: ADD_FAV, summoner: summoner});
               setSelected(true);
             }
           }}>

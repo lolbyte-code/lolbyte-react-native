@@ -1,5 +1,6 @@
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
+import {ADD_RECENT} from '../reducers/SummonersReducer';
 import ApiUrl from '../api/Constants';
 import ChampStatsHeader from './profile/ChampStatsHeader';
 import LeagueDetails from './profile/LeagueDetails';
@@ -10,7 +11,7 @@ import Rank from './profile/Rank';
 import React from 'react';
 import SummonerDetails from './profile/SummonerDetails';
 import TopChamps from './profile/TopChamps';
-import {addToStorage} from '../utils/Storage';
+import {useDispatch} from 'react-redux';
 
 const background = require('../img/assets/background.png');
 
@@ -39,6 +40,7 @@ const Profile = ({route}) => {
   const [summonerData, setSummonerData] = React.useState(initialSummonerData);
   const [rankedData, setRankedData] = React.useState(initialRankedData);
   const [champData, setChampData] = React.useState(initialChampData);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     let isCancelled = false;
@@ -59,7 +61,7 @@ const Profile = ({route}) => {
             summonerIcon: json.summonerObject.summonerIcon,
             summonerRegion: json.region,
           };
-          addToStorage('@savedSummoners', summoner);
+          dispatch({type: ADD_RECENT, summoner: summoner});
         }
       })
       .catch((error) => console.error(error));
@@ -67,7 +69,7 @@ const Profile = ({route}) => {
     return () => {
       isCancelled = true;
     };
-  }, [route.params]);
+  }, [route.params, dispatch]);
 
   React.useEffect(() => {
     let isCancelled = false;

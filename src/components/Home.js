@@ -7,62 +7,16 @@ import RecentSearchesHeader from './home/RecentSearchesHeader';
 import RegionSelector from './home/RegionSelector';
 import SummonerSearch from './home/SummonerSearch';
 import Summoners from './home/Summoners';
-import {getFromStorage} from '../utils/Storage';
+import {useSelector} from 'react-redux';
 
 const background = require('../img/assets/background.png');
 
-const initialSavedSummoners = [
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-  {
-    summonerName: 'Unknown',
-    summonerIcon: '1',
-    summonerRegion: 'NA',
-  },
-];
-
 const Home = ({navigation}) => {
+  const recentSummoners = useSelector((state) => state.recentSummoners);
+  const favoriteSummoners = useSelector((state) => state.favoriteSummoners);
+
   const [summoner, setSummoner] = React.useState(null);
   const [region, setRegion] = React.useState('na');
-  const [savedSummoners, setSavedSummoners] = React.useState(
-    initialSavedSummoners,
-  );
-  const [favoriteSummoners, setFavoriteSummoners] = React.useState(
-    initialSavedSummoners,
-  );
   const [summonersList, setSummonersList] = React.useState('favorites');
   const selectListHandler = (value) => {
     setSummonersList(value);
@@ -76,14 +30,6 @@ const Home = ({navigation}) => {
   const regionHandler = (value) => {
     setRegion(value);
   };
-  React.useEffect(() => {
-    getFromStorage('@savedSummoners').then((ss) => {
-      setSavedSummoners(ss);
-    });
-    getFromStorage('@favoriteSummoners').then((ss) => {
-      setFavoriteSummoners(ss);
-    });
-  }, [summonersList]);
   return (
     <ImageBackground source={background} style={styles.background}>
       <ScrollView>
@@ -109,25 +55,13 @@ const Home = ({navigation}) => {
         </View>
         {summonersList === 'favorites' ? (
           <View>
-            <Summoners
-              data={
-                favoriteSummoners == null ? [] : favoriteSummoners.slice(0, 4)
-              }
-            />
-            <Summoners
-              data={
-                favoriteSummoners == null ? [] : favoriteSummoners.slice(4, 8)
-              }
-            />
+            <Summoners data={favoriteSummoners.slice(0, 4)} />
+            <Summoners data={favoriteSummoners.slice(4, 8)} />
           </View>
         ) : (
           <View>
-            <Summoners
-              data={savedSummoners == null ? [] : savedSummoners.slice(0, 4)}
-            />
-            <Summoners
-              data={savedSummoners == null ? [] : savedSummoners.slice(4, 8)}
-            />
+            <Summoners data={recentSummoners.slice(0, 4)} />
+            <Summoners data={recentSummoners.slice(4, 8)} />
           </View>
         )}
       </ScrollView>
