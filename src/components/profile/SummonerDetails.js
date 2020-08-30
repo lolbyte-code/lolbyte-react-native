@@ -1,5 +1,8 @@
-import {ADD_FAV, REMOVE_FAV} from '../../reducers/SummonersReducer';
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  addFavoriteSummoner,
+  removeFavoriteSummoner,
+} from '../../reducers/SummonersActions';
 import {useDispatch, useSelector} from 'react-redux';
 
 import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
@@ -29,15 +32,16 @@ const SummonerDetails = (props) => {
         <TouchableWithoutFeedback
           onPress={() => {
             if (selected) {
-              dispatch({type: REMOVE_FAV, summonerName: props.name});
+              dispatch(removeFavoriteSummoner(props.name));
               setSelected(false);
             } else {
-              var summoner = {
-                summonerName: props.name,
-                summonerIcon: props.summonerIcon,
-                summonerRegion: props.summonerRegion,
-              };
-              dispatch({type: ADD_FAV, summoner: summoner});
+              dispatch(
+                addFavoriteSummoner({
+                  summonerName: props.name,
+                  summonerIcon: props.summonerIcon,
+                  summonerRegion: props.summonerRegion,
+                }),
+              );
               setSelected(true);
             }
           }}>

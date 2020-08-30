@@ -6,7 +6,6 @@ import {
 } from '../reducers/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {ADD_RECENT} from '../reducers/SummonersReducer';
 import ChampStatsHeader from './profile/ChampStatsHeader';
 import LeagueDetails from './profile/LeagueDetails';
 import MostPlayedChamps from './profile/MostPlayedChamps';
@@ -17,6 +16,7 @@ import Rank from './profile/Rank';
 import React from 'react';
 import SummonerDetails from './profile/SummonerDetails';
 import TopChamps from './profile/TopChamps';
+import {addRecentSummoner} from '../reducers/SummonersActions';
 
 const Profile = (props) => {
   const summonerData = useSelector((state) => state.api.summonerData);
@@ -58,14 +58,13 @@ const Profile = (props) => {
     if (summonerData.isFetching) {
       return;
     }
-    dispatch({
-      type: ADD_RECENT,
-      summoner: {
+    dispatch(
+      addRecentSummoner({
         summonerName: summonerData.data.summonerName,
         summonerIcon: summonerData.data.summonerObject.summonerIcon,
         summonerRegion: summonerData.data.region,
-      },
-    });
+      }),
+    );
   }, [summonerData, dispatch]);
 
   if (
@@ -73,7 +72,12 @@ const Profile = (props) => {
     rankedData.isFetching ||
     championData.isFetching
   ) {
-    return null;
+    return (
+      <ImageBackground
+        source={props.backgroundImage}
+        style={styles.background}
+      />
+    );
   }
 
   return (

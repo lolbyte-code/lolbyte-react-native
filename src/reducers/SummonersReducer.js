@@ -1,14 +1,14 @@
-const ADD_RECENT = 'ADD_RECENT';
-const ADD_FAV = 'ADD_FAV';
-const REMOVE_FAV = 'REMOVE_FAV';
+import {ADD_FAV, ADD_RECENT, REMOVE_FAV} from './SummonersActions';
+
 const MAX_CAPACITY = 100;
 
-const initialState = {
-  recentSummoners: [],
-  favoriteSummoners: [],
-};
-
-const summonersReducer = (state = initialState, action) => {
+const summonersReducer = (
+  state = {
+    recentSummoners: [],
+    favoriteSummoners: [],
+  },
+  action,
+) => {
   const cloneState = {
     recentSummoners: [...state.recentSummoners],
     favoriteSummoners: [...state.favoriteSummoners],
@@ -75,5 +75,3 @@ const summonersReducer = (state = initialState, action) => {
 };
 
 export default summonersReducer;
-
-export {ADD_RECENT, ADD_FAV, REMOVE_FAV};
