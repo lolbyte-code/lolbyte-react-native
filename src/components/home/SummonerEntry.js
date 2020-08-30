@@ -9,7 +9,7 @@ import {
 import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {getProfileIcon} from '../../api/Cdn';
+import {getProfileIcon} from '../../api/Url';
 import {useNavigation} from '@react-navigation/native';
 
 const SummonerEntry = (props) => {

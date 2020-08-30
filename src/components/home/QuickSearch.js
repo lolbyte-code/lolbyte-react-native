@@ -10,8 +10,12 @@ const FAVORITES_SELECTED = 'favorites';
 const SEARCHES_SELECTED = 'recentSearches';
 
 const QuickSearch = () => {
-  const favoriteSummoners = useSelector((state) => state.favoriteSummoners);
-  const recentSummoners = useSelector((state) => state.recentSummoners);
+  const favoriteSummoners = useSelector(
+    (state) => state.summoners.favoriteSummoners,
+  );
+  const recentSummoners = useSelector(
+    (state) => state.summoners.recentSummoners,
+  );
 
   const [selectedHeader, setSelectedHeader] = React.useState(
     FAVORITES_SELECTED,

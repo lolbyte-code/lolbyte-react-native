@@ -9,7 +9,9 @@ import React from 'react';
 
 const SummonerDetails = (props) => {
   const [selected, setSelected] = React.useState(false);
-  const favoriteSummoners = useSelector((state) => state.favoriteSummoners);
+  const favoriteSummoners = useSelector(
+    (state) => state.summoners.favoriteSummoners,
+  );
   const dispatch = useDispatch();
 
   React.useEffect(() => {

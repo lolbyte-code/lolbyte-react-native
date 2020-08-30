@@ -1,7 +1,12 @@
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  fetchChampionData,
+  fetchRankedData,
+  fetchSummonerData,
+} from '../reducers/ApiActions';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {ADD_RECENT} from '../reducers/SummonersReducer';
-import ApiUrl from '../api/Constants';
 import ChampStatsHeader from './profile/ChampStatsHeader';
 import LeagueDetails from './profile/LeagueDetails';
 import MostPlayedChamps from './profile/MostPlayedChamps';
@@ -12,145 +17,100 @@ import Rank from './profile/Rank';
 import React from 'react';
 import SummonerDetails from './profile/SummonerDetails';
 import TopChamps from './profile/TopChamps';
-import {useDispatch} from 'react-redux';
-
-const initialSummonerData = {
-  region: 'na',
-  summonerId: '1',
-  summonerName: 'unknown',
-  summonerLevel: 0,
-  summonerObject: {
-    summonerIcon: '1',
-  },
-  playerStats: [
-    {
-      playerStatType: 'Last 20 Matches',
-      winPercentage: 0,
-      kdaLong: '1/2/3',
-      kdaShort: '1 KDA',
-      averageWardsPlaced: '1 Ward Placed',
-    },
-  ],
-};
-const initialRankedData = [{}];
-const initialChampData = [{}, {}];
 
 const Profile = (props) => {
-  const [summonerData, setSummonerData] = React.useState(initialSummonerData);
-  const [rankedData, setRankedData] = React.useState(initialRankedData);
-  const [champData, setChampData] = React.useState(initialChampData);
+  const summonerData = useSelector((state) => state.api.summonerData);
+  const rankedData = useSelector((state) => state.api.rankedData);
+  const championData = useSelector((state) => state.api.championData);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    let isCancelled = false;
-
-    fetch(
-      `${ApiUrl}/summoners/${props.route.params.region}/name/${props.route.params.summonerName}?gameType=0`,
-      {
-        method: 'GET',
-      },
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!isCancelled) {
-          setSummonerData(json);
-          let summoner = {
-            summonerName: json.summonerName,
-            summonerIcon: json.summonerObject.summonerIcon,
-            summonerRegion: json.region,
-          };
-          dispatch({type: ADD_RECENT, summoner: summoner});
-        }
-      })
-      .catch((error) => console.error(error));
-
-    return () => {
-      isCancelled = true;
-    };
+    dispatch(
+      fetchSummonerData(
+        props.route.params.summonerName,
+        props.route.params.region,
+      ),
+    );
   }, [props.route, dispatch]);
 
   React.useEffect(() => {
-    let isCancelled = false;
-
-    fetch(
-      `${ApiUrl}/summoners/${props.route.params.region}/summoner-id/${summonerData.summonerId}/rank`,
-      {
-        method: 'GET',
-      },
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!isCancelled) {
-          setRankedData(json);
-        }
-      })
-      .catch((error) => console.error(error));
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [props.route, summonerData]);
+    if (summonerData.isFetching) {
+      return;
+    }
+    dispatch(
+      fetchRankedData(summonerData.data.summonerId, props.route.params.region),
+    );
+  }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    let isCancelled = false;
+    if (summonerData.isFetching) {
+      return;
+    }
+    dispatch(
+      fetchChampionData(
+        summonerData.data.summonerId,
+        props.route.params.region,
+      ),
+    );
+  }, [props.route, summonerData, dispatch]);
 
-    fetch(
-      `${ApiUrl}/summoners/${props.route.params.region}/summoner-id/${summonerData.summonerId}/champions`,
-      {
-        method: 'GET',
+  React.useEffect(() => {
+    if (summonerData.isFetching) {
+      return;
+    }
+    dispatch({
+      type: ADD_RECENT,
+      summoner: {
+        summonerName: summonerData.data.summonerName,
+        summonerIcon: summonerData.data.summonerObject.summonerIcon,
+        summonerRegion: summonerData.data.region,
       },
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!isCancelled) {
-          setChampData(json);
-        }
-      })
-      .catch((error) => console.error(error));
+    });
+  }, [summonerData, dispatch]);
 
-    return () => {
-      isCancelled = true;
-    };
-  }, [props.route, summonerData]);
+  if (
+    summonerData.isFetching ||
+    rankedData.isFetching ||
+    championData.isFetching
+  ) {
+    return null;
+  }
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView>
         <View style={styles.profileContainer}>
           <SummonerDetails
-            name={summonerData.summonerName}
-            level={summonerData.summonerLevel}
-            summonerIcon={summonerData.summonerObject.summonerIcon}
-            summonerRegion={summonerData.region}
+            name={summonerData.data.summonerName}
+            level={summonerData.data.summonerLevel}
+            summonerIcon={summonerData.data.summonerObject.summonerIcon}
+            summonerRegion={summonerData.data.region}
           />
-          <Rank tier={rankedData[0].tier} />
+          <Rank tier={rankedData.data[0].tier} />
           <LeagueDetails
-            queue={rankedData[0].rankQueueType}
-            rank={rankedData[0].rank}
-            points={rankedData[0].leagueProgress}
-            score={rankedData[0].mmr}
-            wins={rankedData[0].rankedWL}
+            queue={rankedData.data[0].rankQueueType}
+            rank={rankedData.data[0].rank}
+            points={rankedData.data[0].leagueProgress}
+            score={rankedData.data[0].mmr}
+            wins={rankedData.data[0].rankedWL}
           />
           <PlayerStatsHeader
-            subtitle={summonerData.playerStats[0].playerStatType}
+            subtitle={summonerData.data.playerStats[0].playerStatType}
           />
           <PlayerStats
-            percent={summonerData.playerStats[0].winPercentage}
-            kdaShort={summonerData.playerStats[0].kdaLong}
-            kdaLong={summonerData.playerStats[0].kdaShort}
-            wards={summonerData.playerStats[0].averageWardsPlaced}
+            percent={summonerData.data.playerStats[0].winPercentage}
+            kdaShort={summonerData.data.playerStats[0].kdaLong}
+            kdaLong={summonerData.data.playerStats[0].kdaShort}
+            wards={summonerData.data.playerStats[0].averageWardsPlaced}
           />
           <ChampStatsHeader />
           <MostPlayedChamps
-            title={champData[0].championStatType}
-            data={champData[0].mostPlayedChampions}
+            title={championData.data[0].championStatType}
+            data={championData.data[0].mostPlayedChampions}
           />
           <TopChamps
-            title={champData[1].championStatType}
-            data={champData[1].topChampions}
+            title={championData.data[1].championStatType}
+            data={championData.data[1].topChampions}
           />
         </View>
       </ScrollView>
