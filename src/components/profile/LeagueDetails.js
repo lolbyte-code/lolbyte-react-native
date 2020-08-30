@@ -16,11 +16,11 @@ const LeagueDetails = (props) => {
 };
 
 LeagueDetails.defaultProps = {
-  queue: 'unknown',
-  rank: 'Unranked',
-  points: '0 points',
-  score: 'LolByte Score 0',
-  wins: '0 wins',
+  queue: '',
+  rank: '',
+  points: '',
+  score: '',
+  wins: '',
 };
 
 LeagueDetails.propTypes = {

@@ -150,9 +150,9 @@ PlayerStats.defaultProps = {
   percent: 0,
   percentHeight: 100,
   percentWidth: 100,
-  kdaShort: '1/2/3',
-  kdaLong: '1 KDA',
-  wards: '1 Ward Placed',
+  kdaShort: '',
+  kdaLong: '',
+  wards: '',
 };
 
 PlayerStats.propTypes = {

@@ -6,19 +6,21 @@ import {
 } from '../reducers/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
-import ChampStatsHeader from './profile/ChampStatsHeader';
+import ChampionStatsHeader from './profile/ChampionStatsHeader';
+import {Dimensions} from 'react-native';
 import LeagueDetails from './profile/LeagueDetails';
-import MostPlayedChamps from './profile/MostPlayedChamps';
+import MostPlayedChampions from './profile/MostPlayedChampions';
 import PlayerStats from './profile/PlayerStats';
 import PlayerStatsHeader from './profile/PlayerStatsHeader';
 import PropTypes from 'prop-types';
 import Rank from './profile/Rank';
 import React from 'react';
 import SummonerDetails from './profile/SummonerDetails';
-import TopChamps from './profile/TopChamps';
+import TopChampions from './profile/TopChampions';
 import {addRecentSummoner} from '../reducers/SummonersActions';
 
 const Profile = (props) => {
+  // TODO: could break these into separate components and parallelize loading?
   const summonerData = useSelector((state) => state.api.summonerData);
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
@@ -73,6 +75,7 @@ const Profile = (props) => {
     championData.isFetching
   ) {
     return (
+      // TODO: make this a loading page instead
       <ImageBackground
         source={props.backgroundImage}
         style={styles.background}
@@ -80,9 +83,23 @@ const Profile = (props) => {
     );
   }
 
+  let i = 0;
+  const RankEntries = rankedData.data.map((entry) => (
+    <View style={styles.rankEntryContainer} key={`leagueDetail_${i++}`}>
+      <Rank tier={entry.tier} />
+      <LeagueDetails
+        queue={entry.rankQueueType}
+        rank={entry.rank}
+        points={entry.leagueProgress}
+        score={entry.mmr}
+        wins={entry.rankedWL}
+      />
+    </View>
+  ));
+
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <ScrollView>
+      <ScrollView indicatorStyle={props.indicatorStyle}>
         <View style={styles.profileContainer}>
           <SummonerDetails
             name={summonerData.data.summonerName}
@@ -90,14 +107,15 @@ const Profile = (props) => {
             summonerIcon={summonerData.data.summonerObject.summonerIcon}
             summonerRegion={summonerData.data.region}
           />
-          <Rank tier={rankedData.data[0].tier} />
-          <LeagueDetails
-            queue={rankedData.data[0].rankQueueType}
-            rank={rankedData.data[0].rank}
-            points={rankedData.data[0].leagueProgress}
-            score={rankedData.data[0].mmr}
-            wins={rankedData.data[0].rankedWL}
-          />
+          <View>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={true}
+              indicatorStyle={props.indicatorStyle}
+              pagingEnabled>
+              {RankEntries}
+            </ScrollView>
+          </View>
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}
           />
@@ -107,12 +125,12 @@ const Profile = (props) => {
             kdaLong={summonerData.data.playerStats[0].kdaShort}
             wards={summonerData.data.playerStats[0].averageWardsPlaced}
           />
-          <ChampStatsHeader />
-          <MostPlayedChamps
+          <ChampionStatsHeader />
+          <MostPlayedChampions
             title={championData.data[0].championStatType}
             data={championData.data[0].mostPlayedChampions}
           />
-          <TopChamps
+          <TopChampions
             title={championData.data[1].championStatType}
             data={championData.data[1].topChampions}
           />
@@ -125,11 +143,13 @@ const Profile = (props) => {
 Profile.defaultProps = {
   backgroundImage: require('../img/assets/background.png'),
   route: {},
+  indicatorStyle: 'white',
 };
 
 Profile.propTypes = {
   backgroundImage: PropTypes.node,
   route: PropTypes.object,
+  indicatorStyle: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -141,6 +161,9 @@ const styles = StyleSheet.create({
   profileContainer: {
     // TODO: revisit all margins
     marginTop: '5%',
+  },
+  rankEntryContainer: {
+    width: Dimensions.get('window').width,
   },
 });
 

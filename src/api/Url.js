@@ -11,3 +11,6 @@ export const getChampionData = (id, region) =>
 
 export const getProfileIcon = (id) =>
   `https://cdn.communitydragon.org/latest/profile-icon/${id}`;
+
+export const getChampionIcon = (id) =>
+  `https://cdn.communitydragon.org/latest/champion/${id}/square`;

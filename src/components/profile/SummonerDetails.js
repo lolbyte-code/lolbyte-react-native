@@ -25,15 +25,15 @@ const SummonerDetails = (props) => {
       );
     setSelected(favorited);
   }, [props.name, favoriteSummoners]);
+
   return (
     <View style={styles.container}>
-      <View style={styles.name}>
+      <View style={styles.summonerDetails}>
         <Text style={styles.summonerName}>{props.name}</Text>
         <TouchableWithoutFeedback
           onPress={() => {
             if (selected) {
               dispatch(removeFavoriteSummoner(props.name));
-              setSelected(false);
             } else {
               dispatch(
                 addFavoriteSummoner({
@@ -42,7 +42,6 @@ const SummonerDetails = (props) => {
                   summonerRegion: props.summonerRegion,
                 }),
               );
-              setSelected(true);
             }
           }}>
           {selected ? (
@@ -66,7 +65,7 @@ const SummonerDetails = (props) => {
 };
 
 SummonerDetails.defaultProps = {
-  name: 'unknown',
+  name: '',
   level: 0,
   favoriteSvgHeight: 40,
   favoriteSvgWidth: 40,
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
   },
-  name: {
+  summonerDetails: {
     flexDirection: 'row',
   },
   summonerName: {

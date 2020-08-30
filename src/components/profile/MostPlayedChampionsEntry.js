@@ -2,31 +2,32 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import {getChampionIcon} from '../../api/Url';
 
-const MostPlayedChampsEntry = (props) => {
+const MostPlayedChampionsEntry = (props) => {
   return (
     <View style={styles.container}>
       <Image
         source={{
-          uri: `https://cdn.communitydragon.org/latest/champion/${props.champId}/square`,
+          uri: getChampionIcon(props.championId),
         }}
-        style={styles.champImage}
+        style={styles.championImage}
       />
-      <Text style={styles.champName}>{props.champName}</Text>
+      <Text style={styles.championName}>{props.championName}</Text>
       <Text style={styles.gamesPlayed}>{props.gamesPlayed}</Text>
     </View>
   );
 };
 
-MostPlayedChampsEntry.defaultProps = {
-  champId: 1,
-  champName: 'Unknown',
-  gamesPlayed: 'Games Played: 1',
+MostPlayedChampionsEntry.defaultProps = {
+  championId: 0,
+  championName: '',
+  gamesPlayed: '',
 };
 
-MostPlayedChampsEntry.propTypes = {
-  champId: PropTypes.number,
-  champName: PropTypes.string,
+MostPlayedChampionsEntry.propTypes = {
+  championId: PropTypes.number,
+  championName: PropTypes.string,
   gamesPlayed: PropTypes.string,
 };
 
@@ -38,14 +39,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flex: 1,
   },
-  champImage: {
+  championImage: {
     width: 106,
     height: 106,
     borderRadius: 53,
     borderWidth: 3,
     borderColor: '#B2B4BB',
   },
-  champName: {
+  championName: {
     color: 'teal',
   },
   gamesPlayed: {
@@ -53,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MostPlayedChampsEntry;
+export default MostPlayedChampionsEntry;

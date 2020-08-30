@@ -5,12 +5,12 @@ import React from 'react';
 import SummonerEntry from './SummonerEntry';
 
 const Summoners = (props) => {
-  let x = 0;
+  let i = 0;
   const SummonerEntries = props.entries
     .slice(0, props.maxLimit)
     .map((entry) => (
       <SummonerEntry
-        key={`summoner_${x++}`}
+        key={`summoner_${i++}`}
         summonerIcon={entry.summonerIcon}
         summonerName={entry.summonerName}
         summonerRegion={entry.summonerRegion}

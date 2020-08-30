@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const ChampStatsHeader = (props) => {
+const ChampionStatsHeader = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
@@ -11,11 +11,11 @@ const ChampStatsHeader = (props) => {
   );
 };
 
-ChampStatsHeader.defaultProps = {
+ChampionStatsHeader.defaultProps = {
   title: 'Champion Statistics',
 };
 
-ChampStatsHeader.propTypes = {
+ChampionStatsHeader.propTypes = {
   title: PropTypes.string,
 };
 
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChampStatsHeader;
+export default ChampionStatsHeader;
