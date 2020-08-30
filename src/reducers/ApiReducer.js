@@ -21,14 +21,14 @@ const summonerDataReducer = (
       return {
         ...state,
         isFetching: true,
-        name: action.name,
+        summonerName: action.summonerName,
         region: action.region,
       };
     case RECEIVE_SUMMONER_DATA:
       return {
         ...state,
         isFetching: false,
-        name: action.name,
+        summonerName: action.summonerName,
         region: action.region,
         data: action.data,
       };
@@ -49,14 +49,14 @@ const rankedDataReducer = (
       return {
         ...state,
         isFetching: true,
-        id: action.id,
+        summonerId: action.summonerId,
         region: action.region,
       };
     case RECEIVE_RANKED_DATA:
       return {
         ...state,
         isFetching: false,
-        id: action.id,
+        summonerId: action.summonerId,
         region: action.region,
         data: action.data,
       };
@@ -77,14 +77,14 @@ const championDataReducer = (
       return {
         ...state,
         isFetching: true,
-        id: action.id,
+        summonerId: action.summonerId,
         region: action.region,
       };
     case RECEIVE_CHAMPION_DATA:
       return {
         ...state,
         isFetching: false,
-        id: action.id,
+        summonerId: action.summonerId,
         region: action.region,
         data: action.data,
       };

@@ -1,16 +1,16 @@
 import ApiUrl from './Constants';
 
-export const getSummonerData = (name, region) =>
-  `${ApiUrl}/summoners/${region}/name/${name}?gameType=0`;
+export const getSummonerData = (summonerName, region) =>
+  `${ApiUrl}/summoners/${region}/name/${summonerName}?gameType=0`;
 
-export const getRankedData = (id, region) =>
-  `${ApiUrl}/summoners/${region}/summoner-id/${id}/rank`;
+export const getRankedData = (summonerId, region) =>
+  `${ApiUrl}/summoners/${region}/summoner-id/${summonerId}/rank`;
 
-export const getChampionData = (id, region) =>
-  `${ApiUrl}/summoners/${region}/summoner-id/${id}/champions`;
+export const getChampionData = (summonerId, region) =>
+  `${ApiUrl}/summoners/${region}/summoner-id/${summonerId}/champions`;
 
-export const getProfileIcon = (id) =>
-  `https://cdn.communitydragon.org/latest/profile-icon/${id}`;
+export const getProfileIcon = (iconId) =>
+  `https://cdn.communitydragon.org/latest/profile-icon/${iconId}`;
 
-export const getChampionIcon = (id) =>
-  `https://cdn.communitydragon.org/latest/champion/${id}/square`;
+export const getChampionIcon = (championId) =>
+  `https://cdn.communitydragon.org/latest/champion/${championId}/square`;

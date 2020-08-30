@@ -4,11 +4,12 @@ import MostPlayedChampionsEntry from './MostPlayedChampionsEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+// TODO: look into combining with top champs?
 const MostPlayedChampions = (props) => {
   let i = 0;
-  const ChampEntries = props.data.map((entry) => (
+  const ChampionEntries = props.data.map((entry) => (
     <MostPlayedChampionsEntry
-      key={`mostPlayedChampEntry_${i++}`}
+      key={`mostPlayedChampionEntry_${i++}`}
       championId={entry.championId}
       championName={entry.championName}
       gamesPlayed={entry.championGamesPlayed}
@@ -17,7 +18,7 @@ const MostPlayedChampions = (props) => {
   return (
     <View>
       <Text style={styles.title}>{props.title}</Text>
-      <View style={styles.entries}>{ChampEntries}</View>
+      <View style={styles.entries}>{ChampionEntries}</View>
     </View>
   );
 };

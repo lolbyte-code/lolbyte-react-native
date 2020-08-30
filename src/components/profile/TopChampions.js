@@ -6,9 +6,9 @@ import TopChampionsEntry from './TopChampionsEntry';
 
 const TopChampions = (props) => {
   let i = 0;
-  const ChampEntries = props.data.map((entry) => (
+  const ChampionEntries = props.data.map((entry) => (
     <TopChampionsEntry
-      key={`topChampsEntry${i++}`}
+      key={`topChampionEntry${i++}`}
       championId={entry.championId}
       championName={entry.championName}
       championLevel={entry.championLevel}
@@ -18,7 +18,7 @@ const TopChampions = (props) => {
   return (
     <View>
       <Text style={styles.title}>{props.title}</Text>
-      <View style={styles.entries}>{ChampEntries}</View>
+      <View style={styles.entries}>{ChampionEntries}</View>
     </View>
   );
 };

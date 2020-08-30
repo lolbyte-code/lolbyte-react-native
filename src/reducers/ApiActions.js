@@ -7,97 +7,98 @@ export const RECEIVE_RANKED_DATA = 'RECEIVE_RANKED_DATA';
 export const REQUEST_CHAMPION_DATA = 'REQUEST_CHAMPION_DATA';
 export const RECEIVE_CHAMPION_DATA = 'RECEIVE_CHAMPION_DATA';
 
-function requestSummonerData(name, region) {
+function requestSummonerData(summonerName, region) {
   return {
     type: REQUEST_SUMMONER_DATA,
-    name,
+    summonerName,
     region,
   };
 }
 
-function receiveSummonerData(name, region, responseJson) {
+function receiveSummonerData(summonerName, region, responseJson) {
   return {
     type: RECEIVE_SUMMONER_DATA,
-    name,
+    summonerName,
     region,
     data: responseJson,
   };
 }
 
-function requestRankedData(id, region) {
+function requestRankedData(summonerId, region) {
   return {
     type: REQUEST_RANKED_DATA,
-    id,
+    summonerId,
     region,
   };
 }
 
-function receiveRankedData(id, region, responseJson) {
+function receiveRankedData(summonerId, region, responseJson) {
   return {
     type: RECEIVE_RANKED_DATA,
-    id,
+    summonerId,
     region,
     data: responseJson,
   };
 }
 
-function requestChampionData(id, region) {
+function requestChampionData(summonerId, region) {
   return {
     type: REQUEST_CHAMPION_DATA,
-    id,
+    summonerId,
     region,
   };
 }
 
-function receiveChampionData(id, region, responseJson) {
+function receiveChampionData(summonerId, region, responseJson) {
   return {
     type: RECEIVE_CHAMPION_DATA,
-    id,
+    summonerId,
     region,
     data: responseJson,
   };
 }
 
-export function fetchSummonerData(name, region) {
+export function fetchSummonerData(summonerName, region) {
   return (dispatch) => {
-    dispatch(requestSummonerData(name, region));
-    return fetch(getSummonerData(name, region), {
+    dispatch(requestSummonerData(summonerName, region));
+    return fetch(getSummonerData(summonerName, region), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveSummonerData(name, region, json));
+        dispatch(receiveSummonerData(summonerName, region, json));
       })
       .catch((error) => console.error(error));
   };
 }
 
-export function fetchRankedData(id, region) {
+export function fetchRankedData(summonerId, region) {
+  console.log(summonerId)
   return (dispatch) => {
-    dispatch(requestRankedData(id, region));
-    return fetch(getRankedData(id, region), {
+    dispatch(requestRankedData(summonerId, region));
+    return fetch(getRankedData(summonerId, region), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveRankedData(id, region, json));
+        dispatch(receiveRankedData(summonerId, region, json));
       })
       .catch((error) => console.error(error));
   };
 }
 
-export function fetchChampionData(id, region) {
+export function fetchChampionData(summonerId, region) {
   return (dispatch) => {
-    dispatch(requestChampionData(id, region));
-    return fetch(getChampionData(id, region), {
+    dispatch(requestChampionData(summonerId, region));
+    return fetch(getChampionData(summonerId, region), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveChampionData(id, region, json));
+        dispatch(receiveChampionData(summonerId, region, json));
       })
       .catch((error) => console.error(error));
   };

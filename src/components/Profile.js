@@ -102,8 +102,8 @@ const Profile = (props) => {
       <ScrollView indicatorStyle={props.indicatorStyle}>
         <View style={styles.profileContainer}>
           <SummonerDetails
-            name={summonerData.data.summonerName}
-            level={summonerData.data.summonerLevel}
+            summonerName={summonerData.data.summonerName}
+            summonerLevel={summonerData.data.summonerLevel}
             summonerIcon={summonerData.data.summonerObject.summonerIcon}
             summonerRegion={summonerData.data.region}
           />

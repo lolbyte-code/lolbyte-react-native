@@ -21,23 +21,23 @@ const SummonerDetails = (props) => {
     const favorited =
       typeof favoriteSummoners !== 'undefined' &&
       favoriteSummoners.some(
-        (summoner) => summoner.summonerName === props.name,
+        (summoner) => summoner.summonerName === props.summonerName,
       );
     setSelected(favorited);
-  }, [props.name, favoriteSummoners]);
+  }, [props.summonerName, favoriteSummoners]);
 
   return (
     <View style={styles.container}>
       <View style={styles.summonerDetails}>
-        <Text style={styles.summonerName}>{props.name}</Text>
+        <Text style={styles.summonerName}>{props.summonerName}</Text>
         <TouchableWithoutFeedback
           onPress={() => {
             if (selected) {
-              dispatch(removeFavoriteSummoner(props.name));
+              dispatch(removeFavoriteSummoner(props.summonerName));
             } else {
               dispatch(
                 addFavoriteSummoner({
-                  summonerName: props.name,
+                  summonerName: props.summonerName,
                   summonerIcon: props.summonerIcon,
                   summonerRegion: props.summonerRegion,
                 }),
@@ -59,21 +59,21 @@ const SummonerDetails = (props) => {
           )}
         </TouchableWithoutFeedback>
       </View>
-      <Text style={styles.summonerLevel}>Level {props.level}</Text>
+      <Text style={styles.summonerLevel}>Level {props.summonerLevel}</Text>
     </View>
   );
 };
 
 SummonerDetails.defaultProps = {
-  name: '',
-  level: 0,
+  summonerName: '',
+  summonerLevel: 0,
   favoriteSvgHeight: 40,
   favoriteSvgWidth: 40,
 };
 
 SummonerDetails.propTypes = {
-  name: PropTypes.string,
-  level: PropTypes.number,
+  summonerName: PropTypes.string,
+  summonerLevel: PropTypes.number,
   favoriteSvgHeight: PropTypes.number,
   favoriteSvgWidth: PropTypes.number,
 };
