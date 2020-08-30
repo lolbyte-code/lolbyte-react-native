@@ -6,9 +6,13 @@ import React from 'react';
 
 const FavoritesHeader = (props) => {
   return (
-    <TouchableWithoutFeedback onPress={() => props.onPressHandler('favorites')}>
+    <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
       <View
-        style={props.selected ? styles.containerSelected : styles.container}>
+        style={
+          props.selected
+            ? styles.containerSelected
+            : styles.containerNotSelected
+        }>
         <Text
           style={
             props.selected ? styles.titleSelected : styles.titleNotSelected
@@ -29,16 +33,20 @@ FavoritesHeader.defaultProps = {
   title: 'Favorites',
   favoriteSvgHeight: 25,
   favoriteSvgWidth: 25,
+  onPressHandler: {},
+  selected: true,
 };
 
 FavoritesHeader.propTypes = {
   title: PropTypes.string,
   favoriteSvgHeight: PropTypes.number,
   favoriteSvgWidth: PropTypes.number,
+  onPressHandler: PropTypes.func,
+  selected: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerNotSelected: {
     flexDirection: 'row',
   },
   containerSelected: {

@@ -7,13 +7,12 @@ import LeagueDetails from './profile/LeagueDetails';
 import MostPlayedChamps from './profile/MostPlayedChamps';
 import PlayerStats from './profile/PlayerStats';
 import PlayerStatsHeader from './profile/PlayerStatsHeader';
+import PropTypes from 'prop-types';
 import Rank from './profile/Rank';
 import React from 'react';
 import SummonerDetails from './profile/SummonerDetails';
 import TopChamps from './profile/TopChamps';
 import {useDispatch} from 'react-redux';
-
-const background = require('../img/assets/background.png');
 
 const initialSummonerData = {
   region: 'na',
@@ -36,7 +35,7 @@ const initialSummonerData = {
 const initialRankedData = [{}];
 const initialChampData = [{}, {}];
 
-const Profile = ({route}) => {
+const Profile = (props) => {
   const [summonerData, setSummonerData] = React.useState(initialSummonerData);
   const [rankedData, setRankedData] = React.useState(initialRankedData);
   const [champData, setChampData] = React.useState(initialChampData);
@@ -46,7 +45,7 @@ const Profile = ({route}) => {
     let isCancelled = false;
 
     fetch(
-      `${ApiUrl}/summoners/${route.params.region}/name/${route.params.query}?gameType=0`,
+      `${ApiUrl}/summoners/${props.route.params.region}/name/${props.route.params.summonerName}?gameType=0`,
       {
         method: 'GET',
       },
@@ -69,13 +68,13 @@ const Profile = ({route}) => {
     return () => {
       isCancelled = true;
     };
-  }, [route.params, dispatch]);
+  }, [props.route, dispatch]);
 
   React.useEffect(() => {
     let isCancelled = false;
 
     fetch(
-      `${ApiUrl}/summoners/${route.params.region}/summoner-id/${summonerData.summonerId}/rank`,
+      `${ApiUrl}/summoners/${props.route.params.region}/summoner-id/${summonerData.summonerId}/rank`,
       {
         method: 'GET',
       },
@@ -92,13 +91,13 @@ const Profile = ({route}) => {
     return () => {
       isCancelled = true;
     };
-  }, [route.params, summonerData]);
+  }, [props.route, summonerData]);
 
   React.useEffect(() => {
     let isCancelled = false;
 
     fetch(
-      `${ApiUrl}/summoners/${route.params.region}/summoner-id/${summonerData.summonerId}/champions`,
+      `${ApiUrl}/summoners/${props.route.params.region}/summoner-id/${summonerData.summonerId}/champions`,
       {
         method: 'GET',
       },
@@ -115,10 +114,10 @@ const Profile = ({route}) => {
     return () => {
       isCancelled = true;
     };
-  }, [route.params, summonerData]);
+  }, [props.route, summonerData]);
 
   return (
-    <ImageBackground source={background} style={styles.background}>
+    <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView>
         <View style={styles.profileContainer}>
           <SummonerDetails
@@ -159,6 +158,16 @@ const Profile = ({route}) => {
   );
 };
 
+Profile.defaultProps = {
+  backgroundImage: require('../img/assets/background.png'),
+  route: {},
+};
+
+Profile.propTypes = {
+  backgroundImage: PropTypes.node,
+  route: PropTypes.object,
+};
+
 const styles = StyleSheet.create({
   background: {
     flex: 1,
@@ -166,7 +175,7 @@ const styles = StyleSheet.create({
     width: '100.03%',
   },
   profileContainer: {
-    flex: 1,
+    // TODO: revisit all margins
     marginTop: '5%',
   },
 });

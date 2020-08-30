@@ -1,72 +1,57 @@
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
-import FavoritesHeader from './home/FavoritesHeader';
 import Logo from './home/Logo';
+import PropTypes from 'prop-types';
+import QuickSearch from './home/QuickSearch';
 import React from 'react';
-import RecentSearchesHeader from './home/RecentSearchesHeader';
 import RegionSelector from './home/RegionSelector';
 import SummonerSearch from './home/SummonerSearch';
-import Summoners from './home/Summoners';
-import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
-const background = require('../img/assets/background.png');
+const Home = (props) => {
+  const navigation = useNavigation();
 
-const Home = ({navigation}) => {
-  const recentSummoners = useSelector((state) => state.recentSummoners);
-  const favoriteSummoners = useSelector((state) => state.favoriteSummoners);
+  const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
+  const [regionQuery, setRegionQuery] = React.useState('na');
 
-  const [summoner, setSummoner] = React.useState(null);
-  const [region, setRegion] = React.useState('na');
-  const [summonersList, setSummonersList] = React.useState('favorites');
-  const selectListHandler = (value) => {
-    setSummonersList(value);
+  const changeSummonerHandler = (summonerName) => {
+    setSummonerNameQuery(summonerName);
   };
-  const changeTextHandler = (value) => {
-    setSummoner(value);
+  const searchSummonerHandler = () => {
+    navigation.navigate('Profile', {
+      summonerName: summonerNameQuery,
+      region: regionQuery,
+    });
   };
-  const submitHandler = () => {
-    navigation.navigate('Profile', {query: summoner, region: region});
+  const changeRegionHandler = (region) => {
+    setRegionQuery(region);
   };
-  const regionHandler = (value) => {
-    setRegion(value);
-  };
+
   return (
-    <ImageBackground source={background} style={styles.background}>
+    <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView>
         <View style={styles.logo}>
           <Logo />
         </View>
         <View style={styles.search}>
           <SummonerSearch
-            onChangeTextHandler={changeTextHandler}
-            onSubmitEditingHandler={submitHandler}
+            onChangeTextHandler={changeSummonerHandler}
+            onSubmitEditingHandler={searchSummonerHandler}
           />
-          <RegionSelector onChangeItemHandler={regionHandler} />
+          <RegionSelector onChangeItemHandler={changeRegionHandler} />
         </View>
-        <View style={styles.saved}>
-          <FavoritesHeader
-            onPressHandler={selectListHandler}
-            selected={summonersList === 'favorites'}
-          />
-          <RecentSearchesHeader
-            onPressHandler={selectListHandler}
-            selected={summonersList === 'recentSearches'}
-          />
-        </View>
-        {summonersList === 'favorites' ? (
-          <View>
-            <Summoners data={favoriteSummoners.slice(0, 4)} />
-            <Summoners data={favoriteSummoners.slice(4, 8)} />
-          </View>
-        ) : (
-          <View>
-            <Summoners data={recentSummoners.slice(0, 4)} />
-            <Summoners data={recentSummoners.slice(4, 8)} />
-          </View>
-        )}
+        <QuickSearch />
       </ScrollView>
     </ImageBackground>
   );
+};
+
+Home.defaultProps = {
+  backgroundImage: require('../img/assets/background.png'),
+};
+
+Home.propTypes = {
+  backgroundImage: PropTypes.node,
 };
 
 const styles = StyleSheet.create({
@@ -84,11 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 15,
-  },
-  saved: {
-    justifyContent: 'center',
-    marginTop: 35,
-    flexDirection: 'row',
   },
 });
 

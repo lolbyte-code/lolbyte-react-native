@@ -16,10 +16,14 @@ const SummonerSearch = (props) => {
 
 SummonerSearch.defaultProps = {
   placeholder: 'enter summoner name',
+  onChangeTextHandler: {},
+  onSubmitEditingHandler: {},
 };
 
 SummonerSearch.propTypes = {
   placeholder: PropTypes.string,
+  onChangeTextHandler: PropTypes.func,
+  onSubmitEditingHandler: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

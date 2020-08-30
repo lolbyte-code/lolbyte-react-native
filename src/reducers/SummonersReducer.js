@@ -1,6 +1,7 @@
 const ADD_RECENT = 'ADD_RECENT';
 const ADD_FAV = 'ADD_FAV';
 const REMOVE_FAV = 'REMOVE_FAV';
+const MAX_CAPACITY = 100;
 
 const initialState = {
   recentSummoners: [],
@@ -25,8 +26,11 @@ const summonersReducer = (state = initialState, action) => {
         return state;
       }
       cloneState.recentSummoners.unshift(action.summoner);
-      if (cloneState.recentSummoners.length > 8) {
-        cloneState.recentSummoners = cloneState.recentSummoners.slice(0, 8);
+      if (cloneState.recentSummoners.length > MAX_CAPACITY) {
+        cloneState.recentSummoners = cloneState.recentSummoners.slice(
+          0,
+          MAX_CAPACITY,
+        );
       }
       return {
         ...state,
@@ -45,8 +49,11 @@ const summonersReducer = (state = initialState, action) => {
         return state;
       }
       cloneState.favoriteSummoners.unshift(action.summoner);
-      if (cloneState.favoriteSummoners.length > 8) {
-        cloneState.favoriteSummoners = cloneState.favoriteSummoners.slice(0, 8);
+      if (cloneState.favoriteSummoners.length > MAX_CAPACITY) {
+        cloneState.favoriteSummoners = cloneState.favoriteSummoners.slice(
+          0,
+          MAX_CAPACITY,
+        );
       }
       return {
         ...state,

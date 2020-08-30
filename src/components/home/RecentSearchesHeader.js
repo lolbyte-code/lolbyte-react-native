@@ -5,8 +5,7 @@ import React from 'react';
 
 const RecentSearchesHeader = (props) => {
   return (
-    <TouchableWithoutFeedback
-      onPress={() => props.onPressHandler('recentSearches')}>
+    <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
       <View
         style={
           props.selected
@@ -26,10 +25,14 @@ const RecentSearchesHeader = (props) => {
 
 RecentSearchesHeader.defaultProps = {
   title: 'Recent Searches',
+  onPressHandler: {},
+  selected: false,
 };
 
 RecentSearchesHeader.propTypes = {
   title: PropTypes.string,
+  onPressHandler: PropTypes.func,
+  selected: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({

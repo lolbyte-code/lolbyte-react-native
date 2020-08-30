@@ -6,25 +6,28 @@ import {
   View,
 } from 'react-native';
 
-import EllipsisText from '../lib/EllipsisText';
+import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {getProfileIcon} from '../../api/Cdn';
 import {useNavigation} from '@react-navigation/native';
 
 const SummonerEntry = (props) => {
   const navigation = useNavigation();
+
   return (
     <TouchableWithoutFeedback
       onPress={() =>
         navigation.navigate('Profile', {
-          query: props.summonerName,
+          summonerName: props.summonerName,
           region: props.summonerRegion,
         })
       }>
       <View style={styles.container}>
         <Image
           source={{
-            uri: `https://cdn.communitydragon.org/latest/profile-icon/${props.summonerIcon}`,
+            // TODO: could default icon here (add prop)
+            uri: getProfileIcon(props.summonerIcon),
           }}
           style={styles.summonerIcon}
         />
@@ -55,8 +58,7 @@ SummonerEntry.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 5,
-    marginRight: 5,
+    margin: 5,
     alignItems: 'center',
   },
   summonerIcon: {

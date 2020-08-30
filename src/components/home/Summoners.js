@@ -6,37 +6,41 @@ import SummonerEntry from './SummonerEntry';
 
 const Summoners = (props) => {
   let x = 0;
-  const Entries = props.data.map((entry) => (
-    <SummonerEntry
-      key={x++}
-      summonerIcon={entry.summonerIcon}
-      summonerName={entry.summonerName}
-      summonerRegion={entry.summonerRegion}
-    />
-  ));
+  const SummonerEntries = props.entries
+    .slice(0, props.maxLimit)
+    .map((entry) => (
+      <SummonerEntry
+        key={`summoner_${x++}`}
+        summonerIcon={entry.summonerIcon}
+        summonerName={entry.summonerName}
+        summonerRegion={entry.summonerRegion}
+      />
+    ));
   return (
     <View style={styles.container}>
-      <View style={styles.entries}>{Entries}</View>
+      <View style={styles.entries}>{SummonerEntries}</View>
     </View>
   );
 };
 
 Summoners.defaultProps = {
-  data: [],
+  entries: [],
+  maxLimit: 8,
 };
 
 Summoners.propTypes = {
-  data: PropTypes.array,
+  entries: PropTypes.array,
+  maxLimit: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 25,
-    height: 95,
   },
   entries: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
   },
 });
 

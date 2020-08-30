@@ -9,16 +9,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createStore} from 'redux';
 import summonersReducer from './reducers/SummonersReducer';
 
+const SUMMONERS_STORAGE = '@summoners';
+
 const Stack = createStackNavigator();
 
 const LolByteApp = () => {
   const [store, setStore] = React.useState(createStore(summonersReducer));
   store.subscribe(() => {
-    setToStorage('@summoners', store.getState());
+    setToStorage(SUMMONERS_STORAGE, store.getState());
   });
 
   React.useEffect(() => {
-    getFromStorage('@summoners').then((summoners) => {
+    getFromStorage(SUMMONERS_STORAGE).then((summoners) => {
       if (summoners !== null) {
         setStore(createStore(summonersReducer, summoners));
       }
