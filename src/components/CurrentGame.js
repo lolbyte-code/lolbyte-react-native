@@ -33,8 +33,8 @@ const CurrentGame = (props) => {
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <CloseButton goBackPage={pages.profile} goBackParams={goBackParams} />
       <View style={styles.container}>
-        <Text style={styles.gameType}>{currentGameData.gameType}</Text>
         <View style={styles.summonersContainer}>
+          <Text style={styles.gameType}>{currentGameData.gameType}</Text>
           <Summoners
             entries={currentGameData.summoners.filter(
               (summoner) => summoner.teamId === BLUE_TEAM,
@@ -82,18 +82,17 @@ const styles = StyleSheet.create({
   },
   summonersContainer: {
     flex: 1,
-    margin: 5,
-    marginTop: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    marginTop: '50%',
   },
   gameType: {
     color: colors.green,
     fontSize: 30,
     fontFamily: fonts.regular,
+    marginBottom: 10,
   },
 });
 
