@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: '25%',
   },
   search: {
     alignItems: 'center',

@@ -21,7 +21,7 @@ const RecentSearchesHeader = (props) => {
 
 RecentSearchesHeader.defaultProps = {
   title: 'Recent Searches',
-  onPressHandler: {},
+  onPressHandler: () => {},
   selected: false,
 };
 

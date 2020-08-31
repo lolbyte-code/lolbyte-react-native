@@ -19,8 +19,8 @@ const SummonerSearch = (props) => {
 SummonerSearch.defaultProps = {
   placeholder: 'enter summoner name',
   placeholderTextColor: colors.lightGrey,
-  onChangeTextHandler: {},
-  onSubmitEditingHandler: {},
+  onChangeTextHandler: () => {},
+  onSubmitEditingHandler: () => {},
 };
 
 SummonerSearch.propTypes = {

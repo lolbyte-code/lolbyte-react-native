@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import {backgrounds, colors, fonts} from '../Theme';
 
-import CloseButtonSvg from '../svg/closeButton.svg';
+import CloseButton from './common/CloseButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '../Constants';
@@ -29,13 +29,7 @@ const RegionSelect = (props) => {
   ));
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-        <CloseButtonSvg
-          style={styles.closeButton}
-          width={props.closeButtonWidth}
-          height={props.closeButtonHeight}
-        />
-      </TouchableWithoutFeedback>
+      <CloseButton />
       <View style={styles.container}>{Regions}</View>
     </ImageBackground>
   );
@@ -89,8 +83,6 @@ RegionSelect.defaultProps = {
       value: 'jp',
     },
   ],
-  closeButtonWidth: 40,
-  closeButtonHeight: 40,
 };
 
 RegionSelect.propTypes = {
@@ -101,8 +93,6 @@ RegionSelect.propTypes = {
       value: PropTypes.string,
     }),
   ),
-  closeButtonWidth: PropTypes.number,
-  closeButtonHeight: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -121,10 +111,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     margin: 4,
     fontFamily: fonts.regular,
-  },
-  closeButton: {
-    marginTop: 20,
-    marginLeft: 20,
   },
 });
 

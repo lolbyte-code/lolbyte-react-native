@@ -15,9 +15,11 @@ import PlayerStatsHeader from './profile/PlayerStatsHeader';
 import ProfileHeader from './profile/ProfileHeader';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SearchNav from './common/SearchNav';
 import TopChampions from './profile/TopChampions';
 import {addRecentSummoner} from '../reducers/SummonersActions';
 import {backgrounds} from '../Theme';
+import {pages} from '../Constants';
 
 const Profile = (props) => {
   const summonerData = useSelector((state) => state.api.summonerData);
@@ -89,8 +91,34 @@ const Profile = (props) => {
     return <Loading />;
   }
 
+  const previousSummoners = props.route.params.previousSummoners
+    ? props.route.params.previousSummoners
+    : [
+        {
+          summonerName: summonerData.data.summonerName,
+          region: summonerData.data.region,
+        },
+      ];
+
+  const goBackPage = previousSummoners.length > 1 ? pages.profile : pages.home;
+
+  const goBackParams =
+    previousSummoners.length > 1
+      ? {
+          summonerName: previousSummoners[1].summonerName,
+          region: previousSummoners[1].region,
+          previousSummoners: previousSummoners.slice(1),
+        }
+      : {};
+
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
+      <SearchNav
+        region={summonerData.data.region}
+        previousSummoners={previousSummoners}
+        goBackPage={goBackPage}
+        goBackParams={goBackParams}
+      />
       <ScrollView indicatorStyle={props.indicatorStyle}>
         <View style={styles.profileContainer}>
           <ProfileHeader

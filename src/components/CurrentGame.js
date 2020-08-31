@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {backgrounds, colors, fonts} from '../Theme';
 
+import CloseButton from './common/CloseButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from './currentGame/Summoners';
@@ -18,6 +19,7 @@ const CurrentGame = (props) => {
   const region = props.route.params.region;
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
+      <CloseButton />
       <View style={styles.container}>
         <Text style={styles.gameType}>{currentGameData.gameType}</Text>
         <View style={styles.summonersContainer}>
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: '5%',
+    marginTop: '50%',
   },
   gameType: {
     color: colors.green,

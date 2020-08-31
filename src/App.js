@@ -70,14 +70,23 @@ const LolByteApp = () => {
             name={pages.home}
             component={Home}
             initialParams={{region: 'na'}}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name={pages.selectRegion}
             component={RegionSelect}
             options={{headerShown: false}}
           />
-          <Stack.Screen name={pages.profile} component={Profile} />
-          <Stack.Screen name={pages.currentGame} component={CurrentGame} />
+          <Stack.Screen
+            name={pages.profile}
+            component={Profile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name={pages.currentGame}
+            component={CurrentGame}
+            options={{headerShown: false}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -43,7 +43,7 @@ FavoritesHeader.defaultProps = {
   title: 'Favorites',
   favoriteSvgHeight: 25,
   favoriteSvgWidth: 25,
-  onPressHandler: {},
+  onPressHandler: () => {},
   selected: true,
 };
 
