@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   },
   kdaShort: {
     fontSize: 23,
-    color: 'teal',
+    color: '#22A8CE',
   },
   kdaLong: {
     fontSize: 20,

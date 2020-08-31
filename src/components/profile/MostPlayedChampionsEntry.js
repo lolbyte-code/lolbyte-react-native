@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderColor: '#B2B4BB',
   },
   championName: {
-    color: 'teal',
+    color: '#22A8CE',
   },
   gamesPlayed: {
     color: 'white',

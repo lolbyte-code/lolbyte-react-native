@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     borderColor: '#B2B4BB',
   },
   summonerName: {
-    color: 'teal',
+    color: '#22A8CE',
     fontSize: 12,
   },
   summonerRegion: {

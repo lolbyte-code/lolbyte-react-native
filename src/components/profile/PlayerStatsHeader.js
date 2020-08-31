@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   subtitle: {
-    color: 'grey',
+    color: '#B2B4BB',
     fontSize: 15,
   },
 });

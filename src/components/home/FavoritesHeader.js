@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingBottom: 5,
     borderBottomWidth: 5,
-    borderBottomColor: 'teal',
+    borderBottomColor: '#22A8CE',
   },
   titleNotSelected: {
-    color: 'grey',
+    color: '#B2B4BB',
     fontSize: 20,
   },
   titleSelected: {
-    color: 'teal',
+    color: '#22A8CE',
     fontSize: 20,
   },
   favoriteSvg: {

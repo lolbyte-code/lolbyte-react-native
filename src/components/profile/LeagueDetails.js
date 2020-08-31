@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   score: {
-    color: 'teal',
+    color: '#22A8CE',
     fontSize: 18,
   },
   wins: {
-    color: 'grey',
+    color: '#B2B4BB',
     fontSize: 18,
   },
 });
