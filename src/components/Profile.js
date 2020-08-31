@@ -1,12 +1,14 @@
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {
   fetchChampionData,
+  fetchCurrentGameData,
   fetchRankedData,
   fetchSummonerData,
 } from '../reducers/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
 import ChampionStatsHeader from './profile/ChampionStatsHeader';
+import InGameIndicator from './profile/InGameIndicator';
 import MostPlayedChampions from './profile/MostPlayedChampions';
 import PlayerStats from './profile/PlayerStats';
 import PlayerStatsHeader from './profile/PlayerStatsHeader';
@@ -20,6 +22,7 @@ const Profile = (props) => {
   const summonerData = useSelector((state) => state.api.summonerData);
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
+  const currentGameData = useSelector((state) => state.api.currentGameData);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -46,6 +49,18 @@ const Profile = (props) => {
     }
     dispatch(
       fetchChampionData(
+        summonerData.data.summonerId,
+        props.route.params.region,
+      ),
+    );
+  }, [props.route, summonerData, dispatch]);
+
+  React.useEffect(() => {
+    if (summonerData.isFetching) {
+      return;
+    }
+    dispatch(
+      fetchCurrentGameData(
         summonerData.data.summonerId,
         props.route.params.region,
       ),
@@ -90,6 +105,10 @@ const Profile = (props) => {
             summonerIcon={summonerData.data.summonerObject.summonerIcon}
             summonerRegion={summonerData.data.region}
             recentMatches={summonerData.data.recentGames}
+            inGame={
+              !currentGameData.isFetching &&
+              currentGameData.data.summoners.length > 0
+            }
           />
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}

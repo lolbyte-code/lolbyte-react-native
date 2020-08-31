@@ -1,5 +1,6 @@
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 
+import InGameIndicator from './InGameIndicator';
 import LeagueDetails from './LeagueDetails';
 import PropTypes from 'prop-types';
 import Rank from './Rank';
@@ -30,13 +31,14 @@ const ProfileHeader = (props) => {
   ));
 
   return (
-    <View>
+    <View style={styles.container}>
       <SummonerDetails
         summonerName={props.summonerName}
         summonerLevel={props.summonerLevel}
         summonerIcon={props.summonerIcon}
         summonerRegion={props.region}
       />
+      <InGameIndicator inGame={props.inGame} />
       <RecentMatches matches={props.recentMatches} />
       <View>
         <ScrollView
@@ -63,6 +65,7 @@ ProfileHeader.defaultProps = {
   summonerIcon: '',
   summonerRegion: '',
   recentMatches: [],
+  inGame: false,
 };
 
 ProfileHeader.propTypes = {
@@ -72,6 +75,7 @@ ProfileHeader.propTypes = {
   summonerIcon: PropTypes.string,
   summonerRegion: PropTypes.string,
   recentMatches: PropTypes.array,
+  inGame: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({

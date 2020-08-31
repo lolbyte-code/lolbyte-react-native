@@ -45,6 +45,9 @@ const LolByteApp = () => {
                 championData: {
                   isFetching: true,
                 },
+                currentGameData: {
+                  isFetching: true,
+                },
               },
             },
             applyMiddleware(
@@ -60,7 +63,7 @@ const LolByteApp = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="LolByte" component={Home} />
           <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>

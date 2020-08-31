@@ -1,4 +1,4 @@
-import {getChampionData, getRankedData, getSummonerData} from '../api/Url';
+import {getChampionData, getCurrentGameData, getRankedData, getSummonerData} from '../api/Url';
 
 export const REQUEST_SUMMONER_DATA = 'REQUEST_SUMMONER_DATA';
 export const RECEIVE_SUMMONER_DATA = 'RECEIVE_SUMMONER_DATA';
@@ -6,6 +6,8 @@ export const REQUEST_RANKED_DATA = 'REQUEST_RANKED_DATA';
 export const RECEIVE_RANKED_DATA = 'RECEIVE_RANKED_DATA';
 export const REQUEST_CHAMPION_DATA = 'REQUEST_CHAMPION_DATA';
 export const RECEIVE_CHAMPION_DATA = 'RECEIVE_CHAMPION_DATA';
+export const REQUEST_CURRENT_GAME_DATA = 'REQUEST_CURRENT_GAME_DATA';
+export const RECEIVE_CURRENT_GAME_DATA = 'RECEIVE_CURRENT_GAME_DATA';
 
 function requestSummonerData(summonerName, region) {
   return {
@@ -58,6 +60,23 @@ function receiveChampionData(summonerId, region, responseJson) {
   };
 }
 
+function requestCurrentGameData(summonerId, region) {
+  return {
+    type: REQUEST_CURRENT_GAME_DATA,
+    summonerId,
+    region,
+  };
+}
+
+function receiveCurrentGameData(summonerId, region, responseJson) {
+  return {
+    type: RECEIVE_CURRENT_GAME_DATA,
+    summonerId,
+    region,
+    data: responseJson,
+  };
+}
+
 export function fetchSummonerData(summonerName, region) {
   return (dispatch) => {
     dispatch(requestSummonerData(summonerName, region));
@@ -99,6 +118,21 @@ export function fetchChampionData(summonerId, region) {
       .then((json) => {
         console.log(json);
         dispatch(receiveChampionData(summonerId, region, json));
+      })
+      .catch((error) => console.error(error));
+  };
+}
+
+export function fetchCurrentGameData(summonerId, region) {
+  return (dispatch) => {
+    dispatch(requestCurrentGameData(summonerId, region));
+    return fetch(getCurrentGameData(summonerId, region), {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch(receiveCurrentGameData(summonerId, region, json));
       })
       .catch((error) => console.error(error));
   };
