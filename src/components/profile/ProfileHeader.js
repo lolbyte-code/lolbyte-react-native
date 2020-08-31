@@ -42,6 +42,8 @@ const ProfileHeader = (props) => {
         inGame={props.inGame}
         currentGameData={props.currentGameData}
         region={props.summonerRegion}
+        previousSummoners={props.previousSummoners}
+        currentSummoner={props.currentSummoner}
       />
       <RecentMatches matches={props.recentMatches} />
       <View>
@@ -71,6 +73,8 @@ ProfileHeader.defaultProps = {
   recentMatches: [],
   inGame: false,
   currentGameData: {},
+  previousSummoners: [],
+  currentSummoner: {},
 };
 
 ProfileHeader.propTypes = {
@@ -82,6 +86,8 @@ ProfileHeader.propTypes = {
   recentMatches: PropTypes.array,
   inGame: PropTypes.bool,
   currentGameData: PropTypes.object,
+  previousSummoners: PropTypes.array,
+  currentSummoner: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

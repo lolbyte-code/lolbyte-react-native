@@ -93,29 +93,30 @@ const Profile = (props) => {
 
   const previousSummoners = props.route.params.previousSummoners
     ? props.route.params.previousSummoners
-    : [
-        {
-          summonerName: summonerData.data.summonerName,
-          region: summonerData.data.region,
-        },
-      ];
+    : [];
 
-  const goBackPage = previousSummoners.length > 1 ? pages.profile : pages.home;
+  const goBackPage = previousSummoners.length > 0 ? pages.profile : pages.home;
 
   const goBackParams =
-    previousSummoners.length > 1
+    previousSummoners.length > 0
       ? {
-          summonerName: previousSummoners[1].summonerName,
-          region: previousSummoners[1].region,
+          summonerName: previousSummoners[0].summonerName,
+          region: previousSummoners[0].region,
           previousSummoners: previousSummoners.slice(1),
         }
       : {};
+
+  const currentSummoner = {
+    summonerName: summonerData.data.summonerName,
+    region: summonerData.data.region,
+  };
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <SearchNav
         region={summonerData.data.region}
         previousSummoners={previousSummoners}
+        currentSummoner={currentSummoner}
         goBackPage={goBackPage}
         goBackParams={goBackParams}
       />
@@ -133,6 +134,8 @@ const Profile = (props) => {
               currentGameData.data.summoners.length > 0
             }
             currentGameData={currentGameData.data}
+            previousSummoners={previousSummoners}
+            currentSummoner={currentSummoner}
           />
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}

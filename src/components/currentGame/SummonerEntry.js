@@ -22,6 +22,7 @@ const SummonerEntry = (props) => {
     navigation.navigate(pages.profile, {
       summonerName: props.summonerName,
       region: props.summonerRegion,
+      previousSummoners: props.previousSummoners,
     });
   };
 
@@ -62,6 +63,7 @@ SummonerEntry.defaultProps = {
   summonerRank: '',
   summonerTeamId: 100,
   selectedSummoner: false,
+  previousSummoners: [],
 };
 
 SummonerEntry.propTypes = {
@@ -71,6 +73,7 @@ SummonerEntry.propTypes = {
   summonerRank: PropTypes.string,
   summonerTeamId: PropTypes.number,
   selectedSummoner: PropTypes.bool,
+  previousSummoners: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

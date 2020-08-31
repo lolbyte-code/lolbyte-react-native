@@ -15,6 +15,7 @@ const Summoners = (props) => {
       summonerRank={entry.rank}
       summonerTeamId={entry.teamId}
       selectedSummoner={entry.selectedSummoner}
+      previousSummoners={props.previousSummoners}
     />
   ));
   return (
@@ -27,11 +28,13 @@ const Summoners = (props) => {
 Summoners.defaultProps = {
   entries: [],
   region: '',
+  previousSummoners: [],
 };
 
 Summoners.propTypes = {
   entries: PropTypes.array,
   region: PropTypes.string,
+  previousSummoners: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

@@ -13,13 +13,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from './currentGame/Summoners';
 import VersusSvg from '../svg/versus.svg';
+import {pages} from '../Constants';
 
 const CurrentGame = (props) => {
   const currentGameData = props.route.params.currentGameData;
   const region = props.route.params.region;
+  const currentSummoner = props.route.params.currentSummoner;
+  const previousSummoners = props.route.params.previousSummoners;
+  const previousPlusCurrentSummoners = [...previousSummoners];
+  previousPlusCurrentSummoners.unshift(currentSummoner);
+
+  const goBackParams = {
+    summonerName: currentSummoner.summonerName,
+    region: currentSummoner.region,
+    previousSummoners: previousSummoners,
+  };
+
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <CloseButton />
+      <CloseButton goBackPage={pages.profile} goBackParams={goBackParams} />
       <View style={styles.container}>
         <Text style={styles.gameType}>{currentGameData.gameType}</Text>
         <View style={styles.summonersContainer}>
@@ -28,6 +40,7 @@ const CurrentGame = (props) => {
               (summoner) => summoner.teamId === BLUE_TEAM,
             )}
             region={region}
+            previousSummoners={previousPlusCurrentSummoners}
           />
           <VersusSvg
             style={styles.versus}
@@ -39,6 +52,7 @@ const CurrentGame = (props) => {
               (summoner) => summoner.teamId === RED_TEAM,
             )}
             region={region}
+            previousSummoners={previousPlusCurrentSummoners}
           />
         </View>
       </View>

@@ -20,10 +20,7 @@ const SearchNav = (props) => {
 
   const searchSummonerHandler = () => {
     const previousSummoners = props.previousSummoners;
-    previousSummoners.unshift({
-      summonerName: summonerNameQuery,
-      region: props.region,
-    });
+    previousSummoners.unshift(props.currentSummoner);
     navigation.navigate(pages.profile, {
       summonerName: summonerNameQuery,
       region: props.region,
@@ -68,6 +65,7 @@ SearchNav.defaultProps = {
   goBackPage: '',
   goBackParams: {},
   previousSummoners: [],
+  currentSummoner: {},
 };
 
 SearchNav.propTypes = {
@@ -78,9 +76,10 @@ SearchNav.propTypes = {
   homeHeight: PropTypes.number,
   placeholder: PropTypes.string,
   placeholderTextColor: PropTypes.string,
-  goBackHandler: PropTypes.string,
+  goBackPage: PropTypes.string,
   goBackParams: PropTypes.object,
   previousSummoners: PropTypes.array,
+  currentSummoner: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

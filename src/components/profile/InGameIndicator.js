@@ -13,6 +13,8 @@ const InGameIndicator = (props) => {
     navigation.navigate(pages.currentGame, {
       currentGameData: props.currentGameData,
       region: props.region,
+      previousSummoners: props.previousSummoners,
+      currentSummoner: props.currentSummoner,
     });
   };
 
@@ -31,6 +33,8 @@ InGameIndicator.defaultProps = {
   region: '',
   width: 100,
   height: 20,
+  previousSummoners: [],
+  currentSummoner: {},
 };
 
 InGameIndicator.propTypes = {
@@ -39,6 +43,8 @@ InGameIndicator.propTypes = {
   region: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
+  previousSummoners: PropTypes.array,
+  currentSummoner: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

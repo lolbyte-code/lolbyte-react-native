@@ -29,7 +29,7 @@ const RegionSelect = (props) => {
   ));
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <CloseButton />
+      <CloseButton goBackPage={pages.home} />
       <View style={styles.container}>{Regions}</View>
     </ImageBackground>
   );

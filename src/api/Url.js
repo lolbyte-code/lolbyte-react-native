@@ -1,7 +1,10 @@
 const BaseUrl = 'http://lolbyte.me:8080/api/v3';
 
 export const getSummonerData = (summonerName, region) =>
-  `${BaseUrl}/summoners/${region}/name/${summonerName}?gameType=0`;
+  `${BaseUrl}/summoners/${region}/name/${summonerName.replace(
+    /\s/g,
+    '',
+  )}?gameType=0`;
 
 export const getRankedData = (summonerId, region) =>
   `${BaseUrl}/summoners/${region}/summoner-id/${summonerId}/rank`;
