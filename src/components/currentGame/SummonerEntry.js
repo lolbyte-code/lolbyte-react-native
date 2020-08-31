@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 
-import {BLUE_TEAM} from '../CurrentGame';
+import {BLUE_TEAM} from '../../Constants';
 import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,14 +18,15 @@ import {useNavigation} from '@react-navigation/native';
 const SummonerEntry = (props) => {
   const navigation = useNavigation();
 
+  const navigateToProfileHandler = () => {
+    navigation.navigate(pages.profile, {
+      summonerName: props.summonerName,
+      region: props.summonerRegion,
+    });
+  };
+
   return (
-    <TouchableWithoutFeedback
-      onPress={() =>
-        navigation.navigate(pages.profile, {
-          summonerName: props.summonerName,
-          region: props.summonerRegion,
-        })
-      }>
+    <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
       <View style={styles.container}>
         <Image
           source={{

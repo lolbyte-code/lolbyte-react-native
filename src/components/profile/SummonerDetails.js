@@ -27,24 +27,25 @@ const SummonerDetails = (props) => {
     setSelected(favorited);
   }, [props.summonerName, favoriteSummoners]);
 
+  const pressFavoriteHandler = () => {
+    if (selected) {
+      dispatch(removeFavoriteSummoner(props.summonerName));
+    } else {
+      dispatch(
+        addFavoriteSummoner({
+          summonerName: props.summonerName,
+          summonerIcon: props.summonerIcon,
+          summonerRegion: props.summonerRegion,
+        }),
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.summonerDetails}>
         <Text style={styles.summonerName}>{props.summonerName}</Text>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            if (selected) {
-              dispatch(removeFavoriteSummoner(props.summonerName));
-            } else {
-              dispatch(
-                addFavoriteSummoner({
-                  summonerName: props.summonerName,
-                  summonerIcon: props.summonerIcon,
-                  summonerRegion: props.summonerRegion,
-                }),
-              );
-            }
-          }}>
+        <TouchableWithoutFeedback onPress={pressFavoriteHandler}>
           {selected ? (
             <FavoriteSelectedSvg
               height={props.favoriteSvgHeight}

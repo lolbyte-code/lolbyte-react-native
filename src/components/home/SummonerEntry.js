@@ -17,14 +17,15 @@ import {useNavigation} from '@react-navigation/native';
 const SummonerEntry = (props) => {
   const navigation = useNavigation();
 
+  const navigateToProfileHandler = () => {
+    navigation.navigate(pages.profile, {
+      summonerName: props.summonerName,
+      region: props.summonerRegion,
+    });
+  };
+
   return (
-    <TouchableWithoutFeedback
-      onPress={() =>
-        navigation.navigate(pages.profile, {
-          summonerName: props.summonerName,
-          region: props.summonerRegion,
-        })
-      }>
+    <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
       <View style={styles.container}>
         <Image
           source={{

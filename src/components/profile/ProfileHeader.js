@@ -12,7 +12,6 @@ import SummonerDetails from './SummonerDetails';
 const ProfileHeader = (props) => {
   const [currentRankPosition, setCurrentRankPosition] = React.useState(0);
 
-  // TODO: make these props?
   const rankScrollHandler = (event) => {
     setCurrentRankPosition(event.nativeEvent.contentOffset.x);
   };

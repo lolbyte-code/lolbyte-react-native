@@ -1,3 +1,4 @@
+import {BLUE_TEAM, RED_TEAM} from '../Constants';
 import {
   Dimensions,
   ImageBackground,
@@ -11,9 +12,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from './currentGame/Summoners';
 import VersusSvg from '../svg/versus.svg';
-
-export const BLUE_TEAM = 100;
-export const RED_TEAM = 200;
 
 const CurrentGame = (props) => {
   const currentGameData = props.route.params.currentGameData;
