@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 import {getChampionIcon} from '../../api/Url';
 
 const RecentMatchesEntry = (props) => {

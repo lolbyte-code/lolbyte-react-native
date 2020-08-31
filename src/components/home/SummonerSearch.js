@@ -2,7 +2,7 @@ import {StyleSheet, TextInput} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 
 const SummonerSearch = (props) => {
   return (

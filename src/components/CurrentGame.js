@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {backgrounds, colors} from './common/Theme';
+import {backgrounds, colors} from '../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';

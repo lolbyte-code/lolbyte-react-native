@@ -14,6 +14,6 @@ export const colors = {
 };
 
 export const backgrounds = {
-  main: require('../../img/assets/background.png'),
-  region: require('../../img/assets/regionBackground.png'),
+  main: require('./img/assets/background.png'),
+  region: require('./img/assets/regionBackground.png'),
 };

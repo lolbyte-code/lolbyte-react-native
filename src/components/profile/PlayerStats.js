@@ -23,7 +23,7 @@ import Svg80 from '../../svg/80.svg';
 import Svg85 from '../../svg/85.svg';
 import Svg90 from '../../svg/90.svg';
 import Svg95 from '../../svg/95.svg';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 
 const PlayerStats = (props) => {
   let PercentSvg = props.defaultPercent;

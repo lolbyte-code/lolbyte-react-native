@@ -10,7 +10,7 @@ import {BLUE_TEAM} from '../../Constants';
 import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 import {getChampionIcon} from '../../api/Url';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';

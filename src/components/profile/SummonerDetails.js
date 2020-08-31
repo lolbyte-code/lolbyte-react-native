@@ -9,7 +9,7 @@ import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
 import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 
 const SummonerDetails = (props) => {
   const [selected, setSelected] = React.useState(false);

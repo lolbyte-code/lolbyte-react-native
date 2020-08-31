@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 
 const PlayerStatsHeader = (props) => {
   return (

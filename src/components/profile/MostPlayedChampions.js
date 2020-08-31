@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import MostPlayedChampionsEntry from './MostPlayedChampionsEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 
 const MostPlayedChampions = (props) => {
   let i = 0;

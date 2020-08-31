@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import FavoriteSvg from '../../svg/favoriteSelected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 
 const FavoritesHeader = (props) => {
   return (

@@ -6,7 +6,7 @@ import React from 'react';
 import RegionSelector from './home/RegionSelector';
 import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
-import {backgrounds} from './common/Theme';
+import {backgrounds} from '../Theme';
 import {pages} from '../Constants';
 import {useNavigation} from '@react-navigation/native';
 

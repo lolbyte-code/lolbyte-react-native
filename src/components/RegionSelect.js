@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {backgrounds, colors} from './common/Theme';
+import {backgrounds, colors} from '../Theme';
 
 import CloseButtonSvg from '../svg/closeButton.svg';
 import PropTypes from 'prop-types';

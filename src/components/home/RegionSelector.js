@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RegionArrowSvg from '../../svg/regionArrow.svg';
-import {colors} from '../common/Theme';
+import {colors} from '../../Theme';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
