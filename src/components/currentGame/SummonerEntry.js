@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {colors} from '../common/Theme';
 import {getChampionIcon} from '../../api/Url';
+import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const SummonerEntry = (props) => {
@@ -20,7 +21,7 @@ const SummonerEntry = (props) => {
   return (
     <TouchableWithoutFeedback
       onPress={() =>
-        navigation.navigate('Profile', {
+        navigation.navigate(pages.profile, {
           summonerName: props.summonerName,
           region: props.summonerRegion,
         })

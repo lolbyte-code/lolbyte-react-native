@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import React from 'react';
 import RegionSelect from './components/RegionSelect';
 import {createStackNavigator} from '@react-navigation/stack';
+import {pages} from './Constants';
 import reducer from './reducers/index.js';
 import thunkMiddleware from 'redux-thunk';
 
@@ -66,17 +67,17 @@ const LolByteApp = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Home"
+            name={pages.home}
             component={Home}
             initialParams={{region: 'na'}}
           />
           <Stack.Screen
-            name="Select Region"
+            name={pages.selectRegion}
             component={RegionSelect}
             options={{headerShown: false}}
           />
-          <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Current Game" component={CurrentGame} />
+          <Stack.Screen name={pages.profile} component={Profile} />
+          <Stack.Screen name={pages.currentGame} component={CurrentGame} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

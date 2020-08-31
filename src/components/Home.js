@@ -7,6 +7,7 @@ import RegionSelector from './home/RegionSelector';
 import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
 import {backgrounds} from './common/Theme';
+import {pages} from '../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = (props) => {
@@ -23,7 +24,7 @@ const Home = (props) => {
     setSummonerNameQuery(summonerName);
   };
   const searchSummonerHandler = () => {
-    navigation.navigate('Profile', {
+    navigation.navigate(pages.profile, {
       summonerName: summonerNameQuery,
       region: regionQuery,
     });

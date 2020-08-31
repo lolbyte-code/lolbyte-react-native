@@ -10,6 +10,7 @@ import {backgrounds, colors} from './common/Theme';
 import CloseButtonSvg from '../svg/closeButton.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {pages} from '../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const RegionSelect = (props) => {
@@ -19,7 +20,7 @@ const RegionSelect = (props) => {
     <TouchableWithoutFeedback
       key={`region_${region.label}`}
       onPress={() => {
-        navigation.navigate('Home', {
+        navigation.navigate(pages.home, {
           region: region.value,
         });
       }}>

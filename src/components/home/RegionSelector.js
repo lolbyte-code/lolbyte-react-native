@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RegionArrowSvg from '../../svg/regionArrow.svg';
 import {colors} from '../common/Theme';
+import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const RegionSelector = (props) => {
   const navigation = useNavigation();
 
   const selectRegionHandler = () => {
-    // TODO: make these constants
-    navigation.navigate('Select Region');
+    navigation.navigate(pages.selectRegion);
   };
 
   return (

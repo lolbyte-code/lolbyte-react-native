@@ -3,13 +3,14 @@ import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 import InGameSvg from '../../svg/inGame.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const InGameIndicator = (props) => {
   const navigation = useNavigation();
 
   const inGameClickHandler = () => {
-    navigation.navigate('Current Game', {
+    navigation.navigate(pages.currentGame, {
       currentGameData: props.currentGameData,
       region: props.region,
     });
