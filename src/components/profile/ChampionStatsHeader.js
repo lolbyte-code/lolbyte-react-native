@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import {colors} from '../common/Theme';
 
 const ChampionStatsHeader = (props) => {
   return (
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    color: 'white',
+    color: colors.white,
     fontSize: 25,
   },
 });

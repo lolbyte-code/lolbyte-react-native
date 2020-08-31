@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TopChampions from './profile/TopChampions';
 import {addRecentSummoner} from '../reducers/SummonersActions';
+import {backgrounds} from './common/Theme';
 
 const Profile = (props) => {
   const summonerData = useSelector((state) => state.api.summonerData);
@@ -135,7 +136,7 @@ const Profile = (props) => {
 };
 
 Profile.defaultProps = {
-  backgroundImage: require('../img/assets/background.png'),
+  backgroundImage: backgrounds.main,
   route: {},
 };
 

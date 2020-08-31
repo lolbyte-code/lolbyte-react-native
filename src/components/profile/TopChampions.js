@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import TopChampionsEntry from './TopChampionsEntry';
+import {colors} from '../common/Theme';
 
 const TopChampions = (props) => {
   let i = 0;
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    color: '#B2B4BB',
+    color: colors.lightGrey,
     fontSize: 15,
     marginLeft: 15,
   },

@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import MostPlayedChampionsEntry from './MostPlayedChampionsEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {colors} from '../common/Theme';
 
 // TODO: look into combining with top champs?
 const MostPlayedChampions = (props) => {
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    color: '#B2B4BB',
+    color: colors.lightGrey,
     fontSize: 15,
     marginLeft: 15,
   },

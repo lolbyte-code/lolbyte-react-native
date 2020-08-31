@@ -10,6 +10,7 @@ import {BLUE_TEAM} from '../CurrentGame';
 import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {colors} from '../common/Theme';
 import {getChampionIcon} from '../../api/Url';
 import {useNavigation} from '@react-navigation/native';
 
@@ -81,29 +82,29 @@ const styles = StyleSheet.create({
     height: 66,
     borderRadius: 33,
     borderWidth: 2,
-    borderColor: '#22A8CE',
+    borderColor: colors.blue,
   },
   redChampionIcon: {
     width: 66,
     height: 66,
     borderRadius: 33,
     borderWidth: 2,
-    borderColor: '#C42323',
+    borderColor: colors.red,
   },
   notSelectedSummonerName: {
-    color: 'white',
+    color: colors.white,
     fontSize: 12,
   },
   blueSummonerName: {
-    color: '#22A8CE',
+    color: colors.blue,
     fontSize: 12,
   },
   redSummonerName: {
-    color: '#C42323',
+    color: colors.red,
     fontSize: 12,
   },
   summonerRank: {
-    color: 'white',
+    color: colors.white,
     fontSize: 12,
   },
 });

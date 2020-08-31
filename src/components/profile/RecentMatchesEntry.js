@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import {colors} from '../common/Theme';
 import {getChampionIcon} from '../../api/Url';
 
 const RecentMatchesEntry = (props) => {
@@ -43,21 +44,21 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     borderWidth: 2,
-    borderColor: '#22A8CE',
+    borderColor: colors.blue,
   },
   championImageLoss: {
     width: 70,
     height: 70,
     borderRadius: 35,
     borderWidth: 2,
-    borderColor: '#C42323',
+    borderColor: colors.red,
   },
   win: {
-    color: 'white',
+    color: colors.white,
     top: -20,
   },
   kda: {
-    color: 'white',
+    color: colors.white,
     top: -15,
   },
 });

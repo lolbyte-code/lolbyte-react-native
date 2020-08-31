@@ -2,6 +2,7 @@ import {StyleSheet, TextInput} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import {colors} from '../common/Theme';
 
 const SummonerSearch = (props) => {
   return (
@@ -17,7 +18,7 @@ const SummonerSearch = (props) => {
 
 SummonerSearch.defaultProps = {
   placeholder: 'enter summoner name',
-  placeholderTextColor: '#B2B4BB',
+  placeholderTextColor: colors.lightGrey,
   onChangeTextHandler: {},
   onSubmitEditingHandler: {},
 };
@@ -34,9 +35,9 @@ const styles = StyleSheet.create({
     width: '66%',
     height: 44,
     padding: 10,
-    backgroundColor: '#50525D',
+    backgroundColor: colors.darkGrey,
     borderRadius: 5,
-    color: '#B2B4BB',
+    color: colors.lightGrey,
   },
 });
 

@@ -23,6 +23,7 @@ import Svg80 from '../../svg/80.svg';
 import Svg85 from '../../svg/85.svg';
 import Svg90 from '../../svg/90.svg';
 import Svg95 from '../../svg/95.svg';
+import {colors} from '../common/Theme';
 
 const PlayerStats = (props) => {
   let PercentSvg = props.defaultPercent;
@@ -180,15 +181,15 @@ const styles = StyleSheet.create({
   },
   kdaShort: {
     fontSize: 23,
-    color: '#22A8CE',
+    color: colors.blue,
   },
   kdaLong: {
     fontSize: 20,
-    color: 'white',
+    color: colors.white,
   },
   wards: {
     fontSize: 15,
-    color: 'white',
+    color: colors.white,
   },
 });
 

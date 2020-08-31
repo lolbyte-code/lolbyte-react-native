@@ -6,6 +6,7 @@ import React from 'react';
 import RegionSelector from './home/RegionSelector';
 import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
+import {backgrounds} from './common/Theme';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = (props) => {
@@ -46,7 +47,7 @@ const Home = (props) => {
 };
 
 Home.defaultProps = {
-  backgroundImage: require('../img/assets/background.png'),
+  backgroundImage: backgrounds.main,
 };
 
 Home.propTypes = {

@@ -3,6 +3,7 @@ import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import RegionArrowSvg from '../../svg/regionArrow.svg';
+import {colors} from '../common/Theme';
 import {useNavigation} from '@react-navigation/native';
 
 const RegionSelector = (props) => {
@@ -43,18 +44,18 @@ const styles = StyleSheet.create({
   regionSelector: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#50525D',
+    borderColor: colors.darkGrey,
     borderWidth: 10,
     borderRadius: 6,
     marginLeft: 5,
   },
   regionText: {
-    color: '#22A8CE',
-    backgroundColor: '#50525D',
+    color: colors.blue,
+    backgroundColor: colors.darkGrey,
     fontSize: 20,
   },
   regionArrow: {
-    backgroundColor: '#50525D',
+    backgroundColor: colors.darkGrey,
   },
 });
 

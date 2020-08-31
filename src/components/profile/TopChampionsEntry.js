@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import {colors} from '../common/Theme';
 import {getChampionIcon} from '../../api/Url';
 
 const TopChampionsEntry = (props) => {
@@ -46,16 +47,16 @@ const styles = StyleSheet.create({
     height: 106,
     borderRadius: 53,
     borderWidth: 3,
-    borderColor: '#B2B4BB',
+    borderColor: colors.lightGrey,
   },
   championName: {
-    color: '#22A8CE',
+    color: colors.blue,
   },
   championLevel: {
-    color: 'white',
+    color: colors.white,
   },
   championPoints: {
-    color: 'white',
+    color: colors.white,
   },
 });
 

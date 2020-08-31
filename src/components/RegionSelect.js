@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {backgrounds, colors} from './common/Theme';
 
 import CloseButtonSvg from '../svg/closeButton.svg';
 import PropTypes from 'prop-types';
@@ -40,7 +41,7 @@ const RegionSelect = (props) => {
 };
 
 RegionSelect.defaultProps = {
-  backgroundImage: require('../img/assets/regionBackground.png'),
+  backgroundImage: backgrounds.region,
   regions: [
     {
       label: 'North America',
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   labelStyle: {
-    color: '#22A8CE',
+    color: colors.blue,
     fontSize: 25,
     margin: 4,
   },

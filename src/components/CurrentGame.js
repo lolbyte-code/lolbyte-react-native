@@ -5,6 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import {backgrounds, colors} from './common/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -46,7 +47,7 @@ const CurrentGame = (props) => {
 };
 
 CurrentGame.defaultProps = {
-  backgroundImage: require('../img/assets/background.png'),
+  backgroundImage: backgrounds.main,
   versusWidth: Dimensions.get('window').width - 10,
   versusHeight: 40,
   route: {},
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
   },
   gameType: {
-    color: '#38B171',
+    color: colors.green,
     fontSize: 30,
   },
 });
