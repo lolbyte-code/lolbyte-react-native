@@ -36,7 +36,6 @@ TopChampionsEntry.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 5,
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,

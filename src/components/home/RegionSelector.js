@@ -84,6 +84,7 @@ RegionSelector.propTypes = {
 const styles = StyleSheet.create({
   container: {
     height: 44,
+    marginLeft: 5,
   },
   style: {
     width: 73,

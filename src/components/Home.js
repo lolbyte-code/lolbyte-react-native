@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: '5%',
   },
   search: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 15,
+    marginTop: 25,
   },
 });
 

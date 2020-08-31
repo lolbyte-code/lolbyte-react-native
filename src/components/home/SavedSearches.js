@@ -50,7 +50,7 @@ const SavedSearches = () => {
 
 const styles = StyleSheet.create({
   headers: {
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     marginTop: 35,
     flexDirection: 'row',
   },

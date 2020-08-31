@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     width: '100.03%',
   },
   profileContainer: {
-    // TODO: revisit all margins
     marginTop: '5%',
   },
 });

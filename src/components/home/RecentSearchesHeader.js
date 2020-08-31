@@ -6,12 +6,7 @@ import React from 'react';
 const RecentSearchesHeader = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
-      <View
-        style={
-          props.selected
-            ? styles.containerSelected
-            : styles.containerNotSelected
-        }>
+      <View style={props.selected ? styles.containerSelected : null}>
         <Text
           style={
             props.selected ? styles.titleSelected : styles.titleNotSelected
@@ -36,14 +31,10 @@ RecentSearchesHeader.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  containerNotSelected: {
-    marginLeft: 15,
-  },
   containerSelected: {
     paddingBottom: 6,
     borderBottomWidth: 5,
     borderBottomColor: 'teal',
-    marginLeft: 15,
   },
   titleNotSelected: {
     color: 'grey',

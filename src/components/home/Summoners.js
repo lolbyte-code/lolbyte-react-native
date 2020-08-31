@@ -17,7 +17,7 @@ const Summoners = (props) => {
       />
     ));
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.entries}>{SummonerEntries}</View>
     </View>
   );
@@ -34,9 +34,6 @@ Summoners.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 25,
-  },
   entries: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',

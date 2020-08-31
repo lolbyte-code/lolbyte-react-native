@@ -58,7 +58,7 @@ SummonerEntry.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 5,
+    marginTop: 10,
     alignItems: 'center',
   },
   summonerIcon: {
