@@ -12,7 +12,8 @@ import SummonerDetails from './SummonerDetails';
 const ProfileHeader = (props) => {
   const [currentRankPosition, setCurrentRankPosition] = React.useState(0);
 
-  const handleRankScroll = (event) => {
+  // TODO: make these props?
+  const rankScrollHandler = (event) => {
     setCurrentRankPosition(event.nativeEvent.contentOffset.x);
   };
 
@@ -36,15 +37,19 @@ const ProfileHeader = (props) => {
         summonerName={props.summonerName}
         summonerLevel={props.summonerLevel}
         summonerIcon={props.summonerIcon}
-        summonerRegion={props.region}
+        summonerRegion={props.summonerRegion}
       />
-      <InGameIndicator inGame={props.inGame} />
+      <InGameIndicator
+        inGame={props.inGame}
+        currentGameData={props.currentGameData}
+        region={props.summonerRegion}
+      />
       <RecentMatches matches={props.recentMatches} />
       <View>
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          onScroll={handleRankScroll}
+          onScroll={rankScrollHandler}
           pagingEnabled>
           {RankEntries}
         </ScrollView>
@@ -66,6 +71,7 @@ ProfileHeader.defaultProps = {
   summonerRegion: '',
   recentMatches: [],
   inGame: false,
+  currentGameData: {},
 };
 
 ProfileHeader.propTypes = {
@@ -76,6 +82,7 @@ ProfileHeader.propTypes = {
   summonerRegion: PropTypes.string,
   recentMatches: PropTypes.array,
   inGame: PropTypes.bool,
+  currentGameData: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

@@ -1,6 +1,7 @@
 import {applyMiddleware, createStore} from 'redux';
 import {getFromStorage, setToStorage} from './utils/Storage';
 
+import CurrentGame from './components/CurrentGame';
 import Home from './components/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import Profile from './components/Profile';
@@ -65,6 +66,7 @@ const LolByteApp = () => {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Current Game" component={CurrentGame} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

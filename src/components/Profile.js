@@ -8,7 +8,6 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 
 import ChampionStatsHeader from './profile/ChampionStatsHeader';
-import InGameIndicator from './profile/InGameIndicator';
 import MostPlayedChampions from './profile/MostPlayedChampions';
 import PlayerStats from './profile/PlayerStats';
 import PlayerStatsHeader from './profile/PlayerStatsHeader';
@@ -109,6 +108,7 @@ const Profile = (props) => {
               !currentGameData.isFetching &&
               currentGameData.data.summoners.length > 0
             }
+            currentGameData={currentGameData.data}
           />
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}
