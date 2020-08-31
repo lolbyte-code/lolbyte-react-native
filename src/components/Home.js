@@ -29,19 +29,17 @@ const Home = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <ScrollView>
-        <View style={styles.logo}>
-          <Logo />
-        </View>
-        <View style={styles.search}>
-          <SummonerSearch
-            onChangeTextHandler={changeSummonerHandler}
-            onSubmitEditingHandler={searchSummonerHandler}
-          />
-          <RegionSelector onChangeItemHandler={changeRegionHandler} />
-        </View>
-        <SavedSearches />
-      </ScrollView>
+      <View style={styles.logo}>
+        <Logo />
+      </View>
+      <View style={styles.search}>
+        <SummonerSearch
+          onChangeTextHandler={changeSummonerHandler}
+          onSubmitEditingHandler={searchSummonerHandler}
+        />
+        <RegionSelector onChangeItemHandler={changeRegionHandler} />
+      </View>
+      <SavedSearches />
     </ImageBackground>
   );
 };

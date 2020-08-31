@@ -1,6 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 
 import FavoritesHeader from './FavoritesHeader';
+import GestureRecognizer from 'react-native-swipe-gestures';
 import React from 'react';
 import RecentSearchesHeader from './RecentSearchesHeader';
 import Summoners from './Summoners';
@@ -43,7 +44,11 @@ const SavedSearches = () => {
           selected={selectedHeader === SEARCHES_SELECTED}
         />
       </View>
-      <Summoners entries={summoners} />
+      <GestureRecognizer
+        onSwipeLeft={() => selectRecentSearchesHandler()}
+        onSwipeRight={() => selectFavoritesHandler()}>
+        <Summoners entries={summoners} />
+      </GestureRecognizer>
     </View>
   );
 };

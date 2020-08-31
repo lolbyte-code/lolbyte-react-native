@@ -23,7 +23,9 @@ const summonersReducer = (
           (summoner) => summoner.summonerName === action.summoner.summonerName,
         )
       ) {
-        return state;
+        cloneState.recentSummoners = cloneState.recentSummoners.filter(
+          (summoner) => summoner.summonerName !== action.summoner.summonerName,
+        );
       }
       cloneState.recentSummoners.unshift(action.summoner);
       if (cloneState.recentSummoners.length > MAX_CAPACITY) {
@@ -33,7 +35,6 @@ const summonersReducer = (
         );
       }
       return {
-        ...state,
         recentSummoners: cloneState.recentSummoners,
         favoriteSummoners: cloneState.favoriteSummoners,
       };
@@ -56,7 +57,6 @@ const summonersReducer = (
         );
       }
       return {
-        ...state,
         recentSummoners: cloneState.recentSummoners,
         favoriteSummoners: cloneState.favoriteSummoners,
       };
@@ -65,7 +65,6 @@ const summonersReducer = (
         (summoner) => summoner.summonerName !== action.summonerName,
       );
       return {
-        ...state,
         recentSummoners: cloneState.recentSummoners,
         favoriteSummoners: cloneState.favoriteSummoners,
       };
