@@ -3,13 +3,13 @@ import {
   addFavoriteSummoner,
   removeFavoriteSummoner,
 } from '../../reducers/SummonersActions';
+import {colors, fonts} from '../../Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
 import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
 import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 
 const SummonerDetails = (props) => {
   const [selected, setSelected] = React.useState(false);
@@ -90,13 +90,15 @@ const styles = StyleSheet.create({
   summonerName: {
     color: colors.white,
     fontSize: 35,
+    fontFamily: fonts.regular,
   },
   summonerLevel: {
     color: colors.white,
     fontSize: 20,
+    fontFamily: fonts.regular,
   },
   favoriteSvg: {
-    marginLeft: 10,
+    marginLeft: 5,
   },
 });
 

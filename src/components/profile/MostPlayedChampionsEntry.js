@@ -1,8 +1,8 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 import {getChampionIcon} from '../../api/Url';
 
 const MostPlayedChampionsEntry = (props) => {
@@ -48,9 +48,11 @@ const styles = StyleSheet.create({
   },
   championName: {
     color: colors.blue,
+    fontFamily: fonts.bold,
   },
   gamesPlayed: {
     color: colors.white,
+    fontFamily: fonts.regular,
   },
 });
 

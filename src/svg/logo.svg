@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380.05 399.93">
 	<defs>
 		<style>
-			.cls-1{font-size:61px;font-family:Arial, Arial;font-weight:800;}.cls-1,.cls-4{fill:#f2f2f2;}.cls-2,.cls-3{font-family:Arial, Arial;font-weight:300;}.cls-2{letter-spacing:-0.01em;}.cls-5{fill:#04070e;}.cls-6{fill:#22a8ce;}
+			.cls-1{font-size:61px;font-family:Roboto-Black, Roboto;font-weight:800;}.cls-1,.cls-4{fill:#f2f2f2;}.cls-2,.cls-3{font-family:Roboto-Light, Roboto;font-weight:300;}.cls-2{letter-spacing:-0.01em;}.cls-5{fill:#04070e;}.cls-6{fill:#22a8ce;}
 		</style>
 	</defs>
 	<g id="Layer_2" data-name="Layer 2">
 		<g id="Layer_2-2" data-name="Layer 2">
 			<text class="cls-1" transform="translate(103.99 383.4)">
 				lol
-				<tspan class="cls-2" x="54.7" y="0">
+				<tspan class="cls-2" x="52.7" y="0">
 					byte
 				</tspan>
 			</text>

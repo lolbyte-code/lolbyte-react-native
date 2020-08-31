@@ -1,8 +1,8 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 
 const RecentSearchesHeader = (props) => {
   return (
@@ -40,10 +40,12 @@ const styles = StyleSheet.create({
   titleNotSelected: {
     color: colors.lightGrey,
     fontSize: 20,
+    fontFamily: fonts.bold,
   },
   titleSelected: {
     color: colors.blue,
     fontSize: 20,
+    fontFamily: fonts.bold,
   },
 });
 

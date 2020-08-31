@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {backgrounds, colors} from '../Theme';
+import {backgrounds, colors, fonts} from '../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   gameType: {
     color: colors.green,
     fontSize: 30,
+    fontFamily: fonts.regular,
   },
 });
 

@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 323.52 58.08">
 	<defs>
 		<style>
-			.cls-1{fill:#38b171;}.cls-2{font-size:47px;font-family:Arial, Arial;}
+			.cls-1{fill:#38b171;}.cls-2{font-size:47px;font-family:Roboto-Regular, Roboto;}
 		</style>
 	</defs>
 	<g id="Layer_2" data-name="Layer 2">
 		<g id="Layer_3" data-name="Layer 3">
 			<rect class="cls-1" width="323.52" height="55.48" rx="12" />
-			<text class="cls-2" fill="#04070e" transform="translate(61.57 45.34)">
+			<text class="cls-2" fill="#04070E" transform="translate(68.57 45.34)">
 				IN GAME
 			</text>
 		</g>

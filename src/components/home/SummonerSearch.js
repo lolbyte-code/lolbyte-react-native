@@ -1,8 +1,8 @@
 import {StyleSheet, TextInput} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 
 const SummonerSearch = (props) => {
   return (
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkGrey,
     borderRadius: 5,
     color: colors.lightGrey,
+    fontFamily: fonts.regular,
   },
 });
 

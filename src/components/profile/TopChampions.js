@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
 import TopChampionsEntry from './TopChampionsEntry';
-import {colors} from '../../Theme';
 
 const TopChampions = (props) => {
   let i = 0;
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     color: colors.lightGrey,
     fontSize: 15,
     marginLeft: 15,
+    fontFamily: fonts.regular,
   },
 });
 

@@ -1,4 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,7 +24,6 @@ import Svg80 from '../../svg/80.svg';
 import Svg85 from '../../svg/85.svg';
 import Svg90 from '../../svg/90.svg';
 import Svg95 from '../../svg/95.svg';
-import {colors} from '../../Theme';
 
 const PlayerStats = (props) => {
   let PercentSvg = props.defaultPercent;
@@ -182,14 +182,17 @@ const styles = StyleSheet.create({
   kdaShort: {
     fontSize: 23,
     color: colors.blue,
+    fontFamily: fonts.bold,
   },
   kdaLong: {
     fontSize: 20,
     color: colors.white,
+    fontFamily: fonts.bold,
   },
   wards: {
     fontSize: 15,
     color: colors.white,
+    fontFamily: fonts.regular,
   },
 });
 

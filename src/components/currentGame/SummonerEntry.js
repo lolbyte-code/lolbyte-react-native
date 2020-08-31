@@ -5,12 +5,12 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import {BLUE_TEAM} from '../../Constants';
 import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 import {getChampionIcon} from '../../api/Url';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
@@ -95,18 +95,22 @@ const styles = StyleSheet.create({
   notSelectedSummonerName: {
     color: colors.white,
     fontSize: 12,
+    fontFamily: fonts.regular,
   },
   blueSummonerName: {
     color: colors.blue,
     fontSize: 12,
+    fontFamily: fonts.regular,
   },
   redSummonerName: {
     color: colors.red,
     fontSize: 12,
+    fontFamily: fonts.regular,
   },
   summonerRank: {
     color: colors.white,
     fontSize: 12,
+    fontFamily: fonts.regular,
   },
 });
 

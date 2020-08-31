@@ -1,8 +1,8 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 import {getChampionIcon} from '../../api/Url';
 
 const RecentMatchesEntry = (props) => {
@@ -56,10 +56,12 @@ const styles = StyleSheet.create({
   win: {
     color: colors.white,
     top: -20,
+    fontFamily: fonts.regular,
   },
   kda: {
     color: colors.white,
     top: -15,
+    fontFamily: fonts.regular,
   },
 });
 

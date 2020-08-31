@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {backgrounds, colors} from '../Theme';
+import {backgrounds, colors, fonts} from '../Theme';
 
 import CloseButtonSvg from '../svg/closeButton.svg';
 import PropTypes from 'prop-types';
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     color: colors.blue,
     fontSize: 25,
     margin: 4,
+    fontFamily: fonts.regular,
   },
   closeButton: {
     marginTop: 20,

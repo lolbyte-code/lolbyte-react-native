@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 
 const ChampionStatsHeader = (props) => {
   return (
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: 25,
+    fontFamily: fonts.bold,
   },
 });
 

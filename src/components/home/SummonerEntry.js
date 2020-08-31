@@ -5,11 +5,11 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import EllipsisText from '../common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 import {getProfileIcon} from '../../api/Url';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
@@ -73,10 +73,12 @@ const styles = StyleSheet.create({
   summonerName: {
     color: colors.blue,
     fontSize: 12,
+    fontFamily: fonts.regular,
   },
   summonerRegion: {
     color: colors.white,
     fontSize: 12,
+    fontFamily: fonts.regular,
   },
 });
 

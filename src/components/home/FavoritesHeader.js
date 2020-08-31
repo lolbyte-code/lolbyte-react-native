@@ -1,9 +1,9 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import FavoriteSvg from '../../svg/favoriteSelected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 
 const FavoritesHeader = (props) => {
   return (
@@ -59,10 +59,12 @@ const styles = StyleSheet.create({
   titleNotSelected: {
     color: colors.lightGrey,
     fontSize: 20,
+    fontFamily: fonts.bold,
   },
   titleSelected: {
     color: colors.blue,
     fontSize: 20,
+    fontFamily: fonts.bold,
   },
   favoriteSvg: {
     marginLeft: 5,

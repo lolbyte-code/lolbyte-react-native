@@ -1,9 +1,9 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
 import RegionArrowSvg from '../../svg/regionArrow.svg';
-import {colors} from '../../Theme';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     color: colors.blue,
     backgroundColor: colors.darkGrey,
     fontSize: 20,
+    fontFamily: fonts.regular,
   },
   regionArrow: {
     backgroundColor: colors.darkGrey,

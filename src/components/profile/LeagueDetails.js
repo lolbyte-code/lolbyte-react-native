@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {colors} from '../../Theme';
 
 const LeagueDetails = (props) => {
   return (
@@ -40,22 +40,27 @@ const styles = StyleSheet.create({
   queue: {
     color: colors.white,
     fontSize: 25,
+    fontFamily: fonts.bold,
   },
   rank: {
     color: colors.white,
     fontSize: 25,
+    fontFamily: fonts.bold,
   },
   points: {
     color: colors.white,
     fontSize: 18,
+    fontFamily: fonts.regular,
   },
   score: {
     color: colors.blue,
     fontSize: 18,
+    fontFamily: fonts.regular,
   },
   wins: {
     color: colors.lightGrey,
     fontSize: 18,
+    fontFamily: fonts.regular,
   },
 });
 

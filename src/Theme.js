@@ -17,3 +17,10 @@ export const backgrounds = {
   main: require('./img/assets/background.png'),
   region: require('./img/assets/regionBackground.png'),
 };
+
+export const fonts = {
+  regular: 'Roboto-Regular',
+  bold: 'Roboto-Bold',
+  light: 'Roboto-Light',
+  thin: 'Roboto-Thin',
+};
