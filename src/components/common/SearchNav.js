@@ -44,6 +44,7 @@ const SearchNav = (props) => {
         placeholder={props.placeholder}
         placeholderTextColor={props.placeholderTextColor}
         style={styles.input}
+        autoCorrect={props.autoCorrect}
         onChangeText={(value) => setSummonerNameQuery(value)}
         onSubmitEditing={() => searchSummonerHandler()}
       />
@@ -62,6 +63,7 @@ SearchNav.defaultProps = {
   homeHeight: 40,
   placeholder: 'enter summoner name',
   placeholderTextColor: colors.lightGrey,
+  autoCorrect: false,
   goBackPage: '',
   goBackParams: {},
   previousSummoners: [],
@@ -75,6 +77,7 @@ SearchNav.propTypes = {
   homeWidth: PropTypes.number,
   homeHeight: PropTypes.number,
   placeholder: PropTypes.string,
+  autoCorrect: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
   goBackPage: PropTypes.string,
   goBackParams: PropTypes.object,
