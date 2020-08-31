@@ -89,6 +89,7 @@ const Profile = (props) => {
             summonerLevel={summonerData.data.summonerLevel}
             summonerIcon={summonerData.data.summonerObject.summonerIcon}
             summonerRegion={summonerData.data.region}
+            recentMatches={summonerData.data.recentGames}
           />
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}
@@ -102,11 +103,11 @@ const Profile = (props) => {
           <ChampionStatsHeader />
           <MostPlayedChampions
             title={championData.data[0].championStatType}
-            data={championData.data[0].mostPlayedChampions}
+            champions={championData.data[0].mostPlayedChampions}
           />
           <TopChampions
             title={championData.data[1].championStatType}
-            data={championData.data[1].topChampions}
+            champions={championData.data[1].topChampions}
           />
         </View>
       </ScrollView>

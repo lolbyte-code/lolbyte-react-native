@@ -1,9 +1,10 @@
-import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 
 import LeagueDetails from './LeagueDetails';
 import PropTypes from 'prop-types';
 import Rank from './Rank';
 import React from 'react';
+import RecentMatches from './RecentMatches';
 import ScrollDots from '../common/ScrollDots';
 import SummonerDetails from './SummonerDetails';
 
@@ -36,6 +37,7 @@ const ProfileHeader = (props) => {
         summonerIcon={props.summonerIcon}
         summonerRegion={props.region}
       />
+      <RecentMatches matches={props.recentMatches} />
       <View>
         <ScrollView
           horizontal={true}
@@ -60,6 +62,7 @@ ProfileHeader.defaultProps = {
   summonerLevel: 0,
   summonerIcon: '',
   summonerRegion: '',
+  recentMatches: [],
 };
 
 ProfileHeader.propTypes = {
@@ -68,6 +71,7 @@ ProfileHeader.propTypes = {
   summonerLevel: PropTypes.number,
   summonerIcon: PropTypes.string,
   summonerRegion: PropTypes.string,
+  recentMatches: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

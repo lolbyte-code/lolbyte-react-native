@@ -6,7 +6,7 @@ import TopChampionsEntry from './TopChampionsEntry';
 
 const TopChampions = (props) => {
   let i = 0;
-  const ChampionEntries = props.data.map((entry) => (
+  const ChampionEntries = props.champions.map((entry) => (
     <TopChampionsEntry
       key={`topChampionEntry${i++}`}
       championId={entry.championId}
@@ -25,12 +25,12 @@ const TopChampions = (props) => {
 
 TopChampions.defaultProps = {
   title: 'Most Played (Mastery)',
-  data: [],
+  champions: [],
 };
 
 TopChampions.propTypes = {
   title: PropTypes.string,
-  data: PropTypes.array,
+  champions: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
