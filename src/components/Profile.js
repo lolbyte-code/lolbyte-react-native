@@ -8,6 +8,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 
 import ChampionStatsHeader from './profile/ChampionStatsHeader';
+import Loading from './common/Loading';
 import MostPlayedChampions from './profile/MostPlayedChampions';
 import PlayerStats from './profile/PlayerStats';
 import PlayerStatsHeader from './profile/PlayerStatsHeader';
@@ -85,13 +86,7 @@ const Profile = (props) => {
     rankedData.isFetching ||
     championData.isFetching
   ) {
-    return (
-      // TODO: make this a loading page instead
-      <ImageBackground
-        source={props.backgroundImage}
-        style={styles.background}
-      />
-    );
+    return <Loading />;
   }
 
   return (
