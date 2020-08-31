@@ -15,6 +15,7 @@ import PlayerStatsHeader from './profile/PlayerStatsHeader';
 import PropTypes from 'prop-types';
 import Rank from './profile/Rank';
 import React from 'react';
+import ScrollDots from './common/ScrollDots';
 import SummonerDetails from './profile/SummonerDetails';
 import TopChampions from './profile/TopChampions';
 import {addRecentSummoner} from '../reducers/SummonersActions';
@@ -24,7 +25,12 @@ const Profile = (props) => {
   const summonerData = useSelector((state) => state.api.summonerData);
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
+  const [currentRankPosition, setCurrentRankPosition] = React.useState(0);
   const dispatch = useDispatch();
+
+  const handleRankScroll = (event) => {
+    setCurrentRankPosition(event.nativeEvent.contentOffset.x);
+  };
 
   React.useEffect(() => {
     dispatch(
@@ -110,12 +116,17 @@ const Profile = (props) => {
           <View>
             <ScrollView
               horizontal={true}
-              showsHorizontalScrollIndicator={true}
-              indicatorStyle={props.indicatorStyle}
+              showsHorizontalScrollIndicator={false}
+              onScroll={handleRankScroll}
               pagingEnabled>
               {RankEntries}
             </ScrollView>
           </View>
+          <ScrollDots
+            listSize={rankedData.data.length}
+            currentItemPosition={currentRankPosition}
+            itemWidth={Dimensions.get('window').width}
+          />
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}
           />
@@ -143,13 +154,11 @@ const Profile = (props) => {
 Profile.defaultProps = {
   backgroundImage: require('../img/assets/background.png'),
   route: {},
-  indicatorStyle: 'white',
 };
 
 Profile.propTypes = {
   backgroundImage: PropTypes.node,
   route: PropTypes.object,
-  indicatorStyle: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

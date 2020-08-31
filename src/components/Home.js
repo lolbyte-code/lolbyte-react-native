@@ -2,9 +2,9 @@ import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
 import Logo from './home/Logo';
 import PropTypes from 'prop-types';
-import QuickSearch from './home/QuickSearch';
 import React from 'react';
 import RegionSelector from './home/RegionSelector';
+import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
 import {useNavigation} from '@react-navigation/native';
 
@@ -40,7 +40,7 @@ const Home = (props) => {
           />
           <RegionSelector onChangeItemHandler={changeRegionHandler} />
         </View>
-        <QuickSearch />
+        <SavedSearches />
       </ScrollView>
     </ImageBackground>
   );

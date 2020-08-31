@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 const FAVORITES_SELECTED = 'favorites';
 const SEARCHES_SELECTED = 'recentSearches';
 
-const QuickSearch = () => {
+const SavedSearches = () => {
   const favoriteSummoners = useSelector(
     (state) => state.summoners.favoriteSummoners,
   );
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuickSearch;
+export default SavedSearches;
