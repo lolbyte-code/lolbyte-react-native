@@ -29,7 +29,6 @@ const SummonerEntry = (props) => {
       <View style={styles.container}>
         <Image
           source={{
-            // TODO: could default icon here (add prop)
             uri: getChampionIcon(props.championId),
           }}
           style={

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {colors} from '../common/Theme';
 
-// TODO: look into combining with top champs?
 const MostPlayedChampions = (props) => {
   let i = 0;
   const ChampionEntries = props.champions.map((entry) => (

@@ -28,7 +28,6 @@ const SummonerEntry = (props) => {
       <View style={styles.container}>
         <Image
           source={{
-            // TODO: could default icon here (add prop)
             uri: getProfileIcon(props.summonerIcon),
           }}
           style={styles.summonerIcon}

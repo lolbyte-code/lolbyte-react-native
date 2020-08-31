@@ -12,7 +12,15 @@ const TopChampionsEntry = (props) => {
         source={{
           uri: getChampionIcon(props.championId),
         }}
-        style={styles.championImage}
+        style={
+          props.championLevel === 'Level: 7'
+            ? styles.championImageLevel7
+            : props.championLevel === 'Level: 6'
+            ? styles.championImageLevel6
+            : props.championLevel === 'Level: 5'
+            ? styles.championImageLevel5
+            : styles.championImageDefault
+        }
       />
       <Text style={styles.championName}>{props.championName}</Text>
       <Text style={styles.championLevel}>{props.championLevel}</Text>
@@ -42,12 +50,33 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flex: 1,
   },
-  championImage: {
+  championImageLevel7: {
     width: 106,
     height: 106,
     borderRadius: 53,
     borderWidth: 3,
-    borderColor: colors.lightGrey,
+    borderColor: colors.masteryLevel7,
+  },
+  championImageLevel6: {
+    width: 106,
+    height: 106,
+    borderRadius: 53,
+    borderWidth: 3,
+    borderColor: colors.masteryLevel6,
+  },
+  championImageLevel5: {
+    width: 106,
+    height: 106,
+    borderRadius: 53,
+    borderWidth: 3,
+    borderColor: colors.masteryLevel5,
+  },
+  championImageDefault: {
+    width: 106,
+    height: 106,
+    borderRadius: 53,
+    borderWidth: 3,
+    borderColor: colors.masteryLevelDefault,
   },
   championName: {
     color: colors.blue,
