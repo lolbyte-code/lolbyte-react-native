@@ -7,30 +7,20 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 
 import ChampionStatsHeader from './profile/ChampionStatsHeader';
-import {Dimensions} from 'react-native';
-import LeagueDetails from './profile/LeagueDetails';
 import MostPlayedChampions from './profile/MostPlayedChampions';
 import PlayerStats from './profile/PlayerStats';
 import PlayerStatsHeader from './profile/PlayerStatsHeader';
+import ProfileHeader from './profile/ProfileHeader';
 import PropTypes from 'prop-types';
-import Rank from './profile/Rank';
 import React from 'react';
-import ScrollDots from './common/ScrollDots';
-import SummonerDetails from './profile/SummonerDetails';
 import TopChampions from './profile/TopChampions';
 import {addRecentSummoner} from '../reducers/SummonersActions';
 
 const Profile = (props) => {
-  // TODO: could break these into separate components and parallelize loading?
   const summonerData = useSelector((state) => state.api.summonerData);
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
-  const [currentRankPosition, setCurrentRankPosition] = React.useState(0);
   const dispatch = useDispatch();
-
-  const handleRankScroll = (event) => {
-    setCurrentRankPosition(event.nativeEvent.contentOffset.x);
-  };
 
   React.useEffect(() => {
     dispatch(
@@ -89,43 +79,16 @@ const Profile = (props) => {
     );
   }
 
-  let i = 0;
-  const RankEntries = rankedData.data.map((entry) => (
-    <View style={styles.rankEntryContainer} key={`leagueDetail_${i++}`}>
-      <Rank tier={entry.tier} />
-      <LeagueDetails
-        queue={entry.rankQueueType}
-        rank={entry.rank}
-        points={entry.leagueProgress}
-        score={entry.mmr}
-        wins={entry.rankedWL}
-      />
-    </View>
-  ));
-
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView indicatorStyle={props.indicatorStyle}>
         <View style={styles.profileContainer}>
-          <SummonerDetails
+          <ProfileHeader
+            rankedData={rankedData.data}
             summonerName={summonerData.data.summonerName}
             summonerLevel={summonerData.data.summonerLevel}
             summonerIcon={summonerData.data.summonerObject.summonerIcon}
             summonerRegion={summonerData.data.region}
-          />
-          <View>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              onScroll={handleRankScroll}
-              pagingEnabled>
-              {RankEntries}
-            </ScrollView>
-          </View>
-          <ScrollDots
-            listSize={rankedData.data.length}
-            currentItemPosition={currentRankPosition}
-            itemWidth={Dimensions.get('window').width}
           />
           <PlayerStatsHeader
             subtitle={summonerData.data.playerStats[0].playerStatType}
@@ -170,9 +133,6 @@ const styles = StyleSheet.create({
   profileContainer: {
     // TODO: revisit all margins
     marginTop: '5%',
-  },
-  rankEntryContainer: {
-    width: Dimensions.get('window').width,
   },
 });
 

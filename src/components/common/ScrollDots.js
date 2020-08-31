@@ -12,7 +12,7 @@ const ScrollDots = (props) => {
   }
 
   const Dots = positions.map((position) => (
-    <View style={styles.scrollDots}>
+    <View style={styles.scrollDots} key={`dot_${position}`}>
       {props.currentItemPosition === position ? (
         <BlueCircleSvg
           width={props.scrollDotsWidth}
