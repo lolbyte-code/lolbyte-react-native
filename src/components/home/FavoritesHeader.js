@@ -1,7 +1,8 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {colors, fonts} from '../../Theme';
 
-import FavoriteSvg from '../../svg/favoriteSelected.svg';
+import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
+import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -20,11 +21,19 @@ const FavoritesHeader = (props) => {
           }>
           {props.title}
         </Text>
-        <FavoriteSvg
-          height={props.favoriteSvgHeight}
-          width={props.favoriteSvgWidth}
-          style={styles.favoriteSvg}
-        />
+        {props.selected ? (
+          <FavoriteSelectedSvg
+            height={props.favoriteSvgHeight}
+            width={props.favoriteSvgWidth}
+            style={styles.favoriteSvg}
+          />
+        ) : (
+          <FavoriteUnselectedSvg
+            height={props.favoriteSvgHeight}
+            width={props.favoriteSvgWidth}
+            style={styles.favoriteSvg}
+          />
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.blue,
   },
   titleNotSelected: {
-    color: colors.lightGrey,
+    color: colors.darkGrey,
     fontSize: 20,
     fontFamily: fonts.bold,
   },

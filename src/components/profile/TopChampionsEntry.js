@@ -85,10 +85,12 @@ const styles = StyleSheet.create({
   championLevel: {
     color: colors.white,
     fontFamily: fonts.regular,
+    fontSize: 13,
   },
   championPoints: {
     color: colors.white,
     fontFamily: fonts.regular,
+    fontSize: 13,
   },
 });
 

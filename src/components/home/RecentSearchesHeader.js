@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.blue,
   },
   titleNotSelected: {
-    color: colors.lightGrey,
+    color: colors.darkGrey,
     fontSize: 20,
     fontFamily: fonts.bold,
   },

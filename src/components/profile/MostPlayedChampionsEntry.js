@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   gamesPlayed: {
     color: colors.white,
     fontFamily: fonts.regular,
+    fontSize: 13,
   },
 });
 
