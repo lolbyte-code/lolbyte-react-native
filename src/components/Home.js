@@ -1,4 +1,4 @@
-import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 
 import Logo from './home/Logo';
 import PropTypes from 'prop-types';
@@ -14,6 +14,10 @@ const Home = (props) => {
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
   const [regionQuery, setRegionQuery] = React.useState('na');
 
+  React.useEffect(() => {
+    setRegionQuery(props.route.params.region);
+  }, [props.route.params.region]);
+
   const changeSummonerHandler = (summonerName) => {
     setSummonerNameQuery(summonerName);
   };
@@ -22,9 +26,6 @@ const Home = (props) => {
       summonerName: summonerNameQuery,
       region: regionQuery,
     });
-  };
-  const changeRegionHandler = (region) => {
-    setRegionQuery(region);
   };
 
   return (
@@ -37,7 +38,7 @@ const Home = (props) => {
           onChangeTextHandler={changeSummonerHandler}
           onSubmitEditingHandler={searchSummonerHandler}
         />
-        <RegionSelector onChangeItemHandler={changeRegionHandler} />
+        <RegionSelector selectedRegion={regionQuery.toUpperCase()} />
       </View>
       <SavedSearches />
     </ImageBackground>
