@@ -36,7 +36,7 @@ Rank.defaultProps = {
       uri: require('../../img/ranks/diamond.png'),
     },
     master: {
-      uri: require('../../img/ranks/diamond.png'),
+      uri: require('../../img/ranks/master.png'),
     },
     grandmaster: {
       uri: require('../../img/ranks/grandmaster.png'),

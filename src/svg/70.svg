@@ -7,10 +7,12 @@
 	<g id="Layer_2" data-name="Layer 2">
 		<g id="Layer_3" data-name="Layer 3">
 			<circle class="cls-1" cx="173.33" cy="173.33" r="173.33" />
+			<path class="cls-2" d="M17.55,249.4A172.57,172.57,0,0,1,0,173.33c0-.6,0-1.21,0-1.82l201.06.8Z" />
+			<path class="cls-1" d="M166,187.05,6.65,221A189.45,189.45,0,0,0,18.09,250.8Z" />
 			<path class="cls-2" d="M0,173.33A173.33,173.33,0,0,1,173.33,0V173.33Z" />
 			<circle class="cls-3" cx="173.33" cy="175.11" r="110.19" />
 			<text class="cls-4" transform="translate(121.6 190.67)">
-				75%
+				70%
 			</text>
 		</g>
 	</g>
