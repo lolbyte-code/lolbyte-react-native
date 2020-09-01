@@ -1,7 +1,7 @@
 export const pages = {
   home: 'Home',
   selectRegion: 'Select Region',
-  profile: 'Profile',
+  results: 'Results',
   currentGame: 'Current Game',
 };
 

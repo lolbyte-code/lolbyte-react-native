@@ -4,7 +4,7 @@ import {colors, fonts} from '../../Theme';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const RecentSearchesHeader = (props) => {
+const Header = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
       <View style={props.selected ? styles.containerSelected : null}>
@@ -19,13 +19,13 @@ const RecentSearchesHeader = (props) => {
   );
 };
 
-RecentSearchesHeader.defaultProps = {
-  title: 'Recent Searches',
+Header.defaultProps = {
+  title: '',
   onPressHandler: () => {},
   selected: false,
 };
 
-RecentSearchesHeader.propTypes = {
+Header.propTypes = {
   title: PropTypes.string,
   onPressHandler: PropTypes.func,
   selected: PropTypes.bool,
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RecentSearchesHeader;
+export default Header;

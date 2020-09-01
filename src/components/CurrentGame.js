@@ -31,7 +31,7 @@ const CurrentGame = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <CloseButton goBackPage={pages.profile} goBackParams={goBackParams} />
+      <CloseButton goBackPage={pages.results} goBackParams={goBackParams} />
       <View style={styles.container}>
         <View style={styles.summonersContainer}>
           <Text style={styles.gameType}>{currentGameData.gameType}</Text>

@@ -49,11 +49,6 @@ Rank.defaultProps = {
 
 Rank.propTypes = {
   tier: PropTypes.string,
-  items: PropTypes.shape(
-    PropTypes.shape({
-      uri: PropTypes.node,
-    }),
-  ),
 };
 
 const styles = StyleSheet.create({

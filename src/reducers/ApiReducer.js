@@ -1,10 +1,12 @@
 import {
   RECEIVE_CHAMPION_DATA,
   RECEIVE_CURRENT_GAME_DATA,
+  RECEIVE_MATCHES_DATA,
   RECEIVE_RANKED_DATA,
   RECEIVE_SUMMONER_DATA,
   REQUEST_CHAMPION_DATA,
   REQUEST_CURRENT_GAME_DATA,
+  REQUEST_MATCHES_DATA,
   REQUEST_RANKED_DATA,
   REQUEST_SUMMONER_DATA,
 } from './ApiActions';
@@ -115,11 +117,40 @@ const currentGameDataReducer = (
   }
 };
 
+const matchesDataReducer = (
+  state = {
+    isFetching: false,
+    data: {},
+  },
+  action,
+) => {
+  switch (action.type) {
+    case REQUEST_MATCHES_DATA:
+      return {
+        isFetching: true,
+        matchIds: action.matchIds,
+        region: action.region,
+        summonerId: action.summonerId,
+      };
+    case RECEIVE_MATCHES_DATA:
+      return {
+        isFetching: false,
+        matchIds: action.matchIds,
+        region: action.region,
+        summonerId: action.summonerId,
+        data: action.data,
+      };
+    default:
+      return state;
+  }
+};
+
 const apiReducer = combineReducers({
   summonerData: summonerDataReducer,
   rankedData: rankedDataReducer,
   championData: championDataReducer,
   currentGameData: currentGameDataReducer,
+  matchesData: matchesDataReducer,
 });
 
 export default apiReducer;

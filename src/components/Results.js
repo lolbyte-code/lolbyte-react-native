@@ -2,31 +2,43 @@ import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {
   fetchChampionData,
   fetchCurrentGameData,
+  fetchMatchesData,
   fetchRankedData,
   fetchSummonerData,
 } from '../reducers/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
-import ChampionStatsHeader from './profile/ChampionStatsHeader';
+import Header from './common/Header';
 import Loading from './common/Loading';
-import MostPlayedChampions from './profile/MostPlayedChampions';
-import PlayerStats from './profile/PlayerStats';
-import PlayerStatsHeader from './profile/PlayerStatsHeader';
-import ProfileHeader from './profile/ProfileHeader';
+import MatchesResults from './matches/MatchesResults';
+import Profile from './profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from './common/SearchNav';
-import TopChampions from './profile/TopChampions';
 import {addRecentSummoner} from '../reducers/SummonersActions';
 import {backgrounds} from '../Theme';
 import {pages} from '../Constants';
 
-const Profile = (props) => {
+const PROFILE_SELECTED = 'profile';
+const MATCHES_SELECTED = 'matches';
+const MATCHES_LIMIT = 6;
+
+const Results = (props) => {
   const summonerData = useSelector((state) => state.api.summonerData);
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
   const currentGameData = useSelector((state) => state.api.currentGameData);
+  const matchesData = useSelector((state) => state.api.matchesData);
   const dispatch = useDispatch();
+
+  const [selectedHeader, setSelectedHeader] = React.useState(PROFILE_SELECTED);
+
+  const selectProfileHeader = () => {
+    setSelectedHeader(PROFILE_SELECTED);
+  };
+  const selectMatchesHeader = () => {
+    setSelectedHeader(MATCHES_SELECTED);
+  };
 
   React.useEffect(() => {
     dispatch(
@@ -42,7 +54,7 @@ const Profile = (props) => {
       return;
     }
     dispatch(
-      fetchRankedData(summonerData.data.summonerId, props.route.params.region),
+      fetchRankedData(summonerData.data.summonerId, summonerData.data.region),
     );
   }, [props.route, summonerData, dispatch]);
 
@@ -51,10 +63,7 @@ const Profile = (props) => {
       return;
     }
     dispatch(
-      fetchChampionData(
-        summonerData.data.summonerId,
-        props.route.params.region,
-      ),
+      fetchChampionData(summonerData.data.summonerId, summonerData.data.region),
     );
   }, [props.route, summonerData, dispatch]);
 
@@ -65,10 +74,24 @@ const Profile = (props) => {
     dispatch(
       fetchCurrentGameData(
         summonerData.data.summonerId,
-        props.route.params.region,
+        summonerData.data.region,
       ),
     );
   }, [props.route, summonerData, dispatch]);
+
+  React.useEffect(() => {
+    if (summonerData.isFetching) {
+      return;
+    }
+    const matchIds = summonerData.data.recentGames.map((game) => game.matchId);
+    dispatch(
+      fetchMatchesData(
+        matchIds.slice(0, MATCHES_LIMIT),
+        summonerData.data.region,
+        summonerData.data.summonerId,
+      ),
+    );
+  }, [summonerData, dispatch]);
 
   React.useEffect(() => {
     if (summonerData.isFetching) {
@@ -95,7 +118,7 @@ const Profile = (props) => {
     ? props.route.params.previousSummoners
     : [];
 
-  const goBackPage = previousSummoners.length > 0 ? pages.profile : pages.home;
+  const goBackPage = previousSummoners.length > 0 ? pages.results : pages.home;
 
   const goBackParams =
     previousSummoners.length > 0
@@ -121,54 +144,50 @@ const Profile = (props) => {
         goBackParams={goBackParams}
       />
       <ScrollView indicatorStyle={props.indicatorStyle}>
-        <View style={styles.profileContainer}>
-          <ProfileHeader
-            rankedData={rankedData.data}
-            summonerName={summonerData.data.summonerName}
-            summonerLevel={summonerData.data.summonerLevel}
-            summonerIcon={summonerData.data.summonerObject.summonerIcon}
-            summonerRegion={summonerData.data.region}
-            recentMatches={summonerData.data.recentGames}
-            inGame={
-              !currentGameData.isFetching &&
-              currentGameData.data.summoners.length > 0
-            }
-            currentGameData={currentGameData.data}
-            previousSummoners={previousSummoners}
-            currentSummoner={currentSummoner}
+        <View style={styles.headers}>
+          <Header
+            title={props.profileHeader}
+            onPressHandler={() => selectProfileHeader()}
+            selected={selectedHeader === PROFILE_SELECTED}
           />
-          <PlayerStatsHeader
-            subtitle={summonerData.data.playerStats[0].playerStatType}
-          />
-          <PlayerStats
-            percent={summonerData.data.playerStats[0].winPercentage}
-            kdaShort={summonerData.data.playerStats[0].kdaLong}
-            kdaLong={summonerData.data.playerStats[0].kdaShort}
-            wards={summonerData.data.playerStats[0].averageWardsPlaced}
-          />
-          <ChampionStatsHeader />
-          <MostPlayedChampions
-            title={championData.data[0].championStatType}
-            champions={championData.data[0].mostPlayedChampions}
-          />
-          <TopChampions
-            title={championData.data[1].championStatType}
-            champions={championData.data[1].topChampions}
+          <Header
+            title={props.matchesHeader}
+            onPressHandler={() => selectMatchesHeader()}
+            selected={selectedHeader === MATCHES_SELECTED}
           />
         </View>
+        <Profile
+          selected={selectedHeader === PROFILE_SELECTED}
+          summonerData={summonerData.data}
+          rankedData={rankedData.data}
+          inGameDataFetching={currentGameData.isFetching}
+          currentGameData={currentGameData.data}
+          championData={championData.data}
+          previousSummoners={previousSummoners}
+          currentSummoner={currentSummoner}
+        />
+        <MatchesResults
+          selected={selectedHeader === MATCHES_SELECTED}
+          isFetching={matchesData.isFetching}
+          matchesData={matchesData.data}
+        />
       </ScrollView>
     </ImageBackground>
   );
 };
 
-Profile.defaultProps = {
+Results.defaultProps = {
   backgroundImage: backgrounds.main,
   route: {},
+  profileHeader: 'Profile',
+  matchesHeader: 'Matches',
 };
 
-Profile.propTypes = {
+Results.propTypes = {
   backgroundImage: PropTypes.node,
   route: PropTypes.object,
+  profileHeader: PropTypes.string,
+  matchesHeader: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -177,9 +196,11 @@ const styles = StyleSheet.create({
     // TODO: hacky AF
     width: '100.03%',
   },
-  profileContainer: {
+  headers: {
+    justifyContent: 'space-evenly',
     marginTop: '5%',
+    flexDirection: 'row',
   },
 });
 
-export default Profile;
+export default Results;

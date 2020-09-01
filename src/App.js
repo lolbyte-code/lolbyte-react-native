@@ -4,10 +4,10 @@ import {getFromStorage, setToStorage} from './utils/Storage';
 import CurrentGame from './components/CurrentGame';
 import Home from './components/Home';
 import {NavigationContainer} from '@react-navigation/native';
-import Profile from './components/Profile';
 import {Provider} from 'react-redux';
 import React from 'react';
 import RegionSelect from './components/RegionSelect';
+import Results from './components/Results';
 import {createStackNavigator} from '@react-navigation/stack';
 import {pages} from './Constants';
 import reducer from './reducers/index.js';
@@ -51,6 +51,9 @@ const LolByteApp = () => {
                 currentGameData: {
                   isFetching: true,
                 },
+                matchesData: {
+                  isFetching: true,
+                },
               },
             },
             applyMiddleware(
@@ -78,8 +81,8 @@ const LolByteApp = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name={pages.profile}
-            component={Profile}
+            name={pages.results}
+            component={Results}
             options={{headerShown: false}}
           />
           <Stack.Screen

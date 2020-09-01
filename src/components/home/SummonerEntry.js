@@ -18,7 +18,7 @@ const SummonerEntry = (props) => {
   const navigation = useNavigation();
 
   const navigateToProfileHandler = () => {
-    navigation.navigate(pages.profile, {
+    navigation.navigate(pages.results, {
       summonerName: props.summonerName,
       region: props.summonerRegion,
     });

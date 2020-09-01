@@ -2,15 +2,16 @@ import {StyleSheet, View} from 'react-native';
 
 import FavoritesHeader from './FavoritesHeader';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Header from '../common/Header';
+import PropTypes from 'prop-types';
 import React from 'react';
-import RecentSearchesHeader from './RecentSearchesHeader';
 import Summoners from './Summoners';
 import {useSelector} from 'react-redux';
 
 const FAVORITES_SELECTED = 'favorites';
 const SEARCHES_SELECTED = 'recentSearches';
 
-const SavedSearches = () => {
+const SavedSearches = (props) => {
   const favoriteSummoners = useSelector(
     (state) => state.summoners.favoriteSummoners,
   );
@@ -39,9 +40,10 @@ const SavedSearches = () => {
           onPressHandler={selectFavoritesHandler}
           selected={selectedHeader === FAVORITES_SELECTED}
         />
-        <RecentSearchesHeader
+        <Header
           onPressHandler={selectRecentSearchesHandler}
           selected={selectedHeader === SEARCHES_SELECTED}
+          title={props.recentSearchesHeader}
         />
       </View>
       <GestureRecognizer
@@ -51,6 +53,14 @@ const SavedSearches = () => {
       </GestureRecognizer>
     </View>
   );
+};
+
+SavedSearches.defaultProps = {
+  recentSearchesHeader: 'Recent Searches',
+};
+
+SavedSearches.propTypes = {
+  recentSearchesHeader: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

@@ -24,7 +24,7 @@ const Home = (props) => {
     setSummonerNameQuery(summonerName);
   };
   const searchSummonerHandler = () => {
-    navigation.navigate(pages.profile, {
+    navigation.navigate(pages.results, {
       summonerName: summonerNameQuery,
       region: regionQuery,
     });

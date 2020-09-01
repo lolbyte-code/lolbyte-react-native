@@ -21,7 +21,7 @@ const SearchNav = (props) => {
   const searchSummonerHandler = () => {
     const previousSummoners = props.previousSummoners;
     previousSummoners.unshift(props.currentSummoner);
-    navigation.navigate(pages.profile, {
+    navigation.navigate(pages.results, {
       summonerName: summonerNameQuery,
       region: props.region,
       previousSummoners: previousSummoners,
