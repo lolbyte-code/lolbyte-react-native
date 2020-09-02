@@ -1,4 +1,10 @@
-import {ADD_FAV, ADD_RECENT, REMOVE_FAV} from './SummonersActions';
+import {
+  ADD_FAV,
+  ADD_RECENT,
+  BULK_ADD_FAV,
+  BULK_ADD_RECENT,
+  REMOVE_FAV,
+} from './SummonersActions';
 
 const MAX_CAPACITY = 100;
 
@@ -67,6 +73,16 @@ const summonersReducer = (
       return {
         recentSummoners: cloneState.recentSummoners,
         favoriteSummoners: cloneState.favoriteSummoners,
+      };
+    case BULK_ADD_RECENT:
+      return {
+        ...state,
+        recentSummoners: action.summoners,
+      };
+    case BULK_ADD_FAV:
+      return {
+        ...state,
+        favoriteSummoners: action.summoners,
       };
     default:
       return state;

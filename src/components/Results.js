@@ -5,7 +5,7 @@ import {
   fetchMatchesData,
   fetchRankedData,
   fetchSummonerData,
-} from '../reducers/ApiActions';
+} from '../data/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
 import Header from './common/Header';
@@ -15,7 +15,7 @@ import Profile from './profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from './common/SearchNav';
-import {addRecentSummoner} from '../reducers/SummonersActions';
+import {addRecentSummoner} from '../data/SummonersActions';
 import {backgrounds} from '../Theme';
 import {pages} from '../Constants';
 

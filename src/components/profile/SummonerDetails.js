@@ -2,7 +2,7 @@ import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {
   addFavoriteSummoner,
   removeFavoriteSummoner,
-} from '../../reducers/SummonersActions';
+} from '../../data/SummonersActions';
 import {colors, fonts} from '../../Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
