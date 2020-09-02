@@ -22,15 +22,12 @@ const SavedSearches = (props) => {
   const [selectedHeader, setSelectedHeader] = React.useState(
     FAVORITES_SELECTED,
   );
-  const [summoners, setSummoners] = React.useState(favoriteSummoners);
 
   const selectFavoritesHandler = () => {
     setSelectedHeader(FAVORITES_SELECTED);
-    setSummoners(favoriteSummoners);
   };
   const selectRecentSearchesHandler = () => {
     setSelectedHeader(SEARCHES_SELECTED);
-    setSummoners(recentSummoners);
   };
 
   return (
@@ -49,7 +46,13 @@ const SavedSearches = (props) => {
       <GestureRecognizer
         onSwipeLeft={() => selectRecentSearchesHandler()}
         onSwipeRight={() => selectFavoritesHandler()}>
-        <Summoners entries={summoners} />
+        <Summoners
+          entries={
+            selectedHeader === FAVORITES_SELECTED
+              ? favoriteSummoners
+              : recentSummoners
+          }
+        />
       </GestureRecognizer>
     </View>
   );
