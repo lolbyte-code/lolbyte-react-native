@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, View} from 'react-native';
+import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
 import Logo from './home/Logo';
 import PropTypes from 'prop-types';
@@ -32,17 +32,19 @@ const Home = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <View style={styles.logo}>
-        <Logo />
-      </View>
-      <View style={styles.search}>
-        <SummonerSearch
-          onChangeTextHandler={changeSummonerHandler}
-          onSubmitEditingHandler={searchSummonerHandler}
-        />
-        <RegionSelector selectedRegion={regionQuery.toUpperCase()} />
-      </View>
-      <SavedSearches />
+      <ScrollView>
+        <View style={styles.logo}>
+          <Logo />
+        </View>
+        <View style={styles.search}>
+          <SummonerSearch
+            onChangeTextHandler={changeSummonerHandler}
+            onSubmitEditingHandler={searchSummonerHandler}
+          />
+          <RegionSelector selectedRegion={regionQuery.toUpperCase()} />
+        </View>
+        <SavedSearches />
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -59,11 +61,11 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     // TODO: hacky AF
-    width: '100.03%',
+    width: '101%',
   },
   logo: {
     alignItems: 'center',
-    marginTop: '25%',
+    marginTop: 50,
   },
   search: {
     alignItems: 'center',

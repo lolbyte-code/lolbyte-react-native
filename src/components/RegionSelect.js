@@ -1,5 +1,6 @@
 import {
   ImageBackground,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -29,8 +30,10 @@ const RegionSelect = (props) => {
   ));
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <CloseButton goBackPage={pages.home} />
-      <View style={styles.container}>{Regions}</View>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <CloseButton goBackPage={pages.home} />
+        <View style={styles.container}>{Regions}</View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -99,7 +102,11 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     // TODO: hacky AF
-    width: '100.03%',
+    width: '101%',
+    right: 1,
+  },
+  scrollContainer: {
+    flex: 1,
   },
   container: {
     alignItems: 'center',

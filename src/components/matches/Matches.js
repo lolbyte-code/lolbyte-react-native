@@ -46,7 +46,7 @@ const Matches = (props) => {
         duration={match.matchDuration}
         items={selectedSummoner.items}
         spells={selectedSummoner.spells}
-        keystone={8005}
+        keystone={selectedSummoner.perk}
         championId={selectedSummoner.championId}
         kdaShort={selectedSummoner.kdaLong}
         kdaLong={selectedSummoner.kdaShort}
@@ -73,6 +73,7 @@ const Matches = (props) => {
         team2Win={match.team2Win}
         team1Kda={match.teams[0].kda}
         team2Kda={match.teams[1].kda}
+        trinket={selectedSummoner.trinket}
         allData={match}
         changeSummonerHandler={changeSummoner}
         originalSummonerName={props.originalSummonerName}

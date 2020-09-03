@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     // TODO: hacky AF
-    width: '100.03%',
+    width: '101%',
   },
   loadingScreen: {
     flex: 1,

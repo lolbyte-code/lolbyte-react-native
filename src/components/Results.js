@@ -136,14 +136,14 @@ const Results = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <SearchNav
-        region={summonerData.data.region}
-        previousSummoners={previousSummoners}
-        currentSummoner={currentSummoner}
-        goBackPage={goBackPage}
-        goBackParams={goBackParams}
-      />
       <ScrollView indicatorStyle={props.indicatorStyle}>
+        <SearchNav
+          region={summonerData.data.region}
+          previousSummoners={previousSummoners}
+          currentSummoner={currentSummoner}
+          goBackPage={goBackPage}
+          goBackParams={goBackParams}
+        />
         <View style={styles.headers}>
           <Header
             title={props.profileHeader}
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     // TODO: hacky AF
-    width: '100.03%',
+    width: '101%',
   },
   headers: {
     justifyContent: 'space-evenly',

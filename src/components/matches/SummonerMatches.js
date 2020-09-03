@@ -17,6 +17,8 @@ const SummonerMatches = (props) => {
         badges={data.badges}
         spells={data.spells}
         matchId={props.matchId}
+        trinket={data.trinket}
+        keystone={data.perk}
         win={props.allData[`team${String(data.teamId).substring(0, 1)}Win`]}
         changeSummonerHandler={props.changeSummonerHandler}
       />

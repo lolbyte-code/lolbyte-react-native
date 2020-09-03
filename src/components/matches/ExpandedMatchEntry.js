@@ -124,7 +124,7 @@ const ExpandedMatchEntry = (props) => {
                       style={styles.keystone}
                     />
                     <Image
-                      source={props.runeImages[props.keystone].uri}
+                      source={{uri: getItemIcon(props.trinket)}}
                       style={styles.keystone}
                     />
                   </View>
@@ -231,6 +231,7 @@ ExpandedMatchEntry.defaultProps = {
   dragons2: 0,
   towers2: 0,
   allData: {},
+  trinket: 0,
   team1Win: false,
   team2Win: false,
   team1Kda: '',
@@ -516,12 +517,14 @@ const styles = StyleSheet.create({
   firstRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginRight: 5,
   },
   secondRow: {
-    marginLeft: 3,
+    marginLeft: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: 5,
   },
   secondary: {
     flexDirection: 'row',

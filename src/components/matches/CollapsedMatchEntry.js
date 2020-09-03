@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     marginTop: 45,
     justifyContent: 'flex-end',
     flex: 1,
-    marginRight: 3,
+    marginRight: 15,
   },
   secondary: {
     flexDirection: 'row',

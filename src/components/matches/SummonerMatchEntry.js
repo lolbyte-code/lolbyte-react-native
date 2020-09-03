@@ -108,7 +108,7 @@ const SummonerMatchEntry = (props) => {
                 style={styles.keystone}
               />
               <Image
-                source={props.runeImages[props.keystone].uri}
+                source={{uri: getItemIcon(props.trinket)}}
                 style={styles.keystone}
               />
             </View>
@@ -292,9 +292,6 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 28,
   },
-  topRightContainer: {
-    marginLeft: 5,
-  },
   topRightContainerTop: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -306,7 +303,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   kda: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.white,
     fontFamily: fonts.bold,
   },
@@ -328,7 +325,7 @@ const styles = StyleSheet.create({
     marginRight: 2,
   },
   rank: {
-    fontSize: 11,
+    fontSize: 10,
     color: colors.white,
     fontFamily: fonts.regular,
   },
