@@ -49,6 +49,7 @@ Rank.defaultProps = {
 
 Rank.propTypes = {
   tier: PropTypes.string,
+  images: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

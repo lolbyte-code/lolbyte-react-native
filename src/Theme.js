@@ -11,6 +11,12 @@ export const colors = {
   masteryLevel5: '#6B2120',
   masteryLevel6: '#623474',
   masteryLevel7: '#214076',
+  firstBlood: '#a10d0d',
+  bestKda: '#9435f4',
+  mostGold: '#fbb03b',
+  mostDamage: 'white',
+  multiKill: '#38B171',
+  mostWards: '#B2B4BB',
 };
 
 export const backgrounds = {

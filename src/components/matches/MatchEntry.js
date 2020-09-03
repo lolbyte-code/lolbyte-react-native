@@ -1,69 +1,70 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from '../../Theme';
-import {getItemIcon, getSplash} from '../../api/Url';
-
-import LinearGradient from 'react-native-linear-gradient';
+import CollapsedMatchEntry from './CollapsedMatchEntry';
+import ExpandedMatchEntry from './ExpandedMatchEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {View} from 'react-native';
 
 const MatchEntry = (props) => {
-  let i = 0;
-  const Items = props.items.map((item) => (
-    <Image
-      key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id)}}
-      style={styles.item}
-    />
-  ));
-  const Spells = props.spells.map((spell) => (
-    <Image
-      key={`spell_${i++}`}
-      source={props.spellImages[spell].uri}
-      style={styles.spell}
-    />
-  ));
+  const [collapsed, setCollapsed] = React.useState(true);
+
+  const arrowHandler = (c) => {
+    setCollapsed(c);
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={props.win ? styles.headerWin : styles.headerLoss}>
-        <Text style={styles.winText}>
-          {props.win ? props.winText : props.lossText}
-        </Text>
-        <Text style={styles.date}>{props.date}</Text>
-        <Text style={styles.gameType}>{props.gameType}</Text>
-        <Text style={styles.duration}>{props.duration}</Text>
-      </View>
-      <ImageBackground
-        source={{
-          uri: getSplash(props.championId),
-        }}
-        style={styles.championSplash}>
-        <LinearGradient
-          start={props.gradientStart}
-          end={props.gradientEnd}
-          colors={props.gradientColors}>
-          <View style={styles.body}>
-            <View style={styles.itemsContainer}>{Items}</View>
-            <View style={styles.spellsContainer}>{Spells}</View>
-            <Image
-              source={props.runeImages[props.keystone].uri}
-              style={styles.keystone}
-            />
-            <View style={styles.matchDetailsContainer}>
-              <Text style={styles.kdaShort}>{props.kdaShort}</Text>
-              <View style={styles.secondary}>
-                <Text style={styles.championName}>{props.championName} </Text>
-                <Text style={styles.kdaLong}>{props.kdaLong} </Text>
-                <Text style={styles.cs}>{props.cs.replace(/,/g, '')}</Text>
-              </View>
-            </View>
-          </View>
-        </LinearGradient>
-      </ImageBackground>
+    <View>
+      {collapsed ? (
+        <CollapsedMatchEntry handler={arrowHandler} {...props} />
+      ) : (
+        <ExpandedMatchEntry
+          handler={arrowHandler}
+          {...props}
+          allData={props.allData}
+        />
+      )}
     </View>
   );
 };
 
 MatchEntry.defaultProps = {
+  level: 'Lvl 18',
+  damage: 'Dmg Cont: 21%',
+  killParticipation: 'Kill Part: 100%',
+  summonerName: 'Imaqtpie',
+  rank: 'Master',
+  gold: '105.1k',
+  badges: [
+    {
+      name: 'most damage',
+      type: 1,
+    },
+    {
+      name: 'quadra kill',
+      type: 2,
+    },
+    {
+      name: 'best KDA',
+      type: 3,
+    },
+    {
+      name: 'first blood',
+      type: 4,
+    },
+    {
+      name: 'most gold',
+      type: 5,
+    },
+    {
+      name: 'most wards',
+      type: 6,
+    },
+  ],
+  bannedChamps: [1, 1, 1, 1, 1],
+  barons: 0,
+  dragons: 0,
+  towers: 0,
+  allData: {},
+
   win: false,
   date: '',
   gameType: '',
@@ -79,134 +80,22 @@ MatchEntry.defaultProps = {
   kdaLong: '',
   championName: '',
   cs: '',
-  winText: 'Win',
-  lossText: 'Loss',
-  region: '',
-  previousSummoners: [],
-  spellImages: {
-    0: {
-      uri: require('../../img/spells/0.png'),
-    },
-    1: {
-      uri: require('../../img/spells/1.png'),
-    },
-    3: {
-      uri: require('../../img/spells/3.png'),
-    },
-    4: {
-      uri: require('../../img/spells/4.png'),
-    },
-    6: {
-      uri: require('../../img/spells/6.png'),
-    },
-    7: {
-      uri: require('../../img/spells/7.png'),
-    },
-    11: {
-      uri: require('../../img/spells/11.png'),
-    },
-    12: {
-      uri: require('../../img/spells/12.png'),
-    },
-    13: {
-      uri: require('../../img/spells/13.png'),
-    },
-    14: {
-      uri: require('../../img/spells/14.png'),
-    },
-    21: {
-      uri: require('../../img/spells/21.png'),
-    },
-    30: {
-      uri: require('../../img/spells/30.png'),
-    },
-    31: {
-      uri: require('../../img/spells/31.png'),
-    },
-    32: {
-      uri: require('../../img/spells/32.png'),
-    },
-    33: {
-      uri: require('../../img/spells/33.png'),
-    },
-    34: {
-      uri: require('../../img/spells/34.png'),
-    },
-    35: {
-      uri: require('../../img/spells/35.png'),
-    },
-    36: {
-      uri: require('../../img/spells/36.png'),
-    },
-    39: {
-      uri: require('../../img/spells/39.png'),
-    },
-    50: {
-      uri: require('../../img/spells/50.png'),
-    },
-    51: {
-      uri: require('../../img/spells/51.png'),
-    },
-    52: {
-      uri: require('../../img/spells/52.png'),
-    },
-  },
-  runeImages: {
-    8005: {
-      uri: require('../../img/runes/8005.png'),
-    },
-    8008: {
-      uri: require('../../img/runes/8008.png'),
-    },
-    8010: {
-      uri: require('../../img/runes/8010.png'),
-    },
-    8021: {
-      uri: require('../../img/runes/8021.png'),
-    },
-    8112: {
-      uri: require('../../img/runes/8112.png'),
-    },
-    8124: {
-      uri: require('../../img/runes/8124.png'),
-    },
-    8128: {
-      uri: require('../../img/runes/8128.png'),
-    },
-    8214: {
-      uri: require('../../img/runes/8214.png'),
-    },
-    8229: {
-      uri: require('../../img/runes/8229.png'),
-    },
-    8230: {
-      uri: require('../../img/runes/8230.png'),
-    },
-    8351: {
-      uri: require('../../img/runes/8351.png'),
-    },
-    8358: {
-      uri: require('../../img/runes/8358.png'),
-    },
-    8360: {
-      uri: require('../../img/runes/8360.png'),
-    },
-    8437: {
-      uri: require('../../img/runes/8437.png'),
-    },
-    8439: {
-      uri: require('../../img/runes/8439.png'),
-    },
-    8465: {
-      uri: require('../../img/runes/8465.png'),
-    },
-    9923: {
-      uri: require('../../img/runes/9923.png'),
-    },
-  },
 };
 
 MatchEntry.propTypes = {
+  level: PropTypes.string,
+  damage: PropTypes.string,
+  killParticipation: PropTypes.string,
+  summonerName: PropTypes.string,
+  rank: PropTypes.string,
+  gold: PropTypes.string,
+  badges: PropTypes.array,
+  bannedChamps: PropTypes.array,
+  barons: PropTypes.number,
+  dragons: PropTypes.number,
+  towers: PropTypes.number,
+  allData: PropTypes.object,
+
   win: PropTypes.bool,
   date: PropTypes.string,
   gameType: PropTypes.string,
@@ -220,109 +109,6 @@ MatchEntry.propTypes = {
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
   cs: PropTypes.string,
-  winText: PropTypes.string,
-  lossText: PropTypes.string,
-  region: PropTypes.string,
-  previousSummoners: PropTypes.array,
-  spellImages: PropTypes.object,
-  runeImages: PropTypes.object,
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  headerWin: {
-    flexDirection: 'row',
-    backgroundColor: colors.blue,
-    justifyContent: 'space-around',
-    padding: 5,
-    marginTop: 12,
-  },
-  headerLoss: {
-    flexDirection: 'row',
-    backgroundColor: colors.red,
-    justifyContent: 'space-around',
-    padding: 5,
-    marginTop: 12,
-  },
-  winText: {
-    color: colors.white,
-    fontFamily: fonts.bold,
-    fontSize: 14,
-  },
-  date: {
-    color: colors.white,
-    fontFamily: fonts.regular,
-    fontSize: 14,
-  },
-  gameType: {
-    color: colors.white,
-    fontFamily: fonts.bold,
-    fontSize: 14,
-  },
-  duration: {
-    color: colors.white,
-    fontFamily: fonts.regular,
-    fontSize: 14,
-  },
-  body: {
-    flexDirection: 'row',
-  },
-  championSplash: {},
-  itemsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: 120,
-    margin: 2,
-  },
-  item: {
-    width: 40,
-    height: 40,
-  },
-  spellsContainer: {
-    marginTop: 10,
-    marginLeft: 2,
-  },
-  spell: {
-    width: 30,
-    height: 30,
-    marginBottom: 3,
-  },
-  keystone: {
-    width: 30,
-    height: 30,
-    marginTop: 25,
-  },
-  matchDetailsContainer: {
-    marginTop: 45,
-    justifyContent: 'flex-end',
-    flex: 1,
-    marginRight: 3,
-  },
-  secondary: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    flex: 1,
-  },
-  kdaShort: {
-    textAlign: 'right',
-    color: colors.white,
-    fontFamily: fonts.bold,
-    fontSize: 25,
-  },
-  championName: {
-    color: colors.white,
-    fontFamily: fonts.bold,
-  },
-  kdaLong: {
-    color: colors.white,
-    fontFamily: fonts.regular,
-  },
-  cs: {
-    color: colors.white,
-    fontFamily: fonts.bold,
-  },
-});
 
 export default MatchEntry;
