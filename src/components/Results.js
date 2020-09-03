@@ -170,6 +170,7 @@ const Results = (props) => {
           selected={selectedHeader === MATCHES_SELECTED}
           isFetching={matchesData.isFetching}
           matchesData={matchesData.data}
+          selectedSummonerName={summonerData.data.summonerName}
         />
       </ScrollView>
     </ImageBackground>

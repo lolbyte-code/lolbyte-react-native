@@ -20,6 +20,9 @@ const MatchEntry = (props) => {
           handler={arrowHandler}
           {...props}
           allData={props.allData}
+          changeSummonerHandler={props.changeSummonerHandler}
+          originalSummonerName={props.originalSummonerName}
+          matchId={props.matchId}
         />
       )}
     </View>
@@ -64,6 +67,8 @@ MatchEntry.defaultProps = {
   dragons: 0,
   towers: 0,
   allData: {},
+  changeSummonerHandler: () => {},
+  originalSummonerName: '',
 
   win: false,
   date: '',
@@ -95,6 +100,8 @@ MatchEntry.propTypes = {
   dragons: PropTypes.number,
   towers: PropTypes.number,
   allData: PropTypes.object,
+  changeSummonerHandler: PropTypes.func,
+  originalSummonerName: PropTypes.string,
 
   win: PropTypes.bool,
   date: PropTypes.string,

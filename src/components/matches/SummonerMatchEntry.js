@@ -1,4 +1,10 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {colors, fonts} from '../../Theme';
 import {getChampionIcon, getItemIcon} from '../../api/Url';
 
@@ -26,80 +32,90 @@ const SummonerMatchEntry = (props) => {
     switch (badge.small) {
       case 'f':
         return (
-          <View style={styles.badgeContainerFirstBlood}>
+          <View key={'f'} style={styles.badgeContainerFirstBlood}>
             <Text style={styles.firstBloodText}>{badge.small}</Text>
           </View>
         );
       case 'k':
         return (
-          <View style={styles.badgeContainerBestKda}>
+          <View key={'k'} style={styles.badgeContainerBestKda}>
             <Text style={styles.bestKdaText}>{badge.small}</Text>
           </View>
         );
       case 'w':
         return (
-          <View style={styles.badgeContainerMostWards}>
+          <View key={'w'} style={styles.badgeContainerMostWards}>
             <Text style={styles.mostWardsText}>{badge.small}</Text>
           </View>
         );
       case 'd':
         return (
-          <View style={styles.badgeContainerMostDamage}>
+          <View key={'d'} style={styles.badgeContainerMostDamage}>
             <Text style={styles.mostDamageText}>{badge.small}</Text>
           </View>
         );
       case 'g':
         return (
-          <View style={styles.badgeContainerMostGold}>
+          <View key={'g'} style={styles.badgeContainerMostGold}>
             <Text style={styles.mostGoldText}>{badge.small}</Text>
           </View>
         );
       default:
         return (
-          <View style={styles.badgeContainerMultiKill}>
+          <View key={'m'} style={styles.badgeContainerMultiKill}>
             <Text style={styles.multiKillText}>{badge.small}</Text>
           </View>
         );
     }
   });
   return (
-    <View style={styles.container}>
-      <View style={styles.leftContainer}>
-        <Image
-          source={{uri: getChampionIcon(props.championId)}}
-          style={styles.championIcon}
-        />
-        <View style={styles.spellsContainer}>{Spells}</View>
-        <View style={styles.badgesContainer}>{Badges}</View>
-      </View>
-      <View style={styles.topRightContainer}>
-        <View style={styles.topRightContainerTop}>
-          <Text style={styles.kda}>{props.kda} </Text>
-          <Text style={styles.cs}>{props.cs}</Text>
-        </View>
-        <View style={styles.topRightContainerBottom}>
-          <EllipsisText
-            maxLimit={12}
-            text={props.summonerName}
-            textStyle={styles.summonerName}
+    <TouchableWithoutFeedback
+      onPress={() =>
+        props.changeSummonerHandler({
+          name: props.summonerName,
+          match: props.matchId,
+        })
+      }>
+      <View style={styles.container}>
+        <View style={styles.leftContainer}>
+          <Image
+            source={{uri: getChampionIcon(props.championId)}}
+            style={props.win ? styles.championIconWin : styles.championIconLoss}
           />
-          <Text style={styles.rank}>{props.rank}</Text>
+          <View style={styles.spellsContainer}>{Spells}</View>
+          <View style={styles.badgesContainer}>{Badges}</View>
         </View>
-        <View style={styles.itemsAndTrinketsContainer}>
-          <View style={styles.itemsContainer}>{Items}</View>
-          <View style={styles.keystoneWardContainer}>
-            <Image
-              source={props.runeImages[props.keystone].uri}
-              style={styles.keystone}
+        <View style={styles.topRightContainer}>
+          <View style={styles.topRightContainerBottom}>
+            <EllipsisText
+              maxLimit={11}
+              text={props.summonerName}
+              textStyle={
+                props.win ? styles.summonerNameWin : styles.summonerNameLoss
+              }
             />
-            <Image
-              source={props.runeImages[props.keystone].uri}
-              style={styles.keystone}
-            />
+            <Text style={styles.rank}>{props.rank}</Text>
+          </View>
+          <View style={styles.topRightContainerTop}>
+            <Text style={styles.kda}>{props.kda} </Text>
+            <Text style={styles.cs}>{props.cs}</Text>
+          </View>
+          <View style={styles.itemsAndTrinketsContainer}>
+            <View style={styles.itemsContainer}>{Items}</View>
+            <View style={styles.keystoneWardContainer}>
+              <Image
+                source={props.runeImages[props.keystone].uri}
+                style={styles.keystone}
+              />
+              <Image
+                source={props.runeImages[props.keystone].uri}
+                style={styles.keystone}
+              />
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -234,6 +250,7 @@ SummonerMatchEntry.defaultProps = {
       uri: require('../../img/runes/9923.png'),
     },
   },
+  changeSummonerHandler: () => {},
 };
 
 SummonerMatchEntry.propTypes = {
@@ -248,6 +265,7 @@ SummonerMatchEntry.propTypes = {
   spellImages: PropTypes.object,
   keystone: PropTypes.number,
   runeImages: PropTypes.object,
+  changeSummonerHandler: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -260,12 +278,19 @@ const styles = StyleSheet.create({
   leftContainer: {
     alignItems: 'center',
   },
-  championIcon: {
+  championIconWin: {
     borderWidth: 3,
     borderColor: colors.blue,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+  },
+  championIconLoss: {
+    borderWidth: 3,
+    borderColor: colors.red,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
   },
   topRightContainer: {
     marginLeft: 5,
@@ -273,34 +298,43 @@ const styles = StyleSheet.create({
   topRightContainerTop: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   topRightContainerBottom: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   kda: {
-    fontSize: 20,
+    fontSize: 18,
     color: colors.white,
     fontFamily: fonts.bold,
   },
   cs: {
+    fontSize: 11,
     color: colors.white,
     fontFamily: fonts.regular,
   },
-  summonerName: {
+  summonerNameWin: {
     fontSize: 12,
     color: colors.blue,
     fontFamily: fonts.bold,
     marginRight: 2,
   },
-  rank: {
+  summonerNameLoss: {
     fontSize: 12,
+    color: colors.red,
+    fontFamily: fonts.bold,
+    marginRight: 2,
+  },
+  rank: {
+    fontSize: 11,
     color: colors.white,
     fontFamily: fonts.regular,
   },
   item: {
-    width: 25,
-    height: 25,
+    width: 22,
+    height: 22,
     margin: 1,
   },
   itemsContainer: {
@@ -315,8 +349,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   keystone: {
-    width: 25,
-    height: 25,
+    width: 20,
+    height: 20,
   },
   spellsContainer: {
     flexDirection: 'row',

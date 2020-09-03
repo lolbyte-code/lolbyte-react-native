@@ -7,6 +7,7 @@ export const colors = {
   lightGrey: '#B2B4BB',
   darkBlue: '#14647A',
   white: 'white',
+  black: 'black',
   masteryLevelDefault: '#6E5630',
   masteryLevel5: '#6B2120',
   masteryLevel6: '#623474',

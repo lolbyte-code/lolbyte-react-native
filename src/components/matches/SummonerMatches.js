@@ -16,6 +16,9 @@ const SummonerMatches = (props) => {
         items={data.items}
         badges={data.badges}
         spells={data.spells}
+        matchId={props.matchId}
+        win={props.allData[`team${String(data.teamId).substring(0, 1)}Win`]}
+        changeSummonerHandler={props.changeSummonerHandler}
       />
     );
   });
@@ -47,10 +50,12 @@ const SummonerMatches = (props) => {
 
 SummonerMatches.defaultProps = {
   allData: {},
+  changeSummonerHandler: () => {},
 };
 
 SummonerMatches.propTypes = {
   allData: PropTypes.object,
+  changeSummonerHandler: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

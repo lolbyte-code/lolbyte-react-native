@@ -11,7 +11,11 @@ const MatchesResults = (props) => {
       {props.isFetching ? (
         <Loading loadingIndicatorSize={props.matchesLoadingIndicatorSize} />
       ) : (
-        <Matches matches={props.matchesData} />
+        <Matches
+          matches={props.matchesData}
+          selectedSummonerName={props.selectedSummonerName}
+          originalSummonerName={props.selectedSummonerName}
+        />
       )}
     </View>
   );
@@ -22,6 +26,7 @@ MatchesResults.defaultProps = {
   isFetching: true,
   matchesData: [],
   matchesLoadingIndicatorSize: 'small',
+  selectedSummonerName: '',
 };
 
 MatchesResults.propTypes = {
@@ -29,6 +34,7 @@ MatchesResults.propTypes = {
   isFetching: PropTypes.bool,
   matchesData: PropTypes.array,
   matchesLoadingIndicatorSize: PropTypes.string,
+  selectedSummonerName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

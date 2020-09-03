@@ -6,12 +6,36 @@ import React from 'react';
 import {formatTimestamp} from '../../utils/Time';
 
 const Matches = (props) => {
+  const [ss, setSs] = React.useState({
+    name: props.originalSummonerName,
+    match: null,
+  });
+
+  React.useEffect(() => {
+    setSs({
+      name: props.originalSummonerName,
+      match: null,
+    });
+  }, [props.originalSummonerName]);
+
+  const changeSummoner = (obj) => {
+    setSs(obj);
+  };
+
   let i = 0;
   const sortedMatches = props.matches.sort((a, b) => b.matchDate - a.matchDate);
   const MatchEntries = sortedMatches.map((match) => {
+    const nameToChoose =
+      ss.match && ss.match === match.matchId
+        ? ss.name
+        : props.originalSummonerName;
     const selectedSummoner = match.players.filter(
-      (player) => player.selectedSummoner === true,
+      (player) => player.summonerName === nameToChoose,
     )[0];
+
+    if (!selectedSummoner) {
+      return null;
+    }
 
     return (
       <MatchEntry
@@ -50,6 +74,9 @@ const Matches = (props) => {
         team1Kda={match.teams[0].kda}
         team2Kda={match.teams[1].kda}
         allData={match}
+        changeSummonerHandler={changeSummoner}
+        originalSummonerName={props.originalSummonerName}
+        matchId={match.matchId}
       />
     );
   });
@@ -62,10 +89,14 @@ const Matches = (props) => {
 
 Matches.defaultProps = {
   matches: [],
+  selectedSummonerName: '',
+  originalSummonerName: '',
 };
 
 Matches.propTypes = {
   matches: PropTypes.array,
+  selectedSummonerName: PropTypes.string,
+  originalSummonerName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

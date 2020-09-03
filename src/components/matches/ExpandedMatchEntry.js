@@ -35,37 +35,37 @@ const ExpandedMatchEntry = (props) => {
     switch (badge.small) {
       case 'f':
         return (
-          <View style={styles.badgeContainerFirstBlood}>
+          <View key={'f'} style={styles.badgeContainerFirstBlood}>
             <Text style={styles.firstBloodText}>{badge.big}</Text>
           </View>
         );
       case 'k':
         return (
-          <View style={styles.badgeContainerBestKda}>
+          <View key={'k'} style={styles.badgeContainerBestKda}>
             <Text style={styles.bestKdaText}>{badge.big}</Text>
           </View>
         );
       case 'w':
         return (
-          <View style={styles.badgeContainerMostWards}>
+          <View key={'w'} style={styles.badgeContainerMostWards}>
             <Text style={styles.mostWardsText}>{badge.big}</Text>
           </View>
         );
       case 'd':
         return (
-          <View style={styles.badgeContainerMostDamage}>
+          <View key={'d'} style={styles.badgeContainerMostDamage}>
             <Text style={styles.mostDamageText}>{badge.big}</Text>
           </View>
         );
       case 'g':
         return (
-          <View style={styles.badgeContainerMostGold}>
+          <View key={'g'} style={styles.badgeContainerMostGold}>
             <Text style={styles.mostGoldText}>{badge.big}</Text>
           </View>
         );
       default:
         return (
-          <View style={styles.badgeContainerMultiKill}>
+          <View key={'m'} style={styles.badgeContainerMultiKill}>
             <Text style={styles.multiKillText}>{badge.big}</Text>
           </View>
         );
@@ -87,7 +87,11 @@ const ExpandedMatchEntry = (props) => {
   ));
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={() => props.handler(true)}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          props.changeSummonerHandler(props.originalSummonerName);
+          props.handler(true);
+        }}>
         <View>
           <View style={props.win ? styles.headerWin : styles.headerLoss}>
             <Text style={styles.winText}>
@@ -139,17 +143,6 @@ const ExpandedMatchEntry = (props) => {
                       {props.championName}
                     </Text>
                   </View>
-                  <View>
-                    <View style={styles.badgesInnerContainer}>
-                      {Badges.slice(0, 2)}
-                    </View>
-                    <View style={styles.badgesInnerContainer}>
-                      {Badges.slice(2, 4)}
-                    </View>
-                    <View style={styles.badgesInnerContainer}>
-                      {Badges.slice(4, 6)}
-                    </View>
-                  </View>
                   <View style={styles.matchDetailsContainer}>
                     <Text style={styles.damage}>{props.damage}</Text>
                     <Text style={styles.killParticipation}>
@@ -164,6 +157,7 @@ const ExpandedMatchEntry = (props) => {
                         {props.cs.replace(/,/g, '')}
                       </Text>
                     </View>
+                    <View style={styles.badgesInnerContainer}>{Badges}</View>
                   </View>
                 </View>
               </View>
@@ -199,7 +193,7 @@ const ExpandedMatchEntry = (props) => {
           </Text>
         </View>
       </View>
-      <View style={styles.banBars}>
+      <View style={BannedChamps1.length > 0 ? styles.banBars : styles.hide}>
         <View style={styles.banBarWin}>
           <Text style={styles.banText}>Bans:</Text>
           {BannedChamps1}
@@ -209,7 +203,11 @@ const ExpandedMatchEntry = (props) => {
           {BannedChamps2}
         </View>
       </View>
-      <SummonerMatches allData={props.allData} />
+      <SummonerMatches
+        allData={props.allData}
+        changeSummonerHandler={props.changeSummonerHandler}
+        matchId={props.matchId}
+      />
     </View>
   );
 };
@@ -237,6 +235,8 @@ ExpandedMatchEntry.defaultProps = {
   team2Win: false,
   team1Kda: '',
   team2Kda: '',
+  changeSummonerHandler: () => {},
+  originalSummonerName: '',
 
   win: false,
   date: '',
@@ -414,6 +414,8 @@ ExpandedMatchEntry.propTypes = {
   team2Win: PropTypes.bool,
   team1Kda: PropTypes.string,
   team2Kda: PropTypes.string,
+  changeSummonerHandler: PropTypes.func,
+  originalSummonerName: PropTypes.string,
 
   win: PropTypes.bool,
   date: PropTypes.string,
@@ -585,6 +587,7 @@ const styles = StyleSheet.create({
   },
   badgesInnerContainer: {
     flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   badgeContainerMostWards: {
     alignItems: 'center',
@@ -607,7 +610,7 @@ const styles = StyleSheet.create({
   badgeContainerMultiKill: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 47,
+    width: 52,
     height: 12,
     backgroundColor: colors.multiKill,
     borderRadius: 6,
@@ -634,7 +637,7 @@ const styles = StyleSheet.create({
   badgeContainerMostGold: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
+    width: 52,
     height: 12,
     backgroundColor: colors.mostGold,
     borderRadius: 6,
@@ -642,32 +645,32 @@ const styles = StyleSheet.create({
   },
   mostDamageText: {
     fontSize: 10,
-    color: colors.darkGrey,
+    color: colors.black,
     fontFamily: fonts.bold,
   },
   multiKillText: {
     fontSize: 10,
-    color: colors.darkGrey,
+    color: colors.black,
     fontFamily: fonts.bold,
   },
   bestKdaText: {
     fontSize: 10,
-    color: colors.darkGrey,
+    color: colors.black,
     fontFamily: fonts.bold,
   },
   firstBloodText: {
     fontSize: 10,
-    color: colors.darkGrey,
+    color: colors.black,
     fontFamily: fonts.bold,
   },
   mostGoldText: {
     fontSize: 10,
-    color: colors.darkGrey,
+    color: colors.black,
     fontFamily: fonts.bold,
   },
   mostWardsText: {
     fontSize: 10,
-    color: colors.darkGrey,
+    color: colors.black,
     fontFamily: fonts.bold,
   },
   smallWin: {
@@ -679,10 +682,10 @@ const styles = StyleSheet.create({
   smallBars: {
     flexDirection: 'row',
     marginTop: 5,
+    marginBottom: 5,
   },
   banBars: {
     flexDirection: 'row',
-    marginTop: 5,
     marginBottom: 3,
   },
   smallBarWin: {
@@ -692,6 +695,9 @@ const styles = StyleSheet.create({
     width: '50%',
     alignItems: 'center',
     padding: 3,
+  },
+  hide: {
+    display: 'none',
   },
   smallBarLose: {
     flexDirection: 'row',
