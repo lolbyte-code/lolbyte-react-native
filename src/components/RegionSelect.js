@@ -35,7 +35,7 @@ const RegionSelect = (props) => {
           goBackPage={pages.home}
           buttonStyle={styles.closeButtonStyle}
         />
-        <View style={styles.container}>{SummonerRegions}</View>
+        <View style={styles.summonerRegionsContainer}>{SummonerRegions}</View>
       </ScrollView>
     </ImageBackground>
   );
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
   },
-  container: {
+  summonerRegionsContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,

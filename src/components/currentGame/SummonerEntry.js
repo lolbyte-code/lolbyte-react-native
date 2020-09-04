@@ -64,7 +64,7 @@ SummonerEntry.defaultProps = {
   championId: 0,
   summonerName: '',
   summonerRank: '',
-  summonerTeamId: 100,
+  summonerTeamId: 0,
   selectedSummoner: false,
   summonerRegion: '',
 };
@@ -81,7 +81,7 @@ SummonerEntry.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    margin: 2,
+    margin: 4,
   },
   blueChampionIcon: {
     width: 66,

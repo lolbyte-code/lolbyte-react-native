@@ -6,7 +6,7 @@ import SummonerEntry from './SummonerEntry';
 
 const Summoners = (props) => {
   var i = 0;
-  const SummonerEntries = props.entries.map((entry) => (
+  const SummonerEntries = props.summonerEntries.map((entry) => (
     <SummonerEntry
       key={`summoner_${i++}`}
       championId={entry.championId}
@@ -19,23 +19,23 @@ const Summoners = (props) => {
   ));
   return (
     <View>
-      <View style={styles.entries}>{SummonerEntries}</View>
+      <View style={styles.summonerEntries}>{SummonerEntries}</View>
     </View>
   );
 };
 
 Summoners.defaultProps = {
-  entries: [],
+  summonerEntries: [],
   summonerRegion: '',
 };
 
 Summoners.propTypes = {
-  entries: PropTypes.array,
+  summonerEntries: PropTypes.array,
   summonerRegion: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
-  entries: {
+  summonerEntries: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',

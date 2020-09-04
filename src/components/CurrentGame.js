@@ -14,16 +14,15 @@ import React from 'react';
 import Summoners from './currentGame/Summoners';
 import VersusSvg from '../svg/versus.svg';
 import {pages} from '../Constants';
-import {useSelector} from 'react-redux';
 
 const CurrentGame = (props) => {
-  const searches = useSelector((state) => state.searches);
   const currentGameData = props.route.params.currentGameData;
+  const currentSummoner = props.route.params.currentSummoner;
   const summonerRegion = props.route.params.summonerRegion;
 
   const goBackParams = {
-    summonerName: searches[0].summonerName,
-    summonerRegion: searches[0].summonerRegion,
+    summonerName: currentSummoner,
+    summonerRegion: summonerRegion,
   };
 
   return (
@@ -37,7 +36,7 @@ const CurrentGame = (props) => {
         <View style={styles.summonersContainer}>
           <Text style={styles.gameType}>{currentGameData.gameType}</Text>
           <Summoners
-            entries={currentGameData.summoners.filter(
+            summonerEntries={currentGameData.summoners.filter(
               (summoner) => summoner.teamId === BLUE_TEAM,
             )}
             summonerRegion={summonerRegion}
@@ -48,7 +47,7 @@ const CurrentGame = (props) => {
             height={props.versusHeight}
           />
           <Summoners
-            entries={currentGameData.summoners.filter(
+            summonerEntries={currentGameData.summoners.filter(
               (summoner) => summoner.teamId === RED_TEAM,
             )}
             summonerRegion={summonerRegion}
@@ -80,11 +79,11 @@ const styles = StyleSheet.create({
     width: '101%',
   },
   summonersContainer: {
-    flex: 1,
     alignItems: 'center',
   },
   container: {
     flex: 1,
+    marginTop: 15,
   },
   gameType: {
     color: colors.green,

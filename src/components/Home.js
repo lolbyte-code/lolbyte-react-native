@@ -1,3 +1,4 @@
+import {DEFAULT_REGION, pages} from '../Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
 import Logo from './home/Logo';
@@ -7,7 +8,6 @@ import RegionSelector from './home/RegionSelector';
 import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
 import {backgrounds} from '../Theme';
-import {pages} from '../Constants';
 import {pushSearch} from '../data/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -17,7 +17,9 @@ const Home = (props) => {
   const dispatch = useDispatch();
 
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
-  const [summonerRegionQuery, setSummonerRegionQuery] = React.useState('na');
+  const [summonerRegionQuery, setSummonerRegionQuery] = React.useState(
+    DEFAULT_REGION,
+  );
 
   React.useEffect(() => {
     setSummonerRegionQuery(props.route.params.summonerRegion);

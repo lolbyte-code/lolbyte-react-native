@@ -44,6 +44,7 @@ const ProfileHeader = (props) => {
         <InGameIndicator
           inGame={props.inGame}
           currentGameData={props.currentGameData}
+          currentSummoner={props.summonerName}
           summonerRegion={props.summonerRegion}
         />
       </View>
