@@ -40,7 +40,7 @@ const App = () => {
         <Stack.Screen
           name={pages.home}
           component={Home}
-          initialParams={{region: DEFAULT_REGION}}
+          initialParams={{summonerRegion: DEFAULT_REGION}}
           options={{headerShown: false}}
         />
         <Stack.Screen

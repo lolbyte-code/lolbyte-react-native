@@ -41,7 +41,7 @@ const ProfileHeader = (props) => {
       <InGameIndicator
         inGame={props.inGame}
         currentGameData={props.currentGameData}
-        region={props.summonerRegion}
+        summonerRegion={props.summonerRegion}
       />
       <RecentMatches matches={props.recentMatches} />
       <View>

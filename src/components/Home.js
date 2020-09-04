@@ -17,11 +17,11 @@ const Home = (props) => {
   const dispatch = useDispatch();
 
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
-  const [regionQuery, setRegionQuery] = React.useState('na');
+  const [summonerRegionQuery, setSummonerRegionQuery] = React.useState('na');
 
   React.useEffect(() => {
-    setRegionQuery(props.route.params.region);
-  }, [props.route.params.region]);
+    setSummonerRegionQuery(props.route.params.summonerRegion);
+  }, [props.route.params.summonerRegion]);
 
   const changeSummonerHandler = (summonerName) => {
     setSummonerNameQuery(summonerName);
@@ -29,7 +29,7 @@ const Home = (props) => {
   const searchSummonerHandler = () => {
     const summoner = {
       summonerName: summonerNameQuery,
-      region: regionQuery,
+      summonerRegion: summonerRegionQuery,
     };
     dispatch(pushSearch(summoner));
     navigation.navigate(pages.results, summoner);
@@ -46,7 +46,7 @@ const Home = (props) => {
             onChangeTextHandler={changeSummonerHandler}
             onSubmitEditingHandler={searchSummonerHandler}
           />
-          <RegionSelector selectedRegion={regionQuery.toUpperCase()} />
+          <RegionSelector selectedRegion={summonerRegionQuery.toUpperCase()} />
         </View>
         <SavedSearches />
       </ScrollView>

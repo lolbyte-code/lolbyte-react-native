@@ -69,6 +69,7 @@ const SummonerDetails = (props) => {
 SummonerDetails.defaultProps = {
   summonerName: '',
   summonerLevel: 0,
+  summonerRegion: '',
   favoriteSvgHeight: 40,
   favoriteSvgWidth: 40,
 };
@@ -76,6 +77,7 @@ SummonerDetails.defaultProps = {
 SummonerDetails.propTypes = {
   summonerName: PropTypes.string,
   summonerLevel: PropTypes.number,
+  summonerRegion: PropTypes.string,
   favoriteSvgHeight: PropTypes.number,
   favoriteSvgWidth: PropTypes.number,
 };

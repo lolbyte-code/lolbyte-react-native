@@ -23,7 +23,7 @@ const SummonerEntry = (props) => {
   const navigateToProfileHandler = () => {
     const summoner = {
       summonerName: props.summonerName,
-      region: props.summonerRegion,
+      summonerRegion: props.summonerRegion,
     };
     dispatch(pushSearch(summoner));
     navigation.navigate(pages.results, summoner);

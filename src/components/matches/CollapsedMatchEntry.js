@@ -9,7 +9,7 @@ import {
 import {colors, fonts} from '../../Theme';
 import {getItemIcon, getSplash} from '../../api/Url';
 
-import CollapsedArrowSvg from '../../svg/regionArrow.svg';
+import CollapsedArrowSvg from '../../svg/summonerRegionArrow.svg';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -97,7 +97,6 @@ CollapsedMatchEntry.defaultProps = {
   cs: '',
   winText: 'Win',
   lossText: 'Loss',
-  region: '',
   spellImages: {
     0: {
       uri: require('../../img/spells/0.png'),
@@ -239,7 +238,6 @@ CollapsedMatchEntry.propTypes = {
   cs: PropTypes.string,
   winText: PropTypes.string,
   lossText: PropTypes.string,
-  region: PropTypes.string,
   spellImages: PropTypes.object,
   runeImages: PropTypes.object,
 };

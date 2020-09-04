@@ -25,7 +25,7 @@ const SearchNav = (props) => {
   const searchSummonerHandler = () => {
     const summoner = {
       summonerName: summonerNameQuery,
-      region: props.region,
+      summonerRegion: searches[0].summonerRegion,
     };
     dispatch(pushSearch(summoner));
     navigation.navigate(pages.results, summoner);
@@ -64,7 +64,6 @@ const SearchNav = (props) => {
 };
 
 SearchNav.defaultProps = {
-  region: '',
   backWidth: 20,
   backHeight: 20,
   homeWidth: 40,
@@ -75,7 +74,6 @@ SearchNav.defaultProps = {
 };
 
 SearchNav.propTypes = {
-  region: PropTypes.string,
   backWidth: PropTypes.number,
   backHeight: PropTypes.number,
   homeWidth: PropTypes.number,

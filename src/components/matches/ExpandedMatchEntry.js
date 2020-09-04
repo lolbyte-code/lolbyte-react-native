@@ -258,7 +258,6 @@ ExpandedMatchEntry.defaultProps = {
   cs: '',
   winText: 'Win',
   lossText: 'Loss',
-  region: '',
   baronImage: {
     uri: require('../../img/objectives/baron.png'),
   },
@@ -434,7 +433,6 @@ ExpandedMatchEntry.propTypes = {
   cs: PropTypes.string,
   winText: PropTypes.string,
   lossText: PropTypes.string,
-  region: PropTypes.string,
   spellImages: PropTypes.object,
   runeImages: PropTypes.object,
 };

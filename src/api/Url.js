@@ -12,23 +12,23 @@ fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   })
   .catch((error) => console.error(error));
 
-export const getSummonerData = (summonerName, region) =>
-  `${lolbyteBaseUrl}/summoners/${region}/name/${summonerName.replace(
+export const getSummonerData = (summonerName, summonerRegion) =>
+  `${lolbyteBaseUrl}/summoners/${summonerRegion}/name/${summonerName.replace(
     /\s/g,
     '',
   )}?gameType=0`;
 
-export const getRankedData = (summonerId, region) =>
-  `${lolbyteBaseUrl}/summoners/${region}/summoner-id/${summonerId}/rank`;
+export const getRankedData = (summonerId, summonerRegion) =>
+  `${lolbyteBaseUrl}/summoners/${summonerRegion}/summoner-id/${summonerId}/rank`;
 
-export const getChampionData = (summonerId, region) =>
-  `${lolbyteBaseUrl}/summoners/${region}/summoner-id/${summonerId}/champions`;
+export const getChampionData = (summonerId, summonerRegion) =>
+  `${lolbyteBaseUrl}/summoners/${summonerRegion}/summoner-id/${summonerId}/champions`;
 
-export const getCurrentGameData = (summonerId, region) =>
-  `${lolbyteBaseUrl}/current/${region}/summoner-id/${summonerId}`;
+export const getCurrentGameData = (summonerId, summonerRegion) =>
+  `${lolbyteBaseUrl}/current/${summonerRegion}/summoner-id/${summonerId}`;
 
-export const getMatchData = (matchId, region, summonerId) =>
-  `${lolbyteBaseUrl}/matches/${region}/match-id/${matchId}?summonerId=${summonerId}`;
+export const getMatchData = (matchId, summonerRegion, summonerId) =>
+  `${lolbyteBaseUrl}/matches/${summonerRegion}/match-id/${matchId}?summonerId=${summonerId}`;
 
 export const getProfileIcon = (iconId) =>
   `https://cdn.communitydragon.org/latest/profile-icon/${iconId}`;

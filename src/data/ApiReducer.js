@@ -25,13 +25,13 @@ const summonerDataReducer = (
       return {
         isFetching: true,
         summonerName: action.summonerName,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
       };
     case RECEIVE_SUMMONER_DATA:
       return {
         isFetching: false,
         summonerName: action.summonerName,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
         data: action.data,
       };
     default:
@@ -51,13 +51,13 @@ const rankedDataReducer = (
       return {
         isFetching: true,
         summonerId: action.summonerId,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
       };
     case RECEIVE_RANKED_DATA:
       return {
         isFetching: false,
         summonerId: action.summonerId,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
         data: action.data,
       };
     default:
@@ -77,13 +77,13 @@ const championDataReducer = (
       return {
         isFetching: true,
         summonerId: action.summonerId,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
       };
     case RECEIVE_CHAMPION_DATA:
       return {
         isFetching: false,
         summonerId: action.summonerId,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
         data: action.data,
       };
     default:
@@ -103,13 +103,13 @@ const currentGameDataReducer = (
       return {
         isFetching: true,
         summonerId: action.summonerId,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
       };
     case RECEIVE_CURRENT_GAME_DATA:
       return {
         isFetching: false,
         summonerId: action.summonerId,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
         data: action.data,
       };
     default:
@@ -129,14 +129,14 @@ const matchesDataReducer = (
       return {
         isFetching: true,
         matchIds: action.matchIds,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
         summonerId: action.summonerId,
       };
     case RECEIVE_MATCHES_DATA:
       return {
         isFetching: false,
         matchIds: action.matchIds,
-        region: action.region,
+        summonerRegion: action.summonerRegion,
         summonerId: action.summonerId,
         data: action.data,
       };

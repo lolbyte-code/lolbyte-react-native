@@ -19,11 +19,11 @@ import {useSelector} from 'react-redux';
 const CurrentGame = (props) => {
   const searches = useSelector((state) => state.searches);
   const currentGameData = props.route.params.currentGameData;
-  const region = props.route.params.region;
+  const summonerRegion = props.route.params.summonerRegion;
 
   const goBackParams = {
     summonerName: searches[0].summonerName,
-    region: searches[0].region,
+    summonerRegion: searches[0].summonerRegion,
   };
 
   return (
@@ -36,7 +36,7 @@ const CurrentGame = (props) => {
             entries={currentGameData.summoners.filter(
               (summoner) => summoner.teamId === BLUE_TEAM,
             )}
-            region={region}
+            summonerRegion={summonerRegion}
           />
           <VersusSvg
             style={styles.versus}
@@ -47,7 +47,7 @@ const CurrentGame = (props) => {
             entries={currentGameData.summoners.filter(
               (summoner) => summoner.teamId === RED_TEAM,
             )}
-            region={region}
+            summonerRegion={summonerRegion}
           />
         </View>
       </View>

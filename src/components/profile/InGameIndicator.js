@@ -12,7 +12,7 @@ const InGameIndicator = (props) => {
   const inGameClickHandler = () => {
     navigation.navigate(pages.currentGame, {
       currentGameData: props.currentGameData,
-      region: props.region,
+      summonerRegion: props.summonerRegion,
     });
   };
 
@@ -28,7 +28,7 @@ const InGameIndicator = (props) => {
 InGameIndicator.defaultProps = {
   inGame: false,
   currentGameData: {},
-  region: '',
+  summonerRegion: '',
   width: 100,
   height: 20,
 };
@@ -36,7 +36,7 @@ InGameIndicator.defaultProps = {
 InGameIndicator.propTypes = {
   inGame: PropTypes.bool,
   currentGameData: PropTypes.object,
-  region: PropTypes.string,
+  summonerRegion: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
 };

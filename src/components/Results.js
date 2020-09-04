@@ -44,7 +44,7 @@ const Results = (props) => {
     dispatch(
       fetchSummonerData(
         props.route.params.summonerName,
-        props.route.params.region,
+        props.route.params.summonerRegion,
       ),
     );
   }, [props.route, dispatch]);
@@ -117,7 +117,7 @@ const Results = (props) => {
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView indicatorStyle={props.indicatorStyle}>
-        <SearchNav region={summonerData.data.region} />
+        <SearchNav />
         <View style={styles.headers}>
           <Header
             title={props.profileHeader}

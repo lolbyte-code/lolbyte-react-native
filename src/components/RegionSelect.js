@@ -17,30 +17,30 @@ import {useNavigation} from '@react-navigation/native';
 const RegionSelect = (props) => {
   const navigation = useNavigation();
 
-  const Regions = props.regions.map((region) => (
+  const SummonerRegions = props.summonerRegions.map((summonerRegion) => (
     <TouchableWithoutFeedback
-      key={`region_${region.label}`}
+      key={`summonerRegion_${summonerRegion.label}`}
       onPress={() => {
         navigation.navigate(pages.home, {
-          region: region.value,
+          summonerRegion: summonerRegion.value,
         });
       }}>
-      <Text style={styles.labelStyle}>{region.label}</Text>
+      <Text style={styles.labelStyle}>{summonerRegion.label}</Text>
     </TouchableWithoutFeedback>
   ));
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <CloseButton goBackPage={pages.home} />
-        <View style={styles.container}>{Regions}</View>
+        <View style={styles.container}>{SummonerRegions}</View>
       </ScrollView>
     </ImageBackground>
   );
 };
 
 RegionSelect.defaultProps = {
-  backgroundImage: backgrounds.region,
-  regions: [
+  backgroundImage: backgrounds.summonerRegionSelect,
+  summonerRegions: [
     {
       label: 'North America',
       value: 'na',
@@ -90,7 +90,7 @@ RegionSelect.defaultProps = {
 
 RegionSelect.propTypes = {
   backgroundImage: PropTypes.node,
-  regions: PropTypes.arrayOf(
+  summonerRegions: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
       value: PropTypes.string,

@@ -11,7 +11,6 @@ const Summoners = (props) => {
       key={`summoner_${i++}`}
       championId={entry.championId}
       summonerName={entry.summonerName}
-      summonerRegion={props.region}
       summonerRank={entry.rank}
       summonerTeamId={entry.teamId}
       selectedSummoner={entry.selectedSummoner}
@@ -26,12 +25,10 @@ const Summoners = (props) => {
 
 Summoners.defaultProps = {
   entries: [],
-  region: '',
 };
 
 Summoners.propTypes = {
   entries: PropTypes.array,
-  region: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

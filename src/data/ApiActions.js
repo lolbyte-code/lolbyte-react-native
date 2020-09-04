@@ -21,167 +21,174 @@ export const RECEIVE_MATCHES_DATA = 'RECEIVE_MATCHES_DATA';
 
 const matchesCache = new SimpleCache();
 
-function requestSummonerData(summonerName, region) {
+function requestSummonerData(summonerName, summonerRegion) {
   return {
     type: REQUEST_SUMMONER_DATA,
     summonerName,
-    region,
+    summonerRegion,
   };
 }
 
-function receiveSummonerData(summonerName, region, responseJson) {
+function receiveSummonerData(summonerName, summonerRegion, responseJson) {
   return {
     type: RECEIVE_SUMMONER_DATA,
     summonerName,
-    region,
+    summonerRegion,
     data: responseJson,
   };
 }
 
-function requestRankedData(summonerId, region) {
+function requestRankedData(summonerId, summonerRegion) {
   return {
     type: REQUEST_RANKED_DATA,
     summonerId,
-    region,
+    summonerRegion,
   };
 }
 
-function receiveRankedData(summonerId, region, responseJson) {
+function receiveRankedData(summonerId, summonerRegion, responseJson) {
   return {
     type: RECEIVE_RANKED_DATA,
     summonerId,
-    region,
+    summonerRegion,
     data: responseJson,
   };
 }
 
-function requestChampionData(summonerId, region) {
+function requestChampionData(summonerId, summonerRegion) {
   return {
     type: REQUEST_CHAMPION_DATA,
     summonerId,
-    region,
+    summonerRegion,
   };
 }
 
-function receiveChampionData(summonerId, region, responseJson) {
+function receiveChampionData(summonerId, summonerRegion, responseJson) {
   return {
     type: RECEIVE_CHAMPION_DATA,
     summonerId,
-    region,
+    summonerRegion,
     data: responseJson,
   };
 }
 
-function requestCurrentGameData(summonerId, region) {
+function requestCurrentGameData(summonerId, summonerRegion) {
   return {
     type: REQUEST_CURRENT_GAME_DATA,
     summonerId,
-    region,
+    summonerRegion,
   };
 }
 
-function receiveCurrentGameData(summonerId, region, responseJson) {
+function receiveCurrentGameData(summonerId, summonerRegion, responseJson) {
   return {
     type: RECEIVE_CURRENT_GAME_DATA,
     summonerId,
-    region,
+    summonerRegion,
     data: responseJson,
   };
 }
 
-function requestMatchesData(matchIds, region, summonerId) {
+function requestMatchesData(matchIds, summonerRegion, summonerId) {
   return {
     type: REQUEST_MATCHES_DATA,
     matchIds,
-    region,
+    summonerRegion,
     summonerId,
   };
 }
 
-function receiveMatchesData(matchIds, region, summonerId, responseJson) {
+function receiveMatchesData(
+  matchIds,
+  summonerRegion,
+  summonerId,
+  responseJson,
+) {
   return {
     type: RECEIVE_MATCHES_DATA,
     matchIds,
-    region,
+    summonerRegion,
     summonerId,
     data: responseJson,
   };
 }
 
-export function fetchSummonerData(summonerName, region) {
+export function fetchSummonerData(summonerName, summonerRegion) {
   return (dispatch) => {
-    dispatch(requestSummonerData(summonerName, region));
-    return fetch(getSummonerData(summonerName, region), {
+    dispatch(requestSummonerData(summonerName, summonerRegion));
+    return fetch(getSummonerData(summonerName, summonerRegion), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveSummonerData(summonerName, region, json));
+        dispatch(receiveSummonerData(summonerName, summonerRegion, json));
       })
       .catch((error) => console.error(error));
   };
 }
 
-export function fetchRankedData(summonerId, region) {
+export function fetchRankedData(summonerId, summonerRegion) {
   return (dispatch) => {
-    dispatch(requestRankedData(summonerId, region));
-    return fetch(getRankedData(summonerId, region), {
+    dispatch(requestRankedData(summonerId, summonerRegion));
+    return fetch(getRankedData(summonerId, summonerRegion), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveRankedData(summonerId, region, json));
+        dispatch(receiveRankedData(summonerId, summonerRegion, json));
       })
       .catch((error) => console.error(error));
   };
 }
 
-export function fetchChampionData(summonerId, region) {
+export function fetchChampionData(summonerId, summonerRegion) {
   return (dispatch) => {
-    dispatch(requestChampionData(summonerId, region));
-    return fetch(getChampionData(summonerId, region), {
+    dispatch(requestChampionData(summonerId, summonerRegion));
+    return fetch(getChampionData(summonerId, summonerRegion), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveChampionData(summonerId, region, json));
+        dispatch(receiveChampionData(summonerId, summonerRegion, json));
       })
       .catch((error) => console.error(error));
   };
 }
 
-export function fetchCurrentGameData(summonerId, region) {
+export function fetchCurrentGameData(summonerId, summonerRegion) {
   return (dispatch) => {
-    dispatch(requestCurrentGameData(summonerId, region));
-    return fetch(getCurrentGameData(summonerId, region), {
+    dispatch(requestCurrentGameData(summonerId, summonerRegion));
+    return fetch(getCurrentGameData(summonerId, summonerRegion), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveCurrentGameData(summonerId, region, json));
+        dispatch(receiveCurrentGameData(summonerId, summonerRegion, json));
       })
       .catch((error) => console.error(error));
   };
 }
 
-export function fetchMatchesData(matchIds, region, summonerId) {
+export function fetchMatchesData(matchIds, summonerRegion, summonerId) {
   const matchLimit = matchIds.length;
   return (dispatch) => {
-    dispatch(requestMatchesData(matchIds, region));
+    dispatch(requestMatchesData(matchIds, summonerRegion));
     const matches = [];
     var count = 0;
     matchIds.forEach((match) => {
       if (matchesCache.contains(match)) {
         matches.unshift(matchesCache.get(match));
         if (++count === matchLimit) {
-          dispatch(receiveMatchesData(matchIds, region, summonerId, matches));
+          dispatch(
+            receiveMatchesData(matchIds, summonerRegion, summonerId, matches),
+          );
         }
       } else {
-        fetch(getMatchData(match, region, summonerId), {
+        fetch(getMatchData(match, summonerRegion, summonerId), {
           method: 'GET',
         })
           .then((response) => response.json())
@@ -191,7 +198,12 @@ export function fetchMatchesData(matchIds, region, summonerId) {
             matches.unshift(json);
             if (++count === matchLimit) {
               dispatch(
-                receiveMatchesData(matchIds, region, summonerId, matches),
+                receiveMatchesData(
+                  matchIds,
+                  summonerRegion,
+                  summonerId,
+                  matches,
+                ),
               );
             }
           })

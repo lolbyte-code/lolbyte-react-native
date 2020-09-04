@@ -3,7 +3,7 @@ import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import RegionArrowSvg from '../../svg/regionArrow.svg';
+import RegionArrowSvg from '../../svg/summonerRegionArrow.svg';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
@@ -16,12 +16,12 @@ const RegionSelector = (props) => {
 
   return (
     <TouchableWithoutFeedback onPress={() => selectRegionHandler()}>
-      <View style={styles.regionSelector}>
-        <Text style={styles.regionText}>{props.selectedRegion} </Text>
+      <View style={styles.summonerRegionSelector}>
+        <Text style={styles.summonerRegionText}>{props.selectedRegion} </Text>
         <RegionArrowSvg
-          style={styles.regionArrow}
-          width={props.regionArrowWidth}
-          height={props.regionArrowHeight}
+          style={styles.summonerRegionArrow}
+          width={props.summonerRegionArrowWidth}
+          height={props.summonerRegionArrowHeight}
         />
       </View>
     </TouchableWithoutFeedback>
@@ -30,18 +30,18 @@ const RegionSelector = (props) => {
 
 RegionSelector.defaultProps = {
   selectedRegion: '',
-  regionArrowWidth: 10,
-  regionArrowHeight: 24,
+  summonerRegionArrowWidth: 10,
+  summonerRegionArrowHeight: 24,
 };
 
 RegionSelector.propTypes = {
   selectedRegion: PropTypes.string,
-  regionArrowWidth: PropTypes.number,
-  regionArrowHeight: PropTypes.number,
+  summonerRegionArrowWidth: PropTypes.number,
+  summonerRegionArrowHeight: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
-  regionSelector: {
+  summonerRegionSelector: {
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: colors.darkGrey,
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginLeft: 5,
   },
-  regionText: {
+  summonerRegionText: {
     color: colors.blue,
     backgroundColor: colors.darkGrey,
     fontSize: 20,
     fontFamily: fonts.regular,
   },
-  regionArrow: {
+  summonerRegionArrow: {
     backgroundColor: colors.darkGrey,
   },
 });
