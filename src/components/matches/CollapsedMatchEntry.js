@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const CollapsedMatchEntry = (props) => {
-  let i = 0;
+  var i = 0;
   const Items = props.items.map((item) => (
     <Image
       key={`item_${i++}`}

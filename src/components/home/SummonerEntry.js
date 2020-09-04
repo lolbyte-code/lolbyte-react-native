@@ -41,7 +41,7 @@ const SummonerEntry = (props) => {
         <EllipsisText
           text={props.summonerName}
           textStyle={styles.summonerName}
-          maxLimit={13}
+          maxLimit={11}
         />
         <Text style={styles.summonerRegion}>
           {props.summonerRegion.toUpperCase()}
@@ -66,6 +66,7 @@ SummonerEntry.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    marginBottom: 5,
   },
   summonerIcon: {
     width: 80,

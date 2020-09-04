@@ -1,50 +1,50 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '../../Theme';
 
+import MostPlayedChampionsEntry from './MostPlayedChampionsEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TopChampionsEntry from './TopChampionsEntry';
 
-const TopChampions = (props) => {
-  let i = 0;
+const MostPlayedChampions = (props) => {
+  var i = 0;
   const ChampionEntries = props.champions.map((entry) => (
-    <TopChampionsEntry
-      key={`topChampionEntry${i++}`}
+    <MostPlayedChampionsEntry
+      key={`mostPlayedChampionEntry_${i++}`}
       championId={entry.championId}
       championName={entry.championName}
-      championLevel={entry.championLevel}
-      championPoints={entry.championPoints}
+      gamesPlayed={entry.championGamesPlayed}
     />
   ));
   return (
     <View>
       <Text style={styles.title}>{props.title}</Text>
-      <View style={styles.entries}>{ChampionEntries}</View>
+      <View style={styles.championEntries}>{ChampionEntries}</View>
     </View>
   );
 };
 
-TopChampions.defaultProps = {
-  title: 'Most Played (Mastery)',
+MostPlayedChampions.defaultProps = {
+  title: 'Most Played (Recent)',
   champions: [],
 };
 
-TopChampions.propTypes = {
+MostPlayedChampions.propTypes = {
   title: PropTypes.string,
   champions: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
-  entries: {
+  championEntries: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
   title: {
+    marginBottom: 10,
+    marginLeft: 15,
     color: colors.lightGrey,
     fontSize: 15,
-    marginLeft: 15,
     fontFamily: fonts.regular,
   },
 });
 
-export default TopChampions;
+export default MostPlayedChampions;

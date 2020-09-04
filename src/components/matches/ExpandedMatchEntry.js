@@ -16,7 +16,7 @@ import React from 'react';
 import SummonerMatches from './SummonerMatches';
 
 const ExpandedMatchEntry = (props) => {
-  let i = 0;
+  var i = 0;
   const Items = props.items.map((item) => (
     <Image
       key={`item_${i++}`}

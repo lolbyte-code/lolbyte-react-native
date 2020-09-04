@@ -130,7 +130,7 @@ const Results = (props) => {
           />
         </View>
         <Profile
-          selected={selectedHeader === PROFILE_SELECTED}
+          visible={selectedHeader === PROFILE_SELECTED}
           summonerData={summonerData.data}
           rankedData={rankedData.data}
           inGameDataFetching={currentGameData.isFetching}

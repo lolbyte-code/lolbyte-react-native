@@ -22,7 +22,7 @@ const Matches = (props) => {
     setSs(obj);
   };
 
-  let i = 0;
+  var i = 0;
   const sortedMatches = props.matches.sort((a, b) => b.matchDate - a.matchDate);
   const MatchEntries = sortedMatches.map((match) => {
     const nameToChoose =

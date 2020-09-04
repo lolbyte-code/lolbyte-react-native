@@ -16,7 +16,7 @@ const ProfileHeader = (props) => {
     setCurrentRankPosition(event.nativeEvent.contentOffset.x);
   };
 
-  let i = 0;
+  var i = 0;
   const RankEntries = props.rankedData.map((entry) => (
     <View style={styles.rankEntryContainer} key={`leagueDetail_${i++}`}>
       <Rank tier={entry.tier} />

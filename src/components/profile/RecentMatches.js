@@ -5,7 +5,7 @@ import React from 'react';
 import RecentMatchesEntry from './RecentMatchesEntry';
 
 const RecentMatches = (props) => {
-  let i = 0;
+  var i = 0;
   const RecentMatchEntries = props.matches
     .slice(0, 5)
     .map((entry) => (

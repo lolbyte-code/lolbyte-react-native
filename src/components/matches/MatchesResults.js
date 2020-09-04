@@ -39,7 +39,7 @@ MatchesResults.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: '2%',
+    marginTop: 5,
   },
   hide: {
     display: 'none',
