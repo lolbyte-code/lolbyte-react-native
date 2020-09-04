@@ -14,15 +14,16 @@ import React from 'react';
 import Summoners from './currentGame/Summoners';
 import VersusSvg from '../svg/versus.svg';
 import {pages} from '../Constants';
+import {useSelector} from 'react-redux';
 
 const CurrentGame = (props) => {
+  const searches = useSelector((state) => state.searches);
   const currentGameData = props.route.params.currentGameData;
   const region = props.route.params.region;
-  const currentSummoner = props.route.params.currentSummoner;
 
   const goBackParams = {
-    summonerName: currentSummoner.summonerName,
-    region: currentSummoner.region,
+    summonerName: searches[0].summonerName,
+    region: searches[0].region,
   };
 
   return (

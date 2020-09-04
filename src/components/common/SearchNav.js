@@ -72,7 +72,6 @@ SearchNav.defaultProps = {
   placeholder: 'enter summoner name',
   placeholderTextColor: colors.lightGrey,
   autoCorrect: false,
-  currentSummoner: {},
 };
 
 SearchNav.propTypes = {
@@ -84,7 +83,6 @@ SearchNav.propTypes = {
   placeholder: PropTypes.string,
   autoCorrect: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
-  currentSummoner: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

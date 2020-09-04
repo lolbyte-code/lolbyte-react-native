@@ -24,7 +24,6 @@ const Profile = (props) => {
           props.currentGameData.summoners.length > 0
         }
         currentGameData={props.currentGameData}
-        currentSummoner={props.currentSummoner}
       />
       <PlayerStatsHeader
         subtitle={props.summonerData.playerStats[0].playerStatType}
@@ -55,7 +54,6 @@ Profile.defaultProps = {
   rankedData: [],
   currentGameData: {},
   championData: [],
-  currentSummoner: {},
 };
 
 Profile.propTypes = {
@@ -65,7 +63,6 @@ Profile.propTypes = {
   rankedData: PropTypes.array,
   currentGameData: PropTypes.object,
   championData: PropTypes.array,
-  currentSummoner: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

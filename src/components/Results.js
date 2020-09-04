@@ -114,18 +114,10 @@ const Results = (props) => {
     return <Loading />;
   }
 
-  const currentSummoner = {
-    summonerName: summonerData.data.summonerName,
-    region: summonerData.data.region,
-  };
-
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView indicatorStyle={props.indicatorStyle}>
-        <SearchNav
-          region={summonerData.data.region}
-          currentSummoner={currentSummoner}
-        />
+        <SearchNav region={summonerData.data.region} />
         <View style={styles.headers}>
           <Header
             title={props.profileHeader}
@@ -145,7 +137,6 @@ const Results = (props) => {
           inGameDataFetching={currentGameData.isFetching}
           currentGameData={currentGameData.data}
           championData={championData.data}
-          currentSummoner={currentSummoner}
         />
         <MatchesResults
           selected={selectedHeader === MATCHES_SELECTED}
