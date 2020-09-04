@@ -14,6 +14,7 @@ const Summoners = (props) => {
       summonerRank={entry.rank}
       summonerTeamId={entry.teamId}
       selectedSummoner={entry.selectedSummoner}
+      summonerRegion={props.summonerRegion}
     />
   ));
   return (
@@ -25,10 +26,12 @@ const Summoners = (props) => {
 
 Summoners.defaultProps = {
   entries: [],
+  summonerRegion: '',
 };
 
 Summoners.propTypes = {
   entries: PropTypes.array,
+  summonerRegion: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

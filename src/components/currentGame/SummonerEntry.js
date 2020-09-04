@@ -16,17 +16,15 @@ import {pages} from '../../Constants';
 import {pushSearch} from '../../data/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
 
 const SummonerEntry = (props) => {
-  const searches = useSelector((state) => state.searches);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const navigateToProfileHandler = () => {
     const summoner = {
       summonerName: props.summonerName,
-      summonerRegion: searches[0].summonerRegion,
+      summonerRegion: props.summonerRegion,
     };
     dispatch(pushSearch(summoner));
     navigation.navigate(pages.results, summoner);
@@ -68,6 +66,7 @@ SummonerEntry.defaultProps = {
   summonerRank: '',
   summonerTeamId: 100,
   selectedSummoner: false,
+  summonerRegion: '',
 };
 
 SummonerEntry.propTypes = {
@@ -76,6 +75,7 @@ SummonerEntry.propTypes = {
   summonerRank: PropTypes.string,
   summonerTeamId: PropTypes.number,
   selectedSummoner: PropTypes.bool,
+  summonerRegion: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

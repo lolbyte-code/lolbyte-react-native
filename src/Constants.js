@@ -5,6 +5,8 @@ export const pages = {
   currentGame: 'Current Game',
 };
 
+export const SUMMONERS_STORAGE = '@summoners';
+
 export const BLUE_TEAM = 100;
 export const RED_TEAM = 200;
 

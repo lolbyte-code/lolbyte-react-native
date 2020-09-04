@@ -46,7 +46,11 @@ const Home = (props) => {
             onChangeTextHandler={changeSummonerHandler}
             onSubmitEditingHandler={searchSummonerHandler}
           />
-          <RegionSelector selectedRegion={summonerRegionQuery.toUpperCase()} />
+          <View style={styles.regionContainer}>
+            <RegionSelector
+              selectedRegion={summonerRegionQuery.toUpperCase()}
+            />
+          </View>
         </View>
         <SavedSearches />
       </ScrollView>
@@ -77,6 +81,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 25,
+    marginBottom: 35,
+  },
+  regionContainer: {
+    marginLeft: 5,
   },
 });
 

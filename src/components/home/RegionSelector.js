@@ -43,11 +43,9 @@ RegionSelector.propTypes = {
 const styles = StyleSheet.create({
   summonerRegionSelector: {
     flexDirection: 'row',
-    alignItems: 'center',
     borderColor: colors.darkGrey,
     borderWidth: 10,
     borderRadius: 6,
-    marginLeft: 5,
   },
   summonerRegionText: {
     color: colors.blue,

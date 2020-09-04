@@ -29,12 +29,12 @@ function requestSummonerData(summonerName, summonerRegion) {
   };
 }
 
-function receiveSummonerData(summonerName, summonerRegion, responseJson) {
+function receiveSummonerData(summonerName, summonerRegion, response) {
   return {
     type: RECEIVE_SUMMONER_DATA,
     summonerName,
     summonerRegion,
-    data: responseJson,
+    data: response,
   };
 }
 
@@ -46,12 +46,12 @@ function requestRankedData(summonerId, summonerRegion) {
   };
 }
 
-function receiveRankedData(summonerId, summonerRegion, responseJson) {
+function receiveRankedData(summonerId, summonerRegion, response) {
   return {
     type: RECEIVE_RANKED_DATA,
     summonerId,
     summonerRegion,
-    data: responseJson,
+    data: response,
   };
 }
 
@@ -63,12 +63,12 @@ function requestChampionData(summonerId, summonerRegion) {
   };
 }
 
-function receiveChampionData(summonerId, summonerRegion, responseJson) {
+function receiveChampionData(summonerId, summonerRegion, response) {
   return {
     type: RECEIVE_CHAMPION_DATA,
     summonerId,
     summonerRegion,
-    data: responseJson,
+    data: response,
   };
 }
 
@@ -80,12 +80,12 @@ function requestCurrentGameData(summonerId, summonerRegion) {
   };
 }
 
-function receiveCurrentGameData(summonerId, summonerRegion, responseJson) {
+function receiveCurrentGameData(summonerId, summonerRegion, response) {
   return {
     type: RECEIVE_CURRENT_GAME_DATA,
     summonerId,
     summonerRegion,
-    data: responseJson,
+    data: response,
   };
 }
 
@@ -98,18 +98,13 @@ function requestMatchesData(matchIds, summonerRegion, summonerId) {
   };
 }
 
-function receiveMatchesData(
-  matchIds,
-  summonerRegion,
-  summonerId,
-  responseJson,
-) {
+function receiveMatchesData(matchIds, summonerRegion, summonerId, response) {
   return {
     type: RECEIVE_MATCHES_DATA,
     matchIds,
     summonerRegion,
     summonerId,
-    data: responseJson,
+    data: response,
   };
 }
 

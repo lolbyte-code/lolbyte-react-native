@@ -1,4 +1,4 @@
-import {DEFAULT_REGION, pages} from './Constants';
+import {DEFAULT_REGION, SUMMONERS_STORAGE, pages} from './Constants';
 import {
   bulkAddFavoriteSummoners,
   bulkAddRecentSummoners,
@@ -14,8 +14,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {getFromStorage} from './utils/Storage';
 import {useDispatch} from 'react-redux';
 
-const SUMMONERS_STORAGE = '@summoners';
-
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -23,11 +21,11 @@ const App = () => {
 
   React.useEffect(() => {
     getFromStorage(SUMMONERS_STORAGE).then((summoners) => {
-      if (summoners !== null) {
-        if (summoners.recentSummoners !== null) {
+      if (summoners) {
+        if (summoners.recentSummoners) {
           dispatch(bulkAddRecentSummoners(summoners.recentSummoners));
         }
-        if (summoners.favoriteSummoners !== null) {
+        if (summoners.favoriteSummoners) {
           dispatch(bulkAddFavoriteSummoners(summoners.favoriteSummoners));
         }
       }

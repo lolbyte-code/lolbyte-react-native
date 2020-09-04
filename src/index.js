@@ -3,11 +3,10 @@ import {applyMiddleware, createStore} from 'redux';
 import App from './App';
 import {Provider} from 'react-redux';
 import React from 'react';
+import {SUMMONERS_STORAGE} from './Constants';
 import reducer from './data/index.js';
 import {setToStorage} from './utils/Storage';
 import thunkMiddleware from 'redux-thunk';
-
-const SUMMONERS_STORAGE = '@summoners';
 
 const LolByteApp = () => {
   const store = createStore(

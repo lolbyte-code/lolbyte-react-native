@@ -12,7 +12,7 @@ const ScrollDots = (props) => {
   }
 
   const Dots = positions.map((position) => (
-    <View style={styles.scrollDots} key={`dot_${position}`}>
+    <View style={props.scrollDotsStyle} key={`dot_${position}`}>
       {props.currentItemPosition === position ? (
         <BlueCircleSvg
           width={props.scrollDotsWidth}
@@ -40,6 +40,7 @@ ScrollDots.defaultProps = {
   itemWidth: 0,
   scrollDotsWidth: 5,
   scrollDotsHeight: 5,
+  scrollDotsStyle: {},
 };
 
 ScrollDots.propTypes = {
@@ -48,12 +49,10 @@ ScrollDots.propTypes = {
   itemWidth: PropTypes.number,
   scrollDotsWidth: PropTypes.number,
   scrollDotsHeight: PropTypes.number,
+  scrollDotsStyle: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
-  scrollDots: {
-    marginTop: 5,
-  },
   scrollDot: {
     margin: 1,
   },

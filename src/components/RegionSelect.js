@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {backgrounds, colors, fonts} from '../Theme';
 
-import CloseButton from './common/CloseButton';
+import CloseButton from './common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '../Constants';
@@ -31,7 +31,10 @@ const RegionSelect = (props) => {
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <CloseButton goBackPage={pages.home} />
+        <CloseButton
+          goBackPage={pages.home}
+          buttonStyle={styles.closeButtonStyle}
+        />
         <View style={styles.container}>{SummonerRegions}</View>
       </ScrollView>
     </ImageBackground>
@@ -118,6 +121,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     margin: 4,
     fontFamily: fonts.regular,
+  },
+  closeButtonStyle: {
+    marginTop: 20,
+    marginLeft: 20,
   },
 });
 

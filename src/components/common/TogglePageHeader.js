@@ -4,7 +4,7 @@ import {colors, fonts} from '../../Theme';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Header = (props) => {
+const TogglePageHeader = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
       <View style={props.selected ? styles.containerSelected : null}>
@@ -19,13 +19,13 @@ const Header = (props) => {
   );
 };
 
-Header.defaultProps = {
+TogglePageHeader.defaultProps = {
   title: '',
   onPressHandler: () => {},
   selected: false,
 };
 
-Header.propTypes = {
+TogglePageHeader.propTypes = {
   title: PropTypes.string,
   onPressHandler: PropTypes.func,
   selected: PropTypes.bool,
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default TogglePageHeader;

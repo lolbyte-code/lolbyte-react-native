@@ -8,16 +8,15 @@ import {
 } from '../data/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Header from './common/Header';
 import Loading from './common/Loading';
 import MatchesResults from './matches/MatchesResults';
 import Profile from './profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from './common/SearchNav';
+import TogglePageHeader from './common/TogglePageHeader';
 import {addRecentSummoner} from '../data/SummonersActions';
 import {backgrounds} from '../Theme';
-import {pushSearch} from '../data/SearchActions';
 
 const PROFILE_SELECTED = 'profile';
 const MATCHES_SELECTED = 'matches';
@@ -119,12 +118,12 @@ const Results = (props) => {
       <ScrollView indicatorStyle={props.indicatorStyle}>
         <SearchNav />
         <View style={styles.headers}>
-          <Header
+          <TogglePageHeader
             title={props.profileHeader}
             onPressHandler={() => selectProfileHeader()}
             selected={selectedHeader === PROFILE_SELECTED}
           />
-          <Header
+          <TogglePageHeader
             title={props.matchesHeader}
             onPressHandler={() => selectMatchesHeader()}
             selected={selectedHeader === MATCHES_SELECTED}

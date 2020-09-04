@@ -16,10 +16,9 @@ import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const SearchNav = (props) => {
-  const searches = useSelector((state) => state.searches);
-  const dispatch = useDispatch();
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
+  const searches = useSelector((state) => state.searches);
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
 
   const searchSummonerHandler = () => {

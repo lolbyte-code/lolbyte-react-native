@@ -20,7 +20,7 @@ const SummonerDetails = (props) => {
 
   React.useEffect(() => {
     const favorited =
-      typeof favoriteSummoners !== 'undefined' &&
+      favoriteSummoners &&
       favoriteSummoners.some(
         (summoner) => summoner.summonerName === props.summonerName,
       );

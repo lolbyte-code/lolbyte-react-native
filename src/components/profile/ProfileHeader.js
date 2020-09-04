@@ -57,6 +57,7 @@ const ProfileHeader = (props) => {
         listSize={props.rankedData.length}
         currentItemPosition={currentRankPosition}
         itemWidth={Dimensions.get('window').width}
+        scrollDotsStyle={styles.scrollDotsStyle}
       />
     </View>
   );
@@ -87,6 +88,9 @@ ProfileHeader.propTypes = {
 const styles = StyleSheet.create({
   rankEntryContainer: {
     width: Dimensions.get('window').width,
+  },
+  scrollDotsStyle: {
+    marginTop: 5,
   },
 });
 

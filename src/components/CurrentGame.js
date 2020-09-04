@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {backgrounds, colors, fonts} from '../Theme';
 
-import CloseButton from './common/CloseButton';
+import CloseButton from './common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from './currentGame/Summoners';
@@ -28,7 +28,11 @@ const CurrentGame = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <CloseButton goBackPage={pages.results} goBackParams={goBackParams} />
+      <CloseButton
+        goBackPage={pages.results}
+        goBackParams={goBackParams}
+        buttonStyle={styles.closeButtonStyle}
+      />
       <View style={styles.container}>
         <View style={styles.summonersContainer}>
           <Text style={styles.gameType}>{currentGameData.gameType}</Text>
@@ -87,6 +91,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: fonts.regular,
     marginBottom: 10,
+  },
+  closeButtonStyle: {
+    marginTop: 20,
+    marginLeft: 20,
   },
 });
 

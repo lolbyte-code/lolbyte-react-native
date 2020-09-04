@@ -15,64 +15,57 @@ const summonersReducer = (
   },
   action,
 ) => {
-  const cloneState = {
-    recentSummoners: [...state.recentSummoners],
-    favoriteSummoners: [...state.favoriteSummoners],
-  };
   switch (action.type) {
     case ADD_RECENT:
-      if (typeof cloneState.recentSummoners === 'undefined') {
-        cloneState.recentSummoners = [];
+      if (!state.recentSummoners) {
+        state.recentSummoners = [];
       }
       if (
-        cloneState.recentSummoners.some(
+        state.recentSummoners.some(
           (summoner) => summoner.summonerName === action.summoner.summonerName,
         )
       ) {
-        cloneState.recentSummoners = cloneState.recentSummoners.filter(
+        state.recentSummoners = state.recentSummoners.filter(
           (summoner) => summoner.summonerName !== action.summoner.summonerName,
         );
       }
-      cloneState.recentSummoners.unshift(action.summoner);
-      if (cloneState.recentSummoners.length > MAX_CAPACITY) {
-        cloneState.recentSummoners = cloneState.recentSummoners.slice(
-          0,
-          MAX_CAPACITY,
-        );
+      state.recentSummoners.unshift(action.summoner);
+      if (state.recentSummoners.length > MAX_CAPACITY) {
+        state.recentSummoners = state.recentSummoners.slice(0, MAX_CAPACITY);
       }
       return {
-        recentSummoners: cloneState.recentSummoners,
-        favoriteSummoners: cloneState.favoriteSummoners,
+        ...state,
+        recentSummoners: [...state.recentSummoners],
       };
     case ADD_FAV:
-      if (typeof cloneState.favoriteSummoners === 'undefined') {
-        cloneState.favoriteSummoners = [];
+      if (!state.favoriteSummoners) {
+        state.favoriteSummoners = [];
       }
       if (
-        cloneState.favoriteSummoners.some(
+        state.favoriteSummoners.some(
           (summoner) => summoner.summonerName === action.summoner.summonerName,
         )
       ) {
         return state;
       }
-      cloneState.favoriteSummoners.unshift(action.summoner);
-      if (cloneState.favoriteSummoners.length > MAX_CAPACITY) {
-        cloneState.favoriteSummoners = cloneState.favoriteSummoners.slice(
+      state.favoriteSummoners.unshift(action.summoner);
+      if (state.favoriteSummoners.length > MAX_CAPACITY) {
+        state.favoriteSummoners = state.favoriteSummoners.slice(
           0,
           MAX_CAPACITY,
         );
       }
       return {
-        recentSummoners: cloneState.recentSummoners,
-        favoriteSummoners: cloneState.favoriteSummoners,
+        ...state,
+        favoriteSummoners: [...state.favoriteSummoners],
       };
     case REMOVE_FAV:
-      cloneState.favoriteSummoners = cloneState.favoriteSummoners.filter(
+      state.favoriteSummoners = state.favoriteSummoners.filter(
         (summoner) => summoner.summonerName !== action.summonerName,
       );
       return {
-        recentSummoners: cloneState.recentSummoners,
-        favoriteSummoners: cloneState.favoriteSummoners,
+        ...state,
+        favoriteSummoners: [...state.favoriteSummoners],
       };
     case BULK_ADD_RECENT:
       return {
