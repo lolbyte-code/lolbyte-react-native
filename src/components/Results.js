@@ -9,7 +9,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 
 import Loading from './common/Loading';
-import MatchesResults from './matches/MatchesResults';
+import MatchesContainer from './matches/MatchesContainer';
 import Profile from './profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -137,11 +137,10 @@ const Results = (props) => {
           currentGameData={currentGameData.data}
           championData={championData.data}
         />
-        <MatchesResults
-          selected={selectedHeader === MATCHES_SELECTED}
+        <MatchesContainer
+          visible={selectedHeader === MATCHES_SELECTED}
           isFetching={matchesData.isFetching}
           matchesData={matchesData.data}
-          selectedSummonerName={summonerData.data.summonerName}
         />
       </ScrollView>
     </ImageBackground>
@@ -150,16 +149,16 @@ const Results = (props) => {
 
 Results.defaultProps = {
   backgroundImage: backgrounds.main,
-  route: {},
   profileHeader: 'Profile',
   matchesHeader: 'Matches',
+  route: {},
 };
 
 Results.propTypes = {
   backgroundImage: PropTypes.node,
-  route: PropTypes.object,
   profileHeader: PropTypes.string,
   matchesHeader: PropTypes.string,
+  route: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
   },
   headers: {
     justifyContent: 'space-evenly',
-    marginTop: '5%',
+    marginTop: 15,
     flexDirection: 'row',
   },
 });

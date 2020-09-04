@@ -4,46 +4,43 @@ import Loading from '../common/Loading';
 import Matches from './Matches';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {useSelector} from 'react-redux';
 
-const MatchesResults = (props) => {
+const MatchesContainer = (props) => {
+  const searches = useSelector((state) => state.searches);
+
   return (
-    <View style={props.selected ? styles.container : styles.hide}>
+    <View style={props.visible ? null : styles.hide}>
       {props.isFetching ? (
         <Loading loadingIndicatorSize={props.matchesLoadingIndicatorSize} />
       ) : (
         <Matches
-          matches={props.matchesData}
-          selectedSummonerName={props.selectedSummonerName}
-          originalSummonerName={props.selectedSummonerName}
+          matchEntries={props.matchesData}
+          currentSummoner={searches[0].summonerName}
         />
       )}
     </View>
   );
 };
 
-MatchesResults.defaultProps = {
-  selected: false,
+MatchesContainer.defaultProps = {
+  visible: false,
   isFetching: true,
   matchesData: [],
   matchesLoadingIndicatorSize: 'small',
-  selectedSummonerName: '',
 };
 
-MatchesResults.propTypes = {
-  selected: PropTypes.bool,
+MatchesContainer.propTypes = {
+  visible: PropTypes.bool,
   isFetching: PropTypes.bool,
   matchesData: PropTypes.array,
   matchesLoadingIndicatorSize: PropTypes.string,
-  selectedSummonerName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 5,
-  },
   hide: {
     display: 'none',
   },
 });
 
-export default MatchesResults;
+export default MatchesContainer;
