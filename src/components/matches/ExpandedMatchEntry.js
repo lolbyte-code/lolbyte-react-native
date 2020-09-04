@@ -119,7 +119,7 @@ ExpandedMatchEntry.defaultProps = {
   playerData: {},
   championId: 0,
   spellImages: {},
-  runeImages: {},
+  keystoneImages: {},
 };
 
 ExpandedMatchEntry.propTypes = {
@@ -159,7 +159,7 @@ ExpandedMatchEntry.propTypes = {
   playerData: PropTypes.array,
   championId: PropTypes.number,
   spellImages: PropTypes.object,
-  runeImages: PropTypes.object,
+  keystoneImages: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

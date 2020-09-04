@@ -47,7 +47,7 @@ CollapsedMatchEntry.defaultProps = {
   championName: '',
   cs: '',
   spellImages: {},
-  runeImages: {},
+  keystoneImages: {},
 };
 
 CollapsedMatchEntry.propTypes = {
@@ -64,7 +64,7 @@ CollapsedMatchEntry.propTypes = {
   championName: PropTypes.string,
   cs: PropTypes.string,
   spellImages: PropTypes.object,
-  runeImages: PropTypes.object,
+  keystoneImages: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

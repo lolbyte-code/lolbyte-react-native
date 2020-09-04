@@ -130,7 +130,7 @@ ParticipantEntry.defaultProps = {
   spells: [],
   spellImages: {},
   keystone: 0,
-  runeImages: {},
+  keystoneImages: {},
   changeSummonerHandler: () => {},
 };
 
@@ -145,7 +145,7 @@ ParticipantEntry.propTypes = {
   spells: PropTypes.array,
   spellImages: PropTypes.object,
   keystone: PropTypes.number,
-  runeImages: PropTypes.object,
+  keystoneImages: PropTypes.object,
   changeSummonerHandler: PropTypes.func,
 };
 

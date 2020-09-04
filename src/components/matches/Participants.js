@@ -46,7 +46,7 @@ Participants.defaultProps = {
   team1Win: false,
   team2Win: false,
   spellImages: {},
-  runeImages: {},
+  keystoneImages: {},
   changeSummonerHandler: () => {},
 };
 
@@ -55,7 +55,7 @@ Participants.propTypes = {
   team1Win: PropTypes.bool,
   team2Win: PropTypes.bool,
   spellImages: PropTypes.object,
-  runeImages: PropTypes.object,
+  keystoneImages: PropTypes.object,
   changeSummonerHandler: PropTypes.func,
 };
 

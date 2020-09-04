@@ -8,14 +8,10 @@ import React from 'react';
 const MatchEntry = (props) => {
   const [collapsed, setCollapsed] = React.useState(true);
 
-  const collapsedHandler = (isCollapsed) => {
-    setCollapsed(isCollapsed);
-  };
-
   return (
     <View>
       <View style={collapsed ? null : styles.hide}>
-        <TouchableWithoutFeedback onPress={() => collapsedHandler(false)}>
+        <TouchableWithoutFeedback onPress={() => setCollapsed(false)}>
           <View>
             <CollapsedMatchEntry {...props} />
           </View>
@@ -24,8 +20,8 @@ const MatchEntry = (props) => {
       <View>
         <TouchableWithoutFeedback
           onPress={() => {
-            props.changeSummonerHandler(props.originalSummonerName);
-            collapsedHandler(true);
+            props.changeSummonerHandler(props.currentSummonerName);
+            setCollapsed(true);
           }}>
           <View style={collapsed ? styles.hide : null}>
             <ExpandedMatchEntry {...props} />
@@ -77,7 +73,7 @@ MatchEntry.defaultProps = {
   matchId: '',
   playerData: {},
   changeSummonerHandler: () => {},
-  originalSummonerName: '',
+  currentSummonerName: '',
   spellImages: {
     0: {
       uri: require('../../img/spells/0.png'),
@@ -242,7 +238,7 @@ MatchEntry.propTypes = {
   matchId: PropTypes.string,
   playerData: PropTypes.array,
   changeSummonerHandler: PropTypes.func,
-  originalSummonerName: PropTypes.string,
+  currentSummonerName: PropTypes.string,
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
 };

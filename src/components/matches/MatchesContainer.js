@@ -4,11 +4,8 @@ import Loading from '../common/Loading';
 import Matches from './Matches';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {useSelector} from 'react-redux';
 
 const MatchesContainer = (props) => {
-  const searches = useSelector((state) => state.searches);
-
   return (
     <View style={props.visible ? null : styles.hide}>
       {props.isFetching ? (
@@ -16,7 +13,7 @@ const MatchesContainer = (props) => {
       ) : (
         <Matches
           matchEntries={props.matchesData}
-          currentSummoner={searches[0].summonerName}
+          currentSummonerName={props.currentSummonerName}
         />
       )}
     </View>
@@ -28,6 +25,7 @@ MatchesContainer.defaultProps = {
   isFetching: true,
   matchesData: [],
   matchesLoadingIndicatorSize: 'small',
+  currentSummonerName: '',
 };
 
 MatchesContainer.propTypes = {
@@ -35,6 +33,7 @@ MatchesContainer.propTypes = {
   isFetching: PropTypes.bool,
   matchesData: PropTypes.array,
   matchesLoadingIndicatorSize: PropTypes.string,
+  currentSummonerName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
