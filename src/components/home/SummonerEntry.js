@@ -12,16 +12,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {getProfileIcon} from '../../api/Url';
 import {pages} from '../../Constants';
+import {pushSearch} from '../../data/SearchActions';
+import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const SummonerEntry = (props) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const navigateToProfileHandler = () => {
-    navigation.navigate(pages.results, {
+    const summoner = {
       summonerName: props.summonerName,
       region: props.summonerRegion,
-    });
+    };
+    dispatch(pushSearch(summoner));
+    navigation.navigate(pages.results, summoner);
   };
 
   return (

@@ -98,7 +98,6 @@ CollapsedMatchEntry.defaultProps = {
   winText: 'Win',
   lossText: 'Loss',
   region: '',
-  previousSummoners: [],
   spellImages: {
     0: {
       uri: require('../../img/spells/0.png'),
@@ -241,7 +240,6 @@ CollapsedMatchEntry.propTypes = {
   winText: PropTypes.string,
   lossText: PropTypes.string,
   region: PropTypes.string,
-  previousSummoners: PropTypes.array,
   spellImages: PropTypes.object,
   runeImages: PropTypes.object,
 };

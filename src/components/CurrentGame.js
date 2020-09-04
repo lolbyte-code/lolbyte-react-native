@@ -19,14 +19,10 @@ const CurrentGame = (props) => {
   const currentGameData = props.route.params.currentGameData;
   const region = props.route.params.region;
   const currentSummoner = props.route.params.currentSummoner;
-  const previousSummoners = props.route.params.previousSummoners;
-  const previousPlusCurrentSummoners = [...previousSummoners];
-  previousPlusCurrentSummoners.unshift(currentSummoner);
 
   const goBackParams = {
     summonerName: currentSummoner.summonerName,
     region: currentSummoner.region,
-    previousSummoners: previousSummoners,
   };
 
   return (
@@ -40,7 +36,6 @@ const CurrentGame = (props) => {
               (summoner) => summoner.teamId === BLUE_TEAM,
             )}
             region={region}
-            previousSummoners={previousPlusCurrentSummoners}
           />
           <VersusSvg
             style={styles.versus}
@@ -52,7 +47,6 @@ const CurrentGame = (props) => {
               (summoner) => summoner.teamId === RED_TEAM,
             )}
             region={region}
-            previousSummoners={previousPlusCurrentSummoners}
           />
         </View>
       </View>

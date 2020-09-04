@@ -17,7 +17,7 @@ import React from 'react';
 import SearchNav from './common/SearchNav';
 import {addRecentSummoner} from '../data/SummonersActions';
 import {backgrounds} from '../Theme';
-import {pages} from '../Constants';
+import {pushSearch} from '../data/SearchActions';
 
 const PROFILE_SELECTED = 'profile';
 const MATCHES_SELECTED = 'matches';
@@ -114,21 +114,6 @@ const Results = (props) => {
     return <Loading />;
   }
 
-  const previousSummoners = props.route.params.previousSummoners
-    ? props.route.params.previousSummoners
-    : [];
-
-  const goBackPage = previousSummoners.length > 0 ? pages.results : pages.home;
-
-  const goBackParams =
-    previousSummoners.length > 0
-      ? {
-          summonerName: previousSummoners[0].summonerName,
-          region: previousSummoners[0].region,
-          previousSummoners: previousSummoners.slice(1),
-        }
-      : {};
-
   const currentSummoner = {
     summonerName: summonerData.data.summonerName,
     region: summonerData.data.region,
@@ -139,10 +124,7 @@ const Results = (props) => {
       <ScrollView indicatorStyle={props.indicatorStyle}>
         <SearchNav
           region={summonerData.data.region}
-          previousSummoners={previousSummoners}
           currentSummoner={currentSummoner}
-          goBackPage={goBackPage}
-          goBackParams={goBackParams}
         />
         <View style={styles.headers}>
           <Header
@@ -163,7 +145,6 @@ const Results = (props) => {
           inGameDataFetching={currentGameData.isFetching}
           currentGameData={currentGameData.data}
           championData={championData.data}
-          previousSummoners={previousSummoners}
           currentSummoner={currentSummoner}
         />
         <MatchesResults

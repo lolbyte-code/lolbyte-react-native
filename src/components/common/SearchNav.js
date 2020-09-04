@@ -5,6 +5,8 @@ import {
   View,
 } from 'react-native';
 import {colors, fonts} from '../../Theme';
+import {popSearch, pushSearch} from '../../data/SearchActions';
+import {useDispatch, useSelector} from 'react-redux';
 
 import BackSvg from '../../svg/back.svg';
 import HomeSvg from '../../svg/home.svg';
@@ -14,18 +16,19 @@ import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const SearchNav = (props) => {
+  const searches = useSelector((state) => state.searches);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
 
   const searchSummonerHandler = () => {
-    const previousSummoners = props.previousSummoners;
-    previousSummoners.unshift(props.currentSummoner);
-    navigation.navigate(pages.results, {
+    const summoner = {
       summonerName: summonerNameQuery,
       region: props.region,
-      previousSummoners: previousSummoners,
-    });
+    };
+    dispatch(pushSearch(summoner));
+    navigation.navigate(pages.results, summoner);
   };
 
   const goHomeHandler = () => {
@@ -35,9 +38,14 @@ const SearchNav = (props) => {
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback
-        onPress={() =>
-          navigation.navigate(props.goBackPage, props.goBackParams)
-        }>
+        onPress={() => {
+          dispatch(popSearch());
+          if (searches.length === 0) {
+            navigation.navigate(pages.home);
+          } else {
+            navigation.navigate(pages.results, searches[0]);
+          }
+        }}>
         <BackSvg width={props.backWidth} height={props.backHeight} />
       </TouchableWithoutFeedback>
       <TextInput
@@ -64,9 +72,6 @@ SearchNav.defaultProps = {
   placeholder: 'enter summoner name',
   placeholderTextColor: colors.lightGrey,
   autoCorrect: false,
-  goBackPage: '',
-  goBackParams: {},
-  previousSummoners: [],
   currentSummoner: {},
 };
 
@@ -79,9 +84,6 @@ SearchNav.propTypes = {
   placeholder: PropTypes.string,
   autoCorrect: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
-  goBackPage: PropTypes.string,
-  goBackParams: PropTypes.object,
-  previousSummoners: PropTypes.array,
   currentSummoner: PropTypes.object,
 };
 

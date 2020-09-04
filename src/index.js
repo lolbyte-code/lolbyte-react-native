@@ -17,6 +17,7 @@ const LolByteApp = () => {
         recentSummoners: [],
         favoriteSummoners: [],
       },
+      searches: [],
       api: {
         summonerData: {
           isFetching: true,

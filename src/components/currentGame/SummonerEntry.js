@@ -13,17 +13,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {getChampionIcon} from '../../api/Url';
 import {pages} from '../../Constants';
+import {pushSearch} from '../../data/SearchActions';
+import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const SummonerEntry = (props) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const navigateToProfileHandler = () => {
-    navigation.navigate(pages.results, {
+    const summoner = {
       summonerName: props.summonerName,
       region: props.summonerRegion,
-      previousSummoners: props.previousSummoners,
-    });
+    };
+    dispatch(pushSearch(summoner));
+    navigation.navigate(pages.results, summoner);
   };
 
   return (
@@ -63,7 +67,6 @@ SummonerEntry.defaultProps = {
   summonerRank: '',
   summonerTeamId: 100,
   selectedSummoner: false,
-  previousSummoners: [],
 };
 
 SummonerEntry.propTypes = {
@@ -73,7 +76,6 @@ SummonerEntry.propTypes = {
   summonerRank: PropTypes.string,
   summonerTeamId: PropTypes.number,
   selectedSummoner: PropTypes.bool,
-  previousSummoners: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

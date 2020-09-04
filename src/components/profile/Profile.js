@@ -24,7 +24,6 @@ const Profile = (props) => {
           props.currentGameData.summoners.length > 0
         }
         currentGameData={props.currentGameData}
-        previousSummoners={props.previousSummoners}
         currentSummoner={props.currentSummoner}
       />
       <PlayerStatsHeader
@@ -56,7 +55,6 @@ Profile.defaultProps = {
   rankedData: [],
   currentGameData: {},
   championData: [],
-  previousSummoners: [],
   currentSummoner: {},
 };
 
@@ -67,7 +65,6 @@ Profile.propTypes = {
   rankedData: PropTypes.array,
   currentGameData: PropTypes.object,
   championData: PropTypes.array,
-  previousSummoners: PropTypes.array,
   currentSummoner: PropTypes.object,
 };
 

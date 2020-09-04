@@ -8,10 +8,13 @@ import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
 import {backgrounds} from '../Theme';
 import {pages} from '../Constants';
+import {pushSearch} from '../data/SearchActions';
+import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = (props) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
   const [regionQuery, setRegionQuery] = React.useState('na');
@@ -24,10 +27,12 @@ const Home = (props) => {
     setSummonerNameQuery(summonerName);
   };
   const searchSummonerHandler = () => {
-    navigation.navigate(pages.results, {
+    const summoner = {
       summonerName: summonerNameQuery,
       region: regionQuery,
-    });
+    };
+    dispatch(pushSearch(summoner));
+    navigation.navigate(pages.results, summoner);
   };
 
   return (
