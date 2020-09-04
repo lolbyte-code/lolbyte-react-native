@@ -14,8 +14,8 @@ const RecentMatchesEntry = (props) => {
         }}
         style={props.win ? styles.championImageWin : styles.championImageLoss}
       />
-      <Text style={styles.win}>{props.win ? 'W' : 'L'}</Text>
       <Text style={styles.kda}>{props.kda}</Text>
+      <Text style={styles.win}>{props.win ? 'W' : 'L'}</Text>
     </View>
   );
 };
@@ -35,32 +35,28 @@ RecentMatchesEntry.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-    flex: 1,
   },
   championImageWin: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 66,
+    height: 66,
+    borderRadius: 33,
     borderWidth: 2,
     borderColor: colors.blue,
   },
   championImageLoss: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 66,
+    height: 66,
+    borderRadius: 33,
     borderWidth: 2,
     borderColor: colors.red,
   },
   win: {
     color: colors.white,
-    top: -20,
+    top: -37,
     fontFamily: fonts.regular,
   },
   kda: {
     color: colors.white,
-    top: -15,
     fontFamily: fonts.regular,
   },
 });

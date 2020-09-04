@@ -6,34 +6,31 @@ import RecentMatchesEntry from './RecentMatchesEntry';
 
 const RecentMatches = (props) => {
   var i = 0;
-  const RecentMatchEntries = props.matches
+  const RecentMatchEntries = props.recentMatches
     .slice(0, 5)
     .map((entry) => (
       <RecentMatchesEntry
-        key={`recentMatchEntry${i++}`}
+        key={`recentMatchEntry_${i++}`}
         championId={entry.championId}
         win={entry.win}
         kda={entry.kda}
       />
     ));
-  return <View style={styles.entries}>{RecentMatchEntries}</View>;
+  return <View style={styles.recentMatches}>{RecentMatchEntries}</View>;
 };
 
 RecentMatches.defaultProps = {
-  matches: [],
+  recentMatches: [],
 };
 
 RecentMatches.propTypes = {
-  matches: PropTypes.array,
+  recentMatches: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
-  entries: {
+  recentMatches: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 7,
-    marginLeft: 5,
-    marginRight: 5,
+    justifyContent: 'space-evenly',
   },
 });
 

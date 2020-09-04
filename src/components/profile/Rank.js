@@ -12,7 +12,7 @@ const Rank = (props) => {
 };
 
 Rank.defaultProps = {
-  tier: 'unranked',
+  tier: '',
   images: {
     unranked: {
       uri: require('../../img/ranks/unranked.png'),

@@ -44,7 +44,6 @@ InGameIndicator.propTypes = {
 const styles = StyleSheet.create({
   show: {
     alignItems: 'center',
-    marginTop: 10,
   },
   hide: {
     display: 'none',

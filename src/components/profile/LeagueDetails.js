@@ -35,7 +35,6 @@ LeagueDetails.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 15,
   },
   queue: {
     color: colors.white,

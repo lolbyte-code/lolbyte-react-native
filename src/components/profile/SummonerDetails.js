@@ -12,23 +12,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const SummonerDetails = (props) => {
-  const [selected, setSelected] = React.useState(false);
+  const [favorited, setFavorited] = React.useState(false);
   const favoriteSummoners = useSelector(
     (state) => state.summoners.favoriteSummoners,
   );
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const favorited =
+    const isFavorited =
       favoriteSummoners &&
       favoriteSummoners.some(
         (summoner) => summoner.summonerName === props.summonerName,
       );
-    setSelected(favorited);
+    setFavorited(isFavorited);
   }, [props.summonerName, favoriteSummoners]);
 
   const pressFavoriteHandler = () => {
-    if (selected) {
+    if (favorited) {
       dispatch(removeFavoriteSummoner(props.summonerName));
     } else {
       dispatch(
@@ -46,7 +46,7 @@ const SummonerDetails = (props) => {
       <View style={styles.summonerDetails}>
         <Text style={styles.summonerName}>{props.summonerName}</Text>
         <TouchableWithoutFeedback onPress={pressFavoriteHandler}>
-          {selected ? (
+          {favorited ? (
             <FavoriteSelectedSvg
               height={props.favoriteSvgHeight}
               width={props.favoriteSvgWidth}

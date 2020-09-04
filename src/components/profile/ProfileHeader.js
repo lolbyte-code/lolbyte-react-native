@@ -20,13 +20,15 @@ const ProfileHeader = (props) => {
   const RankEntries = props.rankedData.map((entry) => (
     <View style={styles.rankEntryContainer} key={`leagueDetail_${i++}`}>
       <Rank tier={entry.tier} />
-      <LeagueDetails
-        queue={entry.rankQueueType}
-        rank={entry.rank}
-        points={entry.leagueProgress}
-        score={entry.mmr}
-        wins={entry.rankedWL}
-      />
+      <View style={styles.leagueDetailsContainer}>
+        <LeagueDetails
+          queue={entry.rankQueueType}
+          rank={entry.rank}
+          points={entry.leagueProgress}
+          score={entry.mmr}
+          wins={entry.rankedWL}
+        />
+      </View>
     </View>
   ));
 
@@ -38,12 +40,16 @@ const ProfileHeader = (props) => {
         summonerIcon={props.summonerIcon}
         summonerRegion={props.summonerRegion}
       />
-      <InGameIndicator
-        inGame={props.inGame}
-        currentGameData={props.currentGameData}
-        summonerRegion={props.summonerRegion}
-      />
-      <RecentMatches matches={props.recentMatches} />
+      <View style={styles.inGameIndicatorContainer}>
+        <InGameIndicator
+          inGame={props.inGame}
+          currentGameData={props.currentGameData}
+          summonerRegion={props.summonerRegion}
+        />
+      </View>
+      <View style={styles.recentMatchesContainer}>
+        <RecentMatches recentMatches={props.recentMatches} />
+      </View>
       <View>
         <ScrollView
           horizontal={true}
@@ -86,8 +92,17 @@ ProfileHeader.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  inGameIndicatorContainer: {
+    marginTop: 10,
+  },
+  recentMatchesContainer: {
+    marginTop: 10,
+  },
   rankEntryContainer: {
     width: Dimensions.get('window').width,
+  },
+  leagueDetailsContainer: {
+    marginTop: 15,
   },
   scrollDotsStyle: {
     marginTop: 5,
