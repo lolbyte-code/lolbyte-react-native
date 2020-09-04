@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   summonerEntries: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    flexWrap: 'wrap',
   },
 });
 

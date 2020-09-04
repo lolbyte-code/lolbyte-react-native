@@ -81,7 +81,7 @@ SummonerEntry.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    margin: 4,
+    margin: 2,
   },
   blueChampionIcon: {
     width: 66,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   summonerRank: {
     color: colors.white,
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: fonts.regular,
   },
 });
