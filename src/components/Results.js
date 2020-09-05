@@ -126,8 +126,8 @@ const Results = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
+      <SearchNav />
       <ScrollView indicatorStyle={props.indicatorStyle}>
-        <SearchNav />
         <View style={styles.headers}>
           <TogglePageHeader
             title={props.profileHeader}

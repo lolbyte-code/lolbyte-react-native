@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.regular,
   },
   closeButtonStyle: {
-    marginTop: 20,
+    marginTop: 45,
     marginLeft: 20,
   },
 });

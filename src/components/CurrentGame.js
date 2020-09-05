@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   closeButtonStyle: {
-    marginTop: 20,
+    marginTop: 45,
     marginLeft: 20,
   },
 });

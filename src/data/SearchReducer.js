@@ -1,4 +1,4 @@
-import {POP_SEARCH, PUSH_SEARCH} from './SearchActions';
+import {CLEAR_SEARCHES, POP_SEARCH, PUSH_SEARCH} from './SearchActions';
 
 const searchReducer = (state = [], action) => {
   switch (action.type) {
@@ -8,6 +8,8 @@ const searchReducer = (state = [], action) => {
     case POP_SEARCH:
       state.shift();
       return [...state];
+    case CLEAR_SEARCHES:
+      return [];
     default:
       return state;
   }

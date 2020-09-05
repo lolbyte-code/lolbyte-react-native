@@ -29,6 +29,13 @@ const MatchesFilter = (props) => {
 
   return (
     <View>
+      <TouchableHighlight
+        style={styles.tripleDotContainer}
+        onPress={() => {
+          setModalVisible(true);
+        }}>
+        <TripleDot />
+      </TouchableHighlight>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -52,12 +59,6 @@ const MatchesFilter = (props) => {
           </View>
         </View>
       </Modal>
-      <TouchableHighlight
-        onPress={() => {
-          setModalVisible(true);
-        }}>
-        <TripleDot />
-      </TouchableHighlight>
     </View>
   );
 };
@@ -86,6 +87,10 @@ MatchesFilter.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  tripleDotContainer: {
+    marginTop: -13,
+    marginBottom: 12,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',

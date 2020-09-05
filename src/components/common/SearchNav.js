@@ -4,8 +4,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import {clearSearches, popSearch, pushSearch} from '../../data/SearchActions';
 import {colors, fonts} from '../../Theme';
-import {popSearch, pushSearch} from '../../data/SearchActions';
 import {useDispatch, useSelector} from 'react-redux';
 
 import BackSvg from '../../svg/back.svg';
@@ -31,6 +31,7 @@ const SearchNav = (props) => {
   };
 
   const goHomeHandler = () => {
+    dispatch(clearSearches());
     navigation.navigate(pages.home);
   };
 
@@ -84,7 +85,7 @@ SearchNav.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 35,
+    paddingTop: 40,
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
