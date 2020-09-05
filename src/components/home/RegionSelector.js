@@ -15,7 +15,7 @@ const RegionSelector = (props) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => selectRegionHandler()}>
+    <TouchableWithoutFeedback onPress={selectRegionHandler}>
       <View style={styles.summonerRegionSelector}>
         <Text style={styles.summonerRegionText}>{props.selectedRegion} </Text>
         <RegionArrowSvg

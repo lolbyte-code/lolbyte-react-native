@@ -19,7 +19,7 @@ const InGameIndicator = (props) => {
 
   return (
     <View style={props.inGame ? styles.show : styles.hide}>
-      <TouchableWithoutFeedback onPress={() => inGameClickHandler()}>
+      <TouchableWithoutFeedback onPress={inGameClickHandler}>
         <InGameSvg width={props.width} height={props.height} />
       </TouchableWithoutFeedback>
     </View>

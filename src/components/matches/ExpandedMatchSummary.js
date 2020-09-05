@@ -1,12 +1,36 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {colors, fonts} from '../../Theme';
 import {getItemIcon, getSplash} from '../../api/Url';
+import {useDispatch, useSelector} from 'react-redux';
 
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {pages} from '../../Constants';
+import {pushSearch} from '../../data/SearchActions';
+import {useNavigation} from '@react-navigation/native';
 
 const ExpandedMatchSummary = (props) => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const searches = useSelector((state) => state.searches);
+
+  const navigateToProfileHandler = () => {
+    const summoner = {
+      summonerName: props.summonerName,
+      summonerRegion: searches[0].summonerRegion,
+    };
+    dispatch(pushSearch(summoner));
+    navigation.navigate(pages.results, summoner);
+  };
+
   var i = 0;
   const Items = props.items.map((item) => (
     <Image
@@ -91,11 +115,13 @@ const ExpandedMatchSummary = (props) => {
           </View>
         </View>
         <View style={styles.bottomContainer}>
-          <View style={styles.summonerContainer}>
-            <Text style={styles.summonerName}>{props.summonerName}</Text>
-            <Text style={styles.rank}>{props.rank}</Text>
-            <Text style={styles.championName}>{props.championName}</Text>
-          </View>
+          <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
+            <View style={styles.summonerContainer}>
+              <Text style={styles.summonerName}>{props.summonerName}</Text>
+              <Text style={styles.rank}>{props.rank}</Text>
+              <Text style={styles.championName}>{props.championName}</Text>
+            </View>
+          </TouchableWithoutFeedback>
           <View style={styles.rightContainer}>
             <Text style={styles.damageContribution}>
               {props.damageContribution}

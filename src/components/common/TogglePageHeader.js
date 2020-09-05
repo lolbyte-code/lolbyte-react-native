@@ -6,7 +6,7 @@ import React from 'react';
 
 const TogglePageHeader = (props) => {
   return (
-    <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
+    <TouchableWithoutFeedback onPress={props.onPressHandler}>
       <View style={props.selected ? styles.containerSelected : null}>
         <Text
           style={

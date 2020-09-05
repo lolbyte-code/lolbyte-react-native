@@ -9,7 +9,7 @@ import React from 'react';
 // TODO: combine with Header in commons?
 const FavoritesHeader = (props) => {
   return (
-    <TouchableWithoutFeedback onPress={() => props.onPressHandler()}>
+    <TouchableWithoutFeedback onPress={props.onPressHandler}>
       <View
         style={
           props.selected
