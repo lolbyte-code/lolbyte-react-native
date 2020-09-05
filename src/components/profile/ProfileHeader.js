@@ -1,5 +1,6 @@
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 
+import {DEFAULT_SCROLL_BAR} from '../../Constants';
 import InGameIndicator from './InGameIndicator';
 import LeagueDetails from './LeagueDetails';
 import PropTypes from 'prop-types';
@@ -53,6 +54,7 @@ const ProfileHeader = (props) => {
       </View>
       <View>
         <ScrollView
+          indicatorStyle={DEFAULT_SCROLL_BAR}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           onScroll={rankScrollHandler}

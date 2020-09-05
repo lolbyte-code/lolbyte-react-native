@@ -12,3 +12,4 @@ export const RED_TEAM = 200;
 
 export const DEFAULT_REGION = 'na';
 export const DEFAULT_GAME_TYPE = 0;
+export const DEFAULT_SCROLL_BAR = 'white';

@@ -1,4 +1,4 @@
-import {DEFAULT_REGION, pages} from '../Constants';
+import {DEFAULT_REGION, DEFAULT_SCROLL_BAR, pages} from '../Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
 import Logo from './home/Logo';
@@ -39,7 +39,7 @@ const Home = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <ScrollView>
+      <ScrollView indicatorStyle={DEFAULT_SCROLL_BAR}>
         <View style={styles.logo}>
           <Logo />
         </View>

@@ -1,3 +1,4 @@
+import {DEFAULT_GAME_TYPE, DEFAULT_SCROLL_BAR} from '../Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {
   fetchChampionData,
@@ -8,7 +9,6 @@ import {
 } from '../data/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {DEFAULT_GAME_TYPE} from '../Constants';
 import Loading from './common/Loading';
 import MatchesContainer from './matches/MatchesContainer';
 import Profile from './profile/Profile';
@@ -127,7 +127,7 @@ const Results = (props) => {
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <SearchNav />
-      <ScrollView indicatorStyle={props.indicatorStyle}>
+      <ScrollView indicatorStyle={DEFAULT_SCROLL_BAR}>
         <View style={styles.headers}>
           <TogglePageHeader
             title={props.profileHeader}

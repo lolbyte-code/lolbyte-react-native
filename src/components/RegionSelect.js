@@ -1,3 +1,4 @@
+import {DEFAULT_SCROLL_BAR, pages} from '../Constants';
 import {
   ImageBackground,
   ScrollView,
@@ -11,7 +12,6 @@ import {backgrounds, colors, fonts} from '../Theme';
 import CloseButton from './common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {pages} from '../Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const RegionSelect = (props) => {
@@ -30,7 +30,9 @@ const RegionSelect = (props) => {
   ));
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        indicatorStyle={DEFAULT_SCROLL_BAR}>
         <CloseButton
           goBackPage={pages.home}
           buttonStyle={styles.closeButtonStyle}
