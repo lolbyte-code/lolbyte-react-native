@@ -26,12 +26,14 @@ const summonerDataReducer = (
         isFetching: true,
         summonerName: action.summonerName,
         summonerRegion: action.summonerRegion,
+        gameType: action.gameType,
       };
     case RECEIVE_SUMMONER_DATA:
       return {
         isFetching: false,
         summonerName: action.summonerName,
         summonerRegion: action.summonerRegion,
+        gameType: action.gameType,
         data: action.data,
       };
     default:

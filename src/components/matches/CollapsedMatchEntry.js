@@ -1,14 +1,13 @@
-import {StyleSheet, View} from 'react-native';
-
 import CollapsedMatchSummary from './CollapsedMatchSummary';
 import MatchHeader from './MatchHeader';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {View} from 'react-native';
 
 const CollapsedMatchEntry = (props) => {
   return (
     <View>
-      <View style={styles.matchHeaderContainer}>
+      <View>
         <MatchHeader
           win={props.win}
           date={props.date}
@@ -66,11 +65,5 @@ CollapsedMatchEntry.propTypes = {
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
 };
-
-const styles = StyleSheet.create({
-  matchHeaderContainer: {
-    marginTop: 12,
-  },
-});
 
 export default CollapsedMatchEntry;

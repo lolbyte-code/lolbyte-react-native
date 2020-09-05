@@ -2,6 +2,7 @@ import {StyleSheet, View} from 'react-native';
 
 import Loading from '../common/Loading';
 import Matches from './Matches';
+import MatchesFilter from './MatchesFilter';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -11,10 +12,16 @@ const MatchesContainer = (props) => {
       {props.isFetching ? (
         <Loading loadingIndicatorSize={props.matchesLoadingIndicatorSize} />
       ) : (
-        <Matches
-          matchEntries={props.matchesData}
-          currentSummonerName={props.currentSummonerName}
-        />
+        <View>
+          <MatchesFilter
+            selectedGameType={props.selectedGameType}
+            setSelectedGameTypeHandler={props.setSelectedGameTypeHandler}
+          />
+          <Matches
+            matchEntries={props.matchesData}
+            currentSummonerName={props.currentSummonerName}
+          />
+        </View>
       )}
     </View>
   );
@@ -26,6 +33,8 @@ MatchesContainer.defaultProps = {
   matchesData: [],
   matchesLoadingIndicatorSize: 'small',
   currentSummonerName: '',
+  selectedGameType: 0,
+  setSelectedGameTypeHandler: () => {},
 };
 
 MatchesContainer.propTypes = {
@@ -34,6 +43,8 @@ MatchesContainer.propTypes = {
   matchesData: PropTypes.array,
   matchesLoadingIndicatorSize: PropTypes.string,
   currentSummonerName: PropTypes.string,
+  selectedGameType: PropTypes.number,
+  setSelectedGameTypeHandler: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

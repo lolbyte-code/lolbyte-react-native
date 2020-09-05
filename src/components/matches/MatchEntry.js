@@ -9,7 +9,7 @@ const MatchEntry = (props) => {
   const [collapsed, setCollapsed] = React.useState(true);
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={collapsed ? null : styles.hide}>
         <TouchableWithoutFeedback onPress={() => setCollapsed(false)}>
           <View>
@@ -244,6 +244,9 @@ MatchEntry.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 8,
+  },
   hide: {
     display: 'none',
   },

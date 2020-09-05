@@ -8,6 +8,7 @@ import {
 } from '../data/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
+import {DEFAULT_GAME_TYPE} from '../Constants';
 import Loading from './common/Loading';
 import MatchesContainer from './matches/MatchesContainer';
 import Profile from './profile/Profile';
@@ -30,13 +31,22 @@ const Results = (props) => {
   const matchesData = useSelector((state) => state.api.matchesData);
   const dispatch = useDispatch();
 
+  const [selectedGameType, setSelectedGameType] = React.useState(
+    DEFAULT_GAME_TYPE,
+  );
+
   const [selectedHeader, setSelectedHeader] = React.useState(PROFILE_SELECTED);
 
   const selectProfileHeader = () => {
     setSelectedHeader(PROFILE_SELECTED);
   };
+
   const selectMatchesHeader = () => {
     setSelectedHeader(MATCHES_SELECTED);
+  };
+
+  const setSelectedGameTypeHandler = (gameType) => {
+    setSelectedGameType(gameType);
   };
 
   React.useEffect(() => {
@@ -44,9 +54,10 @@ const Results = (props) => {
       fetchSummonerData(
         props.route.params.summonerName,
         props.route.params.summonerRegion,
+        selectedGameType,
       ),
     );
-  }, [props.route, dispatch]);
+  }, [props.route, selectedGameType, dispatch]);
 
   React.useEffect(() => {
     if (summonerData.isFetching) {
@@ -142,6 +153,8 @@ const Results = (props) => {
           isFetching={matchesData.isFetching}
           matchesData={matchesData.data}
           currentSummonerName={summonerData.data.summonerName}
+          selectedGameType={selectedGameType}
+          setSelectedGameTypeHandler={setSelectedGameTypeHandler}
         />
       </ScrollView>
     </ImageBackground>

@@ -11,7 +11,7 @@ import TeamHeader from './TeamHeader';
 const ExpandedMatchEntry = (props) => {
   return (
     <View>
-      <View style={styles.matchHeaderContainer}>
+      <View>
         <MatchHeader
           win={props.win}
           date={props.date}
@@ -163,9 +163,6 @@ ExpandedMatchEntry.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  matchHeaderContainer: {
-    marginTop: 12,
-  },
   banBars: {
     flexDirection: 'row',
     marginBottom: 3,

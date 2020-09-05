@@ -12,11 +12,11 @@ fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   })
   .catch((error) => console.error(error));
 
-export const getSummonerData = (summonerName, summonerRegion) =>
+export const getSummonerData = (summonerName, summonerRegion, gameType) =>
   `${lolbyteBaseUrl}/summoners/${summonerRegion}/name/${summonerName.replace(
     /\s/g,
     '',
-  )}?gameType=0`;
+  )}?gameType=${gameType}`;
 
 export const getRankedData = (summonerId, summonerRegion) =>
   `${lolbyteBaseUrl}/summoners/${summonerRegion}/summoner-id/${summonerId}/rank`;

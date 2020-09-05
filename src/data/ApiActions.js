@@ -21,19 +21,21 @@ export const RECEIVE_MATCHES_DATA = 'RECEIVE_MATCHES_DATA';
 
 const matchesCache = new SimpleCache();
 
-function requestSummonerData(summonerName, summonerRegion) {
+function requestSummonerData(summonerName, summonerRegion, gameType) {
   return {
     type: REQUEST_SUMMONER_DATA,
     summonerName,
     summonerRegion,
+    gameType,
   };
 }
 
-function receiveSummonerData(summonerName, summonerRegion, response) {
+function receiveSummonerData(summonerName, summonerRegion, gameType, response) {
   return {
     type: RECEIVE_SUMMONER_DATA,
     summonerName,
     summonerRegion,
+    gameType,
     data: response,
   };
 }
@@ -108,16 +110,18 @@ function receiveMatchesData(matchIds, summonerRegion, summonerId, response) {
   };
 }
 
-export function fetchSummonerData(summonerName, summonerRegion) {
+export function fetchSummonerData(summonerName, summonerRegion, gameType) {
   return (dispatch) => {
-    dispatch(requestSummonerData(summonerName, summonerRegion));
-    return fetch(getSummonerData(summonerName, summonerRegion), {
+    dispatch(requestSummonerData(summonerName, summonerRegion, gameType));
+    return fetch(getSummonerData(summonerName, summonerRegion, gameType), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveSummonerData(summonerName, summonerRegion, json));
+        dispatch(
+          receiveSummonerData(summonerName, summonerRegion, gameType, json),
+        );
       })
       .catch((error) => console.error(error));
   };
