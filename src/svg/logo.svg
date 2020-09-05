@@ -1,28 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380.05 399.93">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 374.04 402.38">
 	<defs>
 		<style>
-			.cls-1{font-size:61px;font-family:Roboto-Black, Roboto;font-weight:800;}.cls-1,.cls-4{fill:#f2f2f2;}.cls-2,.cls-3{font-family:Roboto-Light, Roboto;font-weight:300;}.cls-2{letter-spacing:-0.01em;}.cls-5{fill:#04070e;}.cls-6{fill:#22a8ce;}
+			.cls-1{font-size:61px;font-family:Roboto-Black, Roboto;font-weight:800;}.cls-1,.cls-4{fill:#f2f2f2;}.cls-2,.cls-3{font-family:Roboto-Light, Roboto;font-weight:300;}.cls-2{letter-spacing:-0.01em;}.cls-5{fill:#22a8ce;}
 		</style>
 	</defs>
 	<g id="Layer_2" data-name="Layer 2">
 		<g id="Layer_2-2" data-name="Layer 2">
-			<text class="cls-1" transform="translate(103.99 383.4)">
-				lol
-				<tspan class="cls-2" x="52.7" y="0">
-					byte
-				</tspan>
+			<text class="cls-1" transform="translate(95.92 385.85)">
+				lol<tspan class="cls-2" x="67.7" y="0">b</tspan><tspan class="cls-3" x="101.33" y="0">yte</tspan>
 			</text>
-			<polygon class="cls-4" points="159.2 55.26 77.3 12.13 136.5 90.25 159.2 55.26" />
-			<path class="cls-4" d="M217.36,99.51c17.57-20.54-34-7.7-93.29-36.64C61.27,32.22,37.1,0,37.1,0s-122.23,250.84,77,264c66.47,4.37,105.19-61.71,105.19-61.71Z" />
-			<polygon class="cls-4" points="220.85 55.26 302.75 12.13 243.55 90.25 220.85 55.26" />
-			<path class="cls-4" d="M162.69,99.51c-17.57-20.54,34-7.7,93.29-36.64,62.79-30.65,87-62.87,87-62.87s122.24,250.84-77,264c-66.47,4.37-105.19-61.71-105.19-61.71Z" />
-			<path class="cls-4" d="M148.81,204.6s-49.63,76.09-36.18,81.53,91.89-61.91,91.89-61.91Z" />
-			<path class="cls-4" d="M231.24,204.6s49.63,76.09,36.18,81.53-91.9-61.91-91.9-61.91Z" />
-			<path class="cls-4" d="M230.85,260.48,190,223.9,149.2,260.48c-3.64,2.55-4.17,9.11-1.26,12.09L190,313l42.09-40.45C235,269.59,234.49,263,230.85,260.48Z" />
-			<circle class="cls-5" cx="190.02" cy="156.15" r="119.82" />
-			<circle class="cls-4" cx="190.02" cy="156.15" r="102.65" />
-			<circle class="cls-6" cx="190.02" cy="156.15" r="68.67" />
-			<circle class="cls-4" cx="216.34" cy="132.09" r="14.45" />
+			<path class="cls-4" d="M336.45,0S315.5,27.88,262.12,56.62l33.59-44.33L232.42,45.62a121.41,121.41,0,0,1-6.78,227.72c15.49,10.77,29.29,18.62,34.27,16.6,4.36-1.76,2.17-10.85-2.8-22.39l1.28-.06C460.31,254.19,336.45,0,336.45,0Z" />
+			<path class="cls-4" d="M65.6,158.23a121.43,121.43,0,0,1,76-112.61L78.33,12.29l33.6,44.33C58.54,27.88,37.6,0,37.6,0S-86.27,254.19,115.65,267.49l1.29.06c-5,11.54-7.16,20.63-2.81,22.39,5,2,18.78-5.83,34.27-16.6A121.45,121.45,0,0,1,65.6,158.23Z" />
+			<path class="cls-4" d="M187,279.65a120.93,120.93,0,0,1-44.5-8.46,7.44,7.44,0,0,0,1.86,5l42.64,41,42.65-41a7.54,7.54,0,0,0,1.86-5A121,121,0,0,1,187,279.65Z" />
+			<circle class="cls-4" cx="187.02" cy="158.23" r="104.01" />
+			<circle class="cls-5" cx="187.02" cy="158.23" r="69.59" />
+			<circle class="cls-4" cx="213.68" cy="133.85" r="14.64" />
 		</g>
 	</g>
 </svg>

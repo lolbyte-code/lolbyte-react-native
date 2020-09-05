@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 70,
   },
   search: {
     alignItems: 'center',
