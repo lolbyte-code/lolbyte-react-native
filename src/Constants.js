@@ -3,6 +3,7 @@ export const pages = {
   selectRegion: 'Select Region',
   results: 'Results',
   currentGame: 'Current Game',
+  notFound: 'Not Found',
 };
 
 export const SUMMONERS_STORAGE = '@summoners';

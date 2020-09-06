@@ -50,14 +50,18 @@ const ProfileHeader = (props) => {
         />
       </View>
       <View style={styles.recentMatchesContainer}>
-        <RecentMatches recentMatches={props.recentMatches} />
+        <RecentMatches
+          recentMatches={props.recentMatches}
+          selectMatchesHeader={props.selectMatchesHeader}
+        />
       </View>
-      <View>
+      <View style={styles.rankEntryContainer}>
         <ScrollView
           indicatorStyle={DEFAULT_SCROLL_BAR}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           onScroll={rankScrollHandler}
+          scrollEventThrottle={props.scrollEventThrottle}
           pagingEnabled>
           {RankEntries}
         </ScrollView>
@@ -74,6 +78,7 @@ const ProfileHeader = (props) => {
 
 ProfileHeader.defaultProps = {
   rankedData: [],
+  scrollEventThrottle: 0,
   summonerName: '',
   summonerLevel: 0,
   summonerIcon: '',
@@ -81,10 +86,12 @@ ProfileHeader.defaultProps = {
   recentMatches: [],
   inGame: false,
   currentGameData: {},
+  selectMatchesHeader: () => {},
 };
 
 ProfileHeader.propTypes = {
   rankedData: PropTypes.array,
+  scrollEventThrottle: PropTypes.number,
   summonerName: PropTypes.string,
   summonerLevel: PropTypes.number,
   summonerIcon: PropTypes.string,
@@ -92,6 +99,7 @@ ProfileHeader.propTypes = {
   recentMatches: PropTypes.array,
   inGame: PropTypes.bool,
   currentGameData: PropTypes.object,
+  selectMatchesHeader: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

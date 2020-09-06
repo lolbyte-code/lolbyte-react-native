@@ -1,4 +1,4 @@
-import {DEFAULT_GAME_TYPE, DEFAULT_SCROLL_BAR} from '../Constants';
+import {DEFAULT_GAME_TYPE, DEFAULT_SCROLL_BAR, pages} from '../Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {
   fetchChampionData,
@@ -18,12 +18,14 @@ import SearchNav from './common/SearchNav';
 import TogglePageHeader from './common/TogglePageHeader';
 import {addRecentSummoner} from '../data/SummonersActions';
 import {backgrounds} from '../Theme';
+import {useNavigation} from '@react-navigation/native';
 
 const PROFILE_SELECTED = 'profile';
 const MATCHES_SELECTED = 'matches';
 const MATCHES_LIMIT = 6;
 
 const Results = (props) => {
+  const navigation = useNavigation();
   const summonerData = useSelector((state) => state.api.summonerData);
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
@@ -62,6 +64,14 @@ const Results = (props) => {
   React.useEffect(() => {
     if (summonerData.isFetching) {
       return;
+    } else if (summonerData.data.summonerLevel === 0) {
+      navigation.navigate(pages.notFound);
+    }
+  }, [summonerData, navigation]);
+
+  React.useEffect(() => {
+    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
+      return;
     }
     dispatch(
       fetchRankedData(summonerData.data.summonerId, summonerData.data.region),
@@ -69,7 +79,7 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching) {
+    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
       return;
     }
     dispatch(
@@ -78,7 +88,7 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching) {
+    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
       return;
     }
     dispatch(
@@ -90,7 +100,7 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching) {
+    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
       return;
     }
     const matchIds = summonerData.data.recentGames.map((game) => game.matchId);
@@ -104,7 +114,7 @@ const Results = (props) => {
   }, [summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching) {
+    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
       return;
     }
     dispatch(
@@ -147,6 +157,7 @@ const Results = (props) => {
           inGameDataFetching={currentGameData.isFetching}
           currentGameData={currentGameData.data}
           championData={championData.data}
+          selectMatchesHeader={selectMatchesHeader}
         />
         <MatchesContainer
           visible={selectedHeader === MATCHES_SELECTED}

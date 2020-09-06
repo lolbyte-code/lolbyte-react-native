@@ -7,6 +7,7 @@ import {
 import CurrentGame from './components/CurrentGame';
 import Home from './components/Home';
 import {NavigationContainer} from '@react-navigation/native';
+import NotFound from './components/NotFound';
 import React from 'react';
 import RegionSelect from './components/RegionSelect';
 import Results from './components/Results';
@@ -54,6 +55,11 @@ const App = () => {
         <Stack.Screen
           name={pages.currentGame}
           component={CurrentGame}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={pages.notFound}
+          component={NotFound}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

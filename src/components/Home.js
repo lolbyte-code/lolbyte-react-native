@@ -25,10 +25,17 @@ const Home = (props) => {
     setSummonerRegionQuery(props.route.params.summonerRegion);
   }, [props.route.params.summonerRegion]);
 
+  React.useEffect(() => {
+    setSummonerNameQuery(props.route.params.summonerName);
+  }, [props.route.params]);
+
   const changeSummonerHandler = (summonerName) => {
     setSummonerNameQuery(summonerName);
   };
   const searchSummonerHandler = () => {
+    if (summonerNameQuery === '') {
+      return;
+    }
     const summoner = {
       summonerName: summonerNameQuery,
       summonerRegion: summonerRegionQuery,
@@ -47,6 +54,7 @@ const Home = (props) => {
           <SummonerSearch
             onChangeTextHandler={changeSummonerHandler}
             onSubmitEditingHandler={searchSummonerHandler}
+            value={summonerNameQuery}
           />
           <View style={styles.regionContainer}>
             <RegionSelector

@@ -110,6 +110,12 @@ function receiveMatchesData(matchIds, summonerRegion, summonerId, response) {
   };
 }
 
+export function resetSummonerData() {
+  return (dispatch) => {
+    dispatch(requestSummonerData('', '', 0));
+  };
+}
+
 export function fetchSummonerData(summonerName, summonerRegion, gameType) {
   return (dispatch) => {
     dispatch(requestSummonerData(summonerName, summonerRegion, gameType));

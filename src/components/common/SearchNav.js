@@ -22,6 +22,9 @@ const SearchNav = (props) => {
   const [summonerNameQuery, setSummonerNameQuery] = React.useState('');
 
   const searchSummonerHandler = () => {
+    if (summonerNameQuery === '') {
+      return;
+    }
     const summoner = {
       summonerName: summonerNameQuery,
       summonerRegion: searches[0].summonerRegion,
@@ -32,7 +35,7 @@ const SearchNav = (props) => {
 
   const goHomeHandler = () => {
     dispatch(clearSearches());
-    navigation.navigate(pages.home);
+    navigation.navigate(pages.home, {summonerName: ''});
   };
 
   return (
@@ -41,7 +44,7 @@ const SearchNav = (props) => {
         onPress={() => {
           dispatch(popSearch());
           if (searches.length === 0) {
-            navigation.navigate(pages.home);
+            navigation.navigate(pages.home, {summonerName: ''});
           } else {
             navigation.navigate(pages.results, searches[0]);
           }
@@ -85,7 +88,7 @@ SearchNav.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 45,
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',

@@ -14,12 +14,14 @@ const SummonerSearch = (props) => {
       autoCorrect={props.autoCorrect}
       onChangeText={(value) => props.onChangeTextHandler(value)}
       onSubmitEditing={() => props.onSubmitEditingHandler()}
+      value={props.value}
     />
   );
 };
 
 SummonerSearch.defaultProps = {
   placeholder: 'enter summoner name',
+  value: '',
   placeholderTextColor: colors.lightGrey,
   clearButtonMode: 'always',
   autoCorrect: false,
@@ -29,6 +31,7 @@ SummonerSearch.defaultProps = {
 
 SummonerSearch.propTypes = {
   placeholder: PropTypes.string,
+  value: PropTypes.string,
   placeholderTextColor: PropTypes.string,
   clearButtonMode: PropTypes.string,
   autoCorrect: PropTypes.bool,

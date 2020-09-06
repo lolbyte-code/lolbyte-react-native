@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -16,15 +16,21 @@ const RecentMatches = (props) => {
         kda={entry.kda}
       />
     ));
-  return <View style={styles.recentMatches}>{RecentMatchEntries}</View>;
+  return (
+    <TouchableWithoutFeedback onPress={props.selectMatchesHeader}>
+      <View style={styles.recentMatches}>{RecentMatchEntries}</View>
+    </TouchableWithoutFeedback>
+  );
 };
 
 RecentMatches.defaultProps = {
   recentMatches: [],
+  selectMatchesHeader: () => {},
 };
 
 RecentMatches.propTypes = {
   recentMatches: PropTypes.array,
+  selectMatchesHeader: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

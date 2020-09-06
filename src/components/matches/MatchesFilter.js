@@ -29,13 +29,13 @@ const MatchesFilter = (props) => {
 
   return (
     <View>
-      <TouchableHighlight
-        style={styles.tripleDotContainer}
-        onPress={() => {
-          setModalVisible(true);
-        }}>
-        <TripleDot />
-      </TouchableHighlight>
+      <View style={styles.tripleDotContainer}>
+        <TripleDot
+          onPress={() => {
+            setModalVisible(true);
+          }}
+        />
+      </View>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -45,6 +45,7 @@ const MatchesFilter = (props) => {
               box={true}
               initial={getIndex(props.selectedGameType)}
               textStyle={styles.radioButtonText}
+              activeColor={colors.blue}
             />
             <View style={styles.closeButtonContainer}>
               <TouchableHighlight
@@ -88,8 +89,8 @@ MatchesFilter.propTypes = {
 
 const styles = StyleSheet.create({
   tripleDotContainer: {
-    marginTop: -13,
-    marginBottom: 12,
+    alignItems: 'flex-end',
+    marginRight: 5,
   },
   centeredView: {
     flex: 1,

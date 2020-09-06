@@ -20,6 +20,7 @@ const Profile = (props) => {
         currentGameData={props.currentGameData}
         recentMatches={props.summonerData.recentGames}
         rankedData={props.rankedData}
+        selectMatchesHeader={props.selectMatchesHeader}
       />
       <Stats
         playerStatsData={props.summonerData.playerStats}
@@ -36,6 +37,7 @@ Profile.defaultProps = {
   currentGameData: {},
   rankedData: [],
   championData: [],
+  selectMatchesHeader: () => {},
 };
 
 Profile.propTypes = {
@@ -45,6 +47,7 @@ Profile.propTypes = {
   currentGameData: PropTypes.object,
   rankedData: PropTypes.array,
   championData: PropTypes.array,
+  selectMatchesHeader: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

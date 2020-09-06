@@ -66,7 +66,7 @@ SummonerEntry.propTypes = {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginBottom: 5,
+    margin: 5,
   },
   summonerIcon: {
     width: 80,
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     borderWidth: 2,
     borderColor: colors.lightGrey,
+    marginBottom: 5,
   },
   summonerName: {
     color: colors.blue,
