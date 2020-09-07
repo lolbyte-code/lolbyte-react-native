@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from 'LolByte/src/Theme';
+import {colors, fonts} from '@app/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import TopChampionsEntry from 'LolByte/src/components/stats/TopChampionsEntry';
+import TopChampionsEntry from '@app/components/stats/TopChampionsEntry';
 
 const TopChampions = (props) => {
   var i = 0;

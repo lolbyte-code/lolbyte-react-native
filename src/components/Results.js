@@ -2,7 +2,7 @@ import {
   DEFAULT_GAME_TYPE,
   DEFAULT_SCROLL_BAR,
   pages,
-} from 'LolByte/src/Constants';
+} from '@app/Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {
   fetchChampionData,
@@ -10,18 +10,18 @@ import {
   fetchMatchesData,
   fetchRankedData,
   fetchSummonerData,
-} from 'LolByte/src/data/actions/ApiActions';
+} from '@app/data/actions/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Loading from 'LolByte/src/components/common/Loading';
-import MatchesContainer from 'LolByte/src/components/matches/MatchesContainer';
-import Profile from 'LolByte/src/components/profile/Profile';
+import Loading from '@app/components/common/Loading';
+import MatchesContainer from '@app/components/matches/MatchesContainer';
+import Profile from '@app/components/profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SearchNav from 'LolByte/src/components/common/SearchNav';
-import TogglePageHeader from 'LolByte/src/components/common/TogglePageHeader';
-import {addRecentSummoner} from 'LolByte/src/data/actions/SummonersActions';
-import {backgrounds} from 'LolByte/src/Theme';
+import SearchNav from '@app/components/common/SearchNav';
+import TogglePageHeader from '@app/components/common/TogglePageHeader';
+import {addRecentSummoner} from '@app/data/actions/SummonersActions';
+import {backgrounds} from '@app/Theme';
 import {useNavigation} from '@react-navigation/native';
 
 const PROFILE_SELECTED = 'profile';

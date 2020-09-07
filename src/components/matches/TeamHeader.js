@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from 'LolByte/src/Theme';
+import {colors, fonts} from '@app/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -28,13 +28,13 @@ TeamHeader.defaultProps = {
   dragons: 0,
   barons: 0,
   towerImage: {
-    uri: require('LolByte/src/assets/img//objectives/tower.png'),
+    uri: require('@app/assets/img//objectives/tower.png'),
   },
   dragonImage: {
-    uri: require('LolByte/src/assets/img//objectives/dragon.png'),
+    uri: require('@app/assets/img//objectives/dragon.png'),
   },
   baronImage: {
-    uri: require('LolByte/src/assets/img//objectives/baron.png'),
+    uri: require('@app/assets/img//objectives/baron.png'),
   },
 };
 

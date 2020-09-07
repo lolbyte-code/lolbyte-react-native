@@ -1,5 +1,5 @@
-import CollapsedMatchSummary from 'LolByte/src/components/matches/CollapsedMatchSummary';
-import MatchHeader from 'LolByte/src/components/matches/MatchHeader';
+import CollapsedMatchSummary from '@app/components/matches/CollapsedMatchSummary';
+import MatchHeader from '@app/components/matches/MatchHeader';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {View} from 'react-native';

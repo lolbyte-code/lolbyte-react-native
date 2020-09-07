@@ -1,4 +1,4 @@
-import {BLUE_TEAM, RED_TEAM} from 'LolByte/src/Constants';
+import {BLUE_TEAM, RED_TEAM} from '@app/Constants';
 import {
   Dimensions,
   ImageBackground,
@@ -6,14 +6,14 @@ import {
   Text,
   View,
 } from 'react-native';
-import {backgrounds, colors, fonts} from 'LolByte/src/Theme';
+import {backgrounds, colors, fonts} from '@app/Theme';
 
-import CloseButton from 'LolByte/src/components/common/ClosePageButton';
+import CloseButton from '@app/components/common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Summoners from 'LolByte/src/components/currentGame/Summoners';
-import VersusSvg from 'LolByte/src/assets/svg/versus.svg';
-import {pages} from 'LolByte/src/Constants';
+import Summoners from '@app/components/currentGame/Summoners';
+import VersusSvg from '@app/assets/svg/versus.svg';
+import {pages} from '@app/Constants';
 
 const CurrentGame = (props) => {
   const currentGameData = props.route.params.currentGameData;

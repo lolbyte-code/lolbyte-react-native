@@ -1,9 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 
-import MatchEntry from 'LolByte/src/components/matches/MatchEntry';
+import MatchEntry from '@app/components/matches/MatchEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {formatTimestamp} from 'LolByte/src/utils/Time';
+import {formatTimestamp} from '@app/utils/Time';
 
 const Matches = (props) => {
   const [currentSummonerName, setCurrentSummonerName] = React.useState({

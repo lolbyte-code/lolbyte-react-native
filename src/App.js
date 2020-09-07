@@ -1,18 +1,18 @@
-import {DEFAULT_REGION, SUMMONERS_STORAGE, pages} from 'LolByte/src/Constants';
+import {DEFAULT_REGION, SUMMONERS_STORAGE, pages} from '@app/Constants';
 import {
   bulkAddFavoriteSummoners,
   bulkAddRecentSummoners,
-} from 'LolByte/src/data/actions/SummonersActions';
+} from '@app/data/actions/SummonersActions';
 
-import CurrentGame from 'LolByte/src/components/CurrentGame';
-import Home from 'LolByte/src/components/Home';
+import CurrentGame from '@app/components/CurrentGame';
+import Home from '@app/components/Home';
 import {NavigationContainer} from '@react-navigation/native';
-import NotFound from 'LolByte/src/components/NotFound';
+import NotFound from '@app/components/NotFound';
 import React from 'react';
-import RegionSelect from 'LolByte/src/components/RegionSelect';
-import Results from 'LolByte/src/components/Results';
+import RegionSelect from '@app/components/RegionSelect';
+import Results from '@app/components/Results';
 import {createStackNavigator} from '@react-navigation/stack';
-import {getFromStorage} from 'LolByte/src/utils/Storage';
+import {getFromStorage} from '@app/utils/Storage';
 import {useDispatch} from 'react-redux';
 
 const Stack = createStackNavigator();

@@ -1,12 +1,12 @@
 import {StyleSheet, View} from 'react-native';
 
-import BannedChampsHeader from 'LolByte/src/components/matches/BannedChampsHeader';
-import ExpandedMatchSummary from 'LolByte/src/components/matches/ExpandedMatchSummary';
-import MatchHeader from 'LolByte/src/components/matches/MatchHeader';
-import Participants from 'LolByte/src/components/matches/Participants';
+import BannedChampsHeader from '@app/components/matches/BannedChampsHeader';
+import ExpandedMatchSummary from '@app/components/matches/ExpandedMatchSummary';
+import MatchHeader from '@app/components/matches/MatchHeader';
+import Participants from '@app/components/matches/Participants';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TeamHeader from 'LolByte/src/components/matches/TeamHeader';
+import TeamHeader from '@app/components/matches/TeamHeader';
 
 const ExpandedMatchEntry = (props) => {
   return (

@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 
-import BlueCircleSvg from 'LolByte/src/assets/svg/blueDot.svg';
+import BlueCircleSvg from '@app/assets/svg/blueDot.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';

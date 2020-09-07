@@ -1,9 +1,9 @@
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 
-import InGameSvg from 'LolByte/src/assets/svg/inGame.svg';
+import InGameSvg from '@app/assets/svg/inGame.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {pages} from 'LolByte/src/Constants';
+import {pages} from '@app/Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const InGameIndicator = (props) => {

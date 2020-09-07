@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import SummonerEntry from 'LolByte/src/components/currentGame/SummonerEntry';
+import SummonerEntry from '@app/components/currentGame/SummonerEntry';
 
 const Summoners = (props) => {
   var i = 0;

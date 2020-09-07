@@ -8,15 +8,15 @@ import {
   clearSearches,
   popSearch,
   pushSearch,
-} from 'LolByte/src/data/actions/SearchActions';
-import {colors, fonts} from 'LolByte/src/Theme';
+} from '@app/data/actions/SearchActions';
+import {colors, fonts} from '@app/Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
-import BackSvg from 'LolByte/src/assets/svg/back.svg';
-import HomeSvg from 'LolByte/src/assets/svg/home.svg';
+import BackSvg from '@app/assets/svg/back.svg';
+import HomeSvg from '@app/assets/svg/home.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {pages} from 'LolByte/src/Constants';
+import {pages} from '@app/Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const SearchNav = (props) => {

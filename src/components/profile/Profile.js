@@ -1,9 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 
-import ProfileHeader from 'LolByte/src/components/profile/ProfileHeader';
+import ProfileHeader from '@app/components/profile/ProfileHeader';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Stats from 'LolByte/src/components/stats/Stats';
+import Stats from '@app/components/stats/Stats';
 
 const Profile = (props) => {
   return (

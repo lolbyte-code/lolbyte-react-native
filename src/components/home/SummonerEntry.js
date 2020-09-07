@@ -5,14 +5,14 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {colors, fonts} from 'LolByte/src/Theme';
+import {colors, fonts} from '@app/Theme';
 
-import EllipsisText from 'LolByte/src/components/common/EllipsisText';
+import EllipsisText from '@app/components/common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {getProfileIcon} from 'LolByte/src/api/Url';
-import {pages} from 'LolByte/src/Constants';
-import {pushSearch} from 'LolByte/src/data/actions/SearchActions';
+import {getProfileIcon} from '@app/api/Url';
+import {pages} from '@app/Constants';
+import {pushSearch} from '@app/data/actions/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 

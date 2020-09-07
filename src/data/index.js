@@ -1,7 +1,7 @@
-import api from 'LolByte/src/data/reducers/ApiReducer';
+import api from '@app/data/reducers/ApiReducer';
 import {combineReducers} from 'redux';
-import searches from 'LolByte/src/data/reducers/SearchReducer';
-import summoners from 'LolByte/src/data/reducers/SummonersReducer';
+import searches from '@app/data/reducers/SearchReducer';
+import summoners from '@app/data/reducers/SummonersReducer';
 
 export default combineReducers({
   summoners,

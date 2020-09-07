@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from 'LolByte/src/Theme';
+import {colors, fonts} from '@app/Theme';
 
-import MostPlayedChampions from 'LolByte/src/components/stats/MostPlayedChampions';
-import PlayerStats from 'LolByte/src/components/stats/PlayerStats';
+import MostPlayedChampions from '@app/components/stats/MostPlayedChampions';
+import PlayerStats from '@app/components/stats/PlayerStats';
 import PropTypes from 'prop-types';
 import React from 'react';
-import TopChampions from 'LolByte/src/components/stats/TopChampions';
+import TopChampions from '@app/components/stats/TopChampions';
 
 const StatsSummary = (props) => {
   return (

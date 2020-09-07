@@ -1,29 +1,29 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from 'LolByte/src/Theme';
+import {colors, fonts} from '@app/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import Svg0 from 'LolByte/src/assets/svg/0.svg';
-import Svg10 from 'LolByte/src/assets/svg/10.svg';
-import Svg100 from 'LolByte/src/assets/svg/100.svg';
-import Svg15 from 'LolByte/src/assets/svg/15.svg';
-import Svg20 from 'LolByte/src/assets/svg/20.svg';
-import Svg25 from 'LolByte/src/assets/svg/25.svg';
-import Svg30 from 'LolByte/src/assets/svg/30.svg';
-import Svg35 from 'LolByte/src/assets/svg/35.svg';
-import Svg40 from 'LolByte/src/assets/svg/40.svg';
-import Svg45 from 'LolByte/src/assets/svg/45.svg';
-import Svg5 from 'LolByte/src/assets/svg/5.svg';
-import Svg50 from 'LolByte/src/assets/svg/50.svg';
-import Svg55 from 'LolByte/src/assets/svg/55.svg';
-import Svg60 from 'LolByte/src/assets/svg/60.svg';
-import Svg65 from 'LolByte/src/assets/svg/65.svg';
-import Svg70 from 'LolByte/src/assets/svg/70.svg';
-import Svg75 from 'LolByte/src/assets/svg/75.svg';
-import Svg80 from 'LolByte/src/assets/svg/80.svg';
-import Svg85 from 'LolByte/src/assets/svg/85.svg';
-import Svg90 from 'LolByte/src/assets/svg/90.svg';
-import Svg95 from 'LolByte/src/assets/svg/95.svg';
+import Svg0 from '@app/assets/svg/0.svg';
+import Svg10 from '@app/assets/svg/10.svg';
+import Svg100 from '@app/assets/svg/100.svg';
+import Svg15 from '@app/assets/svg/15.svg';
+import Svg20 from '@app/assets/svg/20.svg';
+import Svg25 from '@app/assets/svg/25.svg';
+import Svg30 from '@app/assets/svg/30.svg';
+import Svg35 from '@app/assets/svg/35.svg';
+import Svg40 from '@app/assets/svg/40.svg';
+import Svg45 from '@app/assets/svg/45.svg';
+import Svg5 from '@app/assets/svg/5.svg';
+import Svg50 from '@app/assets/svg/50.svg';
+import Svg55 from '@app/assets/svg/55.svg';
+import Svg60 from '@app/assets/svg/60.svg';
+import Svg65 from '@app/assets/svg/65.svg';
+import Svg70 from '@app/assets/svg/70.svg';
+import Svg75 from '@app/assets/svg/75.svg';
+import Svg80 from '@app/assets/svg/80.svg';
+import Svg85 from '@app/assets/svg/85.svg';
+import Svg90 from '@app/assets/svg/90.svg';
+import Svg95 from '@app/assets/svg/95.svg';
 
 const getPercentSvg = (percent, height, width) => {
   switch (percent) {

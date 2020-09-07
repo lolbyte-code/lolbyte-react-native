@@ -1,4 +1,4 @@
-import CloseButtonSvg from 'LolByte/src/assets/svg/closeButton.svg';
+import CloseButtonSvg from '@app/assets/svg/closeButton.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native';

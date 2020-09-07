@@ -1,14 +1,14 @@
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 
-import {DEFAULT_SCROLL_BAR} from 'LolByte/src/Constants';
-import InGameIndicator from 'LolByte/src/components/profile/InGameIndicator';
-import LeagueDetails from 'LolByte/src/components/profile/LeagueDetails';
+import {DEFAULT_SCROLL_BAR} from '@app/Constants';
+import InGameIndicator from '@app/components/profile/InGameIndicator';
+import LeagueDetails from '@app/components/profile/LeagueDetails';
 import PropTypes from 'prop-types';
-import Rank from 'LolByte/src/components/profile/Rank';
+import Rank from '@app/components/profile/Rank';
 import React from 'react';
-import RecentMatches from 'LolByte/src/components/profile/RecentMatches';
-import ScrollDots from 'LolByte/src/components/common/ScrollDots';
-import SummonerDetails from 'LolByte/src/components/profile/SummonerDetails';
+import RecentMatches from '@app/components/profile/RecentMatches';
+import ScrollDots from '@app/components/common/ScrollDots';
+import SummonerDetails from '@app/components/profile/SummonerDetails';
 
 const ProfileHeader = (props) => {
   const [currentRankPosition, setCurrentRankPosition] = React.useState(0);

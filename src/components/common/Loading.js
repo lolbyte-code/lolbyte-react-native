@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {backgrounds, colors} from 'LolByte/src/Theme';
+import {backgrounds, colors} from '@app/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';

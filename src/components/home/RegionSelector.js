@@ -1,10 +1,10 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {colors, fonts} from 'LolByte/src/Theme';
+import {colors, fonts} from '@app/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import RegionArrowSvg from 'LolByte/src/assets/svg/summonerRegionArrow.svg';
-import {pages} from 'LolByte/src/Constants';
+import RegionArrowSvg from '@app/assets/svg/summonerRegionArrow.svg';
+import {pages} from '@app/Constants';
 import {useNavigation} from '@react-navigation/native';
 
 const RegionSelector = (props) => {

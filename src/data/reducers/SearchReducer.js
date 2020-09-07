@@ -2,7 +2,7 @@ import {
   CLEAR_SEARCHES,
   POP_SEARCH,
   PUSH_SEARCH,
-} from 'LolByte/src/data/actions/SearchActions';
+} from '@app/data/actions/SearchActions';
 
 const searchReducer = (state = [], action) => {
   switch (action.type) {

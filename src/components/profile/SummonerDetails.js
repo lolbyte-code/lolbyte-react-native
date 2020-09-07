@@ -2,12 +2,12 @@ import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {
   addFavoriteSummoner,
   removeFavoriteSummoner,
-} from 'LolByte/src/data/actions/SummonersActions';
-import {colors, fonts} from 'LolByte/src/Theme';
+} from '@app/data/actions/SummonersActions';
+import {colors, fonts} from '@app/Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
-import FavoriteSelectedSvg from 'LolByte/src/assets/svg/favoriteSelected.svg';
-import FavoriteUnselectedSvg from 'LolByte/src/assets/svg/favoriteUnselected.svg';
+import FavoriteSelectedSvg from '@app/assets/svg/favoriteSelected.svg';
+import FavoriteUnselectedSvg from '@app/assets/svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 
