@@ -8,8 +8,8 @@ import {clearSearches, popSearch, pushSearch} from '../../data/SearchActions';
 import {colors, fonts} from '../../Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
-import BackSvg from '../../svg/back.svg';
-import HomeSvg from '../../svg/home.svg';
+import BackSvg from '../../assets/svg/back.svg';
+import HomeSvg from '../../assets/svg/home.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '../../Constants';

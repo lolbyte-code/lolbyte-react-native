@@ -3,27 +3,27 @@ import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import Svg0 from '../../svg/0.svg';
-import Svg10 from '../../svg/10.svg';
-import Svg100 from '../../svg/100.svg';
-import Svg15 from '../../svg/15.svg';
-import Svg20 from '../../svg/20.svg';
-import Svg25 from '../../svg/25.svg';
-import Svg30 from '../../svg/30.svg';
-import Svg35 from '../../svg/35.svg';
-import Svg40 from '../../svg/40.svg';
-import Svg45 from '../../svg/45.svg';
-import Svg5 from '../../svg/5.svg';
-import Svg50 from '../../svg/50.svg';
-import Svg55 from '../../svg/55.svg';
-import Svg60 from '../../svg/60.svg';
-import Svg65 from '../../svg/65.svg';
-import Svg70 from '../../svg/70.svg';
-import Svg75 from '../../svg/75.svg';
-import Svg80 from '../../svg/80.svg';
-import Svg85 from '../../svg/85.svg';
-import Svg90 from '../../svg/90.svg';
-import Svg95 from '../../svg/95.svg';
+import Svg0 from '../../assets/svg/0.svg';
+import Svg10 from '../../assets/svg/10.svg';
+import Svg100 from '../../assets/svg/100.svg';
+import Svg15 from '../../assets/svg/15.svg';
+import Svg20 from '../../assets/svg/20.svg';
+import Svg25 from '../../assets/svg/25.svg';
+import Svg30 from '../../assets/svg/30.svg';
+import Svg35 from '../../assets/svg/35.svg';
+import Svg40 from '../../assets/svg/40.svg';
+import Svg45 from '../../assets/svg/45.svg';
+import Svg5 from '../../assets/svg/5.svg';
+import Svg50 from '../../assets/svg/50.svg';
+import Svg55 from '../../assets/svg/55.svg';
+import Svg60 from '../../assets/svg/60.svg';
+import Svg65 from '../../assets/svg/65.svg';
+import Svg70 from '../../assets/svg/70.svg';
+import Svg75 from '../../assets/svg/75.svg';
+import Svg80 from '../../assets/svg/80.svg';
+import Svg85 from '../../assets/svg/85.svg';
+import Svg90 from '../../assets/svg/90.svg';
+import Svg95 from '../../assets/svg/95.svg';
 
 const getPercentSvg = (percent, height, width) => {
   switch (percent) {

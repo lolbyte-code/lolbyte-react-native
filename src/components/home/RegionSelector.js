@@ -3,7 +3,7 @@ import {colors, fonts} from '../../Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import RegionArrowSvg from '../../svg/summonerRegionArrow.svg';
+import RegionArrowSvg from '../../assets/svg/summonerRegionArrow.svg';
 import {pages} from '../../Constants';
 import {useNavigation} from '@react-navigation/native';
 

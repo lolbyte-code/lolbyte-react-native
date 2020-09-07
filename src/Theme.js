@@ -21,8 +21,8 @@ export const colors = {
 };
 
 export const backgrounds = {
-  main: require('./img/assets/background.png'),
-  summonerRegionSelect: require('./img/assets/summonerRegionBackground.png'),
+  main: require('./assets/img//backgrounds/background.png'),
+  summonerRegionSelect: require('./assets/img//backgrounds/summonerRegionBackground.png'),
 };
 
 export const fonts = {

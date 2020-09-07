@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '../../Theme';
 
-import CollapsedArrowSvg from '../../svg/summonerRegionArrow.svg';
-import ExpandedArrowSvg from '../../svg/expanded.svg';
+import CollapsedArrowSvg from '../../assets/svg/summonerRegionArrow.svg';
+import ExpandedArrowSvg from '../../assets/svg/expanded.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 

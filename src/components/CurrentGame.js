@@ -12,7 +12,7 @@ import CloseButton from './common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from './currentGame/Summoners';
-import VersusSvg from '../svg/versus.svg';
+import VersusSvg from '../assets/svg/versus.svg';
 import {pages} from '../Constants';
 
 const CurrentGame = (props) => {

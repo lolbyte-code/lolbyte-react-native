@@ -1,6 +1,6 @@
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 
-import InGameSvg from '../../svg/inGame.svg';
+import InGameSvg from '../../assets/svg/inGame.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '../../Constants';

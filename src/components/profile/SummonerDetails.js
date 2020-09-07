@@ -6,8 +6,8 @@ import {
 import {colors, fonts} from '../../Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
-import FavoriteSelectedSvg from '../../svg/favoriteSelected.svg';
-import FavoriteUnselectedSvg from '../../svg/favoriteUnselected.svg';
+import FavoriteSelectedSvg from '../../assets/svg/favoriteSelected.svg';
+import FavoriteUnselectedSvg from '../../assets/svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 
