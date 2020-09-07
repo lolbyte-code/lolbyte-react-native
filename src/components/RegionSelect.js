@@ -1,4 +1,4 @@
-import {DEFAULT_SCROLL_BAR, pages} from '../Constants';
+import {DEFAULT_SCROLL_BAR, pages} from 'LolByte/src/Constants';
 import {
   ImageBackground,
   ScrollView,
@@ -7,9 +7,9 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {backgrounds, colors, fonts} from '../Theme';
+import {backgrounds, colors, fonts} from 'LolByte/src/Theme';
 
-import CloseButton from './common/ClosePageButton';
+import CloseButton from 'LolByte/src/components/common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';

@@ -1,14 +1,14 @@
-import {DEFAULT_REGION, DEFAULT_SCROLL_BAR, pages} from '../Constants';
+import {DEFAULT_REGION, DEFAULT_SCROLL_BAR, pages} from 'LolByte/src/Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 
-import Logo from './home/Logo';
+import Logo from 'LolByte/src/components/home/Logo';
 import PropTypes from 'prop-types';
 import React from 'react';
-import RegionSelector from './home/RegionSelector';
-import SavedSearches from './home/SavedSearches';
-import SummonerSearch from './home/SummonerSearch';
-import {backgrounds} from '../Theme';
-import {pushSearch} from '../data/actions/SearchActions';
+import RegionSelector from 'LolByte/src/components/home/RegionSelector';
+import SavedSearches from 'LolByte/src/components/home/SavedSearches';
+import SummonerSearch from 'LolByte/src/components/home/SummonerSearch';
+import {backgrounds} from 'LolByte/src/Theme';
+import {pushSearch} from 'LolByte/src/data/actions/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 

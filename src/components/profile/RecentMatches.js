@@ -2,7 +2,7 @@ import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import RecentMatchesEntry from './RecentMatchesEntry';
+import RecentMatchesEntry from 'LolByte/src/components/profile/RecentMatchesEntry';
 
 const RecentMatches = (props) => {
   var i = 0;

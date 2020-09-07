@@ -1,6 +1,6 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from '../../Theme';
-import {getItemIcon, getSplash} from '../../api/Url';
+import {colors, fonts} from 'LolByte/src/Theme';
+import {getItemIcon, getSplash} from 'LolByte/src/api/Url';
 
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';

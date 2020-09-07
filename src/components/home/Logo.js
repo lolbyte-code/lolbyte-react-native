@@ -1,4 +1,4 @@
-import LogoSvg from '../../assets/svg/logo.svg';
+import LogoSvg from 'LolByte/src/assets/svg/logo.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 

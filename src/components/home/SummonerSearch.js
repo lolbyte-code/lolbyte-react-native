@@ -1,5 +1,5 @@
 import {StyleSheet, TextInput} from 'react-native';
-import {colors, fonts} from '../../Theme';
+import {colors, fonts} from 'LolByte/src/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';

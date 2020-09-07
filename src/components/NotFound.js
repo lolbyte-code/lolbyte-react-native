@@ -1,10 +1,10 @@
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {backgrounds, colors} from '../Theme';
+import {backgrounds, colors} from 'LolByte/src/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import SearchNav from './common/SearchNav';
-import {resetSummonerData} from '../data/actions/ApiActions';
+import SearchNav from 'LolByte/src/components/common/SearchNav';
+import {resetSummonerData} from 'LolByte/src/data/actions/ApiActions';
 import {useDispatch} from 'react-redux';
 
 const NotFound = (props) => {

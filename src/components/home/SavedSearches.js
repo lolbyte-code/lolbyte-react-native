@@ -1,11 +1,11 @@
 import {StyleSheet, View} from 'react-native';
 
-import FavoritesHeader from './FavoritesHeader';
+import FavoritesHeader from 'LolByte/src/components/home/FavoritesHeader';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Summoners from './Summoners';
-import TogglePageHeader from '../common/TogglePageHeader';
+import Summoners from 'LolByte/src/components/home/Summoners';
+import TogglePageHeader from 'LolByte/src/components/common/TogglePageHeader';
 import {useSelector} from 'react-redux';
 
 const FAVORITES_SELECTED = 'favorites';

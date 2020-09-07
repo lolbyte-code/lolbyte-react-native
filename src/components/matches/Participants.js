@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 
-import {BLUE_TEAM} from '../../Constants';
-import ParticipantEntry from './ParticipantEntry';
+import {BLUE_TEAM} from 'LolByte/src/Constants';
+import ParticipantEntry from 'LolByte/src/components/matches/ParticipantEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
 

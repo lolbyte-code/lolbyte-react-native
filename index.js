@@ -2,8 +2,8 @@
  * @format
  */
 
-import App from './src/index.js';
+import App from 'LolByte/src/index.js';
 import {AppRegistry} from 'react-native';
-import {name as appName} from './app.json';
+import {name as appName} from 'LolByte/app.json';
 
 AppRegistry.registerComponent(appName, () => App);

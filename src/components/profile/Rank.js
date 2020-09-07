@@ -15,34 +15,34 @@ Rank.defaultProps = {
   tier: '',
   images: {
     unranked: {
-      uri: require('../../assets/img//ranks/unranked.png'),
+      uri: require('LolByte/src/assets/img//ranks/unranked.png'),
     },
     iron: {
-      uri: require('../../assets/img//ranks/iron.png'),
+      uri: require('LolByte/src/assets/img//ranks/iron.png'),
     },
     bronze: {
-      uri: require('../../assets/img//ranks/bronze.png'),
+      uri: require('LolByte/src/assets/img//ranks/bronze.png'),
     },
     silver: {
-      uri: require('../../assets/img//ranks/silver.png'),
+      uri: require('LolByte/src/assets/img//ranks/silver.png'),
     },
     gold: {
-      uri: require('../../assets/img//ranks/gold.png'),
+      uri: require('LolByte/src/assets/img//ranks/gold.png'),
     },
     platinum: {
-      uri: require('../../assets/img//ranks/platinum.png'),
+      uri: require('LolByte/src/assets/img//ranks/platinum.png'),
     },
     diamond: {
-      uri: require('../../assets/img//ranks/diamond.png'),
+      uri: require('LolByte/src/assets/img//ranks/diamond.png'),
     },
     master: {
-      uri: require('../../assets/img//ranks/master.png'),
+      uri: require('LolByte/src/assets/img//ranks/master.png'),
     },
     grandmaster: {
-      uri: require('../../assets/img//ranks/grandmaster.png'),
+      uri: require('LolByte/src/assets/img//ranks/grandmaster.png'),
     },
     challenger: {
-      uri: require('../../assets/img//ranks/challenger.png'),
+      uri: require('LolByte/src/assets/img//ranks/challenger.png'),
     },
   },
 };

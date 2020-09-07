@@ -4,9 +4,9 @@ import {
   getMatchData,
   getRankedData,
   getSummonerData,
-} from '../../api/Url';
+} from 'LolByte/src/api/Url';
 
-import {SimpleCache} from '../../utils/Cache';
+import {SimpleCache} from 'LolByte/src/utils/Cache';
 
 export const REQUEST_SUMMONER_DATA = 'REQUEST_SUMMONER_DATA';
 export const RECEIVE_SUMMONER_DATA = 'RECEIVE_SUMMONER_DATA';

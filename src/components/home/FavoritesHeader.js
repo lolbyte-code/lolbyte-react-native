@@ -1,8 +1,8 @@
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {colors, fonts} from '../../Theme';
+import {colors, fonts} from 'LolByte/src/Theme';
 
-import FavoriteSelectedSvg from '../../assets/svg/favoriteSelected.svg';
-import FavoriteUnselectedSvg from '../../assets/svg/favoriteUnselected.svg';
+import FavoriteSelectedSvg from 'LolByte/src/assets/svg/favoriteSelected.svg';
+import FavoriteUnselectedSvg from 'LolByte/src/assets/svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 

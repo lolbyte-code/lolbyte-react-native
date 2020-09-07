@@ -5,15 +5,15 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {colors, fonts} from '../../Theme';
+import {colors, fonts} from 'LolByte/src/Theme';
 
-import {BLUE_TEAM} from '../../Constants';
-import EllipsisText from '../common/EllipsisText';
+import {BLUE_TEAM} from 'LolByte/src/Constants';
+import EllipsisText from 'LolByte/src/components/common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {getChampionIcon} from '../../api/Url';
-import {pages} from '../../Constants';
-import {pushSearch} from '../../data/actions/SearchActions';
+import {getChampionIcon} from 'LolByte/src/api/Url';
+import {pages} from 'LolByte/src/Constants';
+import {pushSearch} from 'LolByte/src/data/actions/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 

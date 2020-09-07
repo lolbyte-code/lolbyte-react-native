@@ -1,8 +1,8 @@
 import {StyleSheet, View} from 'react-native';
 
-import Loading from '../common/Loading';
-import Matches from './Matches';
-import MatchesFilter from './MatchesFilter';
+import Loading from 'LolByte/src/components/common/Loading';
+import Matches from 'LolByte/src/components/matches/Matches';
+import MatchesFilter from 'LolByte/src/components/matches/MatchesFilter';
 import PropTypes from 'prop-types';
 import React from 'react';
 

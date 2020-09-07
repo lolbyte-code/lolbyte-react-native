@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {colors, fonts} from '../../Theme';
+import {colors, fonts} from 'LolByte/src/Theme';
 
-import MostPlayedChampionsEntry from './MostPlayedChampionsEntry';
+import MostPlayedChampionsEntry from 'LolByte/src/components/stats/MostPlayedChampionsEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
 

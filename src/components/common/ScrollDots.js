@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 
-import BlueCircleSvg from '../../assets/svg/blueDot.svg';
-import GreyCircleSvg from '../../assets/svg/greyDot.svg';
+import BlueCircleSvg from 'LolByte/src/assets/svg/blueDot.svg';
+import GreyCircleSvg from 'LolByte/src/assets/svg/greyDot.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 

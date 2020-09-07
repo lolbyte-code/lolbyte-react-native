@@ -4,7 +4,7 @@ import {
   BULK_ADD_FAV,
   BULK_ADD_RECENT,
   REMOVE_FAV,
-} from '../actions/SummonersActions';
+} from 'LolByte/src/data/actions/SummonersActions';
 
 const MAX_CAPACITY = 100;
 

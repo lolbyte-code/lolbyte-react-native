@@ -21,8 +21,8 @@ export const colors = {
 };
 
 export const backgrounds = {
-  main: require('./assets/img//backgrounds/background.png'),
-  summonerRegionSelect: require('./assets/img//backgrounds/summonerRegionBackground.png'),
+  main: require('LolByte/src/assets/img//backgrounds/background.png'),
+  summonerRegionSelect: require('LolByte/src/assets/img//backgrounds/summonerRegionBackground.png'),
 };
 
 export const fonts = {

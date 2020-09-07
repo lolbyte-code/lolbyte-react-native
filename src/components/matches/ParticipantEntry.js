@@ -5,10 +5,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {colors, fonts} from '../../Theme';
-import {getChampionIcon, getItemIcon} from '../../api/Url';
+import {colors, fonts} from 'LolByte/src/Theme';
+import {getChampionIcon, getItemIcon} from 'LolByte/src/api/Url';
 
-import EllipsisText from '../common/EllipsisText';
+import EllipsisText from 'LolByte/src/components/common/EllipsisText';
 import PropTypes from 'prop-types';
 import React from 'react';
 

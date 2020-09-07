@@ -1,10 +1,10 @@
 import {Modal, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {colors, fonts} from '../../Theme';
+import {colors, fonts} from 'LolByte/src/Theme';
 
 import PropTypes from 'prop-types';
 import RadioButton from 'radio-buttons-react-native';
 import React from 'react';
-import TripleDot from '../common/TripleDot';
+import TripleDot from 'LolByte/src/components/common/TripleDot';
 
 const ALL_MATCHES = 0;
 const RANKED = 420;

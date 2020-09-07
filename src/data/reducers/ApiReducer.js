@@ -9,7 +9,7 @@ import {
   REQUEST_MATCHES_DATA,
   REQUEST_RANKED_DATA,
   REQUEST_SUMMONER_DATA,
-} from '../actions/ApiActions';
+} from 'LolByte/src/data/actions/ApiActions';
 
 import {combineReducers} from 'redux';
 
