@@ -37,6 +37,15 @@ const SearchNav = (props) => {
     navigation.navigate(pages.results, summoner);
   };
 
+  const goBackHandler = () => {
+    dispatch(popSearch());
+    if (searches.length === 0) {
+      navigation.navigate(pages.home, {summonerName: ''});
+    } else {
+      navigation.navigate(pages.results, searches[0]);
+    }
+  };
+
   const goHomeHandler = () => {
     dispatch(clearSearches());
     navigation.navigate(pages.home, {summonerName: ''});
@@ -44,16 +53,10 @@ const SearchNav = (props) => {
 
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          dispatch(popSearch());
-          if (searches.length === 0) {
-            navigation.navigate(pages.home, {summonerName: ''});
-          } else {
-            navigation.navigate(pages.results, searches[0]);
-          }
-        }}>
-        <BackSvg width={props.backWidth} height={props.backHeight} />
+      <TouchableWithoutFeedback onPress={goBackHandler}>
+        <View>
+          <BackSvg width={props.backWidth} height={props.backHeight} />
+        </View>
       </TouchableWithoutFeedback>
       <TextInput
         placeholder={props.placeholder}
