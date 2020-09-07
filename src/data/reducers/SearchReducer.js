@@ -1,4 +1,8 @@
-import {CLEAR_SEARCHES, POP_SEARCH, PUSH_SEARCH} from './SearchActions';
+import {
+  CLEAR_SEARCHES,
+  POP_SEARCH,
+  PUSH_SEARCH,
+} from '../actions/SearchActions';
 
 const searchReducer = (state = [], action) => {
   switch (action.type) {

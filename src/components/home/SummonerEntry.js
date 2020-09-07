@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {getProfileIcon} from '../../api/Url';
 import {pages} from '../../Constants';
-import {pushSearch} from '../../data/SearchActions';
+import {pushSearch} from '../../data/actions/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 

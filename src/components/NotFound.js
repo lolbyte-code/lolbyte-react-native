@@ -4,7 +4,7 @@ import {backgrounds, colors} from '../Theme';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from './common/SearchNav';
-import {resetSummonerData} from '../data/ApiActions';
+import {resetSummonerData} from '../data/actions/ApiActions';
 import {useDispatch} from 'react-redux';
 
 const NotFound = (props) => {

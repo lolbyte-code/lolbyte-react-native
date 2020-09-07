@@ -4,7 +4,11 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {clearSearches, popSearch, pushSearch} from '../../data/SearchActions';
+import {
+  clearSearches,
+  popSearch,
+  pushSearch,
+} from '../../data/actions/SearchActions';
 import {colors, fonts} from '../../Theme';
 import {useDispatch, useSelector} from 'react-redux';
 

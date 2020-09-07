@@ -14,7 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '../../Constants';
-import {pushSearch} from '../../data/SearchActions';
+import {pushSearch} from '../../data/actions/SearchActions';
 import {useNavigation} from '@react-navigation/native';
 
 const ExpandedMatchSummary = (props) => {

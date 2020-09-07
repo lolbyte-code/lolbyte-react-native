@@ -1,7 +1,7 @@
-import api from './ApiReducer';
+import api from './reducers/ApiReducer';
 import {combineReducers} from 'redux';
-import searches from './SearchReducer';
-import summoners from './SummonersReducer';
+import searches from './reducers/SearchReducer';
+import summoners from './reducers/SummonersReducer';
 
 export default combineReducers({
   summoners,

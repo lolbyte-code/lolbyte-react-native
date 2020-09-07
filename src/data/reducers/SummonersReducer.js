@@ -4,7 +4,7 @@ import {
   BULK_ADD_FAV,
   BULK_ADD_RECENT,
   REMOVE_FAV,
-} from './SummonersActions';
+} from '../actions/SummonersActions';
 
 const MAX_CAPACITY = 100;
 

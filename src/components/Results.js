@@ -6,7 +6,7 @@ import {
   fetchMatchesData,
   fetchRankedData,
   fetchSummonerData,
-} from '../data/ApiActions';
+} from '../data/actions/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
 import Loading from './common/Loading';
@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from './common/SearchNav';
 import TogglePageHeader from './common/TogglePageHeader';
-import {addRecentSummoner} from '../data/SummonersActions';
+import {addRecentSummoner} from '../data/actions/SummonersActions';
 import {backgrounds} from '../Theme';
 import {useNavigation} from '@react-navigation/native';
 

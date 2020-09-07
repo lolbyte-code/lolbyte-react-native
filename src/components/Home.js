@@ -8,7 +8,7 @@ import RegionSelector from './home/RegionSelector';
 import SavedSearches from './home/SavedSearches';
 import SummonerSearch from './home/SummonerSearch';
 import {backgrounds} from '../Theme';
-import {pushSearch} from '../data/SearchActions';
+import {pushSearch} from '../data/actions/SearchActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 

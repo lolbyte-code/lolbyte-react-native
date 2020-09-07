@@ -2,7 +2,7 @@ import {DEFAULT_REGION, SUMMONERS_STORAGE, pages} from './Constants';
 import {
   bulkAddFavoriteSummoners,
   bulkAddRecentSummoners,
-} from './data/SummonersActions';
+} from './data/actions/SummonersActions';
 
 import CurrentGame from './components/CurrentGame';
 import Home from './components/Home';
