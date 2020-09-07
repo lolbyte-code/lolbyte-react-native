@@ -2,6 +2,7 @@ import {BLUE_TEAM, RED_TEAM} from '@app/Constants';
 import {
   Dimensions,
   ImageBackground,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -27,12 +28,12 @@ const CurrentGame = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <CloseButton
-        goBackPage={pages.results}
-        goBackParams={goBackParams}
-        buttonStyle={styles.closeButtonStyle}
-      />
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <CloseButton
+          goBackPage={pages.results}
+          goBackParams={goBackParams}
+          buttonStyle={styles.closeButtonStyle}
+        />
         <View style={styles.summonersContainer}>
           <Text style={styles.gameType}>{currentGameData.gameType}</Text>
           <Summoners
@@ -53,7 +54,7 @@ const CurrentGame = (props) => {
             summonerRegion={summonerRegion}
           />
         </View>
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
   },
   summonersContainer: {
     alignItems: 'center',
+    marginTop: 20,
   },
   container: {
     flex: 1,
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   closeButtonStyle: {
-    marginTop: 45,
+    marginTop: 30,
     marginLeft: 20,
   },
 });
