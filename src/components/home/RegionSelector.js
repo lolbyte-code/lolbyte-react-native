@@ -31,7 +31,7 @@ const RegionSelector = (props) => {
 RegionSelector.defaultProps = {
   selectedRegion: '',
   summonerRegionArrowWidth: 10,
-  summonerRegionArrowHeight: 24,
+  summonerRegionArrowHeight: 27,
 };
 
 RegionSelector.propTypes = {
@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     borderColor: colors.darkGrey,
     borderWidth: 10,
     borderRadius: 6,
+    height: 44,
+    alignItems: 'center',
   },
   summonerRegionText: {
     color: colors.blue,
