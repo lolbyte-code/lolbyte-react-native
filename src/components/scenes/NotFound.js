@@ -1,9 +1,10 @@
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {backgrounds, colors} from '@app/Theme';
 
+import NotFoundSvg from '@app/assets/svg/notFound.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from '@app/components/common/SearchNav';
+import {backgrounds} from '@app/Theme';
 import {resetSummonerData} from '@app/data/actions/ApiActions';
 import {useDispatch} from 'react-redux';
 
@@ -17,7 +18,10 @@ const NotFound = (props) => {
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <SearchNav />
       <View style={styles.container}>
-        <Text style={styles.text}>Summoner not found!</Text>
+        <NotFoundSvg
+          width={props.notFoundWidth}
+          height={props.notFoundHeight}
+        />
       </View>
     </ImageBackground>
   );
@@ -25,10 +29,14 @@ const NotFound = (props) => {
 
 NotFound.defaultProps = {
   backgroundImage: backgrounds.main,
+  notFoundWidth: 300,
+  notFoundHeight: 300,
 };
 
 NotFound.propTypes = {
   backgroundImage: PropTypes.node,
+  notFoundWidth: PropTypes.number,
+  notFoundHeight: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -40,11 +48,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
-    marginTop: 15,
-  },
-  text: {
-    color: colors.blue,
-    fontSize: 30,
   },
 });
 
