@@ -12,14 +12,16 @@ Implementation of the LolByte frontend in React Native.
 > pod install
 ```
 
-## Run on iOS simulator
-```bash
-> yarn ios
-```
-
 ## Bundle
 ```bash
-> yarn bundle
+> yarn bundle-ios
+> yarn bundle-android
+```
+
+## Run on simulators
+```bash
+> yarn ios
+> yarn android
 ```
 
 ## Run Tests
