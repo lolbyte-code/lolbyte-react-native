@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    margin: 2,
+    marginTop: 10,
   },
   championIconWin: {
     borderWidth: 3,
@@ -208,8 +208,8 @@ const styles = StyleSheet.create({
     fontFamily: fonts.regular,
   },
   item: {
-    width: 22,
-    height: 22,
+    width: 25,
+    height: 25,
     margin: 1,
   },
   itemsContainer: {
@@ -233,8 +233,8 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   spell: {
-    width: 20,
-    height: 20,
+    width: 15,
+    height: 15,
     margin: 2,
   },
   badgesContainer: {

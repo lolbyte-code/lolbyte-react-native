@@ -1,25 +1,30 @@
-import {StyleSheet, View} from 'react-native';
-
 import MatchEntry from '@app/components/matches/MatchEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {View} from 'react-native';
 import {formatTimestamp} from '@app/utils/Time';
 
 const Matches = (props) => {
-  const [currentSummonerName, setCurrentSummonerName] = React.useState({
+  const [currentSummoner, setCurrentSummoner] = React.useState({
     name: props.currentSummonerName,
     match: null,
   });
 
+  const [selectedMatch, setSelectedMatch] = React.useState(null);
+
   React.useEffect(() => {
-    setCurrentSummonerName({
+    setCurrentSummoner({
       name: props.currentSummonerName,
       match: null,
     });
   }, [props.currentSummonerName]);
 
   const changeCurrentSummonerHandler = (summonerName) => {
-    setCurrentSummonerName(summonerName);
+    setCurrentSummoner(summonerName);
+  };
+
+  const changeSelectedMatchHandler = (match) => {
+    setSelectedMatch(match);
   };
 
   var i = 0;
@@ -28,8 +33,8 @@ const Matches = (props) => {
   );
   const MatchEntries = sortedMatches.map((match) => {
     const selectedSummonerName =
-      currentSummonerName.match === match.matchId
-        ? currentSummonerName.name
+      currentSummoner.match === match.matchId
+        ? currentSummoner.name
         : props.currentSummonerName;
     const selectedSummoner = match.players.filter(
       (player) => player.summonerName === selectedSummonerName,
@@ -38,6 +43,14 @@ const Matches = (props) => {
     if (!selectedSummoner) {
       return null;
     }
+
+    const pressable =
+      selectedMatch && selectedMatch !== match.matchId ? false : true;
+
+    const matchEntryStyle =
+      selectedMatch && selectedMatch !== match.matchId
+        ? {opacity: 0.4, marginTop: 15}
+        : {marginTop: 15};
 
     return (
       <MatchEntry
@@ -79,15 +92,14 @@ const Matches = (props) => {
         team1Kda={match.teams[0].kda}
         team2Kda={match.teams[1].kda}
         changeSummonerHandler={changeCurrentSummonerHandler}
-        currentSummonerName={props.currentSummoner}
+        changeSelectedMatchHandler={changeSelectedMatchHandler}
+        currentSummonerName={props.currentSummonerName}
+        pressable={pressable}
+        containerStyle={matchEntryStyle}
       />
     );
   });
-  return (
-    <View>
-      <View style={styles.matchEntries}>{MatchEntries}</View>
-    </View>
-  );
+  return <View>{MatchEntries}</View>;
 };
 
 Matches.defaultProps = {
@@ -99,9 +111,5 @@ Matches.propTypes = {
   matchEntries: PropTypes.array,
   currentSummonerName: PropTypes.string,
 };
-
-const styles = StyleSheet.create({
-  matchEntries: {},
-});
 
 export default Matches;

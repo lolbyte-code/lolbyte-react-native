@@ -90,7 +90,7 @@ MatchesFilter.propTypes = {
 const styles = StyleSheet.create({
   tripleDotContainer: {
     alignItems: 'flex-end',
-    marginRight: 5,
+    marginRight: 10,
   },
   centeredView: {
     flex: 1,

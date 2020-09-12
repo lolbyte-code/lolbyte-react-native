@@ -9,9 +9,16 @@ const MatchEntry = (props) => {
   const [collapsed, setCollapsed] = React.useState(true);
 
   return (
-    <View style={styles.container}>
+    <View style={props.containerStyle}>
       <View style={collapsed ? null : styles.hide}>
-        <TouchableWithoutFeedback onPress={() => setCollapsed(false)}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            if (!props.pressable) {
+              return;
+            }
+            setCollapsed(false);
+            props.changeSelectedMatchHandler(props.matchId);
+          }}>
           <View>
             <CollapsedMatchEntry {...props} />
           </View>
@@ -20,8 +27,12 @@ const MatchEntry = (props) => {
       <View>
         <TouchableWithoutFeedback
           onPress={() => {
+            if (!props.pressable) {
+              return;
+            }
             props.changeSummonerHandler(props.currentSummonerName);
             setCollapsed(true);
+            props.changeSelectedMatchHandler(null);
           }}>
           <View style={collapsed ? styles.hide : null}>
             <ExpandedMatchEntry {...props} />
@@ -33,7 +44,7 @@ const MatchEntry = (props) => {
 };
 
 MatchEntry.defaultProps = {
-  // Collapsed props
+  pressable: true,
   win: false,
   date: '',
   gameType: '',
@@ -46,8 +57,6 @@ MatchEntry.defaultProps = {
   kdaLong: '',
   championName: '',
   cs: '',
-
-  // Expanded Props
   trinket: 0,
   level: '',
   damageContribution: '',
@@ -73,6 +82,8 @@ MatchEntry.defaultProps = {
   matchId: '',
   playerData: {},
   changeSummonerHandler: () => {},
+  changeSelectedMatchHandler: () => {},
+  containerStyle: {},
   currentSummonerName: '',
   spellImages: {
     0: {
@@ -198,7 +209,7 @@ MatchEntry.defaultProps = {
 };
 
 MatchEntry.propTypes = {
-  // Collapsed props
+  pressable: PropTypes.bool,
   win: PropTypes.bool,
   date: PropTypes.string,
   gameType: PropTypes.string,
@@ -211,8 +222,6 @@ MatchEntry.propTypes = {
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
   cs: PropTypes.string,
-
-  // Expanded Props
   trinket: PropTypes.number,
   level: PropTypes.string,
   damageContribution: PropTypes.string,
@@ -238,6 +247,8 @@ MatchEntry.propTypes = {
   matchId: PropTypes.string,
   playerData: PropTypes.array,
   changeSummonerHandler: PropTypes.func,
+  changeSelectedMatchHandler: PropTypes.func,
+  containerStyle: PropTypes.object,
   currentSummonerName: PropTypes.string,
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
@@ -245,7 +256,7 @@ MatchEntry.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 8,
+    marginTop: 15,
   },
   hide: {
     display: 'none',

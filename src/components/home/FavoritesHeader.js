@@ -6,7 +6,6 @@ import FavoriteUnselectedSvg from '@app/assets/svg/favoriteUnselected.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// TODO: combine with Header in commons?
 const FavoritesHeader = (props) => {
   return (
     <TouchableWithoutFeedback onPress={props.onPressHandler}>

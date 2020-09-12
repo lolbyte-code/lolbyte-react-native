@@ -1,8 +1,4 @@
-import {
-  DEFAULT_GAME_TYPE,
-  DEFAULT_SCROLL_BAR,
-  pages,
-} from '@app/Constants';
+import {DEFAULT_GAME_TYPE, DEFAULT_SCROLL_BAR, pages} from '@app/Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
 import {
   fetchChampionData,
@@ -165,7 +161,9 @@ const Results = (props) => {
         />
         <MatchesContainer
           visible={selectedHeader === MATCHES_SELECTED}
-          isFetching={matchesData.isFetching}
+          isFetching={
+            summonerData.data.recentGames.length > 0 && matchesData.isFetching
+          }
           matchesData={matchesData.data}
           currentSummonerName={summonerData.data.summonerName}
           selectedGameType={selectedGameType}
