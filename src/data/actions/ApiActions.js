@@ -2,6 +2,7 @@ import {
   getChampionData,
   getCurrentGameData,
   getMatchData,
+  getNotificationData,
   getRankedData,
   getSummonerData,
 } from '@app/api/Url';
@@ -18,6 +19,8 @@ export const REQUEST_CURRENT_GAME_DATA = 'REQUEST_CURRENT_GAME_DATA';
 export const RECEIVE_CURRENT_GAME_DATA = 'RECEIVE_CURRENT_GAME_DATA';
 export const REQUEST_MATCHES_DATA = 'REQUEST_MATCHES_DATA';
 export const RECEIVE_MATCHES_DATA = 'RECEIVE_MATCHES_DATA';
+export const REQUEST_NOTIFICATION_DATA = 'REQUEST_NOTIFICATION_DATA';
+export const RECEIVE_NOTIFICATION_DATA = 'RECEIVE_NOTIFICATION_DATA';
 
 const matchesCache = new SimpleCache();
 
@@ -106,6 +109,19 @@ function receiveMatchesData(matchIds, summonerRegion, summonerId, response) {
     matchIds,
     summonerRegion,
     summonerId,
+    data: response,
+  };
+}
+
+function requestNotificationData() {
+  return {
+    type: REQUEST_NOTIFICATION_DATA,
+  };
+}
+
+function receiveNotificationData(response) {
+  return {
+    type: RECEIVE_NOTIFICATION_DATA,
     data: response,
   };
 }
@@ -215,5 +231,20 @@ export function fetchMatchesData(matchIds, summonerRegion, summonerId) {
           .catch((error) => console.error(error));
       }
     });
+  };
+}
+
+export function fetchNotificationData() {
+  return (dispatch) => {
+    dispatch(requestNotificationData());
+    return fetch(getNotificationData(), {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch(receiveNotificationData(json));
+      })
+      .catch((error) => console.error(error));
   };
 }

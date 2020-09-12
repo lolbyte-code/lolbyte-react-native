@@ -12,6 +12,8 @@ fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   })
   .catch((error) => console.error(error));
 
+export const getNotificationData = () => `${lolbyteBaseUrl}/notifications`;
+
 export const getSummonerData = (summonerName, summonerRegion, gameType) =>
   `${lolbyteBaseUrl}/summoners/${summonerRegion}/name/${summonerName.replace(
     /\s/g,

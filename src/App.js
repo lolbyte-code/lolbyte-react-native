@@ -38,6 +38,9 @@ const LolByteApp = () => {
         matchesData: {
           isFetching: true,
         },
+        notificationData: {
+          isFetching: true,
+        },
       },
     },
     applyMiddleware(thunkMiddleware),
