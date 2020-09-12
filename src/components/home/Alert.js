@@ -16,7 +16,17 @@ const Alert = (props) => {
         style={styles.alertIconContainer}>
         <Text style={styles.alertIcon}>!</Text>
       </TouchableHighlight>
-      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+      <Modal
+        supportedOrientations={[
+          'portrait',
+          'portrait-upside-down',
+          'landscape',
+          'landscape-left',
+          'landscape-right',
+        ]}
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text>{props.alertText}</Text>

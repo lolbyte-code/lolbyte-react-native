@@ -36,7 +36,17 @@ const MatchesFilter = (props) => {
           }}
         />
       </View>
-      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+      <Modal
+        supportedOrientations={[
+          'portrait',
+          'portrait-upside-down',
+          'landscape',
+          'landscape-left',
+          'landscape-right',
+        ]}
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <RadioButton
