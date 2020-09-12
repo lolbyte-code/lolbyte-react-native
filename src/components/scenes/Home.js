@@ -60,7 +60,9 @@ const Home = (props) => {
         </View>
         <View
           style={
-            notificationData.isFetching ? styles.hide : styles.alertContainer
+            notificationData.isFetching || notificationData.data.alert === ''
+              ? styles.hide
+              : styles.alertContainer
           }>
           <Alert
             alertText={
