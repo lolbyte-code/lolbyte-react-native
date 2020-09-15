@@ -10,7 +10,6 @@ import RegionSelector from '@app/components/home/RegionSelector';
 import SavedSearches from '@app/components/home/SavedSearches';
 import SummonerSearch from '@app/components/home/SummonerSearch';
 import {backgrounds} from '@app/Theme';
-import {fetchNotificationData} from '@app/data/actions/ApiActions';
 import {pushSearch} from '@app/data/actions/SearchActions';
 import {useNavigation} from '@react-navigation/native';
 
@@ -24,10 +23,6 @@ const Home = (props) => {
   const [summonerRegionQuery, setSummonerRegionQuery] = React.useState(
     DEFAULT_REGION,
   );
-
-  React.useEffect(() => {
-    dispatch(fetchNotificationData());
-  }, [dispatch]);
 
   React.useEffect(() => {
     setSummonerRegionQuery(props.route.params.summonerRegion);

@@ -12,6 +12,7 @@ import React from 'react';
 import RegionSelect from '@app/components/scenes/RegionSelect';
 import Results from '@app/components/scenes/Results';
 import {createStackNavigator} from '@react-navigation/stack';
+import {fetchNotificationData} from '@app/data/actions/ApiActions';
 import {getFromStorage} from '@app/utils/Storage';
 import {useDispatch} from 'react-redux';
 
@@ -31,6 +32,7 @@ const AppContainer = () => {
         }
       }
     });
+    dispatch(fetchNotificationData());
   }, [dispatch]);
 
   return (

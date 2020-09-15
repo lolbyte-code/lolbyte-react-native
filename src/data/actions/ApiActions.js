@@ -236,7 +236,7 @@ export function fetchMatchesData(matchIds, summonerRegion, summonerId) {
 
 export function fetchNotificationData() {
   return (dispatch) => {
-    // dispatch(requestNotificationData());
+    dispatch(requestNotificationData());
     return fetch(getNotificationData(), {
       method: 'GET',
     })
