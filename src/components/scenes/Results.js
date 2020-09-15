@@ -22,7 +22,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const PROFILE_SELECTED = 'profile';
 const MATCHES_SELECTED = 'matches';
-const MATCHES_LIMIT = 6;
+const MATCHES_LIMIT = 10;
 
 const Results = (props) => {
   const navigation = useNavigation();
@@ -100,7 +100,11 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.summonerLevel === 0 ||
+      selectedHeader !== MATCHES_SELECTED
+    ) {
       return;
     }
     const matchIds = summonerData.data.recentGames.map((game) => game.matchId);
@@ -111,7 +115,7 @@ const Results = (props) => {
         summonerData.data.summonerId,
       ),
     );
-  }, [summonerData, dispatch]);
+  }, [summonerData, selectedHeader, dispatch]);
 
   React.useEffect(() => {
     if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
@@ -191,8 +195,7 @@ Results.propTypes = {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    // TODO: hacky AF
-    width: '101%',
+    width: '100%',
   },
   headers: {
     justifyContent: 'space-evenly',

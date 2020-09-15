@@ -33,7 +33,7 @@ const Participants = (props) => {
   const teamSize = props.playerData.length / 2;
   const arr = new Array(teamSize).fill(0);
   var i = 0;
-  const ParticipantsContainer = arr.map((it) => {
+  const ParticipantsContainer = arr.map(() => {
     return (
       <View key={`participantEntryContainer_${i}`}>
         <View style={styles.separatorContainer}>

@@ -76,8 +76,7 @@ CurrentGame.propTypes = {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    // TODO: hacky AF
-    width: '101%',
+    width: '100%',
   },
   summonersContainer: {
     alignItems: 'center',

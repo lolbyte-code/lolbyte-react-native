@@ -1,4 +1,10 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
 import PropTypes from 'prop-types';
@@ -7,16 +13,18 @@ import {getChampionIcon} from '@app/api/Url';
 
 const RecentMatchesEntry = (props) => {
   return (
-    <View style={styles.container}>
-      <Image
-        source={{
-          uri: getChampionIcon(props.championId),
-        }}
-        style={props.win ? styles.championImageWin : styles.championImageLoss}
-      />
-      <Text style={styles.kda}>{props.kda}</Text>
-      <Text style={styles.win}>{props.win ? 'W' : 'L'}</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={props.selectMatchesHeader}>
+      <View style={styles.container}>
+        <Image
+          source={{
+            uri: getChampionIcon(props.championId),
+          }}
+          style={props.win ? styles.championImageWin : styles.championImageLoss}
+        />
+        <Text style={styles.kda}>{props.kda}</Text>
+        <Text style={styles.win}>{props.win ? 'W' : 'L'}</Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -24,12 +32,14 @@ RecentMatchesEntry.defaultProps = {
   championId: 0,
   win: false,
   kda: '',
+  selectMatchesHeader: () => {},
 };
 
 RecentMatchesEntry.propTypes = {
   championId: PropTypes.number,
   win: PropTypes.bool,
   kda: PropTypes.string,
+  selectMatchesHeader: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

@@ -106,9 +106,7 @@ RegionSelect.propTypes = {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    // TODO: hacky AF
-    width: '101%',
-    right: 1,
+    width: '100%',
   },
   scrollContainer: {
     flex: 1,

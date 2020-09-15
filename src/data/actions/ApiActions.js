@@ -195,19 +195,15 @@ export function fetchCurrentGameData(summonerId, summonerRegion) {
 }
 
 export function fetchMatchesData(matchIds, summonerRegion, summonerId) {
-  const matchLimit = matchIds.length;
   return (dispatch) => {
     dispatch(requestMatchesData(matchIds, summonerRegion));
     const matches = [];
-    var count = 0;
     matchIds.forEach((match) => {
       if (matchesCache.contains(match)) {
         matches.unshift(matchesCache.get(match));
-        if (++count === matchLimit) {
-          dispatch(
-            receiveMatchesData(matchIds, summonerRegion, summonerId, matches),
-          );
-        }
+        dispatch(
+          receiveMatchesData(matchIds, summonerRegion, summonerId, matches),
+        );
       } else {
         fetch(getMatchData(match, summonerRegion, summonerId), {
           method: 'GET',
@@ -217,16 +213,9 @@ export function fetchMatchesData(matchIds, summonerRegion, summonerId) {
             console.log(json);
             matchesCache.set(match, json);
             matches.unshift(json);
-            if (++count === matchLimit) {
-              dispatch(
-                receiveMatchesData(
-                  matchIds,
-                  summonerRegion,
-                  summonerId,
-                  matches,
-                ),
-              );
-            }
+            dispatch(
+              receiveMatchesData(matchIds, summonerRegion, summonerId, matches),
+            );
           })
           .catch((error) => console.error(error));
       }

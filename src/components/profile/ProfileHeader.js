@@ -1,6 +1,5 @@
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 
-import {DEFAULT_SCROLL_BAR} from '@app/Constants';
 import InGameIndicator from '@app/components/profile/InGameIndicator';
 import LeagueDetails from '@app/components/profile/LeagueDetails';
 import PropTypes from 'prop-types';
@@ -19,7 +18,9 @@ const ProfileHeader = (props) => {
 
   var i = 0;
   const RankEntries = props.rankedData.map((entry) => (
-    <View style={styles.rankEntryContainer} key={`leagueDetail_${i++}`}>
+    <View
+      style={{width: Dimensions.get('window').width}}
+      key={`leagueDetail_${i++}`}>
       <Rank tier={entry.tier} />
       <View style={styles.leagueDetailsContainer}>
         <LeagueDetails
@@ -55,14 +56,13 @@ const ProfileHeader = (props) => {
           selectMatchesHeader={props.selectMatchesHeader}
         />
       </View>
-      <View style={styles.rankEntryContainer}>
+      <View style={{width: Dimensions.get('window').width}}>
         <ScrollView
-          indicatorStyle={DEFAULT_SCROLL_BAR}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           onScroll={rankScrollHandler}
           scrollEventThrottle={props.scrollEventThrottle}
-          pagingEnabled>
+          pagingEnabled={true}>
           {RankEntries}
         </ScrollView>
       </View>
@@ -108,9 +108,6 @@ const styles = StyleSheet.create({
   },
   recentMatchesContainer: {
     marginTop: 10,
-  },
-  rankEntryContainer: {
-    width: Dimensions.get('window').width,
   },
   leagueDetailsContainer: {
     marginTop: 15,
