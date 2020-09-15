@@ -1,5 +1,6 @@
 import {DEFAULT_REGION, DEFAULT_SCROLL_BAR, pages} from '@app/Constants';
 import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {backgrounds, colors} from '@app/Theme';
 import {useDispatch, useSelector} from 'react-redux';
 
 import Alert from '@app/components/home/Alert';
@@ -9,7 +10,6 @@ import React from 'react';
 import RegionSelector from '@app/components/home/RegionSelector';
 import SavedSearches from '@app/components/home/SavedSearches';
 import SummonerSearch from '@app/components/home/SummonerSearch';
-import {backgrounds} from '@app/Theme';
 import {pushSearch} from '@app/data/actions/SearchActions';
 import {useNavigation} from '@react-navigation/native';
 
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: '100%',
+    backgroundColor: colors.background,
   },
   hide: {
     display: 'none',

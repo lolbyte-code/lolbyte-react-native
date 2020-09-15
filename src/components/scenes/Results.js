@@ -18,6 +18,7 @@ import SearchNav from '@app/components/common/SearchNav';
 import TogglePageHeader from '@app/components/common/TogglePageHeader';
 import {addRecentSummoner} from '@app/data/actions/SummonersActions';
 import {backgrounds} from '@app/Theme';
+import {colors} from '@app/Theme';
 import {useNavigation} from '@react-navigation/native';
 
 const PROFILE_SELECTED = 'profile';
@@ -196,6 +197,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: '100%',
+    backgroundColor: colors.background,
   },
   headers: {
     justifyContent: 'space-evenly',

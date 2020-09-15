@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from '@app/components/common/SearchNav';
 import {backgrounds} from '@app/Theme';
+import {colors} from '@app/Theme';
 import {resetSummonerData} from '@app/data/actions/ApiActions';
 import {useDispatch} from 'react-redux';
 
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: '100%',
+    backgroundColor: colors.background,
   },
   container: {
     alignItems: 'center',
