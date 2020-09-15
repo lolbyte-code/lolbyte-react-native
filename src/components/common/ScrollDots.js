@@ -13,7 +13,12 @@ const ScrollDots = (props) => {
 
   const Dots = positions.map((position) => (
     <View style={props.scrollDotsStyle} key={`dot_${position}`}>
-      {props.currentItemPosition === position ? (
+      {/*
+        Effectively the same as props.currentItemPosition === position.
+        We allow a little bit of a threshold to account for devices with
+        high precision position coordinates.
+      */}
+      {Math.abs(props.currentItemPosition - position) <= 0.1 ? (
         <BlueCircleSvg
           width={props.scrollDotsWidth}
           height={props.scrollDotsHeight}
