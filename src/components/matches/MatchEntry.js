@@ -8,6 +8,23 @@ import React from 'react';
 const MatchEntry = (props) => {
   const [collapsed, setCollapsed] = React.useState(true);
 
+  /*
+    Cached matches load faster than remotely fetched matches and may
+    cause a re-ordering of the match list as they are lazily loaded.
+    If a user selects a match during lazy load with cached matches,
+    this ensures the selectedMatch state is in sync with the collapsed
+    state.
+  */
+  React.useEffect(() => {
+    if (props.selectedMatch !== null) {
+      if (props.selectedMatch === props.matchId) {
+        setCollapsed(false);
+      } else {
+        setCollapsed(true);
+      }
+    }
+  }, [props.selectedMatch, props.matchId]);
+
   return (
     <View style={props.containerStyle}>
       <View style={collapsed ? null : styles.hide}>
@@ -45,6 +62,7 @@ const MatchEntry = (props) => {
 
 MatchEntry.defaultProps = {
   pressable: true,
+  selectedMatch: null,
   win: false,
   date: '',
   gameType: '',
@@ -210,6 +228,7 @@ MatchEntry.defaultProps = {
 
 MatchEntry.propTypes = {
   pressable: PropTypes.bool,
+  selectedMatch: PropTypes.string,
   win: PropTypes.bool,
   date: PropTypes.string,
   gameType: PropTypes.string,

@@ -44,8 +44,7 @@ const Matches = (props) => {
       return null;
     }
 
-    const pressable =
-      selectedMatch && selectedMatch !== match.matchId ? false : true;
+    const pressable = !selectedMatch || selectedMatch === match.matchId;
 
     const matchEntryStyle =
       selectedMatch && selectedMatch !== match.matchId
@@ -56,6 +55,7 @@ const Matches = (props) => {
       <MatchEntry
         key={`matchEntry_${i++}`}
         matchId={match.matchId}
+        selectedMatch={selectedMatch}
         playerData={match.players}
         date={formatTimestamp(match.matchDate)}
         gameType={match.matchQueueType}
