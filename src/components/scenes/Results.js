@@ -1,5 +1,11 @@
 import {DEFAULT_GAME_TYPE, DEFAULT_SCROLL_BAR, pages} from '@app/Constants';
-import {ImageBackground, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  ImageBackground,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {
   fetchChampionData,
   fetchCurrentGameData,
@@ -131,18 +137,41 @@ const Results = (props) => {
     );
   }, [summonerData, dispatch]);
 
-  if (
-    summonerData.isFetching ||
-    rankedData.isFetching ||
-    championData.isFetching
-  ) {
+  const profileDataLoading =
+    summonerData.isFetching || rankedData.isFetching || championData.isFetching;
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    navigation.navigate(pages.results, {
+      ...props.route.params,
+      refreshed: true,
+    });
+  }, [props.route.params, navigation]);
+
+  React.useEffect(() => {
+    setRefreshing(profileDataLoading);
+  }, [profileDataLoading]);
+
+  if (profileDataLoading && !props.route.params.refreshed) {
     return <Loading />;
   }
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <SearchNav />
-      <ScrollView indicatorStyle={DEFAULT_SCROLL_BAR}>
+      <ScrollView
+        indicatorStyle={DEFAULT_SCROLL_BAR}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.blue}
+            color={colors.blue}
+            progressBackgroundColor={colors.blue}
+          />
+        }>
         <View style={styles.headers}>
           <TogglePageHeader
             title={props.profileHeader}
@@ -155,25 +184,29 @@ const Results = (props) => {
             selected={selectedHeader === MATCHES_SELECTED}
           />
         </View>
-        <Profile
-          visible={selectedHeader === PROFILE_SELECTED}
-          summonerData={summonerData.data}
-          rankedData={rankedData.data}
-          inGameDataFetching={currentGameData.isFetching}
-          currentGameData={currentGameData.data}
-          championData={championData.data}
-          selectMatchesHeader={selectMatchesHeader}
-        />
-        <MatchesContainer
-          visible={selectedHeader === MATCHES_SELECTED}
-          isFetching={
-            summonerData.data.recentGames.length > 0 && matchesData.isFetching
-          }
-          matchesData={matchesData.data}
-          currentSummonerName={summonerData.data.summonerName}
-          selectedGameType={selectedGameType}
-          setSelectedGameTypeHandler={setSelectedGameTypeHandler}
-        />
+        {!profileDataLoading ? (
+          <Profile
+            visible={selectedHeader === PROFILE_SELECTED}
+            summonerData={summonerData.data}
+            rankedData={rankedData.data}
+            inGameDataFetching={currentGameData.isFetching}
+            currentGameData={currentGameData.data}
+            championData={championData.data}
+            selectMatchesHeader={selectMatchesHeader}
+          />
+        ) : null}
+        {!summonerData.isFetching ? (
+          <MatchesContainer
+            visible={selectedHeader === MATCHES_SELECTED}
+            isFetching={
+              summonerData.data.recentGames.length > 0 && matchesData.isFetching
+            }
+            matchesData={matchesData.data}
+            currentSummonerName={summonerData.data.summonerName}
+            selectedGameType={selectedGameType}
+            setSelectedGameTypeHandler={setSelectedGameTypeHandler}
+          />
+        ) : null}
       </ScrollView>
     </ImageBackground>
   );
