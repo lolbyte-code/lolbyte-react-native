@@ -46,7 +46,7 @@ const CollapsedMatchSummary = (props) => {
             <View style={styles.matchDetailsInnerContainer}>
               <Text style={styles.championName}>{props.championName} </Text>
               <Text style={styles.kdaLong}>{props.kdaLong} </Text>
-              <Text style={styles.cs}>{props.cs.replace(/,/g, '')}</Text>
+              <Text style={styles.cs}>{props.cs} CS</Text>
             </View>
           </View>
         </View>
@@ -63,7 +63,7 @@ CollapsedMatchSummary.defaultProps = {
   kdaShort: '',
   kdaLong: '',
   championName: '',
-  cs: '',
+  cs: 0,
   gradientStart: {x: 0, y: 1},
   gradientEnd: {x: 0, y: 0},
   gradientColors: ['rgba(0,0,0,1)', 'transparent'],
@@ -79,7 +79,7 @@ CollapsedMatchSummary.propTypes = {
   kdaShort: PropTypes.string,
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
-  cs: PropTypes.string,
+  cs: PropTypes.number,
   gradientStart: PropTypes.object,
   gradientEnd: PropTypes.object,
   gradientColors: PropTypes.array,

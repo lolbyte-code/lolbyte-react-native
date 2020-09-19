@@ -1,12 +1,37 @@
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import CollapsedMatchEntry from '@app/components/matches/CollapsedMatchEntry';
 import ExpandedMatchEntry from '@app/components/matches/ExpandedMatchEntry';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {fetchMatchData} from '@app/data/actions/ApiActions';
 
 const MatchEntry = (props) => {
+  const dispatch = useDispatch();
+
+  const matchData = useSelector((state) => state.api.matchData);
+
   const [collapsed, setCollapsed] = React.useState(true);
+  const [currentSummoner, setCurrentSummoner] = React.useState({
+    name: props.currentSummonerName,
+  });
+
+  React.useEffect(() => {
+    setCurrentSummoner({
+      name: props.currentSummonerName,
+    });
+  }, [props.currentSummonerName]);
+
+  const changeCurrentSummonerHandler = (summonerName) => {
+    setCurrentSummoner(summonerName);
+  };
+
+  const selectedSummoner = matchData.isFetching
+    ? null
+    : matchData.data.players.filter(
+        (player) => player.summonerName === currentSummoner.name,
+      )[0];
 
   /*
     Cached matches load faster than remotely fetched matches and may
@@ -27,7 +52,10 @@ const MatchEntry = (props) => {
 
   return (
     <View style={props.containerStyle}>
-      <View style={collapsed ? null : styles.hide}>
+      <View
+        style={
+          collapsed || (!collapsed && matchData.isFetching) ? null : styles.hide
+        }>
         <TouchableWithoutFeedback
           onPress={() => {
             if (!props.pressable) {
@@ -35,27 +63,78 @@ const MatchEntry = (props) => {
             }
             setCollapsed(false);
             props.changeSelectedMatchHandler(props.matchId);
+            dispatch(
+              fetchMatchData(
+                props.matchId,
+                props.summonerRegion,
+                props.summonerId,
+              ),
+            );
           }}>
           <View>
-            <CollapsedMatchEntry {...props} />
+            <CollapsedMatchEntry
+              isFetching={!collapsed && matchData.isFetching}
+              {...props}
+            />
           </View>
         </TouchableWithoutFeedback>
       </View>
-      <View>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            if (!props.pressable) {
-              return;
-            }
-            props.changeSummonerHandler(props.currentSummonerName);
-            setCollapsed(true);
-            props.changeSelectedMatchHandler(null);
-          }}>
-          <View style={collapsed ? styles.hide : null}>
-            <ExpandedMatchEntry {...props} />
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+      {matchData.isFetching ? null : (
+        <View>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              if (!props.pressable) {
+                return;
+              }
+              props.changeSummonerHandler(props.currentSummonerName);
+              setCollapsed(true);
+              props.changeSelectedMatchHandler(null);
+            }}>
+            <View style={collapsed ? styles.hide : null}>
+              <ExpandedMatchEntry
+                {...props}
+                win={
+                  matchData.data[
+                    `team${String(selectedSummoner.teamId).substring(0, 1)}Win`
+                  ]
+                }
+                items={selectedSummoner.items}
+                spells={selectedSummoner.spells}
+                keystone={selectedSummoner.perk}
+                playerData={matchData.data.players}
+                championId={selectedSummoner.championId}
+                kdaShort={selectedSummoner.kdaLong}
+                kdaLong={selectedSummoner.kdaShort}
+                championName={selectedSummoner.championName}
+                cs={selectedSummoner.cs}
+                level={selectedSummoner.level}
+                damageContribution={selectedSummoner.damageContribution}
+                killParticipation={selectedSummoner.killParticipation}
+                summonerName={selectedSummoner.summonerName}
+                rank={selectedSummoner.rank}
+                gold={selectedSummoner.gold}
+                badges={selectedSummoner.badges}
+                trinket={selectedSummoner.trinket}
+                team1Win={matchData.data.team1Win}
+                team2Win={matchData.data.team2Win}
+                team1Gold={matchData.data.teams[0].gold}
+                team2Gold={matchData.data.teams[1].gold}
+                team1BannedChamps={matchData.data.teams[0].bans}
+                team2BannedChamps={matchData.data.teams[1].bans}
+                team1Towers={matchData.data.teams[0].towerKills}
+                team1Dragons={matchData.data.teams[0].dragonKills}
+                team1Barons={matchData.data.teams[0].baronKills}
+                team2Towers={matchData.data.teams[1].towerKills}
+                team2Dragons={matchData.data.teams[1].dragonKills}
+                team2Barons={matchData.data.teams[1].baronKills}
+                team1Kda={matchData.data.teams[0].kda}
+                team2Kda={matchData.data.teams[1].kda}
+                changeSummonerHandler={changeCurrentSummonerHandler}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      )}
     </View>
   );
 };
@@ -75,34 +154,13 @@ MatchEntry.defaultProps = {
   kdaLong: '',
   championName: '',
   cs: '',
-  trinket: 0,
-  level: '',
-  damageContribution: '',
-  killParticipation: '',
-  summonerName: '',
-  rank: '',
-  gold: '',
-  badges: [],
-  team1Win: false,
-  team2Win: false,
-  team1Gold: '',
-  team2Gold: '',
-  team1BannedChamps: [],
-  team2BannedChamps: [],
-  team1Towers: 0,
-  team1Dragons: 0,
-  team1Barons: 0,
-  team2Towers: 0,
-  team2Dragons: 0,
-  team2Barons: 0,
-  team1Kda: '',
-  team2Kda: '',
   matchId: '',
-  playerData: {},
   changeSummonerHandler: () => {},
   changeSelectedMatchHandler: () => {},
   containerStyle: {},
   currentSummonerName: '',
+  summonerId: '',
+  summonerRegion: '',
   spellImages: {
     0: {
       uri: require('@app/assets/img//spells/0.png'),
@@ -240,35 +298,15 @@ MatchEntry.propTypes = {
   kdaShort: PropTypes.string,
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
-  cs: PropTypes.string,
-  trinket: PropTypes.number,
-  level: PropTypes.string,
-  damageContribution: PropTypes.string,
-  killParticipation: PropTypes.string,
-  summonerName: PropTypes.string,
-  rank: PropTypes.string,
-  gold: PropTypes.string,
-  badges: PropTypes.array,
-  team1Win: PropTypes.bool,
-  team2Win: PropTypes.bool,
-  team1Gold: PropTypes.string,
-  team2Gold: PropTypes.string,
-  team1BannedChamps: PropTypes.array,
-  team2BannedChamps: PropTypes.array,
-  team1Towers: PropTypes.number,
-  team1Dragons: PropTypes.number,
-  team1Barons: PropTypes.number,
-  team2Towers: PropTypes.number,
-  team2Dragons: PropTypes.number,
-  team2Barons: PropTypes.number,
-  team1Kda: PropTypes.string,
-  team2Kda: PropTypes.string,
+  cs: PropTypes.number,
   matchId: PropTypes.string,
   playerData: PropTypes.array,
   changeSummonerHandler: PropTypes.func,
   changeSelectedMatchHandler: PropTypes.func,
   containerStyle: PropTypes.object,
   currentSummonerName: PropTypes.string,
+  summonerId: PropTypes.string,
+  summonerRegion: PropTypes.string,
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
 };

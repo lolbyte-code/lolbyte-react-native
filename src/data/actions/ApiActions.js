@@ -17,8 +17,8 @@ export const REQUEST_CHAMPION_DATA = 'REQUEST_CHAMPION_DATA';
 export const RECEIVE_CHAMPION_DATA = 'RECEIVE_CHAMPION_DATA';
 export const REQUEST_CURRENT_GAME_DATA = 'REQUEST_CURRENT_GAME_DATA';
 export const RECEIVE_CURRENT_GAME_DATA = 'RECEIVE_CURRENT_GAME_DATA';
-export const REQUEST_MATCHES_DATA = 'REQUEST_MATCHES_DATA';
-export const RECEIVE_MATCHES_DATA = 'RECEIVE_MATCHES_DATA';
+export const REQUEST_MATCH_DATA = 'REQUEST_MATCH_DATA';
+export const RECEIVE_MATCH_DATA = 'RECEIVE_MATCH_DATA';
 export const REQUEST_NOTIFICATION_DATA = 'REQUEST_NOTIFICATION_DATA';
 export const RECEIVE_NOTIFICATION_DATA = 'RECEIVE_NOTIFICATION_DATA';
 
@@ -94,19 +94,19 @@ function receiveCurrentGameData(summonerId, summonerRegion, response) {
   };
 }
 
-function requestMatchesData(matchIds, summonerRegion, summonerId) {
+function requestMatchData(matchId, summonerRegion, summonerId) {
   return {
-    type: REQUEST_MATCHES_DATA,
-    matchIds,
+    type: REQUEST_MATCH_DATA,
+    matchId,
     summonerRegion,
     summonerId,
   };
 }
 
-function receiveMatchesData(matchIds, summonerRegion, summonerId, response) {
+function receiveMatchData(matchId, summonerRegion, summonerId, response) {
   return {
-    type: RECEIVE_MATCHES_DATA,
-    matchIds,
+    type: RECEIVE_MATCH_DATA,
+    matchId,
     summonerRegion,
     summonerId,
     data: response,
@@ -194,32 +194,30 @@ export function fetchCurrentGameData(summonerId, summonerRegion) {
   };
 }
 
-export function fetchMatchesData(matchIds, summonerRegion, summonerId) {
+export function fetchMatchData(matchId, summonerRegion, summonerId) {
   return (dispatch) => {
-    dispatch(requestMatchesData(matchIds, summonerRegion));
-    const matches = [];
-    matchIds.forEach((match) => {
-      if (matchesCache.contains(match)) {
-        matches.unshift(matchesCache.get(match));
-        dispatch(
-          receiveMatchesData(matchIds, summonerRegion, summonerId, matches),
-        );
-      } else {
-        fetch(getMatchData(match, summonerRegion, summonerId), {
-          method: 'GET',
+    dispatch(requestMatchData(matchId, summonerRegion));
+    if (matchesCache.contains(matchId)) {
+      dispatch(
+        receiveMatchData(
+          matchId,
+          summonerRegion,
+          summonerId,
+          matchesCache.get(matchId),
+        ),
+      );
+    } else {
+      fetch(getMatchData(matchId, summonerRegion, summonerId), {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          matchesCache.set(matchId, json);
+          dispatch(receiveMatchData(matchId, summonerRegion, summonerId, json));
         })
-          .then((response) => response.json())
-          .then((json) => {
-            console.log(json);
-            matchesCache.set(match, json);
-            matches.unshift(json);
-            dispatch(
-              receiveMatchesData(matchIds, summonerRegion, summonerId, matches),
-            );
-          })
-          .catch((error) => console.error(error));
-      }
-    });
+        .catch((error) => console.error(error));
+    }
   };
 }
 

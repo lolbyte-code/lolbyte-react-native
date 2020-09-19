@@ -35,7 +35,7 @@ const LolByteApp = () => {
         currentGameData: {
           isFetching: true,
         },
-        matchesData: {
+        matchData: {
           isFetching: true,
         },
         notificationData: {

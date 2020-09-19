@@ -11,15 +11,13 @@ import TeamHeader from '@app/components/matches/TeamHeader';
 const ExpandedMatchEntry = (props) => {
   return (
     <View>
-      <View>
-        <MatchHeader
-          win={props.win}
-          date={props.date}
-          gameType={props.gameType}
-          duration={props.duration}
-          collapsed={false}
-        />
-      </View>
+      <MatchHeader
+        win={props.win}
+        date={props.date}
+        gameType={props.gameType}
+        duration={props.duration}
+        collapsed={false}
+      />
       <ExpandedMatchSummary
         items={props.items}
         spells={props.spells}

@@ -9,7 +9,6 @@ import {
 import {
   fetchChampionData,
   fetchCurrentGameData,
-  fetchMatchesData,
   fetchRankedData,
   fetchSummonerData,
 } from '@app/data/actions/ApiActions';
@@ -29,7 +28,6 @@ import {useNavigation} from '@react-navigation/native';
 
 const PROFILE_SELECTED = 'profile';
 const MATCHES_SELECTED = 'matches';
-const MATCHES_LIMIT = 10;
 
 const Results = (props) => {
   const navigation = useNavigation();
@@ -37,7 +35,6 @@ const Results = (props) => {
   const rankedData = useSelector((state) => state.api.rankedData);
   const championData = useSelector((state) => state.api.championData);
   const currentGameData = useSelector((state) => state.api.currentGameData);
-  const matchesData = useSelector((state) => state.api.matchesData);
   const dispatch = useDispatch();
 
   const [selectedGameType, setSelectedGameType] = React.useState(
@@ -107,24 +104,6 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.summonerLevel === 0 ||
-      selectedHeader !== MATCHES_SELECTED
-    ) {
-      return;
-    }
-    const matchIds = summonerData.data.recentGames.map((game) => game.matchId);
-    dispatch(
-      fetchMatchesData(
-        matchIds.slice(0, MATCHES_LIMIT),
-        summonerData.data.region,
-        summonerData.data.summonerId,
-      ),
-    );
-  }, [summonerData, selectedHeader, dispatch]);
-
-  React.useEffect(() => {
     if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
       return;
     }
@@ -185,27 +164,26 @@ const Results = (props) => {
           />
         </View>
         {!profileDataLoading ? (
-          <Profile
-            visible={selectedHeader === PROFILE_SELECTED}
-            summonerData={summonerData.data}
-            rankedData={rankedData.data}
-            inGameDataFetching={currentGameData.isFetching}
-            currentGameData={currentGameData.data}
-            championData={championData.data}
-            selectMatchesHeader={selectMatchesHeader}
-          />
-        ) : null}
-        {!summonerData.isFetching ? (
-          <MatchesContainer
-            visible={selectedHeader === MATCHES_SELECTED}
-            isFetching={
-              summonerData.data.recentGames.length > 0 && matchesData.isFetching
-            }
-            matchesData={matchesData.data}
-            currentSummonerName={summonerData.data.summonerName}
-            selectedGameType={selectedGameType}
-            setSelectedGameTypeHandler={setSelectedGameTypeHandler}
-          />
+          <View>
+            <Profile
+              visible={selectedHeader === PROFILE_SELECTED}
+              summonerData={summonerData.data}
+              rankedData={rankedData.data}
+              inGameDataFetching={currentGameData.isFetching}
+              currentGameData={currentGameData.data}
+              championData={championData.data}
+              selectMatchesHeader={selectMatchesHeader}
+            />
+            <MatchesContainer
+              visible={selectedHeader === MATCHES_SELECTED}
+              matchesData={summonerData.data.recentGames}
+              currentSummonerName={summonerData.data.summonerName}
+              selectedGameType={selectedGameType}
+              setSelectedGameTypeHandler={setSelectedGameTypeHandler}
+              summonerId={summonerData.data.summonerId}
+              summonerRegion={summonerData.data.region}
+            />
+          </View>
         ) : null}
       </ScrollView>
     </ImageBackground>
