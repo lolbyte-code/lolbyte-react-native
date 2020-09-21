@@ -17,6 +17,7 @@ import HomeSvg from '@app/assets/svg/home.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '@app/Constants';
+import {resetProfileData} from '@app/data/actions/ApiActions';
 import {useNavigation} from '@react-navigation/native';
 
 const SearchNav = (props) => {
@@ -29,20 +30,23 @@ const SearchNav = (props) => {
     if (summonerNameQuery === '') {
       return;
     }
+    resetProfileData(dispatch);
     const summoner = {
       summonerName: summonerNameQuery,
       summonerRegion: searches[0].summonerRegion,
+      refreshed: true,
     };
     dispatch(pushSearch(summoner));
     navigation.navigate(pages.results, summoner);
   };
 
   const goBackHandler = () => {
+    resetProfileData(dispatch);
     dispatch(popSearch());
     if (searches.length === 0) {
       navigation.navigate(pages.home, {summonerName: ''});
     } else {
-      navigation.navigate(pages.results, searches[0]);
+      navigation.navigate(pages.results, {...searches[0], refreshed: true});
     }
   };
 

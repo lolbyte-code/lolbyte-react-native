@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 
 import NotFoundSvg from '@app/assets/svg/notFound.svg';
 import PropTypes from 'prop-types';
@@ -6,15 +6,8 @@ import React from 'react';
 import SearchNav from '@app/components/common/SearchNav';
 import {backgrounds} from '@app/Theme';
 import {colors} from '@app/Theme';
-import {resetSummonerData} from '@app/data/actions/ApiActions';
-import {useDispatch} from 'react-redux';
 
 const NotFound = (props) => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(resetSummonerData());
-  }, [dispatch]);
-
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <SearchNav />

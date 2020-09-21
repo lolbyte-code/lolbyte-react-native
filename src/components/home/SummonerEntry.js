@@ -13,6 +13,7 @@ import React from 'react';
 import {getProfileIcon} from '@app/api/Url';
 import {pages} from '@app/Constants';
 import {pushSearch} from '@app/data/actions/SearchActions';
+import {resetProfileData} from '@app/data/actions/ApiActions';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
@@ -21,6 +22,7 @@ const SummonerEntry = (props) => {
   const dispatch = useDispatch();
 
   const navigateToProfileHandler = () => {
+    resetProfileData(dispatch);
     const summoner = {
       summonerName: props.summonerName,
       summonerRegion: props.summonerRegion,

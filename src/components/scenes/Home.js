@@ -11,6 +11,7 @@ import RegionSelector from '@app/components/home/RegionSelector';
 import SavedSearches from '@app/components/home/SavedSearches';
 import SummonerSearch from '@app/components/home/SummonerSearch';
 import {pushSearch} from '@app/data/actions/SearchActions';
+import {resetProfileData} from '@app/data/actions/ApiActions';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = (props) => {
@@ -39,6 +40,7 @@ const Home = (props) => {
     if (summonerNameQuery === '') {
       return;
     }
+    resetProfileData(dispatch);
     const summoner = {
       summonerName: summonerNameQuery,
       summonerRegion: summonerRegionQuery,

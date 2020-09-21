@@ -11,6 +11,7 @@ import {
   fetchCurrentGameData,
   fetchRankedData,
   fetchSummonerData,
+  resetProfileData,
 } from '@app/data/actions/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -117,17 +118,21 @@ const Results = (props) => {
   }, [summonerData, dispatch]);
 
   const profileDataLoading =
-    summonerData.isFetching || rankedData.isFetching || championData.isFetching;
+    summonerData.isFetching ||
+    rankedData.isFetching ||
+    championData.isFetching ||
+    currentGameData.isFetching;
 
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {
+    resetProfileData(dispatch);
     setRefreshing(true);
     navigation.navigate(pages.results, {
       ...props.route.params,
       refreshed: true,
     });
-  }, [props.route.params, navigation]);
+  }, [props.route.params, navigation, dispatch]);
 
   React.useEffect(() => {
     setRefreshing(profileDataLoading);

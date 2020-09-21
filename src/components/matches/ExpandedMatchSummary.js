@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '@app/Constants';
 import {pushSearch} from '@app/data/actions/SearchActions';
+import {resetProfileData} from '@app/data/actions/ApiActions';
 import {useNavigation} from '@react-navigation/native';
 
 const ExpandedMatchSummary = (props) => {
@@ -23,6 +24,7 @@ const ExpandedMatchSummary = (props) => {
   const searches = useSelector((state) => state.searches);
 
   const navigateToProfileHandler = () => {
+    resetProfileData(dispatch);
     const summoner = {
       summonerName: props.summonerName,
       summonerRegion: searches[0].summonerRegion,

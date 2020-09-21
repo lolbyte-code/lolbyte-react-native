@@ -9,7 +9,10 @@ const ClosePageButton = (props) => {
 
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate(props.goBackPage, props.goBackParams)}>
+      onPress={() => {
+        props.preNavigate();
+        navigation.navigate(props.goBackPage, props.goBackParams);
+      }}>
       <CloseButtonSvg
         style={props.buttonStyle}
         width={props.closeButtonWidth}
@@ -23,6 +26,7 @@ ClosePageButton.defaultProps = {
   goBackPage: '',
   goBackParams: {},
   buttonStyle: {},
+  preNavigate: () => {},
   closeButtonWidth: 40,
   closeButtonHeight: 40,
 };
@@ -31,6 +35,7 @@ ClosePageButton.propTypes = {
   goBackPage: PropTypes.string,
   goBackParams: PropTypes.object,
   buttonStyle: PropTypes.object,
+  preNavigate: PropTypes.func,
   closeButtonWidth: PropTypes.number,
   closeButtonHeight: PropTypes.number,
 };

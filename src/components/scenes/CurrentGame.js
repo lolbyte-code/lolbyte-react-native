@@ -15,8 +15,11 @@ import React from 'react';
 import Summoners from '@app/components/currentGame/Summoners';
 import VersusSvg from '@app/assets/svg/versus.svg';
 import {pages} from '@app/Constants';
+import {resetProfileData} from '@app/data/actions/ApiActions';
+import {useDispatch} from 'react-redux';
 
 const CurrentGame = (props) => {
+  const dispatch = useDispatch();
   const currentGameData = props.route.params.currentGameData;
   const currentSummoner = props.route.params.currentSummoner;
   const summonerRegion = props.route.params.summonerRegion;
@@ -30,6 +33,7 @@ const CurrentGame = (props) => {
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView style={styles.container}>
         <CloseButton
+          preNavigate={() => resetProfileData(dispatch)}
           goBackPage={pages.results}
           goBackParams={goBackParams}
           buttonStyle={styles.closeButtonStyle}

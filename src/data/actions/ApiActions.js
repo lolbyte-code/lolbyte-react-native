@@ -126,10 +126,18 @@ function receiveNotificationData(response) {
   };
 }
 
-export function resetSummonerData() {
-  return (dispatch) => {
-    dispatch(requestSummonerData('', '', 0));
-  };
+/**
+ * Used to reset the profile data states to isFetching = true.
+ * Without this, the results page will double load. Once with
+ * the previous summoner and once with the newly searched one.
+ * This function must be called any time you navigate to the
+ * profile page.
+ */
+export function resetProfileData(dispatch) {
+  dispatch(requestSummonerData('', '', 0));
+  dispatch(requestRankedData('', ''));
+  dispatch(requestChampionData('', ''));
+  dispatch(requestCurrentGameData('', ''));
 }
 
 export function fetchSummonerData(summonerName, summonerRegion, gameType) {
