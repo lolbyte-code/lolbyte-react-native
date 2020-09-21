@@ -230,6 +230,9 @@ MatchEntry.defaultProps = {
     },
   },
   keystoneImages: {
+    0: {
+      uri: require('@app/assets/img/runes/0.png'),
+    },
     8005: {
       uri: require('@app/assets/img/runes/8005.png'),
     },
