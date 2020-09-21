@@ -28,13 +28,13 @@ TeamHeader.defaultProps = {
   dragons: 0,
   barons: 0,
   towerImage: {
-    uri: require('@app/assets/img//objectives/tower.png'),
+    uri: require('@app/assets/img/objectives/tower.png'),
   },
   dragonImage: {
-    uri: require('@app/assets/img//objectives/dragon.png'),
+    uri: require('@app/assets/img/objectives/dragon.png'),
   },
   baronImage: {
-    uri: require('@app/assets/img//objectives/baron.png'),
+    uri: require('@app/assets/img/objectives/baron.png'),
   },
 };
 

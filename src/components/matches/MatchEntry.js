@@ -163,123 +163,126 @@ MatchEntry.defaultProps = {
   summonerRegion: '',
   spellImages: {
     0: {
-      uri: require('@app/assets/img//spells/0.png'),
+      uri: require('@app/assets/img/spells/0.png'),
     },
     1: {
-      uri: require('@app/assets/img//spells/1.png'),
+      uri: require('@app/assets/img/spells/1.png'),
     },
     3: {
-      uri: require('@app/assets/img//spells/3.png'),
+      uri: require('@app/assets/img/spells/3.png'),
     },
     4: {
-      uri: require('@app/assets/img//spells/4.png'),
+      uri: require('@app/assets/img/spells/4.png'),
     },
     6: {
-      uri: require('@app/assets/img//spells/6.png'),
+      uri: require('@app/assets/img/spells/6.png'),
     },
     7: {
-      uri: require('@app/assets/img//spells/7.png'),
+      uri: require('@app/assets/img/spells/7.png'),
     },
     11: {
-      uri: require('@app/assets/img//spells/11.png'),
+      uri: require('@app/assets/img/spells/11.png'),
     },
     12: {
-      uri: require('@app/assets/img//spells/12.png'),
+      uri: require('@app/assets/img/spells/12.png'),
     },
     13: {
-      uri: require('@app/assets/img//spells/13.png'),
+      uri: require('@app/assets/img/spells/13.png'),
     },
     14: {
-      uri: require('@app/assets/img//spells/14.png'),
+      uri: require('@app/assets/img/spells/14.png'),
     },
     21: {
-      uri: require('@app/assets/img//spells/21.png'),
+      uri: require('@app/assets/img/spells/21.png'),
     },
     30: {
-      uri: require('@app/assets/img//spells/30.png'),
+      uri: require('@app/assets/img/spells/30.png'),
     },
     31: {
-      uri: require('@app/assets/img//spells/31.png'),
+      uri: require('@app/assets/img/spells/31.png'),
     },
     32: {
-      uri: require('@app/assets/img//spells/32.png'),
+      uri: require('@app/assets/img/spells/32.png'),
     },
     33: {
-      uri: require('@app/assets/img//spells/33.png'),
+      uri: require('@app/assets/img/spells/33.png'),
     },
     34: {
-      uri: require('@app/assets/img//spells/34.png'),
+      uri: require('@app/assets/img/spells/34.png'),
     },
     35: {
-      uri: require('@app/assets/img//spells/35.png'),
+      uri: require('@app/assets/img/spells/35.png'),
     },
     36: {
-      uri: require('@app/assets/img//spells/36.png'),
+      uri: require('@app/assets/img/spells/36.png'),
     },
     39: {
-      uri: require('@app/assets/img//spells/39.png'),
+      uri: require('@app/assets/img/spells/39.png'),
     },
     50: {
-      uri: require('@app/assets/img//spells/50.png'),
+      uri: require('@app/assets/img/spells/50.png'),
     },
     51: {
-      uri: require('@app/assets/img//spells/51.png'),
+      uri: require('@app/assets/img/spells/51.png'),
     },
     52: {
-      uri: require('@app/assets/img//spells/52.png'),
+      uri: require('@app/assets/img/spells/52.png'),
     },
   },
   keystoneImages: {
     8005: {
-      uri: require('@app/assets/img//runes/8005.png'),
+      uri: require('@app/assets/img/runes/8005.png'),
     },
     8008: {
-      uri: require('@app/assets/img//runes/8008.png'),
+      uri: require('@app/assets/img/runes/8008.png'),
     },
     8010: {
-      uri: require('@app/assets/img//runes/8010.png'),
+      uri: require('@app/assets/img/runes/8010.png'),
     },
     8021: {
-      uri: require('@app/assets/img//runes/8021.png'),
+      uri: require('@app/assets/img/runes/8021.png'),
     },
     8112: {
-      uri: require('@app/assets/img//runes/8112.png'),
+      uri: require('@app/assets/img/runes/8112.png'),
     },
     8124: {
-      uri: require('@app/assets/img//runes/8124.png'),
+      uri: require('@app/assets/img/runes/8124.png'),
     },
     8128: {
-      uri: require('@app/assets/img//runes/8128.png'),
+      uri: require('@app/assets/img/runes/8128.png'),
     },
     8214: {
-      uri: require('@app/assets/img//runes/8214.png'),
+      uri: require('@app/assets/img/runes/8214.png'),
     },
     8229: {
-      uri: require('@app/assets/img//runes/8229.png'),
+      uri: require('@app/assets/img/runes/8229.png'),
     },
     8230: {
-      uri: require('@app/assets/img//runes/8230.png'),
+      uri: require('@app/assets/img/runes/8230.png'),
     },
     8351: {
-      uri: require('@app/assets/img//runes/8351.png'),
+      uri: require('@app/assets/img/runes/8351.png'),
     },
     8358: {
-      uri: require('@app/assets/img//runes/8358.png'),
+      uri: require('@app/assets/img/runes/8358.png'),
+    },
+    8359: {
+      uri: require('@app/assets/img/runes/8359.png'),
     },
     8360: {
-      uri: require('@app/assets/img//runes/8360.png'),
+      uri: require('@app/assets/img/runes/8360.png'),
     },
     8437: {
-      uri: require('@app/assets/img//runes/8437.png'),
+      uri: require('@app/assets/img/runes/8437.png'),
     },
     8439: {
-      uri: require('@app/assets/img//runes/8439.png'),
+      uri: require('@app/assets/img/runes/8439.png'),
     },
     8465: {
-      uri: require('@app/assets/img//runes/8465.png'),
+      uri: require('@app/assets/img/runes/8465.png'),
     },
     9923: {
-      uri: require('@app/assets/img//runes/9923.png'),
+      uri: require('@app/assets/img/runes/9923.png'),
     },
   },
 };
