@@ -15,16 +15,18 @@ const MatchEntry = (props) => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [currentSummoner, setCurrentSummoner] = React.useState({
     name: props.currentSummonerName,
+    match: null,
   });
 
   React.useEffect(() => {
     setCurrentSummoner({
       name: props.currentSummonerName,
+      match: props.matchId,
     });
-  }, [props.currentSummonerName]);
+  }, [props.currentSummonerName, props.matchId]);
 
-  const changeCurrentSummonerHandler = (summonerName) => {
-    setCurrentSummoner(summonerName);
+  const changeCurrentSummonerHandler = (summoner) => {
+    setCurrentSummoner(summoner);
   };
 
   const selectedSummoner = matchData.isFetching
@@ -54,7 +56,10 @@ const MatchEntry = (props) => {
     <View style={props.containerStyle}>
       <View
         style={
-          collapsed || (!collapsed && matchData.isFetching) ? null : styles.hide
+          collapsed ||
+          (!collapsed && (matchData.isFetching || !selectedSummoner))
+            ? null
+            : styles.hide
         }>
         <TouchableWithoutFeedback
           onPress={() => {
@@ -73,21 +78,26 @@ const MatchEntry = (props) => {
           }}>
           <View>
             <CollapsedMatchEntry
-              isFetching={!collapsed && matchData.isFetching}
+              isFetching={
+                !collapsed && (matchData.isFetching || !selectedSummoner)
+              }
               {...props}
             />
           </View>
         </TouchableWithoutFeedback>
       </View>
-      {matchData.isFetching ? null : (
+      {matchData.isFetching || !selectedSummoner ? null : (
         <View>
           <TouchableWithoutFeedback
             onPress={() => {
               if (!props.pressable) {
                 return;
               }
-              props.changeSummonerHandler(props.currentSummonerName);
               setCollapsed(true);
+              setCurrentSummoner({
+                name: props.currentSummonerName,
+                match: props.matchId,
+              });
               props.changeSelectedMatchHandler(null);
             }}>
             <View style={collapsed ? styles.hide : null}>

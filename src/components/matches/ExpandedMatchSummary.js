@@ -125,14 +125,14 @@ const ExpandedMatchSummary = (props) => {
             </View>
           </TouchableWithoutFeedback>
           <View style={styles.rightContainer}>
-            <Text style={styles.killParticipation}>
-              {props.killParticipation}
-            </Text>
             <Text style={styles.damageContribution}>
               {props.damageContribution.replace(
                 'Dmg Cont',
                 'Damage Contribution',
               )}
+            </Text>
+            <Text style={styles.killParticipation}>
+              {props.killParticipation}
             </Text>
             <View style={styles.rightInnerContainer}>
               <Text style={styles.gold}>{props.gold.replace(',', '')} </Text>
