@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {backgrounds, colors, fonts} from '@app/Theme';
 
-import CloseButton from '@app/components/common/ClosePageButton';
+import ClosePageButton from '@app/components/common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -33,7 +33,7 @@ const RegionSelect = (props) => {
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
         indicatorStyle={DEFAULT_SCROLL_BAR}>
-        <CloseButton
+        <ClosePageButton
           goBackPage={pages.home}
           buttonStyle={styles.closeButtonStyle}
         />

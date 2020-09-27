@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {backgrounds, colors, fonts} from '@app/Theme';
 
-import CloseButton from '@app/components/common/ClosePageButton';
+import ClosePageButton from '@app/components/common/ClosePageButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from '@app/components/currentGame/Summoners';
@@ -32,7 +32,7 @@ const CurrentGame = (props) => {
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       <ScrollView style={styles.container}>
-        <CloseButton
+        <ClosePageButton
           preNavigate={() => resetProfileData(dispatch)}
           goBackPage={pages.results}
           goBackParams={goBackParams}

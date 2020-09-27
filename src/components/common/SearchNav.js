@@ -41,11 +41,11 @@ const SearchNav = (props) => {
   };
 
   const goBackHandler = () => {
-    resetProfileData(dispatch);
     dispatch(popSearch());
     if (searches.length === 0) {
       navigation.navigate(pages.home, {summonerName: ''});
     } else {
+      resetProfileData(dispatch);
       navigation.navigate(pages.results, {...searches[0], refreshed: true});
     }
   };

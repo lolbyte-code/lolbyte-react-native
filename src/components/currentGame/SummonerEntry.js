@@ -54,7 +54,6 @@ const SummonerEntry = (props) => {
                 : styles.redSummonerName
               : styles.notSelectedSummonerName
           }
-          maxLimit={10}
         />
         <Text style={styles.summonerRank}>{props.summonerRank}</Text>
       </View>
