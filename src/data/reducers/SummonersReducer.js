@@ -6,7 +6,9 @@ import {
   REMOVE_FAV,
 } from '@app/data/actions/SummonersActions';
 
-const MAX_CAPACITY = 100;
+import {config} from '@app/Config';
+
+const MAX_CAPACITY = config.savedSummonersMaxCapacity;
 
 const summonersReducer = (
   state = {

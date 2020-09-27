@@ -1,3 +1,4 @@
+import {ALL_MATCHES, CLASH, RANKED} from '@app/Constants';
 import {Modal, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
@@ -5,10 +6,6 @@ import PropTypes from 'prop-types';
 import RadioButton from 'radio-buttons-react-native';
 import React from 'react';
 import TripleDot from '@app/components/common/TripleDot';
-
-const ALL_MATCHES = 0;
-const RANKED = 420;
-const CLASH = 700;
 
 const getIndex = (gameType) => {
   switch (gameType) {

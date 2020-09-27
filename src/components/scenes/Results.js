@@ -57,6 +57,7 @@ const Results = (props) => {
   };
 
   React.useEffect(() => {
+    resetProfileData(dispatch);
     dispatch(
       fetchSummonerData(
         props.route.params.summonerName,

@@ -7,7 +7,8 @@ import {
   getSummonerData,
 } from '@app/api/Url';
 
-import {SimpleCache} from '@app/utils/Cache';
+import LRUCache from 'lru-cache';
+import {config} from '@app/Config';
 
 export const REQUEST_SUMMONER_DATA = 'REQUEST_SUMMONER_DATA';
 export const RECEIVE_SUMMONER_DATA = 'RECEIVE_SUMMONER_DATA';
@@ -22,7 +23,7 @@ export const RECEIVE_MATCH_DATA = 'RECEIVE_MATCH_DATA';
 export const REQUEST_NOTIFICATION_DATA = 'REQUEST_NOTIFICATION_DATA';
 export const RECEIVE_NOTIFICATION_DATA = 'RECEIVE_NOTIFICATION_DATA';
 
-const matchesCache = new SimpleCache();
+const matchesCache = new LRUCache(config.matchesCacheSize);
 
 function requestSummonerData(summonerName, summonerRegion, gameType) {
   return {
@@ -205,7 +206,8 @@ export function fetchCurrentGameData(summonerId, summonerRegion) {
 export function fetchMatchData(matchId, summonerRegion, summonerId) {
   return (dispatch) => {
     dispatch(requestMatchData(matchId, summonerRegion));
-    if (matchesCache.contains(matchId)) {
+    if (matchesCache.has(matchId)) {
+      console.log(`cache hit for match ${matchId}`);
       dispatch(
         receiveMatchData(
           matchId,
@@ -215,6 +217,7 @@ export function fetchMatchData(matchId, summonerRegion, summonerId) {
         ),
       );
     } else {
+      console.log(`cache miss for match ${matchId}`);
       fetch(getMatchData(matchId, summonerRegion, summonerId), {
         method: 'GET',
       })
