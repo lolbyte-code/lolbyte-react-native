@@ -65,6 +65,7 @@ const SearchNav = (props) => {
       <TextInput
         placeholder={props.placeholder}
         placeholderTextColor={props.placeholderTextColor}
+        clearButtonMode={props.clearButtonMode}
         style={styles.input}
         autoCorrect={props.autoCorrect}
         onChangeText={(value) => setSummonerNameQuery(value)}
@@ -85,6 +86,7 @@ SearchNav.defaultProps = {
   placeholder: 'enter summoner name',
   placeholderTextColor: colors.lightGrey,
   autoCorrect: false,
+  clearButtonMode: 'always',
 };
 
 SearchNav.propTypes = {
@@ -95,6 +97,7 @@ SearchNav.propTypes = {
   placeholder: PropTypes.string,
   autoCorrect: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
+  clearButtonMode: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

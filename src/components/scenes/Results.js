@@ -144,7 +144,6 @@ const Results = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <SearchNav />
       <ScrollView
         indicatorStyle={DEFAULT_SCROLL_BAR}
         refreshControl={
@@ -156,6 +155,7 @@ const Results = (props) => {
             progressBackgroundColor={colors.blue}
           />
         }>
+        <SearchNav />
         <View style={styles.headers}>
           <TogglePageHeader
             title={props.profileHeader}
