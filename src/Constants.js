@@ -4,6 +4,7 @@ export const pages = {
   results: 'Results',
   currentGame: 'Current Game',
   notFound: 'Not Found',
+  error: 'Error',
 };
 
 export const SUMMONERS_STORAGE = '@summoners';

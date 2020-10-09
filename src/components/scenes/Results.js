@@ -68,7 +68,7 @@ const Results = (props) => {
   }, [props.route, selectedGameType, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching) {
+    if (summonerData.isFetching || summonerData.isError) {
       return;
     } else if (summonerData.data.summonerLevel === 0) {
       navigation.navigate(pages.notFound);
@@ -76,7 +76,11 @@ const Results = (props) => {
   }, [summonerData, navigation]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.summonerLevel === 0 ||
+      summonerData.isError
+    ) {
       return;
     }
     dispatch(
@@ -85,7 +89,11 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.summonerLevel === 0 ||
+      summonerData.isError
+    ) {
       return;
     }
     dispatch(
@@ -94,7 +102,11 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.summonerLevel === 0 ||
+      summonerData.isError
+    ) {
       return;
     }
     dispatch(
@@ -106,7 +118,11 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.data.summonerLevel === 0) {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.summonerLevel === 0 ||
+      summonerData.isError
+    ) {
       return;
     }
     dispatch(
@@ -138,6 +154,13 @@ const Results = (props) => {
   React.useEffect(() => {
     setRefreshing(profileDataLoading);
   }, [profileDataLoading]);
+
+  if (!summonerData.isFetching && summonerData.isError) {
+    navigation.navigate(pages.error, {
+      error: `Failed to fetch summoner data: '${String(summonerData.data)}'`,
+    });
+    return null;
+  }
 
   if (profileDataLoading && !props.route.params.refreshed) {
     return <Loading />;

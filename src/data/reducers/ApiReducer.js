@@ -11,6 +11,7 @@ import {
   REQUEST_NOTIFICATION_DATA,
   REQUEST_RANKED_DATA,
   REQUEST_SUMMONER_DATA,
+  SUMMONER_FETCH_ERROR,
 } from '@app/data/actions/ApiActions';
 
 import {combineReducers} from 'redux';
@@ -18,6 +19,7 @@ import {combineReducers} from 'redux';
 const summonerDataReducer = (
   state = {
     isFetching: false,
+    isError: false,
     data: {},
   },
   action,
@@ -26,6 +28,7 @@ const summonerDataReducer = (
     case REQUEST_SUMMONER_DATA:
       return {
         isFetching: true,
+        isError: false,
         summonerName: action.summonerName,
         summonerRegion: action.summonerRegion,
         gameType: action.gameType,
@@ -33,9 +36,16 @@ const summonerDataReducer = (
     case RECEIVE_SUMMONER_DATA:
       return {
         isFetching: false,
+        isError: false,
         summonerName: action.summonerName,
         summonerRegion: action.summonerRegion,
         gameType: action.gameType,
+        data: action.data,
+      };
+    case SUMMONER_FETCH_ERROR:
+      return {
+        isFetching: false,
+        isError: true,
         data: action.data,
       };
     default:

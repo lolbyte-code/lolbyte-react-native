@@ -25,6 +25,7 @@ const LolByteApp = () => {
       api: {
         summonerData: {
           isFetching: true,
+          isError: false,
         },
         rankedData: {
           isFetching: true,

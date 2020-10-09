@@ -28,6 +28,7 @@ const ExpandedMatchSummary = (props) => {
     const summoner = {
       summonerName: props.summonerName,
       summonerRegion: searches[0].summonerRegion,
+      refreshed: true,
     };
     dispatch(pushSearch(summoner));
     navigation.navigate(pages.results, summoner);

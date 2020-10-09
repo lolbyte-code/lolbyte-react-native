@@ -22,6 +22,7 @@ export const REQUEST_MATCH_DATA = 'REQUEST_MATCH_DATA';
 export const RECEIVE_MATCH_DATA = 'RECEIVE_MATCH_DATA';
 export const REQUEST_NOTIFICATION_DATA = 'REQUEST_NOTIFICATION_DATA';
 export const RECEIVE_NOTIFICATION_DATA = 'RECEIVE_NOTIFICATION_DATA';
+export const SUMMONER_FETCH_ERROR = 'SUMMONER_FETCH_ERROR';
 
 const matchesCache = new LRUCache(config.matchesCacheSize);
 
@@ -127,6 +128,13 @@ function receiveNotificationData(response) {
   };
 }
 
+function fetchSummonerDataError(response) {
+  return {
+    type: SUMMONER_FETCH_ERROR,
+    data: response,
+  };
+}
+
 /**
  * Used to reset the profile data states to isFetching = true.
  * Without this, the results page will double load. Once with
@@ -146,6 +154,7 @@ export function fetchSummonerData(summonerName, summonerRegion, gameType) {
     dispatch(requestSummonerData(summonerName, summonerRegion, gameType));
     return fetch(getSummonerData(summonerName, summonerRegion, gameType), {
       method: 'GET',
+      timeout: config.apiTimeout,
     })
       .then((response) => response.json())
       .then((json) => {
@@ -154,7 +163,10 @@ export function fetchSummonerData(summonerName, summonerRegion, gameType) {
           receiveSummonerData(summonerName, summonerRegion, gameType, json),
         );
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        dispatch(fetchSummonerDataError(error));
+      });
   };
 }
 

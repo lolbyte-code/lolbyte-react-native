@@ -5,6 +5,7 @@ import {
 } from '@app/data/actions/SummonersActions';
 
 import CurrentGame from '@app/components/scenes/CurrentGame';
+import Error from '@app/components/scenes/Error';
 import Home from '@app/components/scenes/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import NotFound from '@app/components/scenes/NotFound';
@@ -62,6 +63,11 @@ const AppContainer = () => {
         <Stack.Screen
           name={pages.notFound}
           component={NotFound}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={pages.error}
+          component={Error}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
