@@ -140,6 +140,7 @@ const MatchEntry = (props) => {
                 team1Kda={matchData.data.teams[0].kda}
                 team2Kda={matchData.data.teams[1].kda}
                 changeSummonerHandler={changeCurrentSummonerHandler}
+                selectedSummonerName={selectedSummoner.summonerName}
               />
             </View>
           </TouchableWithoutFeedback>

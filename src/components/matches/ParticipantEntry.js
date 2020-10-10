@@ -80,7 +80,13 @@ const ParticipantEntry = (props) => {
         <View>
           <Image
             source={{uri: getChampionIcon(props.championId)}}
-            style={props.win ? styles.championIconWin : styles.championIconLoss}
+            style={
+              props.selected
+                ? styles.championIconSelected
+                : props.win
+                ? styles.championIconWin
+                : styles.championIconLoss
+            }
           />
           <View style={styles.spellsContainer}>{Spells}</View>
           <View style={styles.badgesContainer}>{Badges}</View>
@@ -132,6 +138,7 @@ ParticipantEntry.defaultProps = {
   keystone: 0,
   keystoneImages: {},
   changeSummonerHandler: () => {},
+  selected: false,
 };
 
 ParticipantEntry.propTypes = {
@@ -147,6 +154,7 @@ ParticipantEntry.propTypes = {
   keystone: PropTypes.number,
   keystoneImages: PropTypes.object,
   changeSummonerHandler: PropTypes.func,
+  selected: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -166,6 +174,13 @@ const styles = StyleSheet.create({
   championIconLoss: {
     borderWidth: 3,
     borderColor: colors.red,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+  },
+  championIconSelected: {
+    borderWidth: 3,
+    borderColor: colors.white,
     width: 56,
     height: 56,
     borderRadius: 28,

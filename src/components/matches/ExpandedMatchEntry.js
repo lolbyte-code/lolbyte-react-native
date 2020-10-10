@@ -75,6 +75,7 @@ const ExpandedMatchEntry = (props) => {
         team2Win={props.team2Win}
         spellImages={props.spellImages}
         keystoneImages={props.keystoneImages}
+        selectedSummonerName={props.selectedSummonerName}
       />
     </View>
   );
@@ -118,6 +119,7 @@ ExpandedMatchEntry.defaultProps = {
   championId: 0,
   spellImages: {},
   keystoneImages: {},
+  selectedSummonerName: '',
 };
 
 ExpandedMatchEntry.propTypes = {
@@ -158,6 +160,7 @@ ExpandedMatchEntry.propTypes = {
   championId: PropTypes.number,
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
+  selectedSummonerName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

@@ -27,6 +27,7 @@ const Participants = (props) => {
         matchId={props.matchId}
         spellImages={props.spellImages}
         keystoneImages={props.keystoneImages}
+        selected={props.selectedSummonerName === player.summonerName}
       />
     );
   });
@@ -57,6 +58,7 @@ Participants.defaultProps = {
   spellImages: {},
   keystoneImages: {},
   changeSummonerHandler: () => {},
+  selectedSummonerName: '',
 };
 
 Participants.propTypes = {
@@ -66,6 +68,7 @@ Participants.propTypes = {
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
   changeSummonerHandler: PropTypes.func,
+  selectedSummonerName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
