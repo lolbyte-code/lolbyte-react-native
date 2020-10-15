@@ -58,6 +58,7 @@ buck-out/
 index.android.bundle
 src_assets_img_*
 node_modules_*
+android/app/release
 
 # CocoaPods
 /ios/Pods/
