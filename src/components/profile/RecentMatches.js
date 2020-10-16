@@ -1,9 +1,10 @@
-import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
 import RecentMatchesGroup from '@app/components/profile/RecentMatchesGroup';
 import ScrollDots from '@app/components/common/ScrollDots';
+import {getSafeAreaWidth} from '@app/utils/Device';
 
 const CHUNK_SIZE = 5;
 
@@ -34,7 +35,7 @@ const RecentMatches = (props) => {
   });
   return (
     <View style={styles.container}>
-      <View style={{width: Dimensions.get('window').width}}>
+      <View style={{width: getSafeAreaWidth()}}>
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
           horizontal={true}
@@ -45,13 +46,13 @@ const RecentMatches = (props) => {
           pagingEnabled={true}>
           {RecentMatchesGroupEntries}
         </ScrollView>
+        <ScrollDots
+          listSize={props.recentMatches.length / CHUNK_SIZE}
+          currentItemPosition={currentGamesPosition}
+          itemWidth={getSafeAreaWidth()}
+          scrollDotsStyle={styles.scrollDotsStyle}
+        />
       </View>
-      <ScrollDots
-        listSize={props.recentMatches.length / CHUNK_SIZE}
-        currentItemPosition={currentGamesPosition}
-        itemWidth={Dimensions.get('window').width}
-        scrollDotsStyle={styles.scrollDotsStyle}
-      />
     </View>
   );
 };

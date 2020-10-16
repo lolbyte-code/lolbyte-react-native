@@ -59,6 +59,7 @@ index.android.bundle
 src_assets_img_*
 node_modules_*
 android/app/release
+android/app/src/main/res/raw/
 
 # CocoaPods
 /ios/Pods/

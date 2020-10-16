@@ -1,4 +1,4 @@
-import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 import InGameIndicator from '@app/components/profile/InGameIndicator';
 import LeagueDetails from '@app/components/profile/LeagueDetails';
@@ -8,6 +8,7 @@ import React from 'react';
 import RecentMatches from '@app/components/profile/RecentMatches';
 import ScrollDots from '@app/components/common/ScrollDots';
 import SummonerDetails from '@app/components/profile/SummonerDetails';
+import {getSafeAreaWidth} from '@app/utils/Device';
 
 const ProfileHeader = (props) => {
   const [currentRankPosition, setCurrentRankPosition] = React.useState(0);
@@ -18,9 +19,7 @@ const ProfileHeader = (props) => {
 
   var i = 0;
   const RankEntries = props.rankedData.map((entry) => (
-    <View
-      style={{width: Dimensions.get('window').width}}
-      key={`leagueDetail_${i++}`}>
+    <View style={{width: getSafeAreaWidth()}} key={`leagueDetail_${i++}`}>
       <Rank tier={entry.tier} />
       <View style={styles.leagueDetailsContainer}>
         <LeagueDetails
@@ -56,7 +55,7 @@ const ProfileHeader = (props) => {
           selectMatchesHeader={props.selectMatchesHeader}
         />
       </View>
-      <View style={{width: Dimensions.get('window').width}}>
+      <View style={{width: getSafeAreaWidth()}}>
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -65,13 +64,13 @@ const ProfileHeader = (props) => {
           pagingEnabled={true}>
           {RankEntries}
         </ScrollView>
+        <ScrollDots
+          listSize={props.rankedData.length}
+          currentItemPosition={currentRankPosition}
+          itemWidth={getSafeAreaWidth()}
+          scrollDotsStyle={styles.scrollDotsStyle}
+        />
       </View>
-      <ScrollDots
-        listSize={props.rankedData.length}
-        currentItemPosition={currentRankPosition}
-        itemWidth={Dimensions.get('window').width}
-        scrollDotsStyle={styles.scrollDotsStyle}
-      />
     </View>
   );
 };

@@ -1,7 +1,10 @@
 import {DEFAULT_GAME_TYPE, DEFAULT_SCROLL_BAR, pages} from '@app/Constants';
 import {
+  Dimensions,
   ImageBackground,
+  Platform,
   RefreshControl,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   View,
@@ -21,10 +24,12 @@ import Profile from '@app/components/profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from '@app/components/common/SearchNav';
+import {StatusBar} from 'react-native';
 import TogglePageHeader from '@app/components/common/TogglePageHeader';
 import {addRecentSummoner} from '@app/data/actions/SummonersActions';
 import {backgrounds} from '@app/Theme';
 import {colors} from '@app/Theme';
+import {isLandscape} from '@app/utils/Device';
 import {useNavigation} from '@react-navigation/native';
 
 const PROFILE_SELECTED = 'profile';
@@ -37,6 +42,19 @@ const Results = (props) => {
   const championData = useSelector((state) => state.api.championData);
   const currentGameData = useSelector((state) => state.api.currentGameData);
   const dispatch = useDispatch();
+
+  // Force a re-render of the results page when changing orientation.
+  const [, setOrientation] = React.useState({
+    orientation: isLandscape() ? 'landscape' : 'portrait',
+  });
+
+  React.useEffect(() => {
+    Dimensions.addEventListener('change', () => {
+      setOrientation({
+        orientation: isLandscape() ? 'landscape' : 'portrait',
+      });
+    });
+  }, []);
 
   const [selectedGameType, setSelectedGameType] = React.useState(
     DEFAULT_GAME_TYPE,
@@ -168,53 +186,60 @@ const Results = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <SearchNav />
-      <ScrollView
-        indicatorStyle={DEFAULT_SCROLL_BAR}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            tintColor={colors.blue}
-            color={colors.blue}
-            progressBackgroundColor={colors.blue}
-          />
+      <SafeAreaView
+        style={
+          StatusBar.currentHeight && Platform.OS === 'android'
+            ? {paddingTop: StatusBar.currentHeight}
+            : null
         }>
-        <View style={styles.headers}>
-          <TogglePageHeader
-            title={props.profileHeader}
-            onPressHandler={() => selectProfileHeader()}
-            selected={selectedHeader === PROFILE_SELECTED}
-          />
-          <TogglePageHeader
-            title={props.matchesHeader}
-            onPressHandler={() => selectMatchesHeader()}
-            selected={selectedHeader === MATCHES_SELECTED}
-          />
-        </View>
-        {!profileDataLoading ? (
-          <View>
-            <Profile
-              visible={selectedHeader === PROFILE_SELECTED}
-              summonerData={summonerData.data}
-              rankedData={rankedData.data}
-              inGameDataFetching={currentGameData.isFetching}
-              currentGameData={currentGameData.data}
-              championData={championData.data}
-              selectMatchesHeader={selectMatchesHeader}
+        <SearchNav />
+        <ScrollView
+          indicatorStyle={DEFAULT_SCROLL_BAR}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              tintColor={colors.blue}
+              color={colors.blue}
+              progressBackgroundColor={colors.blue}
             />
-            <MatchesContainer
-              visible={selectedHeader === MATCHES_SELECTED}
-              matchesData={summonerData.data.recentGames}
-              currentSummonerName={summonerData.data.summonerName}
-              selectedGameType={selectedGameType}
-              setSelectedGameTypeHandler={setSelectedGameTypeHandler}
-              summonerId={summonerData.data.summonerId}
-              summonerRegion={summonerData.data.region}
+          }>
+          <View style={styles.headers}>
+            <TogglePageHeader
+              title={props.profileHeader}
+              onPressHandler={() => selectProfileHeader()}
+              selected={selectedHeader === PROFILE_SELECTED}
+            />
+            <TogglePageHeader
+              title={props.matchesHeader}
+              onPressHandler={() => selectMatchesHeader()}
+              selected={selectedHeader === MATCHES_SELECTED}
             />
           </View>
-        ) : null}
-      </ScrollView>
+          {!profileDataLoading ? (
+            <View>
+              <Profile
+                visible={selectedHeader === PROFILE_SELECTED}
+                summonerData={summonerData.data}
+                rankedData={rankedData.data}
+                inGameDataFetching={currentGameData.isFetching}
+                currentGameData={currentGameData.data}
+                championData={championData.data}
+                selectMatchesHeader={selectMatchesHeader}
+              />
+              <MatchesContainer
+                visible={selectedHeader === MATCHES_SELECTED}
+                matchesData={summonerData.data.recentGames}
+                currentSummonerName={summonerData.data.summonerName}
+                selectedGameType={selectedGameType}
+                setSelectedGameTypeHandler={setSelectedGameTypeHandler}
+                summonerId={summonerData.data.summonerId}
+                summonerRegion={summonerData.data.region}
+              />
+            </View>
+          ) : null}
+        </ScrollView>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

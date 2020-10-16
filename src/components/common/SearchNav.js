@@ -102,8 +102,8 @@ SearchNav.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 45,
-    paddingBottom: 10,
+    paddingTop: 12,
+    paddingBottom: 12,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',

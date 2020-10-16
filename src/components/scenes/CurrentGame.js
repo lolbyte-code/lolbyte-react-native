@@ -1,7 +1,7 @@
 import {BLUE_TEAM, RED_TEAM} from '@app/Constants';
 import {
-  Dimensions,
   ImageBackground,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Summoners from '@app/components/currentGame/Summoners';
 import VersusSvg from '@app/assets/svg/versus.svg';
+import {getSafeAreaWidth} from '@app/utils/Device';
 import {pages} from '@app/Constants';
 import {resetProfileData} from '@app/data/actions/ApiActions';
 import {useDispatch} from 'react-redux';
@@ -31,41 +32,43 @@ const CurrentGame = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <ScrollView style={styles.container}>
-        <ClosePageButton
-          preNavigate={() => resetProfileData(dispatch)}
-          goBackPage={pages.results}
-          goBackParams={goBackParams}
-          buttonStyle={styles.closeButtonStyle}
-        />
-        <View style={styles.summonersContainer}>
-          <Text style={styles.gameType}>{currentGameData.gameType}</Text>
-          <Summoners
-            summonerEntries={currentGameData.summoners.filter(
-              (summoner) => summoner.teamId === BLUE_TEAM,
-            )}
-            summonerRegion={summonerRegion}
+      <SafeAreaView style={styles.safeAreaView}>
+        <ScrollView style={styles.container}>
+          <ClosePageButton
+            preNavigate={() => resetProfileData(dispatch)}
+            goBackPage={pages.results}
+            goBackParams={goBackParams}
+            buttonStyle={styles.closeButtonStyle}
           />
-          <VersusSvg
-            style={styles.versus}
-            width={props.versusWidth}
-            height={props.versusHeight}
-          />
-          <Summoners
-            summonerEntries={currentGameData.summoners.filter(
-              (summoner) => summoner.teamId === RED_TEAM,
-            )}
-            summonerRegion={summonerRegion}
-          />
-        </View>
-      </ScrollView>
+          <View style={styles.summonersContainer}>
+            <Text style={styles.gameType}>{currentGameData.gameType}</Text>
+            <Summoners
+              summonerEntries={currentGameData.summoners.filter(
+                (summoner) => summoner.teamId === BLUE_TEAM,
+              )}
+              summonerRegion={summonerRegion}
+            />
+            <VersusSvg
+              style={styles.versus}
+              width={props.versusWidth}
+              height={props.versusHeight}
+            />
+            <Summoners
+              summonerEntries={currentGameData.summoners.filter(
+                (summoner) => summoner.teamId === RED_TEAM,
+              )}
+              summonerRegion={summonerRegion}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </ImageBackground>
   );
 };
 
 CurrentGame.defaultProps = {
   backgroundImage: backgrounds.main,
-  versusWidth: Dimensions.get('window').width - 10,
+  versusWidth: getSafeAreaWidth() - 10,
   versusHeight: 40,
   route: {},
 };
@@ -89,7 +92,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 15,
+  },
+  safeAreaView: {
+    flex: 1,
   },
   gameType: {
     color: colors.green,
@@ -98,7 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   closeButtonStyle: {
-    marginTop: 30,
+    marginTop: 20,
     marginLeft: 20,
   },
 });

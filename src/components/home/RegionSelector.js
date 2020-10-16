@@ -3,7 +3,6 @@ import {colors, fonts} from '@app/Theme';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import RegionArrowSvg from '@app/assets/svg/summonerRegionArrow.svg';
 import {pages} from '@app/Constants';
 import {useNavigation} from '@react-navigation/native';
 
@@ -17,12 +16,7 @@ const RegionSelector = (props) => {
   return (
     <TouchableWithoutFeedback onPress={selectRegionHandler}>
       <View style={styles.summonerRegionSelector}>
-        <Text style={styles.summonerRegionText}>{props.selectedRegion} </Text>
-        <RegionArrowSvg
-          style={styles.summonerRegionArrow}
-          width={props.summonerRegionArrowWidth}
-          height={props.summonerRegionArrowHeight}
-        />
+        <Text style={styles.summonerRegionText}>{props.selectedRegion}</Text>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -30,14 +24,10 @@ const RegionSelector = (props) => {
 
 RegionSelector.defaultProps = {
   selectedRegion: '',
-  summonerRegionArrowWidth: 10,
-  summonerRegionArrowHeight: 27,
 };
 
 RegionSelector.propTypes = {
   selectedRegion: PropTypes.string,
-  summonerRegionArrowWidth: PropTypes.number,
-  summonerRegionArrowHeight: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -54,9 +44,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkGrey,
     fontSize: 20,
     fontFamily: fonts.regular,
-  },
-  summonerRegionArrow: {
-    backgroundColor: colors.darkGrey,
   },
 });
 

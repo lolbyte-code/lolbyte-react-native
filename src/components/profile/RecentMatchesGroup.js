@@ -1,8 +1,9 @@
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import PropTypes from 'prop-types';
 import React from 'react';
 import RecentMatchesEntry from '@app/components/profile/RecentMatchesEntry';
+import {getSafeAreaWidth} from '@app/utils/Device';
 
 const RecentMatchesGroup = (props) => {
   var i = 0;
@@ -19,7 +20,7 @@ const RecentMatchesGroup = (props) => {
     <View
       style={{
         ...styles.recentMatchesContainer,
-        width: Dimensions.get('window').width,
+        width: getSafeAreaWidth(),
       }}>
       {RecentMatchEntries}
     </View>
