@@ -329,9 +329,6 @@ MatchEntry.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 15,
-  },
   hide: {
     display: 'none',
   },

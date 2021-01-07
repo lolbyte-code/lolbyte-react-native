@@ -27,6 +27,7 @@ const CollapsedMatchEntry = (props) => {
         cs={props.cs}
         spellImages={props.spellImages}
         keystoneImages={props.keystoneImages}
+        win={props.win}
       />
       <View style={props.isFetching ? styles.loadingContainer : styles.hide}>
         <Loading loadingIndicatorSize={props.loadingIndicatorSize} />
@@ -76,6 +77,7 @@ CollapsedMatchEntry.propTypes = {
 const styles = StyleSheet.create({
   loadingContainer: {
     marginTop: 5,
+    marginBottom: 5,
   },
   hide: {
     display: 'none',

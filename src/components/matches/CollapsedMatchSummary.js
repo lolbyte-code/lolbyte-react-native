@@ -1,8 +1,7 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
-import {getItemIcon, getSplash} from '@app/api/Url';
+import {getChampionIcon, getItemIcon} from '@app/api/Url';
 
-import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -24,33 +23,35 @@ const CollapsedMatchSummary = (props) => {
   ));
   return (
     <ImageBackground
-      source={{
-        uri: getSplash(props.championId),
-      }}
-      style={styles.championSplash}>
-      <LinearGradient
-        start={props.gradientStart}
-        end={props.gradientEnd}
-        colors={props.gradientColors}>
-        <View style={styles.container}>
-          <View style={styles.equippedContainer}>
-            <View style={styles.itemsContainer}>{Items}</View>
-            <View style={styles.spellsContainer}>{Spells}</View>
-            <Image
-              source={props.keystoneImages[props.keystone].uri}
-              style={styles.keystone}
-            />
-          </View>
-          <View style={styles.bottomRightContainer}>
+      source={props.win ? props.backgroundWin : props.backgroundLoss}
+      style={styles.background}>
+      <View style={styles.container}>
+        <View style={styles.leftContainer}>
+          <Image
+            source={{uri: getChampionIcon(props.championId)}}
+            style={
+              props.win
+                ? styles.championPortraitWin
+                : styles.championPortraitLoss
+            }
+          />
+          <View style={styles.matchDetailsContainer}>
             <Text style={styles.kdaShort}>{props.kdaShort}</Text>
             <View style={styles.matchDetailsInnerContainer}>
-              <Text style={styles.championName}>{props.championName} </Text>
               <Text style={styles.kdaLong}>{props.kdaLong} </Text>
               <Text style={styles.cs}>{props.cs} CS</Text>
             </View>
           </View>
         </View>
-      </LinearGradient>
+        <View style={styles.equippedContainer}>
+          <Image
+            source={props.keystoneImages[props.keystone].uri}
+            style={styles.keystone}
+          />
+          <View style={styles.spellsContainer}>{Spells}</View>
+          <View style={styles.itemsContainer}>{Items}</View>
+        </View>
+      </View>
     </ImageBackground>
   );
 };
@@ -64,11 +65,11 @@ CollapsedMatchSummary.defaultProps = {
   kdaLong: '',
   championName: '',
   cs: 0,
-  gradientStart: {x: 0, y: 1},
-  gradientEnd: {x: 0, y: 0},
-  gradientColors: ['rgba(0,0,0,1)', 'transparent'],
   spellImages: {},
   keystoneImages: {},
+  win: false,
+  backgroundWin: require('@app/assets/img/backgrounds/matchSummaryVictory.png'),
+  backgroundLoss: require('@app/assets/img/backgrounds/matchSummaryDefeat.png'),
 };
 
 CollapsedMatchSummary.propTypes = {
@@ -80,24 +81,24 @@ CollapsedMatchSummary.propTypes = {
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
   cs: PropTypes.number,
-  gradientStart: PropTypes.object,
-  gradientEnd: PropTypes.object,
-  gradientColors: PropTypes.array,
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
+  win: PropTypes.bool,
+  backgroundWin: PropTypes.node,
+  backgroundLoss: PropTypes.node,
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   equippedContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 8,
   },
-  championSplash: {
-    width: '100%',
+  background: {
+    resizeMode: 'stretch',
   },
   itemsContainer: {
     flexDirection: 'row',
@@ -118,34 +119,53 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  bottomRightContainer: {
-    marginTop: 45,
-    justifyContent: 'flex-end',
+  championPortraitWin: {
+    borderColor: colors.blue,
+    borderWidth: 2,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+  },
+  championPortraitLoss: {
+    borderColor: colors.red,
+    borderWidth: 2,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+  },
+  leftContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
     flex: 1,
-    marginRight: 11,
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  matchDetailsContainer: {
+    alignItems: 'flex-start',
+    marginLeft: 8,
   },
   matchDetailsInnerContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    flex: 1,
   },
   kdaShort: {
     textAlign: 'right',
     color: colors.white,
     fontFamily: fonts.bold,
-    fontSize: 25,
+    fontSize: 22,
   },
   championName: {
     color: colors.white,
     fontFamily: fonts.bold,
   },
   kdaLong: {
-    color: colors.white,
+    color: colors.lightGrey,
     fontFamily: fonts.regular,
+    fontSize: 13,
   },
   cs: {
-    color: colors.white,
+    color: colors.lightGrey,
     fontFamily: fonts.bold,
+    fontSize: 13,
   },
 });
 

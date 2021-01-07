@@ -16,9 +16,7 @@ const Matches = (props) => {
     const pressable = !selectedMatch || selectedMatch === match.matchId;
 
     const matchEntryStyle =
-      selectedMatch && selectedMatch !== match.matchId
-        ? {opacity: 0.4, marginTop: 15}
-        : {marginTop: 15};
+      selectedMatch && selectedMatch !== match.matchId ? {opacity: 0.4} : null;
 
     return (
       <MatchEntry

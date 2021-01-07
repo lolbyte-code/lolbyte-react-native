@@ -37,6 +37,7 @@ const ExpandedMatchEntry = (props) => {
         championId={props.championId}
         spellImages={props.spellImages}
         keystoneImages={props.keystoneImages}
+        win={props.win}
       />
       <View style={styles.teamHeaders}>
         <View style={styles.teamHeaderContainer}>

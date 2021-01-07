@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   tripleDotContainer: {
     alignItems: 'flex-end',
     marginRight: 10,
+    marginBottom: 5,
   },
   centeredView: {
     flex: 1,

@@ -1,4 +1,11 @@
-import {ImageBackground, StyleSheet, View} from 'react-native';
+import {
+  ImageBackground,
+  Platform,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import NotFoundSvg from '@app/assets/svg/notFound.svg';
 import PropTypes from 'prop-types';
@@ -10,13 +17,20 @@ import {colors} from '@app/Theme';
 const NotFound = (props) => {
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <SearchNav />
-      <View style={styles.container}>
-        <NotFoundSvg
-          width={props.notFoundWidth}
-          height={props.notFoundHeight}
-        />
-      </View>
+      <SafeAreaView
+        style={
+          StatusBar.currentHeight && Platform.OS === 'android'
+            ? {paddingTop: StatusBar.currentHeight}
+            : null
+        }>
+        <SearchNav />
+        <View style={styles.container}>
+          <NotFoundSvg
+            width={props.notFoundWidth}
+            height={props.notFoundHeight}
+          />
+        </View>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

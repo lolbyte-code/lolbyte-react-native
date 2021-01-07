@@ -7,10 +7,9 @@ import {
   View,
 } from 'react-native';
 import {colors, fonts} from '@app/Theme';
-import {getItemIcon, getSplash} from '@app/api/Url';
+import {getChampionIcon, getItemIcon} from '@app/api/Url';
 import {useDispatch, useSelector} from 'react-redux';
 
-import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '@app/Constants';
@@ -91,18 +90,32 @@ const ExpandedMatchSummary = (props) => {
   });
   return (
     <ImageBackground
-      source={{
-        uri: getSplash(props.championId),
-      }}
-      style={styles.championSplash}>
-      <LinearGradient
-        start={props.gradientStart}
-        end={props.gradientEnd}
-        colors={props.gradientColors}>
-        <View style={styles.topContainer}>
+      source={props.win ? props.backgroundWin : props.backgroundLoss}
+      style={styles.background}>
+      <View style={styles.topContainer}>
+        <View style={styles.topLeftContainer}>
+          <Image
+            source={{uri: getChampionIcon(props.championId)}}
+            style={
+              props.win
+                ? styles.championPortraitWin
+                : styles.championPortraitLoss
+            }
+          />
+          <View style={styles.matchDetailsContainer}>
+            <Text style={styles.championName}>{props.championName}</Text>
+            <Text style={styles.kdaShort}>{props.kdaShort}</Text>
+            <View style={styles.matchDetailsInnerContainer}>
+              <Text style={styles.kdaLong}>{props.kdaLong} </Text>
+              <Text style={styles.cs}>{props.cs.replace(',', '')} </Text>
+              <Text style={styles.gold}>{props.gold.replace(',', '')}</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.topRightContainer}>
           <View style={styles.itemsContainer}>{Items}</View>
-          <View>{Spells}</View>
-          <View>
+          <View style={styles.spellsKeystoneTrinket}>
+            {Spells}
             <Image
               source={props.keystoneImages[props.keystone].uri}
               style={styles.keystone}
@@ -111,39 +124,32 @@ const ExpandedMatchSummary = (props) => {
               source={{uri: getItemIcon(props.trinket)}}
               style={styles.keystone}
             />
-          </View>
-          <View style={styles.rightContainer}>
-            <Text style={styles.kdaShort}>{props.kdaShort}</Text>
-            <Text style={styles.level}>{props.level}</Text>
+            <Text style={styles.level}>
+              {props.level.replace('Level', 'Lvl')}
+            </Text>
           </View>
         </View>
-        <View style={styles.bottomContainer}>
-          <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
-            <View style={styles.summonerContainer}>
-              <Text style={styles.summonerName}>{props.summonerName}</Text>
-              <Text style={styles.rank}>{props.rank}</Text>
-              <Text style={styles.championName}>{props.championName}</Text>
-            </View>
-          </TouchableWithoutFeedback>
-          <View style={styles.rightContainer}>
-            <Text style={styles.damageContribution}>
-              {props.damageContribution.replace(
-                'Dmg Cont',
-                'Damage Contribution',
-              )}
-            </Text>
-            <Text style={styles.killParticipation}>
-              {props.killParticipation}
-            </Text>
-            <View style={styles.rightInnerContainer}>
-              <Text style={styles.gold}>{props.gold.replace(',', '')} </Text>
-              <Text style={styles.kdaLong}>{props.kdaLong} </Text>
-              <Text style={styles.cs}>{props.cs.replace(/,/g, '')}</Text>
-            </View>
-            <View style={styles.badgesInnerContainer}>{Badges}</View>
+      </View>
+      <View style={styles.bottomContainer}>
+        <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
+          <View style={styles.summonerContainer}>
+            <Text style={styles.summonerName}>{props.summonerName}</Text>
+            <Text style={styles.rank}>{props.rank}</Text>
           </View>
+        </TouchableWithoutFeedback>
+        <View style={styles.rightContainer}>
+          <Text style={styles.damageContribution}>
+            {props.damageContribution.replace(
+              'Dmg Cont',
+              'Damage Contribution',
+            )}
+          </Text>
+          <Text style={styles.killParticipation}>
+            {props.killParticipation}
+          </Text>
+          <View style={styles.badgesInnerContainer}>{Badges}</View>
         </View>
-      </LinearGradient>
+      </View>
     </ImageBackground>
   );
 };
@@ -165,11 +171,11 @@ ExpandedMatchSummary.defaultProps = {
   cs: '',
   badges: [],
   championId: 0,
-  gradientStart: {x: 0, y: 1},
-  gradientEnd: {x: 0, y: 0},
-  gradientColors: ['rgba(0,0,0,1)', 'transparent'],
   spellImages: {},
   keystoneImages: {},
+  win: false,
+  backgroundWin: require('@app/assets/img/backgrounds/matchSummaryVictory.png'),
+  backgroundLoss: require('@app/assets/img/backgrounds/matchSummaryDefeat.png'),
 };
 
 ExpandedMatchSummary.propTypes = {
@@ -188,29 +194,67 @@ ExpandedMatchSummary.propTypes = {
   cs: PropTypes.string,
   badges: PropTypes.array,
   championId: PropTypes.number,
-  gradientStart: PropTypes.object,
-  gradientEnd: PropTypes.object,
-  gradientColors: PropTypes.array,
   spellImages: PropTypes.object,
   keystoneImages: PropTypes.object,
+  win: PropTypes.bool,
+  backgroundWin: PropTypes.node,
+  backgroundLoss: PropTypes.node,
 };
 
 const styles = StyleSheet.create({
-  championSplash: {
-    width: '100%',
+  background: {
+    resizeMode: 'stretch',
   },
   topContainer: {
     flexDirection: 'row',
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  topLeftContainer: {
     alignItems: 'center',
-    marginRight: 5,
+    flexDirection: 'row',
+    flex: 1,
+  },
+  matchDetailsContainer: {
+    alignItems: 'flex-start',
+    marginLeft: 8,
+  },
+  matchDetailsInnerContainer: {
+    flexDirection: 'row',
+  },
+  championPortraitWin: {
+    borderColor: colors.blue,
+    borderWidth: 2,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+  },
+  championPortraitLoss: {
+    borderColor: colors.red,
+    borderWidth: 2,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+  },
+  topRightContainer: {
+    alignItems: 'flex-end',
+    marginRight: 8,
+    marginTop: 5,
+  },
+  summonerContainer: {
     marginLeft: 5,
+    marginTop: 3,
+  },
+  spellsKeystoneTrinket: {
+    flexDirection: 'row',
+    marginTop: 5,
   },
   itemsContainer: {
     flexDirection: 'row',
   },
   item: {
-    width: 34,
-    height: 34,
+    width: 29,
+    height: 29,
   },
   spell: {
     width: 17,
@@ -224,25 +268,17 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 3,
   },
-  rightInnerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
   bottomContainer: {
     marginLeft: 5,
     flexDirection: 'row',
     marginRight: 5,
   },
-  kdaShort: {
-    textAlign: 'right',
-    color: colors.white,
-    fontFamily: fonts.bold,
-    fontSize: 25,
-  },
   level: {
     textAlign: 'right',
     color: colors.white,
     fontFamily: fonts.light,
+    marginLeft: 5,
+    fontSize: 12,
   },
   damageContribution: {
     textAlign: 'right',
@@ -258,14 +294,21 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontFamily: fonts.regular,
   },
-  kdaLong: {
-    fontSize: 13,
+  kdaShort: {
+    textAlign: 'right',
     color: colors.white,
-    fontFamily: fonts.light,
+    fontFamily: fonts.bold,
+    fontSize: 22,
+  },
+  kdaLong: {
+    color: colors.lightGrey,
+    fontFamily: fonts.regular,
+    fontSize: 13,
   },
   cs: {
-    color: colors.white,
-    fontFamily: fonts.regular,
+    color: colors.lightGrey,
+    fontFamily: fonts.bold,
+    fontSize: 13,
   },
   summonerName: {
     fontSize: 20,
@@ -277,8 +320,9 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bold,
   },
   gold: {
-    color: colors.white,
+    color: colors.lightGrey,
     fontFamily: fonts.regular,
+    fontSize: 13,
   },
   badgesInnerContainer: {
     flexDirection: 'row',

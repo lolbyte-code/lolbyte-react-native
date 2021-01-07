@@ -38,8 +38,5 @@ export const getProfileIcon = (iconId) =>
 export const getItemIcon = (itemId) =>
   `${ddragonBaseUrl}/img/item/${itemId}.png`;
 
-export const getSplash = (championId) =>
-  `https://cdn.communitydragon.org/latest/champion/${championId}/splash-art`;
-
 export const getChampionIcon = (championId) =>
   `https://cdn.communitydragon.org/latest/champion/${championId}/square`;

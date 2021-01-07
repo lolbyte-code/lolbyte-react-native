@@ -6,6 +6,7 @@ import {
   RefreshControl,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
@@ -24,7 +25,6 @@ import Profile from '@app/components/profile/Profile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SearchNav from '@app/components/common/SearchNav';
-import {StatusBar} from 'react-native';
 import TogglePageHeader from '@app/components/common/TogglePageHeader';
 import {addRecentSummoner} from '@app/data/actions/SummonersActions';
 import {backgrounds} from '@app/Theme';

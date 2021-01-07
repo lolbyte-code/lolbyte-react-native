@@ -1,4 +1,12 @@
-import {ImageBackground, ScrollView, StyleSheet, Text} from 'react-native';
+import {
+  ImageBackground,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import {backgrounds, colors, fonts} from '@app/Theme';
 
 import ErrorSvg from '@app/assets/svg/error.svg';
@@ -10,11 +18,18 @@ const Error = (props) => {
   const error = props.route.params.error;
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
-      <SearchNav />
-      <ScrollView contentContainerStyle={styles.errorScreen}>
-        <ErrorSvg width={props.errorWidth} height={props.errorHeight} />
-        <Text style={styles.text}>{error}</Text>
-      </ScrollView>
+      <SafeAreaView
+        style={
+          StatusBar.currentHeight && Platform.OS === 'android'
+            ? {paddingTop: StatusBar.currentHeight}
+            : null
+        }>
+        <SearchNav />
+        <ScrollView contentContainerStyle={styles.errorScreen}>
+          <ErrorSvg width={props.errorWidth} height={props.errorHeight} />
+          <Text style={styles.text}>{error}</Text>
+        </ScrollView>
+      </SafeAreaView>
     </ImageBackground>
   );
 };
