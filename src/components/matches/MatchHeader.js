@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 5,
     alignItems: 'center',
+    marginTop: 5,
   },
   headerLoss: {
     flexDirection: 'row',
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 5,
     alignItems: 'center',
+    marginTop: 5,
   },
   winText: {
     color: colors.white,

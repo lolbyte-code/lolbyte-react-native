@@ -194,6 +194,7 @@ const Results = (props) => {
         }>
         <SearchNav />
         <ScrollView
+          style={styles.scrollContainer}
           indicatorStyle={DEFAULT_SCROLL_BAR}
           refreshControl={
             <RefreshControl
@@ -268,6 +269,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginTop: 15,
     flexDirection: 'row',
+  },
+  scrollContainer: {
+    marginBottom: 50,
   },
 });
 

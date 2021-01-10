@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   teamHeaders: {
     flexDirection: 'row',
-    marginTop: 2,
+    marginTop: 5,
     marginBottom: 7,
   },
   teamHeaderContainer: {

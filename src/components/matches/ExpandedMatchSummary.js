@@ -102,6 +102,17 @@ const ExpandedMatchSummary = (props) => {
                 : styles.championPortraitLoss
             }
           />
+          <View
+            style={
+              props.win
+                ? styles.keystoneContainerWin
+                : styles.keystoneContainerLoss
+            }>
+            <Image
+              source={props.keystoneImages[props.keystone].uri}
+              style={styles.keystone}
+            />
+          </View>
           <View style={styles.matchDetailsContainer}>
             <Text style={styles.championName}>{props.championName}</Text>
             <Text style={styles.kdaShort}>{props.kdaShort}</Text>
@@ -117,12 +128,8 @@ const ExpandedMatchSummary = (props) => {
           <View style={styles.spellsKeystoneTrinket}>
             {Spells}
             <Image
-              source={props.keystoneImages[props.keystone].uri}
-              style={styles.keystone}
-            />
-            <Image
               source={{uri: getItemIcon(props.trinket)}}
-              style={styles.keystone}
+              style={styles.trinket}
             />
             <Text style={styles.level}>
               {props.level.replace('Level', 'Lvl')}
@@ -217,14 +224,14 @@ const styles = StyleSheet.create({
   },
   matchDetailsContainer: {
     alignItems: 'flex-start',
-    marginLeft: 8,
+    marginLeft: -12,
   },
   matchDetailsInnerContainer: {
     flexDirection: 'row',
   },
   championPortraitWin: {
     borderColor: colors.blue,
-    borderWidth: 2,
+    borderWidth: 3,
     width: 70,
     height: 70,
     borderRadius: 35,
@@ -260,7 +267,31 @@ const styles = StyleSheet.create({
     width: 17,
     height: 17,
   },
+  keystoneContainerWin: {
+    right: 20,
+    top: 25,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: colors.blue,
+    backgroundColor: colors.background,
+  },
+  keystoneContainerLoss: {
+    right: 20,
+    top: 25,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: colors.red,
+    backgroundColor: colors.background,
+  },
   keystone: {
+    width: 20,
+    height: 20,
+  },
+  trinket: {
     width: 17,
     height: 17,
   },
@@ -272,6 +303,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     flexDirection: 'row',
     marginRight: 5,
+    marginBottom: 5,
   },
   level: {
     textAlign: 'right',
