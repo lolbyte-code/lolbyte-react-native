@@ -35,6 +35,17 @@ const CollapsedMatchSummary = (props) => {
                 : styles.championPortraitLoss
             }
           />
+          <View
+            style={
+              props.win
+                ? styles.keystoneContainerWin
+                : styles.keystoneContainerLoss
+            }>
+            <Image
+              source={props.keystoneImages[props.keystone].uri}
+              style={styles.keystone}
+            />
+          </View>
           <View style={styles.matchDetailsContainer}>
             <Text style={styles.kdaShort}>{props.kdaShort}</Text>
             <View style={styles.matchDetailsInnerContainer}>
@@ -44,10 +55,6 @@ const CollapsedMatchSummary = (props) => {
           </View>
         </View>
         <View style={styles.equippedContainer}>
-          <Image
-            source={props.keystoneImages[props.keystone].uri}
-            style={styles.keystone}
-          />
           <View style={styles.spellsContainer}>{Spells}</View>
           <View style={styles.itemsContainer}>{Items}</View>
         </View>
@@ -115,9 +122,29 @@ const styles = StyleSheet.create({
     height: 25,
     margin: 2,
   },
+  keystoneContainerWin: {
+    right: 20,
+    top: 25,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: colors.blue,
+    backgroundColor: colors.background,
+  },
+  keystoneContainerLoss: {
+    right: 20,
+    top: 25,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: colors.red,
+    backgroundColor: colors.background,
+  },
   keystone: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
   },
   championPortraitWin: {
     borderColor: colors.blue,

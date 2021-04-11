@@ -94,14 +94,16 @@ const ExpandedMatchSummary = (props) => {
       style={styles.background}>
       <View style={styles.topContainer}>
         <View style={styles.topLeftContainer}>
-          <Image
-            source={{uri: getChampionIcon(props.championId)}}
-            style={
-              props.win
-                ? styles.championPortraitWin
-                : styles.championPortraitLoss
-            }
-          />
+          <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
+            <Image
+              source={{uri: getChampionIcon(props.championId)}}
+              style={
+                props.win
+                  ? styles.championPortraitWin
+                  : styles.championPortraitLoss
+              }
+            />
+          </TouchableWithoutFeedback>
           <View
             style={
               props.win
