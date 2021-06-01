@@ -13,18 +13,20 @@ const TopChampionsEntry = (props) => {
           uri: getChampionIcon(props.championId),
         }}
         style={
-          props.championLevel === 'Level: 7'
+          props.championLevel === 7
             ? styles.championImageLevel7
-            : props.championLevel === 'Level: 6'
+            : props.championLevel === 6
             ? styles.championImageLevel6
-            : props.championLevel === 'Level: 5'
+            : props.championLevel === 5
             ? styles.championImageLevel5
             : styles.championImageDefault
         }
       />
       <Text style={styles.championName}>{props.championName}</Text>
-      <Text style={styles.championLevel}>{props.championLevel}</Text>
-      <Text style={styles.championPoints}>{props.championPoints}</Text>
+      <Text
+        style={styles.championLevel}>{`Level: ${props.championLevel}`}</Text>
+      <Text
+        style={styles.championPoints}>{`Points: ${props.championPoints}`}</Text>
     </View>
   );
 };
@@ -32,15 +34,15 @@ const TopChampionsEntry = (props) => {
 TopChampionsEntry.defaultProps = {
   championId: 0,
   championName: '',
-  championLevel: '',
-  championPoints: '',
+  championLevel: 0,
+  championPoints: 0,
 };
 
 TopChampionsEntry.propTypes = {
   championId: PropTypes.number,
   championName: PropTypes.string,
-  championLevel: PropTypes.string,
-  championPoints: PropTypes.string,
+  championLevel: PropTypes.number,
+  championPoints: PropTypes.number,
 };
 
 const styles = StyleSheet.create({

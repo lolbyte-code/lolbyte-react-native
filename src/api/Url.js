@@ -1,5 +1,5 @@
-const lolbyteBaseUrl = 'http://lolbyte.me:8080/api/v3';
-const defaultPatch = '10.16.1';
+const lbServiceBaseUrl = 'http://localhost:8080/api/v4';
+const defaultPatch = '11.11.1';
 var ddragonBaseUrl = `https://ddragon.leagueoflegends.com/cdn/${defaultPatch}`;
 
 fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
@@ -12,25 +12,29 @@ fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   })
   .catch((error) => console.error(error));
 
-export const getNotificationData = () => `${lolbyteBaseUrl}/notifications`;
+export const getNotificationData = () =>
+  `${lbServiceBaseUrl}/notifications?mobile`;
 
-export const getSummonerData = (summonerName, summonerRegion, gameType) =>
-  `${lolbyteBaseUrl}/summoners/${summonerRegion}/name/${summonerName.replace(
+export const getSummonerData = (summonerName, summonerRegion) =>
+  `${lbServiceBaseUrl}/summoners/${summonerName.replace(
     /\s/g,
     '',
-  )}?gameType=${gameType}`;
+  )}?region=${summonerRegion}&mobile`;
+
+export const getRecentGamesData = (summonerId, summonerRegion, gameType) =>
+  `${lbServiceBaseUrl}/recentGames/${summonerId}?region=${summonerRegion}&queueId=${gameType}&mobile`;
 
 export const getRankedData = (summonerId, summonerRegion) =>
-  `${lolbyteBaseUrl}/summoners/${summonerRegion}/summoner-id/${summonerId}/rank`;
+  `${lbServiceBaseUrl}/ranks/${summonerId}?region=${summonerRegion}&mobile`;
 
-export const getChampionData = (summonerId, summonerRegion) =>
-  `${lolbyteBaseUrl}/summoners/${summonerRegion}/summoner-id/${summonerId}/champions`;
+export const getStatisticsData = (summonerId, summonerRegion, gameType) =>
+  `${lbServiceBaseUrl}/statistics/${summonerId}?region=${summonerRegion}&queueId=${gameType}&mobile`;
 
 export const getCurrentGameData = (summonerId, summonerRegion) =>
-  `${lolbyteBaseUrl}/current/${summonerRegion}/summoner-id/${summonerId}`;
+  `${lbServiceBaseUrl}/current/${summonerId}?region=${summonerRegion}&mobile`;
 
 export const getMatchData = (matchId, summonerRegion, summonerId) =>
-  `${lolbyteBaseUrl}/matches/${summonerRegion}/match-id/${matchId}?summonerId=${summonerId}`;
+  `${lbServiceBaseUrl}/matches/${matchId}?summonerId=${summonerId}&region=${summonerRegion}&mobile`;
 
 export const getProfileIcon = (iconId) =>
   `https://cdn.communitydragon.org/latest/profile-icon/${iconId}`;

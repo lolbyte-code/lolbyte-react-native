@@ -17,10 +17,13 @@ const StatsSummary = (props) => {
         </Text>
       </View>
       <PlayerStats
-        percent={props.playerStatsData[0].winPercentage}
-        kdaShort={props.playerStatsData[0].kdaLong}
-        kdaLong={props.playerStatsData[0].kdaShort}
-        wards={props.playerStatsData[0].averageWardsPlaced}
+        percent={props.statisticsData[0].winPercentage}
+        kdaShort={`${props.statisticsData[0].kills}/${props.statisticsData[0].deaths}/${props.statisticsData[0].assists}`}
+        kdaLong={`${(
+          (props.statisticsData[0].kills + props.statisticsData[0].assists) /
+          Math.max(props.statisticsData[0].deaths, 1)
+        ).toFixed(2)} KDA`}
+        wards={`${props.statisticsData[0].wards.toFixed(1)} Wards Placed`}
       />
       <View style={styles.titleContainer}>
         <Text style={styles.championStatsTitle}>
@@ -28,12 +31,12 @@ const StatsSummary = (props) => {
         </Text>
       </View>
       <MostPlayedChampions
-        title={props.championData[0].championStatType}
-        champions={props.championData[0].mostPlayedChampions}
+        title={props.statisticsData[1].type}
+        champions={props.statisticsData[1].champs}
       />
       <TopChampions
-        title={props.championData[1].championStatType}
-        champions={props.championData[1].topChampions}
+        title={props.statisticsData[2].type}
+        champions={props.statisticsData[2].champs}
       />
     </View>
   );
@@ -43,16 +46,14 @@ StatsSummary.defaultProps = {
   playerStatsTitle: 'Player Statistics',
   playerStatsSubtitle: 'Last 20 Matches',
   championStatsTitle: 'Champion Statistics',
-  playerStatsData: [],
-  championData: [],
+  statisticsData: [],
 };
 
 StatsSummary.propTypes = {
   playerStatsTitle: PropTypes.string,
   playerStatsSubtitle: PropTypes.string,
   championStatsTitle: PropTypes.string,
-  playerStatsData: PropTypes.array,
-  championData: PropTypes.array,
+  statisticsData: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

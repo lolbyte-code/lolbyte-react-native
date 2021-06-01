@@ -41,7 +41,7 @@ const CurrentGame = (props) => {
             buttonStyle={styles.closeButtonStyle}
           />
           <View style={styles.summonersContainer}>
-            <Text style={styles.gameType}>{currentGameData.gameType}</Text>
+            <Text style={styles.gameType}>{currentGameData.queueName}</Text>
             <Summoners
               summonerEntries={currentGameData.summoners.filter(
                 (summoner) => summoner.teamId === BLUE_TEAM,

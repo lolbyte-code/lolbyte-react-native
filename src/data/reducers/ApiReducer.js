@@ -1,15 +1,17 @@
 import {
-  RECEIVE_CHAMPION_DATA,
   RECEIVE_CURRENT_GAME_DATA,
   RECEIVE_MATCH_DATA,
   RECEIVE_NOTIFICATION_DATA,
   RECEIVE_RANKED_DATA,
+  RECEIVE_RECENT_GAMES_DATA,
+  RECEIVE_STATISTICS_DATA,
   RECEIVE_SUMMONER_DATA,
-  REQUEST_CHAMPION_DATA,
   REQUEST_CURRENT_GAME_DATA,
   REQUEST_MATCH_DATA,
   REQUEST_NOTIFICATION_DATA,
   REQUEST_RANKED_DATA,
+  REQUEST_RECENT_GAMES_DATA,
+  REQUEST_STATISTICS_DATA,
   REQUEST_SUMMONER_DATA,
   SUMMONER_FETCH_ERROR,
 } from '@app/data/actions/ApiActions';
@@ -31,7 +33,6 @@ const summonerDataReducer = (
         isError: false,
         summonerName: action.summonerName,
         summonerRegion: action.summonerRegion,
-        gameType: action.gameType,
       };
     case RECEIVE_SUMMONER_DATA:
       return {
@@ -39,13 +40,40 @@ const summonerDataReducer = (
         isError: false,
         summonerName: action.summonerName,
         summonerRegion: action.summonerRegion,
-        gameType: action.gameType,
         data: action.data,
       };
     case SUMMONER_FETCH_ERROR:
       return {
         isFetching: false,
         isError: true,
+        data: action.data,
+      };
+    default:
+      return state;
+  }
+};
+
+const recentGamesDataReducer = (
+  state = {
+    isFetching: false,
+    data: {},
+  },
+  action,
+) => {
+  switch (action.type) {
+    case REQUEST_RECENT_GAMES_DATA:
+      return {
+        isFetching: true,
+        summonerId: action.summonerId,
+        summonerRegion: action.summonerRegion,
+        gameType: action.gameType,
+      };
+    case RECEIVE_RECENT_GAMES_DATA:
+      return {
+        isFetching: false,
+        summonerId: action.summonerId,
+        summonerRegion: action.summonerRegion,
+        gameType: action.gameType,
         data: action.data,
       };
     default:
@@ -79,7 +107,7 @@ const rankedDataReducer = (
   }
 };
 
-const championDataReducer = (
+const statisticsDataReducer = (
   state = {
     isFetching: false,
     data: {},
@@ -87,17 +115,19 @@ const championDataReducer = (
   action,
 ) => {
   switch (action.type) {
-    case REQUEST_CHAMPION_DATA:
+    case REQUEST_STATISTICS_DATA:
       return {
         isFetching: true,
         summonerId: action.summonerId,
         summonerRegion: action.summonerRegion,
+        gameType: action.gameType,
       };
-    case RECEIVE_CHAMPION_DATA:
+    case RECEIVE_STATISTICS_DATA:
       return {
         isFetching: false,
         summonerId: action.summonerId,
         summonerRegion: action.summonerRegion,
+        gameType: action.gameType,
         data: action.data,
       };
     default:
@@ -183,8 +213,9 @@ const notificationDataReducer = (
 
 const apiReducer = combineReducers({
   summonerData: summonerDataReducer,
+  recentGamesData: recentGamesDataReducer,
   rankedData: rankedDataReducer,
-  championData: championDataReducer,
+  statisticsData: statisticsDataReducer,
   currentGameData: currentGameDataReducer,
   matchData: matchDataReducer,
   notificationData: notificationDataReducer,

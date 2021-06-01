@@ -15,7 +15,8 @@ const MostPlayedChampionsEntry = (props) => {
         style={styles.championImage}
       />
       <Text style={styles.championName}>{props.championName}</Text>
-      <Text style={styles.gamesPlayed}>{props.gamesPlayed}</Text>
+      <Text
+        style={styles.gamesPlayed}>{`Games Played: ${props.gamesPlayed}`}</Text>
     </View>
   );
 };
@@ -23,13 +24,13 @@ const MostPlayedChampionsEntry = (props) => {
 MostPlayedChampionsEntry.defaultProps = {
   championId: 0,
   championName: '',
-  gamesPlayed: '',
+  gamesPlayed: 0,
 };
 
 MostPlayedChampionsEntry.propTypes = {
   championId: PropTypes.number,
   championName: PropTypes.string,
-  gamesPlayed: PropTypes.string,
+  gamesPlayed: PropTypes.number,
 };
 
 const styles = StyleSheet.create({

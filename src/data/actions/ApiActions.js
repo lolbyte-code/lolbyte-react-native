@@ -1,9 +1,10 @@
 import {
-  getChampionData,
   getCurrentGameData,
   getMatchData,
   getNotificationData,
   getRankedData,
+  getRecentGamesData,
+  getStatisticsData,
   getSummonerData,
 } from '@app/api/Url';
 
@@ -12,10 +13,12 @@ import {config} from '@app/Config';
 
 export const REQUEST_SUMMONER_DATA = 'REQUEST_SUMMONER_DATA';
 export const RECEIVE_SUMMONER_DATA = 'RECEIVE_SUMMONER_DATA';
+export const REQUEST_RECENT_GAMES_DATA = 'REQUEST_RECENT_GAMES_DATA';
+export const RECEIVE_RECENT_GAMES_DATA = 'RECEIVE_RECENT_GAMES_DATA';
 export const REQUEST_RANKED_DATA = 'REQUEST_RANKED_DATA';
 export const RECEIVE_RANKED_DATA = 'RECEIVE_RANKED_DATA';
-export const REQUEST_CHAMPION_DATA = 'REQUEST_CHAMPION_DATA';
-export const RECEIVE_CHAMPION_DATA = 'RECEIVE_CHAMPION_DATA';
+export const REQUEST_STATISTICS_DATA = 'REQUEST_STATISTICS_DATA';
+export const RECEIVE_STATISTICS_DATA = 'RECEIVE_STATISTICS_DATA';
 export const REQUEST_CURRENT_GAME_DATA = 'REQUEST_CURRENT_GAME_DATA';
 export const RECEIVE_CURRENT_GAME_DATA = 'RECEIVE_CURRENT_GAME_DATA';
 export const REQUEST_MATCH_DATA = 'REQUEST_MATCH_DATA';
@@ -26,19 +29,41 @@ export const SUMMONER_FETCH_ERROR = 'SUMMONER_FETCH_ERROR';
 
 const matchesCache = new LRUCache(config.matchesCacheSize);
 
-function requestSummonerData(summonerName, summonerRegion, gameType) {
+function requestSummonerData(summonerName, summonerRegion) {
   return {
     type: REQUEST_SUMMONER_DATA,
     summonerName,
+    summonerRegion,
+  };
+}
+
+function receiveSummonerData(summonerName, summonerRegion, response) {
+  return {
+    type: RECEIVE_SUMMONER_DATA,
+    summonerName,
+    summonerRegion,
+    data: response,
+  };
+}
+
+function requestRecentGamesData(summonerId, gameType, summonerRegion) {
+  return {
+    type: REQUEST_RECENT_GAMES_DATA,
+    summonerId,
     summonerRegion,
     gameType,
   };
 }
 
-function receiveSummonerData(summonerName, summonerRegion, gameType, response) {
+function receiveRecentGamesData(
+  summonerId,
+  summonerRegion,
+  gameType,
+  response,
+) {
   return {
-    type: RECEIVE_SUMMONER_DATA,
-    summonerName,
+    type: RECEIVE_RECENT_GAMES_DATA,
+    summonerId,
     summonerRegion,
     gameType,
     data: response,
@@ -62,19 +87,21 @@ function receiveRankedData(summonerId, summonerRegion, response) {
   };
 }
 
-function requestChampionData(summonerId, summonerRegion) {
+function requestStatisticsData(summonerId, summonerRegion, gameType) {
   return {
-    type: REQUEST_CHAMPION_DATA,
+    type: REQUEST_STATISTICS_DATA,
     summonerId,
     summonerRegion,
+    gameType,
   };
 }
 
-function receiveChampionData(summonerId, summonerRegion, response) {
+function receiveStatisticsData(summonerId, summonerRegion, gameType, response) {
   return {
-    type: RECEIVE_CHAMPION_DATA,
+    type: RECEIVE_STATISTICS_DATA,
     summonerId,
     summonerRegion,
+    gameType,
     data: response,
   };
 }
@@ -143,30 +170,46 @@ function fetchSummonerDataError(response) {
  * profile page.
  */
 export function resetProfileData(dispatch) {
-  dispatch(requestSummonerData('', '', 0));
+  dispatch(requestSummonerData('', ''));
+  dispatch(requestRecentGamesData('', '', 0));
   dispatch(requestRankedData('', ''));
-  dispatch(requestChampionData('', ''));
+  dispatch(requestStatisticsData('', '', 0));
   dispatch(requestCurrentGameData('', ''));
 }
 
-export function fetchSummonerData(summonerName, summonerRegion, gameType) {
+export function fetchSummonerData(summonerName, summonerRegion) {
   return (dispatch) => {
-    dispatch(requestSummonerData(summonerName, summonerRegion, gameType));
-    return fetch(getSummonerData(summonerName, summonerRegion, gameType), {
+    dispatch(requestSummonerData(summonerName, summonerRegion));
+    return fetch(getSummonerData(summonerName, summonerRegion), {
       method: 'GET',
       timeout: config.apiTimeout,
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(
-          receiveSummonerData(summonerName, summonerRegion, gameType, json),
-        );
+        dispatch(receiveSummonerData(summonerName, summonerRegion, json));
       })
       .catch((error) => {
         console.error(error);
         dispatch(fetchSummonerDataError(error));
       });
+  };
+}
+
+export function fetchRecentGamesData(summonerId, summonerRegion, gameType) {
+  return (dispatch) => {
+    dispatch(requestRecentGamesData(summonerId, summonerRegion, gameType));
+    return fetch(getRecentGamesData(summonerId, summonerRegion, gameType), {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        dispatch(
+          receiveRecentGamesData(summonerId, summonerRegion, gameType, json),
+        );
+      })
+      .catch((error) => console.error(error));
   };
 }
 
@@ -185,16 +228,18 @@ export function fetchRankedData(summonerId, summonerRegion) {
   };
 }
 
-export function fetchChampionData(summonerId, summonerRegion) {
+export function fetchStatisticsData(summonerId, summonerRegion, gameType) {
   return (dispatch) => {
-    dispatch(requestChampionData(summonerId, summonerRegion));
-    return fetch(getChampionData(summonerId, summonerRegion), {
+    dispatch(requestStatisticsData(summonerId, summonerRegion, gameType));
+    return fetch(getStatisticsData(summonerId, summonerRegion, gameType), {
       method: 'GET',
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        dispatch(receiveChampionData(summonerId, summonerRegion, json));
+        dispatch(
+          receiveStatisticsData(summonerId, summonerRegion, gameType, json),
+        );
       })
       .catch((error) => console.error(error));
   };
@@ -206,12 +251,22 @@ export function fetchCurrentGameData(summonerId, summonerRegion) {
     return fetch(getCurrentGameData(summonerId, summonerRegion), {
       method: 'GET',
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Not in game!');
+        }
+        return response.json();
+      })
       .then((json) => {
         console.log(json);
         dispatch(receiveCurrentGameData(summonerId, summonerRegion, json));
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        dispatch(
+          receiveCurrentGameData(summonerId, summonerRegion, {summoners: []}),
+        );
+      });
   };
 }
 

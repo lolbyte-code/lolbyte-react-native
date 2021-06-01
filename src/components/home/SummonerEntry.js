@@ -54,13 +54,13 @@ const SummonerEntry = (props) => {
 };
 
 SummonerEntry.defaultProps = {
-  summonerIcon: '',
+  summonerIcon: 0,
   summonerName: '',
   summonerRegion: '',
 };
 
 SummonerEntry.propTypes = {
-  summonerIcon: PropTypes.string,
+  summonerIcon: PropTypes.number,
   summonerName: PropTypes.string,
   summonerRegion: PropTypes.string,
 };

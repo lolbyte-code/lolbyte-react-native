@@ -27,10 +27,13 @@ const LolByteApp = () => {
           isFetching: true,
           isError: false,
         },
+        recentGamesData: {
+          isFetching: true,
+        },
         rankedData: {
           isFetching: true,
         },
-        championData: {
+        statisticsData: {
           isFetching: true,
         },
         currentGameData: {

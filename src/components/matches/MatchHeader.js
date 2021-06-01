@@ -12,7 +12,7 @@ const MatchHeader = (props) => {
       <Text style={styles.winText}>{props.win ? 'Win' : 'Loss'}</Text>
       <Text style={styles.date}>{props.date}</Text>
       <Text style={styles.gameType}>{props.gameType}</Text>
-      <Text style={styles.duration}>{props.duration}</Text>
+      <Text style={styles.duration}>{`${props.duration} min`}</Text>
       {props.collapsed ? (
         <CollapsedArrowSvg
           width={props.arrowWidth}
@@ -29,7 +29,7 @@ MatchHeader.defaultProps = {
   win: false,
   date: '',
   gameType: '',
-  duration: '',
+  duration: 0,
   arrowWidth: 12,
   arrowHeight: 12,
   collapsed: false,
@@ -39,7 +39,7 @@ MatchHeader.propTypes = {
   win: PropTypes.bool,
   date: PropTypes.string,
   gameType: PropTypes.string,
-  duration: PropTypes.string,
+  duration: PropTypes.number,
   arrowWidth: PropTypes.number,
   arrowHeight: PropTypes.number,
   collapsed: PropTypes.bool,

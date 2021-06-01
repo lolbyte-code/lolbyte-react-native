@@ -32,7 +32,7 @@ const MatchEntry = (props) => {
   const selectedSummoner = matchData.isFetching
     ? null
     : matchData.data.players.filter(
-        (player) => player.summonerName === currentSummoner.name,
+        (player) => player.name === currentSummoner.name,
       )[0];
 
   /*
@@ -103,44 +103,43 @@ const MatchEntry = (props) => {
             <View style={collapsed ? styles.hide : null}>
               <ExpandedMatchEntry
                 {...props}
-                win={
-                  matchData.data[
-                    `team${String(selectedSummoner.teamId).substring(0, 1)}Win`
-                  ]
-                }
+                win={selectedSummoner.win}
                 items={selectedSummoner.items}
                 spells={selectedSummoner.spells}
-                keystone={selectedSummoner.perk}
+                keystone={selectedSummoner.keystone}
                 playerData={matchData.data.players}
-                championId={selectedSummoner.championId}
-                kdaShort={selectedSummoner.kdaLong}
-                kdaLong={selectedSummoner.kdaShort}
-                championName={selectedSummoner.championName}
+                championId={selectedSummoner.champId}
+                kdaShort={`${selectedSummoner.kills}/${selectedSummoner.deaths}/${selectedSummoner.assists}`}
+                kdaLong={`${(
+                  (selectedSummoner.kills + selectedSummoner.assists) /
+                  Math.max(selectedSummoner.deaths, 1)
+                ).toFixed(1)} KDA`}
+                championName={selectedSummoner.champName}
                 cs={selectedSummoner.cs}
                 level={selectedSummoner.level}
                 damageContribution={selectedSummoner.damageContribution}
                 killParticipation={selectedSummoner.killParticipation}
-                summonerName={selectedSummoner.summonerName}
+                summonerName={selectedSummoner.name}
                 rank={selectedSummoner.rank}
                 gold={selectedSummoner.gold}
                 badges={selectedSummoner.badges}
                 trinket={selectedSummoner.trinket}
-                team1Win={matchData.data.team1Win}
-                team2Win={matchData.data.team2Win}
-                team1Gold={matchData.data.teams[0].gold}
-                team2Gold={matchData.data.teams[1].gold}
-                team1BannedChamps={matchData.data.teams[0].bans}
-                team2BannedChamps={matchData.data.teams[1].bans}
-                team1Towers={matchData.data.teams[0].towerKills}
-                team1Dragons={matchData.data.teams[0].dragonKills}
-                team1Barons={matchData.data.teams[0].baronKills}
-                team2Towers={matchData.data.teams[1].towerKills}
-                team2Dragons={matchData.data.teams[1].dragonKills}
-                team2Barons={matchData.data.teams[1].baronKills}
-                team1Kda={matchData.data.teams[0].kda}
-                team2Kda={matchData.data.teams[1].kda}
+                team1Win={matchData.data.blueTeam.win}
+                team2Win={matchData.data.redTeam.win}
+                team1Gold={matchData.data.blueTeam.gold}
+                team2Gold={matchData.data.redTeam.gold}
+                team1BannedChamps={matchData.data.blueTeam.bans}
+                team2BannedChamps={matchData.data.redTeam.bans}
+                team1Towers={matchData.data.blueTeam.towers}
+                team1Dragons={matchData.data.blueTeam.dragons}
+                team1Barons={matchData.data.blueTeam.barons}
+                team2Towers={matchData.data.redTeam.towers}
+                team2Dragons={matchData.data.redTeam.dragons}
+                team2Barons={matchData.data.redTeam.barons}
+                team1Kda={`${matchData.data.blueTeam.kills}/${matchData.data.blueTeam.deaths}/${matchData.data.blueTeam.assists}`}
+                team2Kda={`${matchData.data.redTeam.kills}/${matchData.data.redTeam.deaths}/${matchData.data.redTeam.assists}`}
                 changeSummonerHandler={changeCurrentSummonerHandler}
-                selectedSummonerName={selectedSummoner.summonerName}
+                selectedSummonerName={selectedSummoner.name}
               />
             </View>
           </TouchableWithoutFeedback>
@@ -156,7 +155,7 @@ MatchEntry.defaultProps = {
   win: false,
   date: '',
   gameType: '',
-  duration: '',
+  duration: 0,
   items: [],
   spells: [],
   keystone: 0,
@@ -165,7 +164,7 @@ MatchEntry.defaultProps = {
   kdaLong: '',
   championName: '',
   cs: '',
-  matchId: '',
+  matchId: 0,
   changeSummonerHandler: () => {},
   changeSelectedMatchHandler: () => {},
   containerStyle: {},
@@ -303,11 +302,11 @@ MatchEntry.defaultProps = {
 
 MatchEntry.propTypes = {
   pressable: PropTypes.bool,
-  selectedMatch: PropTypes.string,
+  selectedMatch: PropTypes.number,
   win: PropTypes.bool,
   date: PropTypes.string,
   gameType: PropTypes.string,
-  duration: PropTypes.string,
+  duration: PropTypes.number,
   items: PropTypes.array,
   spells: PropTypes.array,
   keystone: PropTypes.number,
@@ -316,7 +315,7 @@ MatchEntry.propTypes = {
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
   cs: PropTypes.number,
-  matchId: PropTypes.string,
+  matchId: PropTypes.number,
   playerData: PropTypes.array,
   changeSummonerHandler: PropTypes.func,
   changeSelectedMatchHandler: PropTypes.func,

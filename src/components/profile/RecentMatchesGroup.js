@@ -10,9 +10,9 @@ const RecentMatchesGroup = (props) => {
   const RecentMatchEntries = props.recentMatches.map((entry) => (
     <RecentMatchesEntry
       key={`recentMatchEntry_${i++}`}
-      championId={entry.championId}
+      championId={entry.champId}
       win={entry.win}
-      kda={entry.kda}
+      kda={`${entry.kills}/${entry.deaths}/${entry.assists}`}
       selectMatchesHeader={props.selectMatchesHeader}
     />
   ));

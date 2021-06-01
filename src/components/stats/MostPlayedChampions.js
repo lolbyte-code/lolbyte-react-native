@@ -10,9 +10,9 @@ const MostPlayedChampions = (props) => {
   const ChampionEntries = props.champions.map((entry) => (
     <MostPlayedChampionsEntry
       key={`mostPlayedChampionEntry_${i++}`}
-      championId={entry.championId}
-      championName={entry.championName}
-      gamesPlayed={entry.championGamesPlayed}
+      championId={entry.id}
+      championName={entry.name}
+      gamesPlayed={entry.gamesPlayed}
     />
   ));
   return (

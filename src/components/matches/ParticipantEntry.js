@@ -29,41 +29,53 @@ const ParticipantEntry = (props) => {
     />
   ));
   const Badges = props.badges.map((badge) => {
-    switch (badge.small) {
-      case 'f':
+    switch (badge) {
+      case 'FIRST_BLOOD':
         return (
           <View key={'f'} style={styles.firstBloodContainer}>
-            <Text style={styles.firstBloodText}>{badge.small}</Text>
+            <Text style={styles.firstBloodText}>f</Text>
           </View>
         );
-      case 'k':
+      case 'HIGHEST_KDA':
         return (
           <View key={'k'} style={styles.bestKdaContainer}>
-            <Text style={styles.bestKdaText}>{badge.small}</Text>
+            <Text style={styles.bestKdaText}>k</Text>
           </View>
         );
-      case 'w':
+      case 'MOST_WARDS':
         return (
           <View key={'w'} style={styles.mostWardsContainer}>
-            <Text style={styles.mostWardsText}>{badge.small}</Text>
+            <Text style={styles.mostWardsText}>w</Text>
           </View>
         );
-      case 'd':
+      case 'MOST_DAMAGE':
         return (
           <View key={'d'} style={styles.mostDamageContainer}>
-            <Text style={styles.mostDamageText}>{badge.small}</Text>
+            <Text style={styles.mostDamageText}>d</Text>
           </View>
         );
-      case 'g':
+      case 'MOST_GOLD':
         return (
           <View key={'g'} style={styles.mostGoldContainer}>
-            <Text style={styles.mostGoldText}>{badge.small}</Text>
+            <Text style={styles.mostGoldText}>g</Text>
+          </View>
+        );
+      case 'PENTA_KILL':
+        return (
+          <View key={'p'} style={styles.multiKillContainer}>
+            <Text style={styles.multiKillText}>5</Text>
+          </View>
+        );
+      case 'QUADRA_KILL':
+        return (
+          <View key={'q'} style={styles.multiKillContainer}>
+            <Text style={styles.multiKillText}>4</Text>
           </View>
         );
       default:
         return (
-          <View key={'m'} style={styles.multiKillContainer}>
-            <Text style={styles.multiKillText}>{badge.small}</Text>
+          <View key={'t'} style={styles.multiKillContainer}>
+            <Text style={styles.multiKillText}>3</Text>
           </View>
         );
     }
@@ -104,7 +116,7 @@ const ParticipantEntry = (props) => {
           </View>
           <View style={styles.topRightUpperContainer}>
             <Text style={styles.kda}>{props.kda} </Text>
-            <Text style={styles.cs}>{props.cs}</Text>
+            <Text style={styles.cs}>{`${props.cs} CS`}</Text>
           </View>
           <View style={styles.bottomRightContainer}>
             <View style={styles.itemsContainer}>{Items}</View>
@@ -128,7 +140,7 @@ const ParticipantEntry = (props) => {
 ParticipantEntry.defaultProps = {
   championId: 0,
   kda: '',
-  cs: '',
+  cs: 0,
   summonerName: '',
   rank: '',
   items: [],
@@ -144,7 +156,7 @@ ParticipantEntry.defaultProps = {
 ParticipantEntry.propTypes = {
   championId: PropTypes.number,
   kda: PropTypes.string,
-  cs: PropTypes.string,
+  cs: PropTypes.number,
   summonerName: PropTypes.string,
   rank: PropTypes.string,
   items: PropTypes.array,

@@ -13,7 +13,7 @@ const MatchesContainer = (props) => {
         setSelectedGameTypeHandler={props.setSelectedGameTypeHandler}
       />
       <Matches
-        matches={props.matchesData}
+        matches={props.matchesData.data}
         currentSummonerName={props.currentSummonerName}
         summonerId={props.summonerId}
         summonerRegion={props.summonerRegion}
@@ -24,7 +24,7 @@ const MatchesContainer = (props) => {
 
 MatchesContainer.defaultProps = {
   visible: false,
-  matchesData: [],
+  matchesData: {},
   currentSummonerName: '',
   selectedGameType: 0,
   setSelectedGameTypeHandler: () => {},
@@ -34,7 +34,7 @@ MatchesContainer.defaultProps = {
 
 MatchesContainer.propTypes = {
   visible: PropTypes.bool,
-  matchesData: PropTypes.array,
+  matchesData: PropTypes.object,
   currentSummonerName: PropTypes.string,
   selectedGameType: PropTypes.number,
   setSelectedGameTypeHandler: PropTypes.func,

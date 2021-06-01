@@ -10,10 +10,10 @@ const TopChampions = (props) => {
   const ChampionEntries = props.champions.map((entry) => (
     <TopChampionsEntry
       key={`topChampionEntry_${i++}`}
-      championId={entry.championId}
-      championName={entry.championName}
-      championLevel={entry.championLevel}
-      championPoints={entry.championPoints}
+      championId={entry.id}
+      championName={entry.name}
+      championLevel={entry.level}
+      championPoints={entry.points}
     />
   ));
   return (

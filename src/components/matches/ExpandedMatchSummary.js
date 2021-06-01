@@ -49,41 +49,53 @@ const ExpandedMatchSummary = (props) => {
     />
   ));
   const Badges = props.badges.map((badge) => {
-    switch (badge.small) {
-      case 'f':
+    switch (badge) {
+      case 'FIRST_BLOOD':
         return (
           <View key={'f'} style={styles.firstBloodContainer}>
-            <Text style={styles.firstBloodText}>{badge.big}</Text>
+            <Text style={styles.firstBloodText}>first blood</Text>
           </View>
         );
-      case 'k':
+      case 'HIGHEST_KDA':
         return (
           <View key={'k'} style={styles.bestKdaContainer}>
-            <Text style={styles.bestKdaText}>{badge.big}</Text>
+            <Text style={styles.bestKdaText}>highest kda</Text>
           </View>
         );
-      case 'w':
+      case 'MOST_WARDS':
         return (
           <View key={'w'} style={styles.mostWardsContainer}>
-            <Text style={styles.mostWardsText}>{badge.big}</Text>
+            <Text style={styles.mostWardsText}>most wards</Text>
           </View>
         );
-      case 'd':
+      case 'MOST_DAMAGE':
         return (
           <View key={'d'} style={styles.mostDamageContainer}>
-            <Text style={styles.mostDamageText}>{badge.big}</Text>
+            <Text style={styles.mostDamageText}>most damage</Text>
           </View>
         );
-      case 'g':
+      case 'MOST_GOLD':
         return (
           <View key={'g'} style={styles.mostGoldContainer}>
-            <Text style={styles.mostGoldText}>{badge.big}</Text>
+            <Text style={styles.mostGoldText}>most gold</Text>
+          </View>
+        );
+      case 'PENTA_KILL':
+        return (
+          <View key={'p'} style={styles.multiKillContainer}>
+            <Text style={styles.multiKillText}>penta kill</Text>
+          </View>
+        );
+      case 'QUADRA_KILL':
+        return (
+          <View key={'q'} style={styles.multiKillContainer}>
+            <Text style={styles.multiKillText}>quadra kill</Text>
           </View>
         );
       default:
         return (
-          <View key={'m'} style={styles.multiKillContainer}>
-            <Text style={styles.multiKillText}>{badge.big}</Text>
+          <View key={'t'} style={styles.multiKillContainer}>
+            <Text style={styles.multiKillText}>triple kill</Text>
           </View>
         );
     }
@@ -120,8 +132,10 @@ const ExpandedMatchSummary = (props) => {
             <Text style={styles.kdaShort}>{props.kdaShort}</Text>
             <View style={styles.matchDetailsInnerContainer}>
               <Text style={styles.kdaLong}>{props.kdaLong} </Text>
-              <Text style={styles.cs}>{props.cs.replace(',', '')} </Text>
-              <Text style={styles.gold}>{props.gold.replace(',', '')}</Text>
+              <Text style={styles.cs}>{`${props.cs} CS`} </Text>
+              <Text style={styles.gold}>{`${(props.gold / 1000).toFixed(
+                1,
+              )}k Gold`}</Text>
             </View>
           </View>
         </View>
@@ -133,9 +147,7 @@ const ExpandedMatchSummary = (props) => {
               source={{uri: getItemIcon(props.trinket)}}
               style={styles.trinket}
             />
-            <Text style={styles.level}>
-              {props.level.replace('Level', 'Lvl')}
-            </Text>
+            <Text style={styles.level}>{`Lvl ${props.level}`}</Text>
           </View>
         </View>
       </View>
@@ -148,13 +160,10 @@ const ExpandedMatchSummary = (props) => {
         </TouchableWithoutFeedback>
         <View style={styles.rightContainer}>
           <Text style={styles.damageContribution}>
-            {props.damageContribution.replace(
-              'Dmg Cont',
-              'Damage Contribution',
-            )}
+            {`Damage Contribution: ${props.damageContribution}%`}
           </Text>
           <Text style={styles.killParticipation}>
-            {props.killParticipation}
+            {`Kill Participation: ${props.killParticipation}%`}
           </Text>
           <View style={styles.badgesInnerContainer}>{Badges}</View>
         </View>
@@ -169,15 +178,15 @@ ExpandedMatchSummary.defaultProps = {
   keystone: 0,
   trinket: 0,
   kdaShort: '',
-  level: '',
+  level: 0,
   summonerName: '',
   rank: '',
   championName: '',
-  damageContribution: '',
-  killParticipation: '',
-  gold: '',
+  damageContribution: 0,
+  killParticipation: 0,
+  gold: 0,
   kdaLong: '',
-  cs: '',
+  cs: 0,
   badges: [],
   championId: 0,
   spellImages: {},
@@ -192,15 +201,15 @@ ExpandedMatchSummary.propTypes = {
   spells: PropTypes.array,
   keystone: PropTypes.number,
   trinket: PropTypes.number,
-  level: PropTypes.string,
+  level: PropTypes.number,
   summonerName: PropTypes.string,
   rank: PropTypes.string,
   championName: PropTypes.string,
-  damageContribution: PropTypes.string,
-  killParticipation: PropTypes.string,
-  gold: PropTypes.string,
+  damageContribution: PropTypes.number,
+  killParticipation: PropTypes.number,
+  gold: PropTypes.number,
   kdaLong: PropTypes.string,
-  cs: PropTypes.string,
+  cs: PropTypes.number,
   badges: PropTypes.array,
   championId: PropTypes.number,
   spellImages: PropTypes.object,

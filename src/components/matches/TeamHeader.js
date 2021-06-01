@@ -15,7 +15,7 @@ const TeamHeader = (props) => {
       <Image source={props.baronImage.uri} style={styles.objective} />
       <Text style={styles.objectiveText}>{props.barons}</Text>
       <Text style={styles.kda}>{props.kda}</Text>
-      <Text style={styles.gold}>{props.gold}</Text>
+      <Text style={styles.gold}>{`${(props.gold / 1000).toFixed(1)}k`}</Text>
     </View>
   );
 };
@@ -23,7 +23,7 @@ const TeamHeader = (props) => {
 TeamHeader.defaultProps = {
   win: false,
   kda: '',
-  gold: '',
+  gold: 0,
   towers: 0,
   dragons: 0,
   barons: 0,
@@ -41,7 +41,7 @@ TeamHeader.defaultProps = {
 TeamHeader.propTypes = {
   win: PropTypes.bool,
   kda: PropTypes.string,
-  gold: PropTypes.string,
+  gold: PropTypes.number,
   towers: PropTypes.number,
   dragons: PropTypes.number,
   barons: PropTypes.number,

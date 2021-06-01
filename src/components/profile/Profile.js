@@ -9,23 +9,20 @@ const Profile = (props) => {
   return (
     <View style={props.visible ? styles.container : styles.hide}>
       <ProfileHeader
-        summonerName={props.summonerData.summonerName}
-        summonerLevel={props.summonerData.summonerLevel}
-        summonerIcon={props.summonerData.summonerObject.summonerIcon}
+        summonerName={props.summonerData.name}
+        summonerLevel={props.summonerData.level}
+        summonerIcon={props.summonerData.icon}
         summonerRegion={props.summonerData.region}
         inGame={
           !props.inGameDataFetching &&
           props.currentGameData.summoners.length > 0
         }
         currentGameData={props.currentGameData}
-        recentMatches={props.summonerData.recentGames}
-        rankedData={props.rankedData}
+        recentMatches={props.recentGamesData.data}
+        rankedData={props.rankedData.data}
         selectMatchesHeader={props.selectMatchesHeader}
       />
-      <Stats
-        playerStatsData={props.summonerData.playerStats}
-        championData={props.championData}
-      />
+      <Stats statisticsData={props.statisticsData} />
     </View>
   );
 };
@@ -33,20 +30,22 @@ const Profile = (props) => {
 Profile.defaultProps = {
   visible: true,
   summonerData: {},
+  recentGamesData: {},
   inGameDataFetching: true,
   currentGameData: {},
-  rankedData: [],
-  championData: [],
+  rankedData: {},
+  statisticsData: [],
   selectMatchesHeader: () => {},
 };
 
 Profile.propTypes = {
   visible: PropTypes.bool,
   summonerData: PropTypes.object,
+  recentGamesData: PropTypes.object,
   inGameDataFetching: PropTypes.bool,
   currentGameData: PropTypes.object,
-  rankedData: PropTypes.array,
-  championData: PropTypes.array,
+  rankedData: PropTypes.object,
+  statisticsData: PropTypes.array,
   selectMatchesHeader: PropTypes.func,
 };
 

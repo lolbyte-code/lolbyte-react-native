@@ -13,27 +13,29 @@ const Matches = (props) => {
 
   var i = 0;
   const MatchEntries = props.matches.map((match) => {
-    const pressable = !selectedMatch || selectedMatch === match.matchId;
+    const pressable = !selectedMatch || selectedMatch === match.id;
 
     const matchEntryStyle =
-      selectedMatch && selectedMatch !== match.matchId ? {opacity: 0.4} : null;
+      selectedMatch && selectedMatch !== match.id ? {opacity: 0.4} : null;
 
     return (
       <MatchEntry
         key={`matchEntry_${i++}`}
-        matchId={match.matchId}
+        matchId={match.id}
         selectedMatch={selectedMatch}
-        date={formatTimestamp(match.matchDate)}
-        gameType={match.matchQueueType}
-        duration={match.matchDuration}
+        date={formatTimestamp(match.timestamp)}
+        gameType={match.queueName}
+        duration={match.duration}
         win={match.win}
         items={match.items}
         spells={match.spells}
-        keystone={match.perk}
-        championId={match.championId}
-        kdaShort={match.kda}
-        kdaLong={match.kdaLong}
-        championName={match.championName}
+        keystone={match.keystone}
+        championId={match.champId}
+        kdaShort={`${match.kills}/${match.deaths}/${match.assists}`}
+        kdaLong={`${(
+          (match.kills + match.assists) /
+          Math.max(match.deaths, 1)
+        ).toFixed(1)} KDA`}
         cs={match.cs}
         changeSelectedMatchHandler={changeSelectedMatchHandler}
         currentSummonerName={props.currentSummonerName}

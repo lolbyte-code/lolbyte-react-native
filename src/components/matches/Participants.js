@@ -12,22 +12,22 @@ const Participants = (props) => {
     return (
       <ParticipantEntry
         key={`participantEntry_${i++}`}
-        cs={player.cs.replace(',', '')}
-        championId={player.championId}
-        kda={player.kdaLong}
-        summonerName={player.summonerName}
+        cs={player.cs}
+        championId={player.champId}
+        kda={`${player.kills}/${player.deaths}/${player.assists}`}
+        summonerName={player.name}
         rank={player.rank}
         items={player.items}
         badges={player.badges}
         spells={player.spells}
         trinket={player.trinket}
-        keystone={player.perk}
+        keystone={player.keystone}
         win={player.teamId === BLUE_TEAM ? props.team1Win : props.team2Win}
         changeSummonerHandler={props.changeSummonerHandler}
         matchId={props.matchId}
         spellImages={props.spellImages}
         keystoneImages={props.keystoneImages}
-        selected={props.selectedSummonerName === player.summonerName}
+        selected={props.selectedSummonerName === player.name}
       />
     );
   });

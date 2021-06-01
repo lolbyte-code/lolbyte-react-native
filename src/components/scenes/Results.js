@@ -11,9 +11,10 @@ import {
   View,
 } from 'react-native';
 import {
-  fetchChampionData,
   fetchCurrentGameData,
   fetchRankedData,
+  fetchRecentGamesData,
+  fetchStatisticsData,
   fetchSummonerData,
   resetProfileData,
 } from '@app/data/actions/ApiActions';
@@ -38,8 +39,9 @@ const MATCHES_SELECTED = 'matches';
 const Results = (props) => {
   const navigation = useNavigation();
   const summonerData = useSelector((state) => state.api.summonerData);
+  const recentGamesData = useSelector((state) => state.api.recentGamesData);
   const rankedData = useSelector((state) => state.api.rankedData);
-  const championData = useSelector((state) => state.api.championData);
+  const statisticsData = useSelector((state) => state.api.statisticsData);
   const currentGameData = useSelector((state) => state.api.currentGameData);
   const dispatch = useDispatch();
 
@@ -86,9 +88,26 @@ const Results = (props) => {
   }, [props.route, selectedGameType, dispatch]);
 
   React.useEffect(() => {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.level === 0 ||
+      summonerData.isError
+    ) {
+      return;
+    }
+    dispatch(
+      fetchRecentGamesData(
+        summonerData.data.id,
+        summonerData.data.region,
+        selectedGameType,
+      ),
+    );
+  }, [props.route, summonerData, selectedGameType, dispatch]);
+
+  React.useEffect(() => {
     if (summonerData.isFetching || summonerData.isError) {
       return;
-    } else if (summonerData.data.summonerLevel === 0) {
+    } else if (summonerData.data.level === 0) {
       navigation.navigate(pages.notFound);
     }
   }, [summonerData, navigation]);
@@ -96,57 +115,56 @@ const Results = (props) => {
   React.useEffect(() => {
     if (
       summonerData.isFetching ||
-      summonerData.data.summonerLevel === 0 ||
+      summonerData.data.level === 0 ||
       summonerData.isError
     ) {
       return;
     }
-    dispatch(
-      fetchRankedData(summonerData.data.summonerId, summonerData.data.region),
-    );
+    dispatch(fetchRankedData(summonerData.data.id, summonerData.data.region));
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
     if (
       summonerData.isFetching ||
-      summonerData.data.summonerLevel === 0 ||
+      summonerData.data.level === 0 ||
       summonerData.isError
     ) {
       return;
     }
     dispatch(
-      fetchChampionData(summonerData.data.summonerId, summonerData.data.region),
-    );
-  }, [props.route, summonerData, dispatch]);
-
-  React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.summonerLevel === 0 ||
-      summonerData.isError
-    ) {
-      return;
-    }
-    dispatch(
-      fetchCurrentGameData(
-        summonerData.data.summonerId,
+      fetchStatisticsData(
+        summonerData.data.id,
         summonerData.data.region,
+        selectedGameType,
       ),
     );
+  }, [props.route, summonerData, selectedGameType, dispatch]);
+
+  React.useEffect(() => {
+    if (
+      summonerData.isFetching ||
+      summonerData.data.level === 0 ||
+      summonerData.isError
+    ) {
+      return;
+    }
+    dispatch(
+      fetchCurrentGameData(summonerData.data.id, summonerData.data.region),
+    );
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
     if (
       summonerData.isFetching ||
-      summonerData.data.summonerLevel === 0 ||
+      summonerData.data.level === 0 ||
       summonerData.isError
     ) {
       return;
     }
     dispatch(
       addRecentSummoner({
-        summonerName: summonerData.data.summonerName,
-        summonerIcon: summonerData.data.summonerObject.summonerIcon,
+        summonerName: summonerData.data.name,
+        summonerIcon: summonerData.data.icon,
         summonerRegion: summonerData.data.region,
       }),
     );
@@ -154,8 +172,9 @@ const Results = (props) => {
 
   const profileDataLoading =
     summonerData.isFetching ||
+    recentGamesData.isFetching ||
     rankedData.isFetching ||
-    championData.isFetching ||
+    statisticsData.isFetching ||
     currentGameData.isFetching;
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -222,19 +241,20 @@ const Results = (props) => {
               <Profile
                 visible={selectedHeader === PROFILE_SELECTED}
                 summonerData={summonerData.data}
+                recentGamesData={recentGamesData.data}
                 rankedData={rankedData.data}
                 inGameDataFetching={currentGameData.isFetching}
                 currentGameData={currentGameData.data}
-                championData={championData.data}
+                statisticsData={statisticsData.data}
                 selectMatchesHeader={selectMatchesHeader}
               />
               <MatchesContainer
                 visible={selectedHeader === MATCHES_SELECTED}
-                matchesData={summonerData.data.recentGames}
-                currentSummonerName={summonerData.data.summonerName}
+                matchesData={recentGamesData.data}
+                currentSummonerName={summonerData.data.name}
                 selectedGameType={selectedGameType}
                 setSelectedGameTypeHandler={setSelectedGameTypeHandler}
-                summonerId={summonerData.data.summonerId}
+                summonerId={summonerData.data.id}
                 summonerRegion={summonerData.data.region}
               />
             </View>

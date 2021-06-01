@@ -9,11 +9,11 @@ const Summoners = (props) => {
   const SummonerEntries = props.summonerEntries.map((entry) => (
     <SummonerEntry
       key={`summoner_${i++}`}
-      championId={entry.championId}
-      summonerName={entry.summonerName}
+      championId={entry.champId}
+      summonerName={entry.name}
       summonerRank={entry.rank}
       summonerTeamId={entry.teamId}
-      selectedSummoner={entry.selectedSummoner}
+      selectedSummoner={entry.selected}
       summonerRegion={props.summonerRegion}
     />
   ));

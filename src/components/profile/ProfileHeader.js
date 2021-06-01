@@ -23,11 +23,11 @@ const ProfileHeader = (props) => {
       <Rank tier={entry.tier} />
       <View style={styles.leagueDetailsContainer}>
         <LeagueDetails
-          queue={entry.rankQueueType}
+          queue={entry.queueName}
           rank={entry.rank}
-          points={entry.leagueProgress}
-          score={entry.mmr}
-          wins={entry.rankedWL}
+          points={`${entry.lp} points`}
+          score={`LolByte Score: ${entry.score}`}
+          wins={`${entry.wins} wins`}
         />
       </View>
     </View>
@@ -80,7 +80,7 @@ ProfileHeader.defaultProps = {
   scrollEventThrottle: 0,
   summonerName: '',
   summonerLevel: 0,
-  summonerIcon: '',
+  summonerIcon: 0,
   summonerRegion: '',
   recentMatches: [],
   inGame: false,
@@ -93,7 +93,7 @@ ProfileHeader.propTypes = {
   scrollEventThrottle: PropTypes.number,
   summonerName: PropTypes.string,
   summonerLevel: PropTypes.number,
-  summonerIcon: PropTypes.string,
+  summonerIcon: PropTypes.number,
   summonerRegion: PropTypes.string,
   recentMatches: PropTypes.array,
   inGame: PropTypes.bool,
