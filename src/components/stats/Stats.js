@@ -17,13 +17,16 @@ const StatsSummary = (props) => {
         </Text>
       </View>
       <PlayerStats
-        percent={props.statisticsData[0].winPercentage}
-        kdaShort={`${props.statisticsData[0].kills}/${props.statisticsData[0].deaths}/${props.statisticsData[0].assists}`}
+        percent={props.statisticsData.playerStats.winPercentage}
+        kdaShort={`${props.statisticsData.playerStats.kills}/${props.statisticsData.playerStats.deaths}/${props.statisticsData.playerStats.assists}`}
         kdaLong={`${(
-          (props.statisticsData[0].kills + props.statisticsData[0].assists) /
-          Math.max(props.statisticsData[0].deaths, 1)
+          (props.statisticsData.playerStats.kills +
+            props.statisticsData.playerStats.assists) /
+          Math.max(props.statisticsData.playerStats.deaths, 1)
         ).toFixed(2)} KDA`}
-        wards={`${props.statisticsData[0].wards.toFixed(1)} Wards Placed`}
+        wards={`${props.statisticsData.playerStats.wards.toFixed(
+          1,
+        )} Wards Placed`}
       />
       <View style={styles.titleContainer}>
         <Text style={styles.championStatsTitle}>
@@ -31,13 +34,9 @@ const StatsSummary = (props) => {
         </Text>
       </View>
       <MostPlayedChampions
-        title={props.statisticsData[1].type}
-        champions={props.statisticsData[1].champs}
+        champions={props.statisticsData.mostPlayedChamps.champs}
       />
-      <TopChampions
-        title={props.statisticsData[2].type}
-        champions={props.statisticsData[2].champs}
-      />
+      <TopChampions champions={props.statisticsData.topChamps.champs} />
     </View>
   );
 };
@@ -46,14 +45,14 @@ StatsSummary.defaultProps = {
   playerStatsTitle: 'Player Statistics',
   playerStatsSubtitle: 'Last 20 Matches',
   championStatsTitle: 'Champion Statistics',
-  statisticsData: [],
+  statisticsData: {},
 };
 
 StatsSummary.propTypes = {
   playerStatsTitle: PropTypes.string,
   playerStatsSubtitle: PropTypes.string,
   championStatsTitle: PropTypes.string,
-  statisticsData: PropTypes.array,
+  statisticsData: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

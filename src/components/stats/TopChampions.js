@@ -25,7 +25,7 @@ const TopChampions = (props) => {
 };
 
 TopChampions.defaultProps = {
-  title: 'Most Played (Mastery)',
+  title: 'Top Champions (Mastery)',
   champions: [],
 };
 

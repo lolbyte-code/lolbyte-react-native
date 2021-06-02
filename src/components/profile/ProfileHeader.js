@@ -25,7 +25,11 @@ const ProfileHeader = (props) => {
         <LeagueDetails
           queue={entry.queueName}
           rank={entry.rank}
-          points={`${entry.lp} points`}
+          points={
+            entry.series === ''
+              ? `${entry.lp} points`
+              : `In Series: ${entry.series}`
+          }
           score={`LolByte Score: ${entry.score}`}
           wins={`${entry.wins} wins`}
         />

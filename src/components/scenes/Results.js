@@ -88,11 +88,7 @@ const Results = (props) => {
   }, [props.route, selectedGameType, dispatch]);
 
   React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.level === 0 ||
-      summonerData.isError
-    ) {
+    if (summonerData.isFetching || summonerData.isError) {
       return;
     }
     dispatch(
@@ -105,30 +101,22 @@ const Results = (props) => {
   }, [props.route, summonerData, selectedGameType, dispatch]);
 
   React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.isError) {
+    if (summonerData.isFetching) {
       return;
-    } else if (summonerData.data.level === 0) {
+    } else if (summonerData.isError) {
       navigation.navigate(pages.notFound);
     }
   }, [summonerData, navigation]);
 
   React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.level === 0 ||
-      summonerData.isError
-    ) {
+    if (summonerData.isFetching || summonerData.isError) {
       return;
     }
     dispatch(fetchRankedData(summonerData.data.id, summonerData.data.region));
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.level === 0 ||
-      summonerData.isError
-    ) {
+    if (summonerData.isFetching || summonerData.isError) {
       return;
     }
     dispatch(
@@ -141,11 +129,7 @@ const Results = (props) => {
   }, [props.route, summonerData, selectedGameType, dispatch]);
 
   React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.level === 0 ||
-      summonerData.isError
-    ) {
+    if (summonerData.isFetching || summonerData.isError) {
       return;
     }
     dispatch(
@@ -154,11 +138,7 @@ const Results = (props) => {
   }, [props.route, summonerData, dispatch]);
 
   React.useEffect(() => {
-    if (
-      summonerData.isFetching ||
-      summonerData.data.level === 0 ||
-      summonerData.isError
-    ) {
+    if (summonerData.isFetching || summonerData.isError) {
       return;
     }
     dispatch(

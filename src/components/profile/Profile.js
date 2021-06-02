@@ -34,7 +34,7 @@ Profile.defaultProps = {
   inGameDataFetching: true,
   currentGameData: {},
   rankedData: {},
-  statisticsData: [],
+  statisticsData: {},
   selectMatchesHeader: () => {},
 };
 
@@ -45,7 +45,7 @@ Profile.propTypes = {
   inGameDataFetching: PropTypes.bool,
   currentGameData: PropTypes.object,
   rankedData: PropTypes.object,
-  statisticsData: PropTypes.array,
+  statisticsData: PropTypes.object,
   selectMatchesHeader: PropTypes.func,
 };
 

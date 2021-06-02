@@ -184,7 +184,12 @@ export function fetchSummonerData(summonerName, summonerRegion) {
       method: 'GET',
       timeout: config.apiTimeout,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Summoner not found!');
+        }
+        return response.json();
+      })
       .then((json) => {
         console.log(json);
         dispatch(receiveSummonerData(summonerName, summonerRegion, json));
