@@ -310,7 +310,12 @@ export function fetchNotificationData() {
     return fetch(getNotificationData(), {
       method: 'GET',
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('No notifications!');
+        }
+        response.json();
+      })
       .then((json) => {
         console.log(json);
         dispatch(receiveNotificationData(json));
