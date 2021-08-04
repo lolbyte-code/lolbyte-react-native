@@ -1,4 +1,4 @@
-const lbServiceBaseUrl = 'https://lolbyte.services/api/v4';
+const lbServiceBaseUrl = 'http://lolbyte.me/api/v4';
 const defaultPatch = '11.11.1';
 var ddragonBaseUrl = `https://ddragon.leagueoflegends.com/cdn/${defaultPatch}`;
 

@@ -700,7 +700,7 @@
 				INFOPLIST_FILE = LolByte/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2021.6.5;
+				MARKETING_VERSION = 2021.8.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -727,7 +727,7 @@
 				INFOPLIST_FILE = LolByte/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2021.6.5;
+				MARKETING_VERSION = 2021.8.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
