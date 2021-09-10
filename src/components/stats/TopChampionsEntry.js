@@ -11,6 +11,7 @@ const TopChampionsEntry = (props) => {
       <Image
         source={{
           uri: getChampionIcon(props.championId),
+          cache: 'force-cache',
         }}
         style={
           props.championLevel === 7

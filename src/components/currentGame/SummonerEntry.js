@@ -38,6 +38,7 @@ const SummonerEntry = (props) => {
         <Image
           source={{
             uri: getChampionIcon(props.championId),
+            cache: 'force-cache',
           }}
           style={
             props.summonerTeamId === BLUE_TEAM

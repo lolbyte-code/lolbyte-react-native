@@ -37,6 +37,7 @@ const SummonerEntry = (props) => {
         <Image
           source={{
             uri: getProfileIcon(props.summonerIcon),
+            cache: 'force-cache',
           }}
           style={styles.summonerIcon}
         />

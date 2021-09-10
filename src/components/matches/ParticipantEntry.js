@@ -17,7 +17,7 @@ const ParticipantEntry = (props) => {
   const Items = props.items.map((item) => (
     <Image
       key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id)}}
+      source={{uri: getItemIcon(item.id), cache: 'force-cache'}}
       style={styles.item}
     />
   ));
@@ -91,7 +91,10 @@ const ParticipantEntry = (props) => {
       <View style={styles.container}>
         <View>
           <Image
-            source={{uri: getChampionIcon(props.championId)}}
+            source={{
+              uri: getChampionIcon(props.championId),
+              cache: 'force-cache',
+            }}
             style={
               props.selected
                 ? styles.championIconSelected
@@ -126,7 +129,7 @@ const ParticipantEntry = (props) => {
                 style={styles.keystone}
               />
               <Image
-                source={{uri: getItemIcon(props.trinket)}}
+                source={{uri: getItemIcon(props.trinket), cache: 'force-cache'}}
                 style={styles.keystone}
               />
             </View>

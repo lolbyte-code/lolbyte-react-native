@@ -18,6 +18,7 @@ const RecentMatchesEntry = (props) => {
         <Image
           source={{
             uri: getChampionIcon(props.championId),
+            cache: 'force-cache',
           }}
           style={props.win ? styles.championImageWin : styles.championImageLoss}
         />

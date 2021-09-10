@@ -10,7 +10,7 @@ const CollapsedMatchSummary = (props) => {
   const Items = props.items.map((item) => (
     <Image
       key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id)}}
+      source={{uri: getItemIcon(item.id), cache: 'force-cache'}}
       style={styles.item}
     />
   ));
@@ -28,7 +28,10 @@ const CollapsedMatchSummary = (props) => {
       <View style={styles.container}>
         <View style={styles.leftContainer}>
           <Image
-            source={{uri: getChampionIcon(props.championId)}}
+            source={{
+              uri: getChampionIcon(props.championId),
+              cache: 'force-cache',
+            }}
             style={
               props.win
                 ? styles.championPortraitWin

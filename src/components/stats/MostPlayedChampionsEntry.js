@@ -11,6 +11,7 @@ const MostPlayedChampionsEntry = (props) => {
       <Image
         source={{
           uri: getChampionIcon(props.championId),
+          cache: 'force-cache',
         }}
         style={styles.championImage}
       />

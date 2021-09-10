@@ -10,7 +10,7 @@ const BannedChampsHeader = (props) => {
   const BannedChamps = props.bannedChamps.map((championId) => (
     <Image
       key={`bannedChamp_${i++}`}
-      source={{uri: getChampionIcon(championId)}}
+      source={{uri: getChampionIcon(championId), cache: 'force-cache'}}
       style={styles.bannedChamp}
     />
   ));

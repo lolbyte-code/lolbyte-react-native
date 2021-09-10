@@ -37,7 +37,7 @@ const ExpandedMatchSummary = (props) => {
   const Items = props.items.map((item) => (
     <Image
       key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id)}}
+      source={{uri: getItemIcon(item.id), cache: 'force-cache'}}
       style={styles.item}
     />
   ));
@@ -108,7 +108,10 @@ const ExpandedMatchSummary = (props) => {
         <View style={styles.topLeftContainer}>
           <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
             <Image
-              source={{uri: getChampionIcon(props.championId)}}
+              source={{
+                uri: getChampionIcon(props.championId),
+                cache: 'force-cache',
+              }}
               style={
                 props.win
                   ? styles.championPortraitWin
@@ -144,7 +147,7 @@ const ExpandedMatchSummary = (props) => {
           <View style={styles.spellsKeystoneTrinket}>
             {Spells}
             <Image
-              source={{uri: getItemIcon(props.trinket)}}
+              source={{uri: getItemIcon(props.trinket), cache: 'force-cache'}}
               style={styles.trinket}
             />
             <Text style={styles.level}>{`Lvl ${props.level}`}</Text>
