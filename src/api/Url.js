@@ -1,5 +1,6 @@
 const lbServiceBaseUrl = 'http://lolbyte.me/api/v4';
 const defaultPatch = '11.11.1';
+const communityDragonBaseUrl = 'https://cdn.communitydragon.org/latest';
 var ddragonBaseUrl = `https://ddragon.leagueoflegends.com/cdn/${defaultPatch}`;
 
 fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
@@ -37,10 +38,10 @@ export const getMatchData = (matchId, summonerRegion, summonerId) =>
   `${lbServiceBaseUrl}/matches/${matchId}?summonerId=${summonerId}&region=${summonerRegion}&mobile`;
 
 export const getProfileIcon = (iconId) =>
-  `https://cdn.communitydragon.org/latest/profile-icon/${iconId}`;
+  `${communityDragonBaseUrl}/profile-icon/${iconId}`;
 
 export const getItemIcon = (itemId) =>
   `${ddragonBaseUrl}/img/item/${itemId}.png`;
 
 export const getChampionIcon = (championId) =>
-  `https://cdn.communitydragon.org/latest/champion/${championId}/square`;
+  `${communityDragonBaseUrl}/champion/${championId}/square`;

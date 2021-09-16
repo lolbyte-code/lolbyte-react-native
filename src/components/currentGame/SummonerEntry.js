@@ -1,14 +1,9 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
 import {BLUE_TEAM} from '@app/Constants';
 import EllipsisText from '@app/components/common/EllipsisText';
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {getChampionIcon} from '@app/api/Url';
@@ -35,10 +30,9 @@ const SummonerEntry = (props) => {
   return (
     <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
       <View style={styles.container}>
-        <Image
+        <FastImage
           source={{
             uri: getChampionIcon(props.championId),
-            cache: 'force-cache',
           }}
           style={
             props.summonerTeamId === BLUE_TEAM

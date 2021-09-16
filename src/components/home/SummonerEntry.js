@@ -1,13 +1,8 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
 import EllipsisText from '@app/components/common/EllipsisText';
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {getProfileIcon} from '@app/api/Url';
@@ -34,10 +29,9 @@ const SummonerEntry = (props) => {
   return (
     <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
       <View style={styles.container}>
-        <Image
+        <FastImage
           source={{
             uri: getProfileIcon(props.summonerIcon),
-            cache: 'force-cache',
           }}
           style={styles.summonerIcon}
         />

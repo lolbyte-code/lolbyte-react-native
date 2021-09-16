@@ -1,6 +1,7 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {getChampionIcon} from '@app/api/Url';
@@ -8,10 +9,9 @@ import {getChampionIcon} from '@app/api/Url';
 const MostPlayedChampionsEntry = (props) => {
   return (
     <View style={styles.container}>
-      <Image
+      <FastImage
         source={{
           uri: getChampionIcon(props.championId),
-          cache: 'force-cache',
         }}
         style={styles.championImage}
       />

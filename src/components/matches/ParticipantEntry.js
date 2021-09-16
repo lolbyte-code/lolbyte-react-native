@@ -9,15 +9,16 @@ import {colors, fonts} from '@app/Theme';
 import {getChampionIcon, getItemIcon} from '@app/api/Url';
 
 import EllipsisText from '@app/components/common/EllipsisText';
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const ParticipantEntry = (props) => {
   var i = 0;
   const Items = props.items.map((item) => (
-    <Image
+    <FastImage
       key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id), cache: 'force-cache'}}
+      source={{uri: getItemIcon(item.id)}}
       style={styles.item}
     />
   ));
@@ -90,10 +91,9 @@ const ParticipantEntry = (props) => {
       }>
       <View style={styles.container}>
         <View>
-          <Image
+          <FastImage
             source={{
               uri: getChampionIcon(props.championId),
-              cache: 'force-cache',
             }}
             style={
               props.selected
@@ -128,8 +128,8 @@ const ParticipantEntry = (props) => {
                 source={props.keystoneImages[props.keystone].uri}
                 style={styles.keystone}
               />
-              <Image
-                source={{uri: getItemIcon(props.trinket), cache: 'force-cache'}}
+              <FastImage
+                source={{uri: getItemIcon(props.trinket)}}
                 style={styles.keystone}
               />
             </View>

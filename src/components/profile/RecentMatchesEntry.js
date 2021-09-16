@@ -1,12 +1,7 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {getChampionIcon} from '@app/api/Url';
@@ -15,10 +10,9 @@ const RecentMatchesEntry = (props) => {
   return (
     <TouchableWithoutFeedback onPress={props.selectMatchesHeader}>
       <View style={styles.container}>
-        <Image
+        <FastImage
           source={{
             uri: getChampionIcon(props.championId),
-            cache: 'force-cache',
           }}
           style={props.win ? styles.championImageWin : styles.championImageLoss}
         />

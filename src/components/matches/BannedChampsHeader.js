@@ -1,6 +1,7 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {getChampionIcon} from '@app/api/Url';
@@ -8,9 +9,9 @@ import {getChampionIcon} from '@app/api/Url';
 const BannedChampsHeader = (props) => {
   var i = 0;
   const BannedChamps = props.bannedChamps.map((championId) => (
-    <Image
+    <FastImage
       key={`bannedChamp_${i++}`}
-      source={{uri: getChampionIcon(championId), cache: 'force-cache'}}
+      source={{uri: getChampionIcon(championId)}}
       style={styles.bannedChamp}
     />
   ));

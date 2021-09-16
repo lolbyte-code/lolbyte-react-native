@@ -10,6 +10,7 @@ import {colors, fonts} from '@app/Theme';
 import {getChampionIcon, getItemIcon} from '@app/api/Url';
 import {useDispatch, useSelector} from 'react-redux';
 
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {pages} from '@app/Constants';
@@ -35,9 +36,9 @@ const ExpandedMatchSummary = (props) => {
 
   var i = 0;
   const Items = props.items.map((item) => (
-    <Image
+    <FastImage
       key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id), cache: 'force-cache'}}
+      source={{uri: getItemIcon(item.id)}}
       style={styles.item}
     />
   ));
@@ -107,10 +108,9 @@ const ExpandedMatchSummary = (props) => {
       <View style={styles.topContainer}>
         <View style={styles.topLeftContainer}>
           <TouchableWithoutFeedback onPress={navigateToProfileHandler}>
-            <Image
+            <FastImage
               source={{
                 uri: getChampionIcon(props.championId),
-                cache: 'force-cache',
               }}
               style={
                 props.win
@@ -146,8 +146,8 @@ const ExpandedMatchSummary = (props) => {
           <View style={styles.itemsContainer}>{Items}</View>
           <View style={styles.spellsKeystoneTrinket}>
             {Spells}
-            <Image
-              source={{uri: getItemIcon(props.trinket), cache: 'force-cache'}}
+            <FastImage
+              source={{uri: getItemIcon(props.trinket)}}
               style={styles.trinket}
             />
             <Text style={styles.level}>{`Lvl ${props.level}`}</Text>

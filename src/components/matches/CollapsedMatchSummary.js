@@ -2,15 +2,16 @@ import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
 import {getChampionIcon, getItemIcon} from '@app/api/Url';
 
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const CollapsedMatchSummary = (props) => {
   var i = 0;
   const Items = props.items.map((item) => (
-    <Image
+    <FastImage
       key={`item_${i++}`}
-      source={{uri: getItemIcon(item.id), cache: 'force-cache'}}
+      source={{uri: getItemIcon(item.id)}}
       style={styles.item}
     />
   ));
@@ -27,10 +28,9 @@ const CollapsedMatchSummary = (props) => {
       style={styles.background}>
       <View style={styles.container}>
         <View style={styles.leftContainer}>
-          <Image
+          <FastImage
             source={{
               uri: getChampionIcon(props.championId),
-              cache: 'force-cache',
             }}
             style={
               props.win
