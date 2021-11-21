@@ -239,65 +239,6 @@ MatchEntry.defaultProps = {
       uri: require('@app/assets/img/spells/52.png'),
     },
   },
-  keystoneImages: {
-    0: {
-      uri: require('@app/assets/img/runes/0.png'),
-    },
-    8005: {
-      uri: require('@app/assets/img/runes/8005.png'),
-    },
-    8008: {
-      uri: require('@app/assets/img/runes/8008.png'),
-    },
-    8010: {
-      uri: require('@app/assets/img/runes/8010.png'),
-    },
-    8021: {
-      uri: require('@app/assets/img/runes/8021.png'),
-    },
-    8112: {
-      uri: require('@app/assets/img/runes/8112.png'),
-    },
-    8124: {
-      uri: require('@app/assets/img/runes/8124.png'),
-    },
-    8128: {
-      uri: require('@app/assets/img/runes/8128.png'),
-    },
-    8214: {
-      uri: require('@app/assets/img/runes/8214.png'),
-    },
-    8229: {
-      uri: require('@app/assets/img/runes/8229.png'),
-    },
-    8230: {
-      uri: require('@app/assets/img/runes/8230.png'),
-    },
-    8351: {
-      uri: require('@app/assets/img/runes/8351.png'),
-    },
-    8358: {
-      uri: require('@app/assets/img/runes/8358.png'),
-    },
-    8359: {
-      uri: require('@app/assets/img/runes/8359.png'),
-    },
-    8360: {
-      uri: require('@app/assets/img/runes/8360.png'),
-    },
-    8437: {
-      uri: require('@app/assets/img/runes/8437.png'),
-    },
-    8439: {
-      uri: require('@app/assets/img/runes/8439.png'),
-    },
-    8465: {
-      uri: require('@app/assets/img/runes/8465.png'),
-    },
-    9923: {
-      uri: require('@app/assets/img/runes/9923.png'),
-    },
-  },
 };
 
 MatchEntry.propTypes = {
@@ -324,7 +265,6 @@ MatchEntry.propTypes = {
   summonerId: PropTypes.string,
   summonerRegion: PropTypes.string,
   spellImages: PropTypes.object,
-  keystoneImages: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

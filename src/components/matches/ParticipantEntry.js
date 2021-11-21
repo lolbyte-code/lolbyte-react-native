@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import {colors, fonts} from '@app/Theme';
-import {getChampionIcon, getItemIcon} from '@app/api/Url';
+import {getChampionIcon, getItemIcon, getRuneIcon} from '@app/api/Url';
 
 import EllipsisText from '@app/components/common/EllipsisText';
 import FastImage from 'react-native-fast-image';
@@ -125,7 +125,7 @@ const ParticipantEntry = (props) => {
             <View style={styles.itemsContainer}>{Items}</View>
             <View style={styles.keystoneWardContainer}>
               <Image
-                source={props.keystoneImages[props.keystone].uri}
+                source={{uri: getRuneIcon(props.keystone)}}
                 style={styles.keystone}
               />
               <FastImage
@@ -151,7 +151,6 @@ ParticipantEntry.defaultProps = {
   spells: [],
   spellImages: {},
   keystone: 0,
-  keystoneImages: {},
   changeSummonerHandler: () => {},
   selected: false,
 };
@@ -167,7 +166,6 @@ ParticipantEntry.propTypes = {
   spells: PropTypes.array,
   spellImages: PropTypes.object,
   keystone: PropTypes.number,
-  keystoneImages: PropTypes.object,
   changeSummonerHandler: PropTypes.func,
   selected: PropTypes.bool,
 };

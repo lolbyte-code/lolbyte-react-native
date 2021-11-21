@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import {colors, fonts} from '@app/Theme';
-import {getChampionIcon, getItemIcon} from '@app/api/Url';
+import {getChampionIcon, getItemIcon, getRuneIcon} from '@app/api/Url';
 import {useDispatch, useSelector} from 'react-redux';
 
 import FastImage from 'react-native-fast-image';
@@ -126,7 +126,7 @@ const ExpandedMatchSummary = (props) => {
                 : styles.keystoneContainerLoss
             }>
             <Image
-              source={props.keystoneImages[props.keystone].uri}
+              source={{uri: getRuneIcon(props.keystone)}}
               style={styles.keystone}
             />
           </View>
@@ -193,7 +193,6 @@ ExpandedMatchSummary.defaultProps = {
   badges: [],
   championId: 0,
   spellImages: {},
-  keystoneImages: {},
   win: false,
   backgroundWin: require('@app/assets/img/backgrounds/matchSummaryVictory.png'),
   backgroundLoss: require('@app/assets/img/backgrounds/matchSummaryDefeat.png'),
@@ -216,7 +215,6 @@ ExpandedMatchSummary.propTypes = {
   badges: PropTypes.array,
   championId: PropTypes.number,
   spellImages: PropTypes.object,
-  keystoneImages: PropTypes.object,
   win: PropTypes.bool,
   backgroundWin: PropTypes.node,
   backgroundLoss: PropTypes.node,

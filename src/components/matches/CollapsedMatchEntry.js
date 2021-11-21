@@ -26,7 +26,6 @@ const CollapsedMatchEntry = (props) => {
         championName={props.championName}
         cs={props.cs}
         spellImages={props.spellImages}
-        keystoneImages={props.keystoneImages}
         win={props.win}
       />
       <View style={props.isFetching ? styles.loadingContainer : styles.hide}>
@@ -51,7 +50,6 @@ CollapsedMatchEntry.defaultProps = {
   championName: '',
   cs: 0,
   spellImages: {},
-  keystoneImages: {},
   loadingIndicatorSize: 'small',
 };
 
@@ -70,7 +68,6 @@ CollapsedMatchEntry.propTypes = {
   championName: PropTypes.string,
   cs: PropTypes.number,
   spellImages: PropTypes.object,
-  keystoneImages: PropTypes.object,
   loadingIndicatorSize: PropTypes.string,
 };
 

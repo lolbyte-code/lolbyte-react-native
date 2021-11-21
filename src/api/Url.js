@@ -2,6 +2,8 @@ const lbServiceBaseUrl = 'http://lolbyte.me/api/v4';
 const defaultPatch = '11.11.1';
 const communityDragonBaseUrl = 'https://cdn.communitydragon.org/latest';
 var ddragonBaseUrl = `https://ddragon.leagueoflegends.com/cdn/${defaultPatch}`;
+var runesBaseUrl = 'https://ddragon.leagueoflegends.com/cdn/img';
+var runeUrls = new Map();
 
 fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   method: 'GET',
@@ -10,6 +12,15 @@ fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   .then((json) => {
     console.log(json);
     ddragonBaseUrl = ddragonBaseUrl.replace(defaultPatch, json[0]);
+    fetch(`${ddragonBaseUrl}/data/en_US/runesReforged.json`, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        json.flatMap(tree => tree.slots.flatMap(slot => slot.runes)).forEach(rune => runeUrls.set(rune.id, `${runesBaseUrl}/${rune.icon}`));
+      })
+      .catch((error) => console.error(error));
   })
   .catch((error) => console.error(error));
 
@@ -45,3 +56,6 @@ export const getItemIcon = (itemId) =>
 
 export const getChampionIcon = (championId) =>
   `${communityDragonBaseUrl}/champion/${championId}/square`;
+
+export const getRuneIcon = (runeId) =>
+  runeUrls.get(runeId);
