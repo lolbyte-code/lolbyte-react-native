@@ -4,6 +4,7 @@ const communityDragonBaseUrl = 'https://cdn.communitydragon.org/latest';
 var ddragonBaseUrl = `https://ddragon.leagueoflegends.com/cdn/${defaultPatch}`;
 var runesBaseUrl = 'https://ddragon.leagueoflegends.com/cdn/img';
 var runeUrls = new Map();
+var spellUrls = new Map();
 
 fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
   method: 'GET',
@@ -18,7 +19,25 @@ fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        json.flatMap(tree => tree.slots.flatMap(slot => slot.runes)).forEach(rune => runeUrls.set(rune.id, `${runesBaseUrl}/${rune.icon}`));
+        json
+          .flatMap((tree) => tree.slots.flatMap((slot) => slot.runes))
+          .forEach((rune) =>
+            runeUrls.set(rune.id, `${runesBaseUrl}/${rune.icon}`),
+          );
+      })
+      .catch((error) => console.error(error));
+    fetch(`${ddragonBaseUrl}/data/en_US/summoner.json`, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        Object.entries(json.data).forEach((entry) =>
+          spellUrls.set(
+            parseInt(entry[1].key),
+            `${ddragonBaseUrl}/img/spell/${entry[1].image.full}`,
+          ),
+        );
       })
       .catch((error) => console.error(error));
   })
@@ -57,5 +76,6 @@ export const getItemIcon = (itemId) =>
 export const getChampionIcon = (championId) =>
   `${communityDragonBaseUrl}/champion/${championId}/square`;
 
-export const getRuneIcon = (runeId) =>
-  runeUrls.get(runeId);
+export const getRuneIcon = (runeId) => runeUrls.get(runeId);
+
+export const getSpellIcon = (spellId) => spellUrls.get(spellId);

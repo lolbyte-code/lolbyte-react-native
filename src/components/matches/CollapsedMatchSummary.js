@@ -1,6 +1,11 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '@app/Theme';
-import {getChampionIcon, getItemIcon, getRuneIcon} from '@app/api/Url';
+import {
+  getChampionIcon,
+  getItemIcon,
+  getRuneIcon,
+  getSpellIcon,
+} from '@app/api/Url';
 
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
@@ -18,7 +23,7 @@ const CollapsedMatchSummary = (props) => {
   const Spells = props.spells.map((spell) => (
     <Image
       key={`spell_${i++}`}
-      source={props.spellImages[spell].uri}
+      source={{uri: getSpellIcon(spell)}}
       style={styles.spell}
     />
   ));
@@ -75,7 +80,6 @@ CollapsedMatchSummary.defaultProps = {
   kdaLong: '',
   championName: '',
   cs: 0,
-  spellImages: {},
   win: false,
   backgroundWin: require('@app/assets/img/backgrounds/matchSummaryVictory.png'),
   backgroundLoss: require('@app/assets/img/backgrounds/matchSummaryDefeat.png'),
@@ -90,7 +94,6 @@ CollapsedMatchSummary.propTypes = {
   kdaLong: PropTypes.string,
   championName: PropTypes.string,
   cs: PropTypes.number,
-  spellImages: PropTypes.object,
   win: PropTypes.bool,
   backgroundWin: PropTypes.node,
   backgroundLoss: PropTypes.node,

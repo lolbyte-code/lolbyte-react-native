@@ -25,7 +25,6 @@ const Participants = (props) => {
         win={player.teamId === BLUE_TEAM ? props.team1Win : props.team2Win}
         changeSummonerHandler={props.changeSummonerHandler}
         matchId={props.matchId}
-        spellImages={props.spellImages}
         selected={props.selectedSummonerName === player.name}
       />
     );
@@ -54,7 +53,6 @@ Participants.defaultProps = {
   playerData: [],
   team1Win: false,
   team2Win: false,
-  spellImages: {},
   changeSummonerHandler: () => {},
   selectedSummonerName: '',
 };
@@ -63,7 +61,6 @@ Participants.propTypes = {
   playerData: PropTypes.array,
   team1Win: PropTypes.bool,
   team2Win: PropTypes.bool,
-  spellImages: PropTypes.object,
   changeSummonerHandler: PropTypes.func,
   selectedSummonerName: PropTypes.string,
 };

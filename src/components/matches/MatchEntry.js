@@ -171,74 +171,6 @@ MatchEntry.defaultProps = {
   currentSummonerName: '',
   summonerId: '',
   summonerRegion: '',
-  spellImages: {
-    0: {
-      uri: require('@app/assets/img/spells/0.png'),
-    },
-    1: {
-      uri: require('@app/assets/img/spells/1.png'),
-    },
-    3: {
-      uri: require('@app/assets/img/spells/3.png'),
-    },
-    4: {
-      uri: require('@app/assets/img/spells/4.png'),
-    },
-    6: {
-      uri: require('@app/assets/img/spells/6.png'),
-    },
-    7: {
-      uri: require('@app/assets/img/spells/7.png'),
-    },
-    11: {
-      uri: require('@app/assets/img/spells/11.png'),
-    },
-    12: {
-      uri: require('@app/assets/img/spells/12.png'),
-    },
-    13: {
-      uri: require('@app/assets/img/spells/13.png'),
-    },
-    14: {
-      uri: require('@app/assets/img/spells/14.png'),
-    },
-    21: {
-      uri: require('@app/assets/img/spells/21.png'),
-    },
-    30: {
-      uri: require('@app/assets/img/spells/30.png'),
-    },
-    31: {
-      uri: require('@app/assets/img/spells/31.png'),
-    },
-    32: {
-      uri: require('@app/assets/img/spells/32.png'),
-    },
-    33: {
-      uri: require('@app/assets/img/spells/33.png'),
-    },
-    34: {
-      uri: require('@app/assets/img/spells/34.png'),
-    },
-    35: {
-      uri: require('@app/assets/img/spells/35.png'),
-    },
-    36: {
-      uri: require('@app/assets/img/spells/36.png'),
-    },
-    39: {
-      uri: require('@app/assets/img/spells/39.png'),
-    },
-    50: {
-      uri: require('@app/assets/img/spells/50.png'),
-    },
-    51: {
-      uri: require('@app/assets/img/spells/51.png'),
-    },
-    52: {
-      uri: require('@app/assets/img/spells/52.png'),
-    },
-  },
 };
 
 MatchEntry.propTypes = {
@@ -264,7 +196,6 @@ MatchEntry.propTypes = {
   currentSummonerName: PropTypes.string,
   summonerId: PropTypes.string,
   summonerRegion: PropTypes.string,
-  spellImages: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

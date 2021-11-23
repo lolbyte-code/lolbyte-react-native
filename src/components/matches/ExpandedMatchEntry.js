@@ -35,7 +35,6 @@ const ExpandedMatchEntry = (props) => {
         cs={props.cs}
         badges={props.badges}
         championId={props.championId}
-        spellImages={props.spellImages}
         win={props.win}
       />
       <View style={styles.teamHeaders}>
@@ -73,7 +72,6 @@ const ExpandedMatchEntry = (props) => {
         matchId={props.matchId}
         team1Win={props.team1Win}
         team2Win={props.team2Win}
-        spellImages={props.spellImages}
         selectedSummonerName={props.selectedSummonerName}
       />
     </View>
@@ -116,7 +114,6 @@ ExpandedMatchEntry.defaultProps = {
   badges: [],
   playerData: {},
   championId: 0,
-  spellImages: {},
   selectedSummonerName: '',
 };
 
@@ -156,7 +153,6 @@ ExpandedMatchEntry.propTypes = {
   badges: PropTypes.array,
   playerData: PropTypes.array,
   championId: PropTypes.number,
-  spellImages: PropTypes.object,
   selectedSummonerName: PropTypes.string,
 };
 

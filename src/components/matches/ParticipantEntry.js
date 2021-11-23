@@ -12,6 +12,7 @@ import EllipsisText from '@app/components/common/EllipsisText';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {getSpellIcon} from '../../api/Url';
 
 const ParticipantEntry = (props) => {
   var i = 0;
@@ -25,7 +26,7 @@ const ParticipantEntry = (props) => {
   const Spells = props.spells.map((spell) => (
     <Image
       key={`spell_${i++}`}
-      source={props.spellImages[spell].uri}
+      source={{uri: getSpellIcon(spell)}}
       style={styles.spell}
     />
   ));
@@ -149,7 +150,6 @@ ParticipantEntry.defaultProps = {
   items: [],
   badges: [],
   spells: [],
-  spellImages: {},
   keystone: 0,
   changeSummonerHandler: () => {},
   selected: false,
@@ -164,7 +164,6 @@ ParticipantEntry.propTypes = {
   items: PropTypes.array,
   badges: PropTypes.array,
   spells: PropTypes.array,
-  spellImages: PropTypes.object,
   keystone: PropTypes.number,
   changeSummonerHandler: PropTypes.func,
   selected: PropTypes.bool,

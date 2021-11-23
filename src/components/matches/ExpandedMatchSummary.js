@@ -7,7 +7,12 @@ import {
   View,
 } from 'react-native';
 import {colors, fonts} from '@app/Theme';
-import {getChampionIcon, getItemIcon, getRuneIcon} from '@app/api/Url';
+import {
+  getChampionIcon,
+  getItemIcon,
+  getRuneIcon,
+  getSpellIcon,
+} from '@app/api/Url';
 import {useDispatch, useSelector} from 'react-redux';
 
 import FastImage from 'react-native-fast-image';
@@ -45,7 +50,7 @@ const ExpandedMatchSummary = (props) => {
   const Spells = props.spells.map((spell) => (
     <Image
       key={`spell_${i++}`}
-      source={props.spellImages[spell].uri}
+      source={{uri: getSpellIcon(spell)}}
       style={styles.spell}
     />
   ));
@@ -192,7 +197,6 @@ ExpandedMatchSummary.defaultProps = {
   cs: 0,
   badges: [],
   championId: 0,
-  spellImages: {},
   win: false,
   backgroundWin: require('@app/assets/img/backgrounds/matchSummaryVictory.png'),
   backgroundLoss: require('@app/assets/img/backgrounds/matchSummaryDefeat.png'),
@@ -214,7 +218,6 @@ ExpandedMatchSummary.propTypes = {
   cs: PropTypes.number,
   badges: PropTypes.array,
   championId: PropTypes.number,
-  spellImages: PropTypes.object,
   win: PropTypes.bool,
   backgroundWin: PropTypes.node,
   backgroundLoss: PropTypes.node,
