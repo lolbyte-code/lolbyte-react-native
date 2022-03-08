@@ -17,6 +17,9 @@ import {colors} from '@app/Theme';
 const NotFound = (props) => {
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
+      {Platform.OS === 'ios' && <SafeAreaView style={{backgroundColor: colors.blue}}>
+        <StatusBar barStyle="light-content"></StatusBar>
+      </SafeAreaView>}
       <SafeAreaView
         style={
           StatusBar.currentHeight && Platform.OS === 'android'

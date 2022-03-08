@@ -18,6 +18,9 @@ const Error = (props) => {
   const error = props.route.params.error;
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
+      {Platform.OS === 'ios' && <SafeAreaView style={{backgroundColor: colors.blue}}>
+        <StatusBar barStyle="light-content"></StatusBar>
+      </SafeAreaView>}
       <SafeAreaView
         style={
           StatusBar.currentHeight && Platform.OS === 'android'

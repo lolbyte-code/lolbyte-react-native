@@ -185,11 +185,14 @@ const Results = (props) => {
 
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
+      {Platform.OS === 'ios' && <SafeAreaView style={{backgroundColor: colors.blue}}>
+        <StatusBar barStyle="light-content"></StatusBar>
+      </SafeAreaView>}
       <SafeAreaView
         style={
           StatusBar.currentHeight && Platform.OS === 'android'
             ? {paddingBottom: StatusBar.currentHeight}
-            : null
+            : {marginBottom: 25}
         }>
         {Platform.OS === 'android' && <StatusBar backgroundColor={colors.blue}></StatusBar>}
         <SearchNav />

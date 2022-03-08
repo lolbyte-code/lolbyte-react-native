@@ -1,4 +1,5 @@
 import {
+  Platform,
   StyleSheet,
   TextInput,
   TouchableWithoutFeedback,
@@ -19,6 +20,8 @@ import React from 'react';
 import {pages} from '@app/Constants';
 import {resetProfileData} from '@app/data/actions/ApiActions';
 import {useNavigation} from '@react-navigation/native';
+
+const PADDING_TOP = Platform.OS === "android" ? 12 : 0
 
 const SearchNav = (props) => {
   const navigation = useNavigation();
@@ -102,7 +105,7 @@ SearchNav.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 12,
+    paddingTop: PADDING_TOP,
     paddingBottom: 12,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
