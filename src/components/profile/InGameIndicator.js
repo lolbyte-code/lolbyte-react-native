@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   hide: {
-    display: 'none',
+    height: 0,
+    width: 0,
+    opacity: 0,
   },
 });
 

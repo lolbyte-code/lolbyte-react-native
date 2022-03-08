@@ -100,7 +100,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   hide: {
-    display: 'none',
+    height: 0,
+    width: 0,
+    opacity: 0,
   },
   logo: {
     alignItems: 'center',

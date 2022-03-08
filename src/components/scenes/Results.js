@@ -188,9 +188,10 @@ const Results = (props) => {
       <SafeAreaView
         style={
           StatusBar.currentHeight && Platform.OS === 'android'
-            ? {paddingTop: StatusBar.currentHeight}
+            ? {paddingBottom: StatusBar.currentHeight}
             : null
         }>
+        {Platform.OS === 'android' && <StatusBar backgroundColor={colors.blue}></StatusBar>}
         <SearchNav />
         <ScrollView
           style={styles.scrollContainer}

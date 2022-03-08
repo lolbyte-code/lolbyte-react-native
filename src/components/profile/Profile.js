@@ -54,7 +54,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   hide: {
-    display: 'none',
+    height: 0,
+    width: 0,
+    opacity: 0,
   },
 });
 

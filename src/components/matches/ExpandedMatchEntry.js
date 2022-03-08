@@ -170,7 +170,9 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   hide: {
-    display: 'none',
+    height: 0,
+    width: 0,
+    opacity: 0,
   },
 });
 

@@ -1,6 +1,6 @@
 export function formatTimestamp(timestamp) {
-  var dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var date = new Date(0);
   date.setUTCMilliseconds(timestamp);
-  return date.toLocaleDateString('en-us', dateOptions);
+  return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 }

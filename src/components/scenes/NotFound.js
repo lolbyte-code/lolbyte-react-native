@@ -20,9 +20,10 @@ const NotFound = (props) => {
       <SafeAreaView
         style={
           StatusBar.currentHeight && Platform.OS === 'android'
-            ? {paddingTop: StatusBar.currentHeight}
+            ? {paddingBottom: StatusBar.currentHeight}
             : null
         }>
+        {Platform.OS === 'android' && <StatusBar backgroundColor={colors.blue}></StatusBar>}
         <SearchNav />
         <View style={styles.container}>
           <NotFoundSvg

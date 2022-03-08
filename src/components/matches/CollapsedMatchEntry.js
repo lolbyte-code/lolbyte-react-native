@@ -74,7 +74,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   hide: {
-    display: 'none',
+    height: 0,
+    width: 0,
+    opacity: 0,
   },
 });
 
