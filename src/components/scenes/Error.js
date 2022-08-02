@@ -2,10 +2,9 @@ import {
   ImageBackground,
   Platform,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
+  View,
 } from 'react-native';
 import {backgrounds, colors, fonts} from '@app/Theme';
 
@@ -15,7 +14,6 @@ import React from 'react';
 import SearchNav from '@app/components/common/SearchNav';
 
 const Error = (props) => {
-  const error = props.route.params.error;
   return (
     <ImageBackground source={props.backgroundImage} style={styles.background}>
       {Platform.OS === 'ios' && <SafeAreaView style={{backgroundColor: colors.blue}}>
@@ -29,10 +27,9 @@ const Error = (props) => {
         }>
         {Platform.OS === 'android' && <StatusBar backgroundColor={colors.blue}></StatusBar>}
         <SearchNav />
-        <ScrollView contentContainerStyle={styles.errorScreen}>
+        <View style={styles.errorScreen}>
           <ErrorSvg width={props.errorWidth} height={props.errorHeight} />
-          <Text style={styles.text}>{error}</Text>
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -59,12 +56,6 @@ const styles = StyleSheet.create({
   errorScreen: {
     flex: 1,
     alignItems: 'center',
-    alignContent: 'center',
-  },
-  text: {
-    color: colors.lightGrey,
-    fontFamily: fonts.regular,
-    padding: 10,
   },
 });
 

@@ -20,6 +20,7 @@ import {
 } from '@app/data/actions/ApiActions';
 import {useDispatch, useSelector} from 'react-redux';
 
+import Error from '@app/components/scenes/Error';
 import Loading from '@app/components/common/Loading';
 import MatchesContainer from '@app/components/matches/MatchesContainer';
 import Profile from '@app/components/profile/Profile';
@@ -279,4 +280,24 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Results;
+class ResultsErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {}
+
+  render() {
+    if (this.state.hasError) {
+      return <Error />;
+    }
+    return <Results {...this.props}/>;
+  }
+}
+
+export default ResultsErrorBoundary;
