@@ -50,7 +50,7 @@ export const getSummonerData = (summonerName, summonerRegion) =>
   `${lbServiceBaseUrl}/summoners/${summonerName.replace(
     /\s/g,
     '',
-  )}?region=${summonerRegion}&mobile`;
+  ).replace('#', "%23")}?region=${summonerRegion}&mobile`;
 
 export const getRecentGamesData = (summonerId, summonerRegion, gameType) =>
   `${lbServiceBaseUrl}/recentGames/${summonerId}?region=${summonerRegion}&queueId=${gameType}&mobile`;
@@ -62,10 +62,10 @@ export const getStatisticsData = (summonerId, summonerRegion, gameType) =>
   `${lbServiceBaseUrl}/statistics/${summonerId}?region=${summonerRegion}&queueId=${gameType}&mobile`;
 
 export const getCurrentGameData = (summonerId, summonerRegion) =>
-  `${lbServiceBaseUrl}/current/${summonerId}?region=${summonerRegion}&mobile`;
+  `${lbServiceBaseUrl}/current/${summonerId}?region=${summonerRegion}&useRiotIds=true&mobile`;
 
 export const getMatchData = (matchId, summonerRegion, summonerId) =>
-  `${lbServiceBaseUrl}/matches/${matchId}?summonerId=${summonerId}&region=${summonerRegion}&mobile`;
+  `${lbServiceBaseUrl}/matches/${matchId}?summonerId=${summonerId}&region=${summonerRegion}&useRiotIds=true&mobile`;
 
 export const getProfileIcon = (iconId) =>
   `${communityDragonBaseUrl}/profile-icon/${iconId}`;

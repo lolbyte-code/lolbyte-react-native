@@ -38,7 +38,7 @@ const Matches = (props) => {
         ).toFixed(1)} KDA`}
         cs={match.cs}
         changeSelectedMatchHandler={changeSelectedMatchHandler}
-        currentSummonerName={props.currentSummonerName}
+        currentSummonerId={props.currentSummonerId}
         pressable={pressable}
         containerStyle={matchEntryStyle}
         summonerId={props.summonerId}
@@ -51,14 +51,14 @@ const Matches = (props) => {
 
 Matches.defaultProps = {
   matches: [],
-  currentSummonerName: '',
+  currentSummonerId: '',
   summonerId: '',
   summonerRegion: '',
 };
 
 Matches.propTypes = {
   matches: PropTypes.array,
-  currentSummonerName: PropTypes.string,
+  currentSummonerId: PropTypes.string,
   summonerId: PropTypes.string,
   summonerRegion: PropTypes.string,
 };

@@ -72,7 +72,7 @@ const ExpandedMatchEntry = (props) => {
         matchId={props.matchId}
         team1Win={props.team1Win}
         team2Win={props.team2Win}
-        selectedSummonerName={props.selectedSummonerName}
+        selectedSummonerId={props.selectedSummonerId}
       />
     </View>
   );
@@ -114,7 +114,7 @@ ExpandedMatchEntry.defaultProps = {
   badges: [],
   playerData: {},
   championId: 0,
-  selectedSummonerName: '',
+  selectedSummonerId: '',
 };
 
 ExpandedMatchEntry.propTypes = {
@@ -153,7 +153,7 @@ ExpandedMatchEntry.propTypes = {
   badges: PropTypes.array,
   playerData: PropTypes.array,
   championId: PropTypes.number,
-  selectedSummonerName: PropTypes.string,
+  selectedSummonerId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

@@ -86,7 +86,7 @@ const ParticipantEntry = (props) => {
     <TouchableWithoutFeedback
       onPress={() =>
         props.changeSummonerHandler({
-          name: props.summonerName,
+          id: props.summonerId,
           match: props.matchId,
         })
       }>
@@ -153,6 +153,7 @@ ParticipantEntry.defaultProps = {
   keystone: 0,
   changeSummonerHandler: () => {},
   selected: false,
+  summonerId: '',
 };
 
 ParticipantEntry.propTypes = {
@@ -167,6 +168,7 @@ ParticipantEntry.propTypes = {
   keystone: PropTypes.number,
   changeSummonerHandler: PropTypes.func,
   selected: PropTypes.bool,
+  summonerId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

@@ -99,27 +99,6 @@ const Results = (props) => {
         selectedGameType,
       ),
     );
-  }, [props.route, summonerData, selectedGameType, dispatch]);
-
-  React.useEffect(() => {
-    if (summonerData.isFetching) {
-      return;
-    } else if (summonerData.isError) {
-      navigation.navigate(pages.notFound);
-    }
-  }, [summonerData, navigation]);
-
-  React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.isError) {
-      return;
-    }
-    dispatch(fetchRankedData(summonerData.data.id, summonerData.data.region));
-  }, [props.route, summonerData, dispatch]);
-
-  React.useEffect(() => {
-    if (summonerData.isFetching || summonerData.isError) {
-      return;
-    }
     dispatch(
       fetchStatisticsData(
         summonerData.data.id,
@@ -133,10 +112,19 @@ const Results = (props) => {
     if (summonerData.isFetching || summonerData.isError) {
       return;
     }
+    dispatch(fetchRankedData(summonerData.data.id, summonerData.data.region));
     dispatch(
       fetchCurrentGameData(summonerData.data.id, summonerData.data.region),
     );
   }, [props.route, summonerData, dispatch]);
+
+  React.useEffect(() => {
+    if (summonerData.isFetching) {
+      return;
+    } else if (summonerData.isError) {
+      navigation.navigate(pages.notFound);
+    }
+  }, [summonerData, navigation]);
 
   React.useEffect(() => {
     if (summonerData.isFetching || summonerData.isError) {
@@ -236,7 +224,7 @@ const Results = (props) => {
               <MatchesContainer
                 visible={selectedHeader === MATCHES_SELECTED}
                 matchesData={recentGamesData.data}
-                currentSummonerName={summonerData.data.name}
+                currentSummonerId={summonerData.data.id}
                 selectedGameType={selectedGameType}
                 setSelectedGameTypeHandler={setSelectedGameTypeHandler}
                 summonerId={summonerData.data.id}

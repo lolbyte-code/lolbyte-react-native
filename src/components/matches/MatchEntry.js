@@ -14,16 +14,16 @@ const MatchEntry = (props) => {
 
   const [collapsed, setCollapsed] = React.useState(true);
   const [currentSummoner, setCurrentSummoner] = React.useState({
-    name: props.currentSummonerName,
+    id: props.currentSummonerId,
     match: null,
   });
 
   React.useEffect(() => {
     setCurrentSummoner({
-      name: props.currentSummonerName,
+      id: props.currentSummonerId,
       match: props.matchId,
     });
-  }, [props.currentSummonerName, props.matchId]);
+  }, [props.currentSummonerId, props.matchId]);
 
   const changeCurrentSummonerHandler = (summoner) => {
     setCurrentSummoner(summoner);
@@ -32,7 +32,7 @@ const MatchEntry = (props) => {
   const selectedSummoner = matchData.isFetching
     ? null
     : matchData.data.players.filter(
-        (player) => player.name === currentSummoner.name,
+        (player) => player.id === currentSummoner.id,
       )[0];
 
   /*
@@ -95,7 +95,7 @@ const MatchEntry = (props) => {
               }
               setCollapsed(true);
               setCurrentSummoner({
-                name: props.currentSummonerName,
+                name: props.currentSummonerId,
                 match: props.matchId,
               });
               props.changeSelectedMatchHandler(null);
@@ -139,7 +139,7 @@ const MatchEntry = (props) => {
                 team1Kda={`${matchData.data.blueTeam.kills}/${matchData.data.blueTeam.deaths}/${matchData.data.blueTeam.assists}`}
                 team2Kda={`${matchData.data.redTeam.kills}/${matchData.data.redTeam.deaths}/${matchData.data.redTeam.assists}`}
                 changeSummonerHandler={changeCurrentSummonerHandler}
-                selectedSummonerName={selectedSummoner.name}
+                selectedSummonerId={selectedSummoner.id}
               />
             </View>
           </TouchableWithoutFeedback>
@@ -168,7 +168,7 @@ MatchEntry.defaultProps = {
   changeSummonerHandler: () => {},
   changeSelectedMatchHandler: () => {},
   containerStyle: {},
-  currentSummonerName: '',
+  currentSummonerId: '',
   summonerId: '',
   summonerRegion: '',
 };
@@ -193,7 +193,7 @@ MatchEntry.propTypes = {
   changeSummonerHandler: PropTypes.func,
   changeSelectedMatchHandler: PropTypes.func,
   containerStyle: PropTypes.object,
-  currentSummonerName: PropTypes.string,
+  currentSummonerId: PropTypes.string,
   summonerId: PropTypes.string,
   summonerRegion: PropTypes.string,
 };
