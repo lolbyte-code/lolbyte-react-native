@@ -35,6 +35,15 @@ const MatchEntry = (props) => {
         (player) => player.id === currentSummoner.id,
       )[0];
 
+  // Kind of a hacky fix but I don't remember how React works anymore.
+  // Fixes an bug where you can't click a match consecutively.
+  if (currentSummoner.id == null) {
+    setCurrentSummoner({
+      id: props.currentSummonerId,
+      match: null,
+    })
+  }
+
   /*
     Cached matches load faster than remotely fetched matches and may
     cause a re-ordering of the match list as they are lazily loaded.
